@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/bootstrap";
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import "spinner";
+@import "utils";
+@import "rtl";
+@import "responsive";
+
+@media print {
+    .breadcrumb {
+        display: none !important;
+    }
+}
