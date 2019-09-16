@@ -12,3 +12,16 @@
         display: none !important;
     }
 }
+
+
+
+.owl-carousel .owl-stage {
+    display: flex!important;
+    align-items: center!important;
+}
+.owl-carousel .owl-item{
+    margin:auto!important;
+}
+  .owl-carousel,.caption {
+    text-align: center!important;
+  }

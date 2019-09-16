@@ -21,11 +21,12 @@ export class DashboardComponent implements OnInit {
     public sliders: Array<any> = [];
     isDragging: boolean;
   carouselData: CarouselData[] = [
-    { text: 'Slide 1', src: 'assets/images/350x450&text=1.png', dataHash: 'one'},
-    { text: 'Slide 2', src: 'assets/images/350x650&text=2.png', dataHash: 'two'},
-    { text: 'Slide 3', src: 'assets/images/350x250&text=3-fallback.png', dataHash: 'three'},
-    { text: 'Slide 4', src: 'assets/images/350x250&text=4.png', dataHash: 'four'},
-    { text: 'Slide 5', src: 'assets/images/350x250&text=5.png', dataHash: 'five'},
+    { text: 'Slide 1', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'one'},
+    { text: 'Slide 2', src: 'assets/images/Home/Modulo-3/Botella-2-pequeña.png', dataHash: 'two'},
+    { text: 'Slide 3', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'three'},
+    { text: 'Slide 4', src: 'assets/images/Home/Modulo-3/Botella-2-pequeña.png', dataHash: 'four'},
+    { text: 'Slide 5', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'five'},
+    { text: 'Slide 5', src: 'assets/images/Home/Modulo-3/Botella-2-pequeña.png', dataHash: 'five'},
     // { text: 'Slide 6', dotContent: 'text5'},
     // { text: 'Slide 7', dotContent: 'text5'},
     // { text: 'Slide 8', dotContent: 'text5'},
@@ -34,9 +35,10 @@ export class DashboardComponent implements OnInit {
   ];
   customOptions: any = {
     loop: true,
-    autoHeight: true,
     autoWidth: true,
-    nav: true,
+    autoHeight: true,
+    autoplay: true,
+    nav: false,
     center: true,
     dots:true,
     items: 1,
@@ -45,22 +47,36 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  customOptions2: any = {
+    loop: true,
+    // autoWidth: true,
+    // autoHeight: false,
+    nav: false,
+    autoplay: true,
+    center: true,
+    dots:true,
+    items: 5,
+        // URLhashListener:true,
+    // startPosition: 'URLHash',
+
+  }
+
     constructor() {
 
         this.sliders.push(
+            // {
+            //     imagePath: 'assets/images/Home/Modulo-1/Imagen-video-1.png',
+            //     label: 'First slide label',
+            //     text:
+            //         'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+            // },
+            // {
+            //     imagePath: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+            //     label: 'Second slide label',
+            //     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            // },
             {
-                imagePath: 'assets/images/slider1.jpg',
-                label: 'First slide label',
-                text:
-                    'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-            },
-            {
-                imagePath: 'assets/images/slider2.jpg',
-                label: 'Second slide label',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            },
-            {
-                imagePath: 'assets/images/slider3.jpg',
+                imagePath: 'assets/images/Home/Modulo-1/foto-de-fondo.png',
                 label: 'Third slide label',
                 text:
                     'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
