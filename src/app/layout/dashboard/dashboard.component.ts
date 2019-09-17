@@ -22,11 +22,11 @@ export class DashboardComponent implements OnInit {
     isDragging: boolean;
   carouselData: CarouselData[] = [
     { text: 'Slide 1', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'one'},
-    { text: 'Slide 2', src: 'assets/images/Home/Modulo-3/Botella-2-pequeña.png', dataHash: 'two'},
+    { text: 'Slide 2', src: 'assets/images/Home/Modulo-3/Botella-2-pequena.png', dataHash: 'two'},
     { text: 'Slide 3', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'three'},
-    { text: 'Slide 4', src: 'assets/images/Home/Modulo-3/Botella-2-pequeña.png', dataHash: 'four'},
+    { text: 'Slide 4', src: 'assets/images/Home/Modulo-3/Botella-2-pequena.png', dataHash: 'four'},
     { text: 'Slide 5', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'five'},
-    { text: 'Slide 5', src: 'assets/images/Home/Modulo-3/Botella-2-pequeña.png', dataHash: 'five'},
+    { text: 'Slide 5', src: 'assets/images/Home/Modulo-3/Botella-2-pequena.png', dataHash: 'five'},
     // { text: 'Slide 6', dotContent: 'text5'},
     // { text: 'Slide 7', dotContent: 'text5'},
     // { text: 'Slide 8', dotContent: 'text5'},
@@ -55,7 +55,15 @@ export class DashboardComponent implements OnInit {
     autoplay: true,
     center: true,
     dots:true,
-    items: 5,
+    responsiveClass:true,
+    responsive:{
+        600:{
+            items: 3
+        },
+        1000:{
+            items: 5
+        }
+    }
         // URLhashListener:true,
     // startPosition: 'URLHash',
 

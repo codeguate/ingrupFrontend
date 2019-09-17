@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -12,9 +11,8 @@ export class SidebarComponent implements OnInit {
     collapsed: boolean;
     showMenu: string;
     pushRightClass: string;
-
+    
     @Output() collapsedEvent = new EventEmitter<boolean>();
-
     constructor(private translate: TranslateService, public router: Router) {
         this.router.events.subscribe(val => {
             if (
@@ -32,6 +30,16 @@ export class SidebarComponent implements OnInit {
         this.collapsed = true;
         this.showMenu = '0';
         this.pushRightClass = 'push-right';
+    }
+    openMenu(){
+        var width_device = window.screen.width;
+        if(width_device < 1000){
+            this.toggleSidebar();
+        }else{
+            this.toggleSidebar();
+            this.toggleCollapsed();
+        }
+        
     }
 
 

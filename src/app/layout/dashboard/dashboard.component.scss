@@ -13,7 +13,15 @@
     height: auto;
     z-index: -10;
 }
-
+h1,h2,h3,h4{
+  font-family: RobotoBold;
+}
+p{
+  font-family: RobotoMedium !important;
+}
+.contain_img_row div{
+  text-align: center;
+}
 /*-----------CUERPO----------------*/
 body{
     margin: 0 0 0 0;
@@ -23,8 +31,17 @@ body{
     background-color: RGBA(128,128,128,0.10);
     margin: 0 0 0 0;
     width: 100%;
-  }
+    background-image: url(../../../assets/images/Home/Modulo-1/fondo11.png);
+    background-size: cover;
 
+  }
+  .contain_img_row{
+    background-image: url(../../../assets/images/Home/Modulo-1/fondo22.png);
+    background-size: cover;
+  }
+  .container_title_row{
+    padding-bottom: 10%;
+  }
   /*-----------FABRICAMOS----------------*/
   .info1{
     margin-top: 10%;
@@ -75,11 +92,12 @@ body{
     display: inline-block;
   }
   .conoce{
-    width: 35%;
-    margin: -5% 0 0 39%;
+    width: 65%;
     display: inline-block;
   }
-
+  .container_button{
+    height: fit-content;
+  }
   /*-----------INFO2----------------*/
   .info2{
     width: 50%;
@@ -116,7 +134,17 @@ body{
   }
   .logoI{
     width: 350px;
-    margin: -22% 0 0 10%;
+    margin: 0 0 0 10%;
+    text-align: left;
+    margin-left: 0;
+    margin-bottom: -40%;
+  }
+  .contain_img_row{
+    padding-top: 10%;
+  }
+  .logoI img{
+    width: 100%;
+    margin: auto
   }
 
   /*-----------EMPAQUES----------------*/
@@ -259,7 +287,7 @@ body{
     display: inline-block;
     width: 50%;
     height: auto;
-    margin: 10% 0 0 0;
+    margin: 5% 0 0 0;
     color: white;
   }
   .DescargaApp h1{
@@ -304,9 +332,108 @@ body{
     display: flex!important;
     align-items: center!important;
 }
+.texto_proposito{
+  display: flex;
+  line-height: 1;
+}
+.line-title{
+  width: 10%;
+  height: 1px;
+  background-color: #44D62C;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 5%;
+  margin-left: 2%;
+}
+.container_data{
+  padding-left: 20%;
+}
+.phone{
+  text-align: right;
+}
+.pdt-5{
+  padding-top: 5%;
+}
+.mgt-5{
+  margin-top: -5%;
+}
 .owl-carousel .owl-item{
     margin:auto!important;
 }
   .owl-carousel,.caption {
     text-align: center!important;
   }
+  .title{
+    height: fit-content;
+    margin-top: auto;
+  }
+
+@media only screen and (max-width: 1500px){
+  .contain_img_row img{
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 1000px){
+  .mb_auto{
+    width: 50%;
+    padding: 5px;
+  }
+  h1{
+    font-size: 2em;
+  }
+  .content_img{
+    margin-left: 0 !important;
+  }
+  .title{
+    text-align: center;
+  }
+  .conoce{
+    width: 100%;
+    margin: 0 !important;
+  }
+  .logoI{
+    display: none;
+  }
+  .title2{
+    margin-top: 5%;
+  }
+  .contain_img_row img{
+    width: 100%;
+  }
+  .DescargaApp{
+    width: 100%;
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+  .phone{
+    width: 100%;
+  }
+  .phone img{
+    width: 100%;
+  }
+  .contain_img{
+    width: 100%;
+    display: flex;
+    margin-bottom: 8%;
+  }
+  .contain_img img{
+    width: 45%;
+    margin: auto;
+  }
+  .container_data{
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+  .texto_proposito{
+    font-size: 1.5em;
+  }
+  .puntos12,.bottela_logo{
+    display: none !important;
+  }
+  .DescargaApp h1{
+    font-size: 1.5em;
+  }
+  .phone{
+    margin-bottom: 10%;
+  }
+}

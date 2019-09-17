@@ -32,6 +32,10 @@ input , select, textarea{
     min-height: 243px;
     height: 343px;
 }
+select{
+    padding: 6px 12px;
+    height: fit-content;
+}
 .descriptino_mail{
     margin-bottom: 0 !important;
     vertical-align: middle !important;
@@ -131,4 +135,48 @@ input , select, textarea{
     background-size: cover;
     background-repeat: none;
     height: 30vh;
+}
+select{
+    height: fit-content !important;
+}
+@media only screen and (max-width: 1500px){
+    #button_forma{
+        width: 70%;
+    }
+    .description_proveedores{
+        width: 100%;
+        font-size: 1.5em;
+    }
+    .w-50{
+        width: 100% !important;
+    }
+}
+@media only screen and (max-width: 1000px){
+    select{
+        padding: 6px 12px;
+        height: fit-content !important;
+    }
+    .paddingr-10{
+        margin: 0;
+    }
+    .description_proveedores{
+        font-size: 1em;
+    }
+    #button_forma{
+        width: 100%;
+    }
+    .img_marca{
+        display: block !important;
+    }
+    .mapa{
+        width: 100%;
+        padding: 10%;
+
+    }
+    .vh100{
+        height: fit-content !important;
+    }
+    .img_marca{
+        padding: 10% 0;
+    }
 }
