@@ -198,7 +198,7 @@ $topnav-background-color: #ffffff;
     }
     &:hover {
         background: darken($topnav-background-color, 5%);
-        color: #fff;
+        color: #44D62C;
     }
     border-top: 1px solid #5E5B5C;
     -webkit-transition: all 0.2s ease-in-out;
@@ -207,10 +207,14 @@ $topnav-background-color: #ffffff;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+.toggle-button.collapsed{
+    padding: 0px!important;
 
+}
 .collapsed {
     width: 0px;
     border: none;
+    padding: none!important;
     span {
         display: none;
     }

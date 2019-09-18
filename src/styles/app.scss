@@ -16,14 +16,14 @@
 
 @font-face{
    font-family: "RobotoMedium";
-   src: url(../assets/fonts/Roboto-Medium.ttf); 
+   src: url(../assets/fonts/Roboto-Medium.ttf);
 }
 @font-face{
     font-family: "RobotoBold";
-    src: url(../assets/fonts/Roboto-Bold.ttf); 
+    src: url(../assets/fonts/Roboto-Bold.ttf);
  }
  body{
-    font-family: RobotoMedium,RobotoBold;   
+    font-family: RobotoMedium,RobotoBold;
  }
 .owl-carousel .owl-stage {
     display: flex!important;
@@ -35,3 +35,27 @@
   .owl-carousel,.caption {
     text-align: center!important;
   }
+.menu-ingrup .owl-theme .owl-nav .owl-prev{
+    position: absolute;
+    background: none!important;
+    left: -5%;
+    top:30%;
+}
+
+.menu-ingrup .owl-theme .owl-nav .owl-next{
+    position: absolute;
+    background: none!important;
+    right: -5%;
+    top:30%;
+}
+
+.menu-ingrup .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span{
+    background-color: #44D62C!important;
+    padding: 0.5rem;
+}
+
+.menu-ingrup .owl-theme .owl-dots .owl-dot span, .owl-theme .owl-dots .owl-dot span{
+    background-color: #ffffff!important;
+    padding: 0.5rem;
+    border: #A2A2A2 solid 0.05rem;
+}

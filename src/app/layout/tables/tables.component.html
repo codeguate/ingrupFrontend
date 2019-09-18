@@ -8,7 +8,7 @@
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0
                 (render)="mainRenderer.render()">
-                <atft-webgl-renderer #mainRenderer style="height: 500px">
+                <atft-webgl-renderer #mainRenderer style="height: 100vh;">
                     <atft-perspective-camera
                     [fov]=50 [near]=1 [far]=1100
                         positionX=-5 positionY=0 positionZ=-10>
