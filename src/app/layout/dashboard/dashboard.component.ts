@@ -75,6 +75,29 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  customOptions3: any = {
+    loop: true,
+    padding:10,
+    autoWidth: true,
+    // autoHeight: false,
+    nav: false,
+    autoplay: true,
+    center: false,
+    dots:true,
+    responsiveClass:true,
+    responsive:{
+        600:{
+            items: 2
+        },
+        1000:{
+            items: 4
+        }
+    }
+        // URLhashListener:true,
+    // startPosition: 'URLHash',
+
+  }
+
     constructor() {
 
         this.sliders.push(

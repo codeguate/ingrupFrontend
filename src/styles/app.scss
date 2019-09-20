@@ -242,12 +242,24 @@ div[id^='ngb-panel'] ul{
 .mainCarousell .owl-carousel .owl-stage-outer .owl-stage{
     height: 100%!important;
 }
+.videoCarousell{
+    height: 30vh;
+}
+.videoCarousell .owl-carousel{
+    height: 100%!important;
+}
+.videoCarousell .owl-carousel .owl-stage-outer{
+    height: 100%!important;
+}
+.videoCarousell .owl-carousel .owl-stage-outer .owl-stage{
+    height: 100%!important;
+}
 .transparentStyle{
     height: 100vh;
     position: absolute;
     width: 35%;
     top: 0;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(219, 67, 67, 0.5);
     z-index: 999;
     font-family: RobotoMedium;
 }
@@ -257,7 +269,7 @@ div[id^='ngb-panel'] ul{
     width: 65%;
     right: 0;
     top: 0;
-    z-index: 999;
+    z-index: 1;
     color: #ffffff;
     font-family: RobotoMedium;
 }
