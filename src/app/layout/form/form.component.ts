@@ -155,7 +155,18 @@ export class FormComponent implements OnInit {
       }
 
     ngOnInit() {
-
+        $(document).ready(function () {
+            $(".filtrosAccordeon .btn-link.collapsed").click(event => {
+                console.log(event);
+                if($(".filtrosAccordeon .btn-link h3").parent().parent().hasClass('backVerde')){
+                    $(".filtrosAccordeon .btn-link h3").parent().parent().removeClass('backVerde');
+                        $(".filtrosAccordeon .btn-link.collapsed h3").parent().parent().removeClass('backVerde');
+                }else{
+                    $(".filtrosAccordeon .btn-link h3").parent().parent().addClass('backVerde', {duration:100});
+                        $(".filtrosAccordeon .btn-link.collapsed h3").parent().parent().removeClass('backVerde');
+                }
+            })
+        });
     }
 
     cargarSingle(id){

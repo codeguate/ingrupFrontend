@@ -59,8 +59,8 @@
     padding: 0.5rem;
     border: #A2A2A2 solid 0.05rem;
 }
-.filtrosAccordeon .card .card-header {
-    background-color: #ffffff!important;
+.filtrosAccordeon .card{
+    background-color: #ffffff;
     border: none;
 }
 
@@ -68,24 +68,44 @@
     text-decoration: none;
    }
    .filtrosAccordeon button.collapsed h3{
+    .filtrosAccordeon .card .card-header {
+        background-color: #ffffff!important;
+    }
     color: #999!important;
+    background-color: #ffffff!important;
     text-decoration: none;
 }
 .filtrosAccordeon .btn-link h3{
-    color: #44D62C!important;
+    color:#ffffff;
     text-decoration: none;
 }
 .filtrosAccordeon h3:hover{
-    color: #44D62C!important;
+    color:#ffffff;
     text-decoration: none;
    }
 .filtrosAccordeon .card .card-header {
-    background-color: #ffffff!important;
+    background-color: #ffffff;
+
 }
 div[id^='ngb-panel']{
-    -webkit-transition: all 3s ease-in-out;
-        -moz-transition: all 3s ease-in-out;
-           -ms-transition: all 3s ease-in-out;
-            -o-transition: all 3s ease-in-out;
-                   transition: all 3s ease-in-out;
+    -webkit-transition: display 3s ease-in-out;
+        -moz-transition: display 3s ease-in-out;
+           -ms-transition: display 3s ease-in-out;
+            -o-transition: display 3s ease-in-out;
+                   transition: display 3s ease-in-out;
+}
+div[id^='ngb-panel'] ul{
+    list-style: none;
+    padding-left: 3rem;
+    color: #999;
+}
+.filtrosAccordeon{
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    margin-bottom: auto;
+}
+
+.backVerde{
+    background-color: #44D62C!important;
 }
