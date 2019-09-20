@@ -35,15 +35,21 @@ export class DashboardComponent implements OnInit {
   ];
   customOptions: any = {
     loop: true,
-    autoWidth: true,
-    autoHeight: true,
-    autoplay: true,
+    // autoWidth: true,
+    // autoHeight: false,
     nav: false,
+    autoplay: true,
     center: true,
-    dots:true,
-    items: 1,
-        // URLhashListener:true,
-    // startPosition: 'URLHash',
+    dots:false,
+    responsiveClass:true,
+    responsive:{
+        600:{
+            items: 1
+        },
+        1000:{
+            items: 1
+        }
+    }
 
   }
 
@@ -93,7 +99,7 @@ export class DashboardComponent implements OnInit {
         this.alerts.push(
             {
                 id: 1,
-                type: 'success',
+                type: 'assets/images/Home/Modulo-1/Imagen-video-1.png',
                 message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Voluptates est animi quibusdam praesentium quam, et perspiciatis,
                 consectetur velit culpa molestias dignissimos
@@ -101,7 +107,7 @@ export class DashboardComponent implements OnInit {
             },
             {
                 id: 2,
-                type: 'warning',
+                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
                 message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Voluptates est animi quibusdam praesentium quam, et perspiciatis,
                 consectetur velit culpa molestias dignissimos

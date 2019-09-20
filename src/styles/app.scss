@@ -169,7 +169,7 @@ div[id^='ngb-panel'] ul{
 }
 .container_productos .card-header{
     padding: 0 !important;
-} 
+}
 .container_productos .card{
     width: 100% !important;
 }
@@ -229,4 +229,60 @@ div[id^='ngb-panel'] ul{
 }
 .backVerde{
     background-color: #44D62C!important;
+}
+.mainCarousell{
+    height: 100vh;
+}
+.mainCarousell .owl-carousel{
+    height: 100%!important;
+}
+.mainCarousell .owl-carousel .owl-stage-outer{
+    height: 100%!important;
+}
+.mainCarousell .owl-carousel .owl-stage-outer .owl-stage{
+    height: 100%!important;
+}
+.transparentStyle{
+    height: 100vh;
+    position: absolute;
+    width: 35%;
+    top: 0;
+    background-color: rgba(255,255,255,0.5);
+    z-index: 999;
+    font-family: RobotoMedium;
+}
+.mainStyle{
+    height: 100vh;
+    position: absolute;
+    width: 65%;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    color: #ffffff;
+    font-family: RobotoMedium;
+}
+.transparentStyle .preview{
+    height: 20%;
+    background-color: #ffffff;
+}
+.transparentStyle .contanter{
+    height: 80%;
+}
+
+.transparentStyle .contanter .logo{
+    height: 5rem;
+    width: 100%;
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+.transparentStyle .contanter .logo>img{
+    height: 100%;
+    width: auto;
+}
+.transparentStyle .contanter.row,.transparentStyle .preview .row{
+    margin-right: 0px!important;
+    margin-left: 0px!important;
+}
+.d-grid{
+    display: grid;
 }

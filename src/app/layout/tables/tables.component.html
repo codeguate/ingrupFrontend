@@ -1,396 +1,104 @@
 <div [@routerTransition]>
-    <app-header></app-header>
+        <app-header></app-header>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex colum_select" *ngIf="selectedData">
+                <ngb-accordion  class="p-20 filtrosAccordeon container_productos" #filtros="ngbAccordion" >
 
-    <app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>
+                        <ngb-panel>
 
-    <div class="row">
+                          <ng-template ngbPanelTitle class="w-100">
 
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <h3>Envases PET</h3>
+                          </ng-template>
+                          <ng-template ngbPanelContent>
+                            <ul>
+
+                                <li *ngFor="let data of Table" (click)="cargarSingle(data)">
+                                   <i class="fa fa-plus"></i> {{data.nombre}}
+                                </li>
+                                <li>
+                                Envase PET 600 ml   Generico 21.5 grs
+                                </li>
+                                <li>
+                                Envase PET 1.50 litros  Generico 42.5 grs
+                                </li>
+                                <li>
+                                Envase PET 2 litros  Generico 46.5 grs
+                                </li>
+                                <li>
+                                Envase PET 3 litros  Generico 58.5 grs
+                                </li>
+                                <li>
+                                Envase PET  3.3 litros Generico 62 grs
+                                </li>
+                                <li>
+                                Envase PET 2.5 litros  Generico 52.5 grs
+                            </li></ul
+                            >
+                          </ng-template>
+                        </ngb-panel>
+                        <ngb-panel>
+
+                            <ng-template ngbPanelTitle class="w-100">
+
+                              <h3>Envases Policarbonato</h3>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                              <ul>
+
+                                  <li *ngFor="let data of Table" (click)="cargarSingle(data)">
+                                     <i class="fa fa-plus"></i> {{data.nombre}}
+                                  </li>
+                                  <li>
+                                  Envase PET 600 ml   Generico 21.5 grs
+                                  </li>
+                                  <li>
+                                  Envase PET 1.50 litros  Generico 42.5 grs
+                                  </li>
+                                  <li>
+                                  Envase PET 2 litros  Generico 46.5 grs
+                                  </li>
+                                  <li>
+                                  Envase PET 3 litros  Generico 58.5 grs
+                                  </li>
+                                  <li>
+                                  Envase PET  3.3 litros Generico 62 grs
+                                  </li>
+                                  <li>
+                                  Envase PET 2.5 litros  Generico 52.5 grs
+                              </li></ul
+                              >
+                            </ng-template>
+                          </ngb-panel>
+                      </ngb-accordion>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" *ngIf="selectedData">
                 <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0
-                (render)="mainRenderer.render()">
-                <atft-webgl-renderer #mainRenderer style="height: 100vh;">
-                    <atft-perspective-camera
-                    [fov]=50 [near]=1 [far]=1100
-                        positionX=-5 positionY=0 positionZ=-10>
-                    </atft-perspective-camera>
-                    <atft-scene>
-                    <atft-point-light color="0xffffff" intensity="0.9" distance="100" translateX=50 translateY=50 translateZ=50></atft-point-light>
-                    <atft-point-light color="0xffffff" intensity="0.5" distance="100" translateX=-50 translateY=20 translateZ=-50></atft-point-light>
-                    <atft-point-light color="0xffffff" intensity="0.8" distance="200" translateX=0 translateY=-20 translateZ=0></atft-point-light>
-                    <!-- <atft-axes-helper size=300></atft-axes-helper> -->
-                    <!-- <atft-grid-helper size=200 divisions=20></atft-grid-helper> -->
-
-                    <atft-obj-loader
-                      (render)="mainRenderer.render()"
-                      model="assets/models/modelo1.obj"
-                      rotateX=0
-                      rotateY=0
-                      rotateZ=-25
-                      translateX=0
-                      translateZ=25
-                      translateY=0>
-                    </atft-obj-loader>
-                    </atft-scene>
-                </atft-webgl-renderer>
-            </atft-orbit-controls>
+                    (render)="mainRenderer.render()" id="mainControls">
+                    <atft-webgl-renderer #mainRenderer style="height: 100vh;">
+                        <atft-perspective-camera [fov]="selectedData.fov" [near]="selectedData.near" [far]="selectedData.far"
+                            positionX={{selectedData.pX}} positionY={{selectedData.pY}} positionZ={{selectedData.pZ}}>
+                        </atft-perspective-camera>
+                        <atft-scene>
+                            <atft-point-light [color]="configModel.color" intensity="0.9" distance="100" translateX=50 translateY=50 translateZ=50></atft-point-light>
+                            <atft-point-light [color]="configModel.color" intensity="0.5" distance="100" translateX=-50 translateY=20 translateZ=-50></atft-point-light>
+                            <atft-point-light [color]="configModel.color" intensity="0.8" distance="200" translateX=0 translateY=-20 translateZ=0></atft-point-light>
+                            <!-- <atft-axes-helper size=300></atft-axes-helper> -->
+                            <!-- <atft-grid-helper size=200 divisions=20></atft-grid-helper> -->
+                            <atft-obj-loader
+                            (render)="mainRenderer.render()"
+                            model="{{selectedData.model}}"
+                            rotateX={{selectedData.rX}}
+                            rotateY={{selectedData.rX}}
+                            rotateZ={{selectedData.rX}}
+                            translateX={{selectedData.tX}}
+                            translateZ={{selectedData.tZ}}
+                            translateY={{selectedData.tY}}>
+                            </atft-obj-loader>
+                        </atft-scene>
+                    </atft-webgl-renderer>
+                </atft-orbit-controls>
+            </div>
         </div>
-
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            prueba
-        </div>
-
 
     </div>
-
-    <div class="row">
-        <div class="col col-xl-6 col-lg-12">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Basic example
-                </div>
-                <div class="card-body table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Table head options</div>
-                <div class="card-body table-responsive">
-                    <table class="table">
-                        <thead class="thead-inverse">
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead class="thead-default">
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Bordered table</div>
-                <div class="card-body table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@TwBootstrap</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Small table</div>
-                <table class="table table-sm">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col col-xl-6 col-lg-12">
-            <div class="card mb-3">
-                <div class="card-header">Inverse table</div>
-                <div class="card-body table-responsive">
-                    <table class="table table-inverse">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Striped Rows</div>
-                <div class="card-body table-responsive">
-                    <table class="table table-hover table-striped">
-                        <thead>
-                        <tr>
-                            <th>Page</th>
-                            <th>Visits</th>
-                            <th>% New Visits</th>
-                            <th>Revenue</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>/index.html</td>
-                            <td>1265</td>
-                            <td>32.3%</td>
-                            <td>$321.33</td>
-                        </tr>
-                        <tr>
-                            <td>/about.html</td>
-                            <td>261</td>
-                            <td>33.3%</td>
-                            <td>$234.12</td>
-                        </tr>
-                        <tr>
-                            <td>/sales.html</td>
-                            <td>665</td>
-                            <td>21.3%</td>
-                            <td>$16.34</td>
-                        </tr>
-                        <tr>
-                            <td>/blog.html</td>
-                            <td>9516</td>
-                            <td>89.3%</td>
-                            <td>$1644.43</td>
-                        </tr>
-                        <tr>
-                            <td>/404.html</td>
-                            <td>23</td>
-                            <td>34.3%</td>
-                            <td>$23.52</td>
-                        </tr>
-                        <tr>
-                            <td>/services.html</td>
-                            <td>421</td>
-                            <td>60.3%</td>
-                            <td>$724.32</td>
-                        </tr>
-                        <tr>
-                            <td>/blog/post.html</td>
-                            <td>1233</td>
-                            <td>93.2%</td>
-                            <td>$126.34</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Hoverable rows</div>
-                <table class="card-body table table-hover">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Contextual classes</div>
-                <table class="card-body table">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="table-active">
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr class="table-info">
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr class="table-warning">
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr class="table-danger">
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
