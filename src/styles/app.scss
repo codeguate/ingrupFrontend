@@ -59,3 +59,33 @@
     padding: 0.5rem;
     border: #A2A2A2 solid 0.05rem;
 }
+.filtrosAccordeon .card .card-header {
+    background-color: #ffffff!important;
+    border: none;
+}
+
+.filtrosAccordeon .btn-link{
+    text-decoration: none;
+   }
+   .filtrosAccordeon button.collapsed h3{
+    color: #999!important;
+    text-decoration: none;
+}
+.filtrosAccordeon .btn-link h3{
+    color: #44D62C!important;
+    text-decoration: none;
+}
+.filtrosAccordeon h3:hover{
+    color: #44D62C!important;
+    text-decoration: none;
+   }
+.filtrosAccordeon .card .card-header {
+    background-color: #ffffff!important;
+}
+div[id^='ngb-panel']{
+    -webkit-transition: all 3s ease-in-out;
+        -moz-transition: all 3s ease-in-out;
+           -ms-transition: all 3s ease-in-out;
+            -o-transition: all 3s ease-in-out;
+                   transition: all 3s ease-in-out;
+}

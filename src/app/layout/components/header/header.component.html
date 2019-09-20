@@ -1,11 +1,17 @@
 
 <div class="row header-ingrup">
 
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 mt-3 ml-3">
+            <img src="./../../../../assets/images/Mercados/Modulo-1/logo.png" class="logo">
+        </div>
+
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 offset-xs-1 offset-sm-1 offset-md-1 offset-lg-1 menu-ingrup">
             <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let slide of carouselData" >
                   <ng-template carouselSlide>
-                    <a class="panel-ingrup" >
+
+                    <a style="list-style: none;text-decoration: none;" [routerLink]="['/productos',slide.id]" >
+                        <div class="panel-ingrup" [routerLinkActive]="['active']">
                             <div class="ingrup-content">
                                 <div class="panel-body-ingrup">
                                     <img [src]="slide.src" class="menu-item-ingrup" >
@@ -14,7 +20,12 @@
                                     <h3 class="">{{slide.text}}</h3>
                                 </div>
                             </div>
+                        </div>
+                        <div [routerLinkActive]="['show']" class="downRow">
+                                <img src="./../../../../assets/images/Mercados/Modulo-1/flechaAb.png" class="m-auto" style="width: 20%;height:auto;">
+                        </div>
                     </a>
+
                   </ng-template>
                 </ng-container>
             </owl-carousel-o>
