@@ -157,7 +157,7 @@ $topnav-background-color: #ffffff;
 @media screen and (max-width: 992px) {
     .sidebar {
         top: 0px;
-        left: 0px;
+        left: 100%;
     }
 }
 @media print {
