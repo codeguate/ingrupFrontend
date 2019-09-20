@@ -117,11 +117,11 @@ div[id^='ngb-panel'] ul{
 .container_mapas .card{
     border: none !important;
 }
-.container_mapas .card .card-body{
+.container_mapas .card .card-body {
     border: 2px solid #44D62C;
-    border-radius: 9px;
+    border-radius: 1px 1px 9px 9px;
     margin-bottom: 5%;
-    margin-top: -10px;
+    margin-top: -14px;
     color: #44D62C;
 }
 .container_mapas .card .bg-success{
@@ -161,6 +161,71 @@ div[id^='ngb-panel'] ul{
 
 .container_mapas .card h3{
     width: fit-content;
+}
+/**New open button**/
+.container_productos{
+    display: inline-grid;
+    width: 100%;
+}
+.container_productos .card-header{
+    padding: 0 !important;
+} 
+.container_productos .card{
+    width: 100% !important;
+}
+.container_productos .card{
+    border: none !important;
+}
+.container_productos .card .card-body {
+    border: 2px solid #44D62C;
+    border-radius: 1px 1px 9px 9px;
+    margin-bottom: 5%;
+    margin-top: -14px;
+    color: #44D62C;
+}
+.container_productos .card .bg-success{
+    background-color: transparent;
+    text-align: left;
+    padding: 0px;
+    border: 2px solid #44D62C;
+    border-radius: 8px;
+    margin-bottom: 2%;
+}
+.container_productos .card button{
+    color: white;
+    margin-top: auto;
+    margin-bottom: 0 !important;
+    font-size: 1.5em;
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    background-color: #44D62C;
+    padding: 0 !important;
+}
+
+.container_productos .card button.collapsed{
+    color: black;
+    margin-top: auto;
+    margin-bottom: 0 !important;
+    font-size: 1.5em;
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    background-color: transparent;
+    padding: 0 !important;
+}
+
+.container_productos .card h3{
+    width: fit-content;
+}
+.container_productos .card-header{
+    padding: 0 !important;
+}
+.container_productos h3{
+    padding: 1em !important;
+}
+.colum_select{
+    padding-left: 5%;
 }
 .backVerde{
     background-color: #44D62C!important;
