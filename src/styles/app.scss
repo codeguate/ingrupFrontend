@@ -325,10 +325,10 @@ div[id^='ngb-panel'] ul{
     height: 100%;
 }
 @media only screen and (max-width: 1000px){
-    .owl-carousel .owl-item img{
+    .mainCarousell .owl-carousel .owl-item img{
         height: 100vh !important;
     }
-    .owl-item.ng-tns-c6-1.ng-trigger.ng-trigger-autoHeight.ng-star-inserted.active.cloned {
+    .mainCarousell .owl-item.ng-tns-c6-1.ng-trigger.ng-trigger-autoHeight.ng-star-inserted.active.cloned {
         width: auto !important;
     }
 
