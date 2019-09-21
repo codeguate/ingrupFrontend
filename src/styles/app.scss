@@ -251,6 +251,7 @@ div[id^='ngb-panel'] ul{
 }
 .videoCarousell .owl-carousel{
     height: 100%!important;
+    width: auto;
 }
 .videoCarousell .owl-carousel .owl-stage-outer{
     height: 100%!important;
@@ -258,12 +259,17 @@ div[id^='ngb-panel'] ul{
 .videoCarousell .owl-carousel .owl-stage-outer .owl-stage{
     height: 100%!important;
 }
+.videoCarousell .owl-carousel .owl-item img{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
 .transparentStyle{
     height: 100vh;
     position: absolute;
     width: 35%;
     top: 0;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255,255,255,0.5);
     z-index: 999;
     font-family: RobotoMedium;
 }
@@ -302,6 +308,22 @@ div[id^='ngb-panel'] ul{
 .d-grid{
     display: grid;
 }
+
+
+.videoCarousell .owl-theme .owl-nav .owl-prev{
+    display: none;
+}
+
+.videoCarousell .owl-theme .owl-nav .owl-next{
+    position: absolute;
+    background: none!important;
+    right: -10%;
+    top:0%;
+    height: 100%;
+}
+.videoCarousell .owl-theme .owl-nav .owl-next img{
+    height: 100%;
+}
 @media only screen and (max-width: 1000px){
     .owl-carousel .owl-item img{
         height: 100vh !important;
@@ -309,16 +331,52 @@ div[id^='ngb-panel'] ul{
     .owl-item.ng-tns-c6-1.ng-trigger.ng-trigger-autoHeight.ng-star-inserted.active.cloned {
         width: auto !important;
     }
-    
+
     .title_home{
         margin-bottom: 0 !important;
         text-align: center;
     }
     .mainStyle{
+        height: 100vh;
+        position: absolute;
         width: 100%;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        color: #ffffff;
+        font-family: RobotoMedium;
     }
     .transparentStyle{
         display: none;
+    }
+
+   .videoCarousell{
+        width: 100%!important;
+        height: 25vh!important;
+    }
+    .videoCarousell .owl-carousel{
+        height: 100%!important;
+        width: auto;
+    }
+    .videoCarousell .owl-carousel .owl-stage-outer{
+        height: 100%!important;
+    }
+    .videoCarousell .owl-carousel .owl-stage-outer .owl-stage{
+        height: 100%!important;
+    }
+    .videoCarousell .owl-carousel .owl-item img{
+        width: 80%;
+        height: auto!important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .videoCarousell .owl-theme .owl-nav .owl-next{
+        position: absolute;
+        background: none!important;
+        right: 0%;
+        top:0%;
+        height: 100%;
     }
     .title_home{
         padding: 15%;

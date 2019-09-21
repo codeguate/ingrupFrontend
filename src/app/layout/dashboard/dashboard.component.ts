@@ -67,6 +67,9 @@ export class DashboardComponent implements OnInit {
     dots:true,
     responsiveClass:true,
     responsive:{
+        300:{
+            items:2
+        },
         600:{
             items: 3
         },
@@ -80,21 +83,29 @@ export class DashboardComponent implements OnInit {
   }
 
   customOptions3: any = {
-    loop: true,
-    padding:10,
+    center: true,
     autoWidth: true,
     // autoHeight: false,
-    nav: false,
-    autoplay: true,
-    center: false,
-    dots:true,
+    nav: true,
+    dots:false,
+    rewindNav : true,
+    navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Home/Modulo-1/videos.png'>"],
     responsiveClass:true,
     responsive:{
+        100:{
+            items:2,
+            rewindNav : true,
+            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Home/Modulo-1/videos.png'>"],
+            nav: true
+        },
         600:{
-            items: 2
+            items: 2,
+            rewindNav : true,
+            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Home/Modulo-1/videos.png'>"],
+            nav: true
         },
         1000:{
-            items: 4
+            items: 3
         }
     }
         // URLhashListener:true,
@@ -127,6 +138,46 @@ export class DashboardComponent implements OnInit {
             {
                 id: 1,
                 type: 'assets/images/Home/Modulo-1/Imagen-video-1.png',
+                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+                consectetur velit culpa molestias dignissimos
+                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            },
+            {
+                id: 2,
+                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+                consectetur velit culpa molestias dignissimos
+                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            },
+            {
+                id: 2,
+                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+                consectetur velit culpa molestias dignissimos
+                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            },
+            {
+                id: 2,
+                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+                consectetur velit culpa molestias dignissimos
+                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            },
+            {
+                id: 2,
+                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+                consectetur velit culpa molestias dignissimos
+                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            },
+            {
+                id: 2,
+                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
                 message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Voluptates est animi quibusdam praesentium quam, et perspiciatis,
                 consectetur velit culpa molestias dignissimos
