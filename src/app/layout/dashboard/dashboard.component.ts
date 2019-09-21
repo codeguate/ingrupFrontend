@@ -42,7 +42,11 @@ export class DashboardComponent implements OnInit {
     center: true,
     dots:false,
     responsiveClass:true,
+    items: 1,
     responsive:{
+        100:{
+            items: 1
+        },
         600:{
             items: 1
         },

@@ -259,7 +259,7 @@ div[id^='ngb-panel'] ul{
     position: absolute;
     width: 35%;
     top: 0;
-    background-color: rgba(219, 67, 67, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     z-index: 999;
     font-family: RobotoMedium;
 }
@@ -297,4 +297,17 @@ div[id^='ngb-panel'] ul{
 }
 .d-grid{
     display: grid;
+}
+@media only screen and (max-width: 1000px){
+    .owl-carousel .owl-item img{
+        height: 100vh !important;
+    }
+    .owl-item.ng-tns-c6-1.ng-trigger.ng-trigger-autoHeight.ng-star-inserted.active.cloned {
+        width: auto !important;
+    }
+    
+    
+    .transparentStyle{
+        display: none;
+    }
 }
