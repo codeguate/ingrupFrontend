@@ -24,17 +24,17 @@ p{
 }
 /*-----------CUERPO----------------*/
 body{
-    margin: 0 0 0 0;
-    background-color: #fff;
-  }
-  .contenedor1{
-    background-color: RGBA(128,128,128,0.10);
-    margin: 0 0 0 0;
-    width: 100%;
-    background-image: url(../../../assets/images/Home/Modulo-1/fondo11.png);
-    background-size: cover;
+  margin: 0 0 0 0;
+  background-color: #fff;
+}
+.contenedor1{
+  background-color: RGBA(128,128,128,0.10);
+  margin: 0 0 0 0;
+  width: 100%;
+  background-image: url(../../../assets/images/Home/Modulo-1/fondo11.png);
+  background-size: cover;
 
-  }
+}
   .contain_img_row{
     background-image: url(../../../assets/images/Home/Modulo-1/fondo22.png);
     background-size: cover;
@@ -380,7 +380,7 @@ body{
     padding: 5px;
   }
   h1{
-    font-size: 2em;
+    font-size: 1.7em;
   }
   .content_img{
     margin-left: 0 !important;
@@ -436,5 +436,16 @@ body{
   }
   .phone{
     margin-bottom: 10%;
+  }
+  .contain_img_row{
+    background-size: 260%;
+  }
+  .DescargaApp{
+    margin-top: 10%;
+  }
+  .container_title_row{
+    padding-top: 10%;
+    padding-left: 0;
+    padding-right: 0;
   }
 }

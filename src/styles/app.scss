@@ -324,9 +324,15 @@ div[id^='ngb-panel'] ul{
 .videoCarousell .owl-theme .owl-nav .owl-next img{
     height: 100%;
 }
+.mb_auto img {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
+    border-radius: 52px;
+}
 @media only screen and (max-width: 1000px){
-    .mainCarousell .owl-carousel .owl-item img{
+    .first_slider .owl-carousel .owl-item img{
         height: 100vh !important;
+        width: auto !important;
+       
     }
     .mainCarousell .owl-item.ng-tns-c6-1.ng-trigger.ng-trigger-autoHeight.ng-star-inserted.active.cloned {
         width: auto !important;
@@ -365,7 +371,7 @@ div[id^='ngb-panel'] ul{
         height: 100%!important;
     }
     .videoCarousell .owl-carousel .owl-item img{
-        width: 80%;
+        width: 80% !important;
         height: auto!important;
         margin-left: auto;
         margin-right: auto;
@@ -397,5 +403,29 @@ div[id^='ngb-panel'] ul{
     }
     .second_new{
         margin: 0 !important;
+    }
+    canvas{
+        max-height: 568px !important;
+        max-width: 320px !important;
+        height: 568px !important;
+        width: 320px !important;
+
+        margin: auto;
+    }
+    .contain_img_row[_ngcontent-shn-c10] {
+        background-size: 260% !important;
+    }
+    .title{
+        margin-top: 10%;
+    }
+    .DescargaApp{
+        margin-top: 10%;
+    }
+    .mb_auto img {
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px -9px;
+        border-radius: 19px;
+    }
+    .container_data{
+        padding-bottom: 10%;
     }
 }
