@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
     collapsed: boolean;
     showMenu: string;
     pushRightClass: string;
-    
+
     @Output() collapsedEvent = new EventEmitter<boolean>();
     constructor(private translate: TranslateService, public router: Router) {
         this.router.events.subscribe(val => {
@@ -39,7 +39,7 @@ export class SidebarComponent implements OnInit {
             this.toggleSidebar();
             this.toggleCollapsed();
         }
-        
+
     }
 
 
