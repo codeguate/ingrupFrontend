@@ -1,0 +1,242 @@
+$verde: #44D62C;
+$gris: #A2A2A2;
+$Oscuro: #383838;
+$blanco: #fff;
+$morado: #A456B4;
+$verde-c:#79C61B;
+$rojo-c:#D83239;
+$verde-2:#88C645;
+$purpura: #9D3FD3;
+$celeste:#50ABED;
+$rosado: #E06B70;
+.title_page{
+    color: $verde;
+    text-align: center;
+    width: 100%;
+    font-size: 5em;
+    margin-bottom: 3%;
+}
+.sub_title_pais{
+    color: $Oscuro;
+    font-size: 1.4em;
+}
+.text_codigo{
+    color: $Oscuro;
+    font-size: 3em;
+}
+.row{
+    width: 100%;
+    margin: 0;
+}
+.padding-0{
+    padding: 0 !important;
+}
+.p-5{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.vh-100{
+    height: 100vh;
+}
+.contain_img{
+    background-image: url();
+    background-size: cover;
+    background-position: center center;
+}
+.col_green{
+    background-color: $verde;
+}
+.video{
+    width: 100%;
+    height: 100vh;
+}
+.title_card{
+    color: $verde;
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: 0;
+}
+.description_card{
+    color: $gris;
+    width: 80%;
+    text-align: center;
+}
+.container_data{
+    justify-content: center;
+    border: 1px solid #44D62C;
+    border-radius: 35px;
+    width: 80%;
+    height: auto;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 15%;
+    min-height: 48vh;
+    box-shadow: 1px 1px 50px -20px #00000073;
+    background-color: white;
+}
+.padding-w-5{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.description_card{
+    margin: auto;
+}
+.padding-h-5{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.center{
+    justify-items: center;
+}
+.title_valores{
+    color: $verde;
+    text-align: center;
+    width: 100%;
+}
+.img_valores{
+    width: 80%;
+    margin: auto;
+}
+.img_personas{
+    background-image: url(../../../assets/images/Nosotros/Modulo-4/2019-09-23.png);
+    background-size: cover;
+    background-position: center center;
+}
+.politicas_calidad{
+    background-color: $Oscuro;
+    padding: 5%;
+}
+.title_politica{
+    color: $verde;
+    font-size: 4em;
+}
+.sub_title{
+    font-size: 2.6em;
+    padding: 1em 0;
+}
+
+.sub_title,.description_politica{
+    color: white;
+}
+.description_politica{
+    font-size: 1.8em;
+}
+.card_producto{
+    border: 1px solid #44D62C;
+    border-radius: 35px;
+    width: 80%;
+    height: auto;
+    margin: auto;
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    padding: 6% 3%;
+    min-height: 60vh;
+    box-shadow: 1px 1px 50px -20px #00000073;
+    margin-bottom: 15%;
+    justify-content: flex-start;
+}
+
+.logo_card{
+    width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.footer{
+    background-image: url(../../../assets/images/Nosotros/Modulo-4/cuadros_cierre.png);
+    background-size: cover;
+    height: 30vh;
+}
+.first_row{
+    background-image: url(../../../assets/images/Nosotros/Modulo-1/fondo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    padding-top: 10%;
+}
+.title_1{
+    color: $rosado;
+}
+.title_2{
+    color: $celeste;
+}
+.title_3{
+    color: $verde-c;
+}
+.title_4{
+    color: $morado;
+}
+.title_1,.title_2,.title_3,.title_4{
+    font-size: 1.8em;
+}
+.description_card{
+    font-size: 1.2em;
+}
+.padding-w-15{
+    padding-left: 15%;
+    padding-right: 15%;
+}
+.row_mvp{
+    background-image: url(../../../assets/images/Nosotros/Modulo-2/fondo-puntos.png);
+    background-size: cover;
+    background-position: center top;
+}
+@media only screen and (max-width: 1000px){
+    .title_page{
+        font-size: 3em;
+    }
+    .sub_title_pais{
+        font-size: 0.7em;
+    }
+    .text_codigo{
+        font-size: 1.5em;
+        text-align: center !important;
+    }
+    .d-inline{
+        display: flex !important;
+    }
+    .descargar_forma{
+        margin: auto !important;
+    }
+    .col_green{
+        display: none;
+    }
+    .container_data{
+        width: 100%;
+        margin-top: 15%;
+        margin-bottom: 15%;
+    }
+    .title_valores{
+        font-size: 2.5em;
+    }
+    .title_politica{
+        text-align: center;
+        font-size: 2em;
+    }
+    .sub_title{
+        font-size: 1.6em;
+    }
+    .description_politica{
+        font-size: 1em;
+    }
+    .padding-w-15{
+        padding-left: 5% !important;
+        padding-right: 5% !important;
+    }
+    .card_producto{
+        width: 100%;
+    }
+    .img_personas{
+        height: 40vh;
+    }
+    .vh-100{
+        height: fit-content;
+    }
+    .description_card{
+        width: 95%;
+    }
+}
