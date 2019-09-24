@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { MarcasService } from "./../../../shared/services/marcas.service";
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 export class CarouselData {
@@ -20,6 +21,7 @@ export class CarouselData {
 })
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
+    Table:any = null
     carouselData: CarouselData[] = [
         { text: 'Bebidas', src: 'assets/images/Mercados/Modulo-1/menu-principal/Bebidas.png', dataHash: 'one'},
         { text: 'Alimentos', src: 'assets/images/Mercados/Modulo-1/menu-principal/Alimentos.png', dataHash: 'two'},
@@ -31,17 +33,22 @@ export class HeaderComponent implements OnInit {
         // { text: 'Slide 8', dotContent: 'text5'},
         // { text: 'Slide 9', dotContent: 'text5'},
         // { text: 'Slide 10', dotContent: 'text5'},
-      ];
-      customOptions: any = {
+    ];
+    customOptions: any = {
         loop: true,
         autoHeight: false,
         autoWidth: true,
+        autoplay:false,
+        autoplayTimeout:3000,
+        autoplayHoverPause:true,
         nav: true,
         rewindNav : true,
         navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
         center: true,
         // navText:["",""],
         dots:true,
+        animateOut: 'slideOutUp',
+        animateIn: 'slideInUp',
         responsiveClass:true,
         responsive:{
             600:{
@@ -54,31 +61,15 @@ export class HeaderComponent implements OnInit {
                 items:5
             }
         }
+
             // URLhashListener:true,
         // startPosition: 'URLHash',
-
-      }
-      public sliders: Array<any> = [];
-    constructor(private translate: TranslateService, public router: Router) {
-        this.sliders.push(
-            {
-                imagePath: 'assets/images/slider1.jpg',
-                label: 'First slide label',
-                text:
-                    'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-            },
-            {
-                imagePath: 'assets/images/slider2.jpg',
-                label: 'Second slide label',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            },
-            {
-                imagePath: 'assets/images/slider3.jpg',
-                label: 'Third slide label',
-                text:
-                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-            }
-        );
+    }
+    constructor(
+        private translate: TranslateService,
+        public router: Router,
+        private mainService:MarcasService
+    ) {
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&
@@ -92,12 +83,11 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
         this.pushRightClass = 'push-right';
+        this.cargarAll();
         $(document).ready(function () {
             if($('.owl-nav').hasClass('disabled'))
             {
                 $('.owl-nav').removeClass('disabled');
-                console.log('si tiene la clase');
-
             }
         });
     }
@@ -123,5 +113,19 @@ export class HeaderComponent implements OnInit {
 
     changeLang(language: string) {
         this.translate.use(language);
+    }
+    cargarAll(){
+          let data = {
+            id:1,
+            state:'0',
+            filter:'categoria'
+          }
+          this.mainService.getAll()
+                              .then(response => {
+                                this.Table=response
+                                console.log(response);
+                            }).catch(error => {
+                                console.clear
+                              })
     }
 }

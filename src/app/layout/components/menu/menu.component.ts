@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { TiposService } from "./../../../shared/services/tipos.service";
 import { TranslateService } from '@ngx-translate/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-export class CarouselData {
-    id?: string;
-    text: string;
-    dataMerge?: number;
-    width?: number;
-    dotContent?: string;
-    src?: string;
-    dataHash?: string;
-  }
+import { FormComponent } from "./../../form/form.component";
+
 @Component({
     selector: 'app-menu',
     templateUrl: './menu.component.html',
@@ -18,71 +11,45 @@ export class CarouselData {
 })
 export class MenuComponent implements OnInit {
     public pushRightClass: string;
-    carouselData:any = [
-        { id:1, titulo: 'Cajas Agricolas', src: 'assets/images/Productos/Modulo-1/Iconos/Cajas-agricolas.png', dataHash: 'one'},
-        { id:2, titulo: 'Cajillas', src: 'assets/images/Productos/Modulo-1/Iconos/Cajillas.png', dataHash: 'two'},
-        { id:3, titulo: 'Envases', src: 'assets/images/Productos/Modulo-1/Iconos/Envases.png', dataHash: 'three'},
-        { id:4, titulo: 'Empaque Flexible', src: 'assets/images/Productos/Modulo-1/Iconos/Empaque-flexible-op2.png', dataHash: 'four'},
-        { id:5, titulo: 'Empaque Flexible', src: 'assets/images/Productos/Modulo-1/Iconos/Empaque-flexible.png', dataHash: 'four'},
-        { id:6, titulo: 'Preformas', src: 'assets/images/Productos/Modulo-1/Iconos/Preformas.png', dataHash: 'four'},
-        { id:7, titulo: 'Tapas', src: 'assets/images/Productos/Modulo-1/Iconos/Tapas.png', dataHash: 'four'},
-        { id:8, titulo: 'Empaque Litografico', src: 'assets/images/Productos/Modulo-1/Iconos/Empaque-litografico.png', dataHash: 'five'},
-        // { text: 'Slide 6', dotContent: 'text5'},
-        // { text: 'Slide 7', dotContent: 'text5'},
-        // { text: 'Slide 8', dotContent: 'text5'},
-        // { text: 'Slide 9', dotContent: 'text5'},
-        // { text: 'Slide 10', dotContent: 'text5'},
-      ];
-      customOptions: any = {
-        loop: true,
-        autoHeight: false,
-        autoWidth: true,
-        nav: true,
-        rewindNav : true,
-        navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
-        center: true,
-        // navText:["",""],
-        dots:true,
-
-  animateOut: 'slideOutUp',
-  animateIn: 'slideInUp',
-        responsiveClass:true,
-        responsive:{
-            600:{
-                items:1
-            },
-            1000:{
-                items:3
-            },
-            1300:{
-                items:5
-            }
+    Table:any=null
+    customOptions: any = {
+    responsiveClass:true,
+    responsive:{
+        600:{
+            items:1
+        },
+        1000:{
+            items:3
+        },
+        1300:{
+            items:5
         }
-            // URLhashListener:true,
-        // startPosition: 'URLHash',
+    },
+    loop: true,
+    autoHeight: false,
+    autoWidth: true,
+    autoplay:true,
+    autoplayTimeout:3000,
+    autoplayHoverPause:true,
+    nav: true,
+    rewindNav : true,
+    navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
+    center: true,
+    // navText:["",""],
+    dots:true,
+    animateOut: 'slideOutUp',
+    animateIn: 'slideInUp',
 
-      }
-      public sliders: Array<any> = [];
-    constructor(private translate: TranslateService, public router: Router) {
-        this.sliders.push(
-            {
-                imagePath: 'assets/images/slider1.jpg',
-                label: 'First slide label',
-                text:
-                    'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-            },
-            {
-                imagePath: 'assets/images/slider2.jpg',
-                label: 'Second slide label',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            },
-            {
-                imagePath: 'assets/images/slider3.jpg',
-                label: 'Third slide label',
-                text:
-                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-            }
-        );
+        // URLhashListener:true,
+    // startPosition: 'URLHash',
+
+    }
+    constructor(
+        private translate: TranslateService,
+        public router: Router,
+        public FormComponent:FormComponent,
+        private TiposService:TiposService
+    ) {
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&
@@ -96,6 +63,7 @@ export class MenuComponent implements OnInit {
 
     ngOnInit() {
         this.pushRightClass = 'push-right';
+        this.cargarAll();
     }
 
     isToggled(): boolean {
@@ -119,5 +87,19 @@ export class MenuComponent implements OnInit {
 
     changeLang(language: string) {
         this.translate.use(language);
+    }
+    cargarAll(){
+          let data = {
+            id:1,
+            state:'0',
+            filter:'categoria'
+          }
+          this.TiposService.getAll()
+                              .then(response => {
+                                this.Table=response
+                                console.log(response);
+                            }).catch(error => {
+                                console.clear
+                              })
     }
 }

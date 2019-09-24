@@ -9,7 +9,8 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'prefix' },
             { path: 'home', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
-            { path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule) },
+            { path: 'nosotros', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule) },
+            { path: 'mercados/:id', loadChildren: () => import('./tables/tables.module').then(m => m.TablesModule) },
             { path: 'mercados', loadChildren: () => import('./tables/tables.module').then(m => m.TablesModule) },
             { path: 'productos', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
             { path: 'productos/:id', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },

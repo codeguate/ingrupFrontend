@@ -63,8 +63,10 @@ $topnav-background-color: #222;
     background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
+    width: 100%;
     box-shadow: inset #ffffff 0px 0px 13px 1px;
     cursor:pointer;
+    padding-left: 1rem;
 }
 .downRow{
     display: none;
@@ -109,7 +111,7 @@ $topnav-background-color: #222;
 
 }
 .panel-title-ingrup h3{
-    font-size: 2.5rem;
+    font-size: 1.7rem;
     color: #5E5B5C;
 }
 .menu-item-ingrup{

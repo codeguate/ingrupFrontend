@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import {CategoriasService } from "./../../shared/services/categorias.service";
+import {ProductosService } from "./../../shared/services/productos.service";
 import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { ActivatedRoute } from '@angular/router';
+
 declare var $: any
 @Component({
     selector: 'app-tables',
@@ -13,7 +17,7 @@ export class TablesComponent implements OnInit {
 
     @BlockUI() blockUI: NgBlockUI;
 
-
+    public id:number = null
     myColor:string="#ffffff";
     configModel:any = {
         color:"0xffffff",
@@ -43,50 +47,7 @@ export class TablesComponent implements OnInit {
             3:"0"
         }
     }
-    Table:any=[
-        {
-            id:1,
-            nombre:"Tapa",
-            categoria:1,
-            marcado:0,
-            hasModel:true,
-            fov:50,
-            near:1,
-            far:1100,
-            pX:-5,
-            pY:0,
-            pZ:-10,
-            model:"assets/models/modelo1.obj",
-            tX:0,
-            tY:0,
-            tZ:25,
-            rX:0,
-            rY:0,
-            rZ:-25
-
-        },
-        {
-            id:2,
-            nombre:"Envase PET 500 ml Generico 18.5 grs",
-            categoria:1,
-            marcado:0,
-            hasModel:true,
-            fov:50,
-            near:1,
-            far:1100,
-            pX:-5,
-            pY:0,
-            pZ:-50,
-            model:"assets/models/mdl_bote_01.obj",
-            tX:0,
-            tY:-10,
-            tZ:0,
-            rX:0,
-            rY:0,
-            rZ:0
-
-        }
-    ]
+    Table:any= [];
     selectedData:any =
         {
             fov:50,
@@ -96,6 +57,7 @@ export class TablesComponent implements OnInit {
             pY:0,
             pZ:-50,
             model:"assets/models/mdl_bote_01.obj",
+            material:"assets/models/mdl_bote_01.mtl",
             tX:0,
             tY:-10,
             tZ:0,
@@ -146,38 +108,99 @@ export class TablesComponent implements OnInit {
         console.log("si");
 
     }
-    constructor(config: NgbAccordionConfig) {
+    constructor(
+        config: NgbAccordionConfig,
+        private ProductosService:ProductosService,
+        private route: ActivatedRoute,
+        private CategoriasService:CategoriasService
+    ) {
         // customize default values of accordions used by this component tree
         config.closeOthers = true;
         // config.type = 'success';
       }
 
     ngOnInit() {
-
+        this.getParams();
     }
 
-    cargarSingle(id){
-        let data = this.selectedData
+    getParams(){
+        this.id = +this.route.snapshot.paramMap.get("id");
+        if(this.id){
+            this.cargarOfCate(this.id,false)
+        }
+    }
+    cargarSingle(id:number){
+    this.blockUI.start();
+      let data = {
+        id:1,
+        state:'0',
+        filter:'evento'
+      }
+      console.log("antes:"+this.selectedData.id+" Ahora"+id);
+
+      let datas = this.selectedData
         this.selectedData=null
-        data.fov=id.fov
-        data.near=id.near
-        data.far=id.far
-        data.pX=id.pX
-        data.pY=id.pY
-        data.pZ=id.pZ
-        data.model=id.model
-        data.tX=id.tX
-        data.tY=id.tY
-        data.tZ=id.tZ
-        data.rX=id.rX
-        data.rY=id.rY
-        data.rZ=id.rZ
-        this.blockUI.start();
-        setTimeout(() => {
-
-            this.selectedData=id
-            this.blockUI.stop();
-
-        }, 300);
+      this.ProductosService.getSingle(id)
+                          .then(response => {
+                            response.pX = +response.pX;
+                            response.pY = +response.pY;
+                            response.pZ = +response.pZ;
+                            response.tX = +response.tX;
+                            response.tY = +response.tY;
+                            response.tZ = +response.tZ;
+                            response.rX = +response.rX;
+                            response.rY = +response.rY;
+                            response.rZ = +response.rZ;
+                            response.near = +response.near;
+                            response.far = +response.far;
+                            response.fov = +response.fov;
+                            response.material = response.model.replace('.obj',".mtl")
+                            this.selectedData=response
+                            // console.log(response);
+                            this.blockUI.stop();
+                        }).catch(error => {
+                            console.clear
+                            this.blockUI.stop();
+                          })
     }
+    cargarAll(){
+        this.blockUI.start();
+          let data = {
+            id:1,
+            state:'0',
+            filter:'categoria'
+          }
+          this.ProductosService.getAll()
+                              .then(response => {
+                                this.Table=response
+                                // console.log(response);
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear
+                                this.blockUI.stop();
+                              })
+    }
+
+    cargarOfCate(id:number,changeUrl:boolean=false){
+        if(changeUrl){
+            this.id=id
+        }
+        this.blockUI.start();
+          let data = {
+            id:this.id,
+            state:'0',
+            filter:'tipo'
+          }
+          this.ProductosService.getAllFilter(data)
+                              .then(response => {
+                                this.Table=response
+                                console.log(response);
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear
+                                this.blockUI.stop();
+                              })
+    }
+
+
 }

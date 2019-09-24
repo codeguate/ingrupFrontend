@@ -1,76 +1,26 @@
 <div [@routerTransition]>
     <app-menu></app-menu>
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex colum_select" *ngIf="selectedData">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex colum_select" *ngIf="Table">
             <ngb-accordion  class="p-20 filtrosAccordeon container_productos" #filtros="ngbAccordion" >
-
-                    <ngb-panel>
-
-                      <ng-template ngbPanelTitle class="w-100">
-
-                        <h3>Envases PET</h3>
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        <ul>
-
-                            <li *ngFor="let data of Table" (click)="cargarSingle(data)">
-                               <i class="fa fa-plus"></i> {{data.nombre}}
-                            </li>
-                            <li>
-                            Envase PET 600 ml   Generico 21.5 grs
-                            </li>
-                            <li>
-                            Envase PET 1.50 litros  Generico 42.5 grs
-                            </li>
-                            <li>
-                            Envase PET 2 litros  Generico 46.5 grs
-                            </li>
-                            <li>
-                            Envase PET 3 litros  Generico 58.5 grs
-                            </li>
-                            <li>
-                            Envase PET  3.3 litros Generico 62 grs
-                            </li>
-                            <li>
-                            Envase PET 2.5 litros  Generico 52.5 grs
-                        </li></ul
-                        >
-                      </ng-template>
-                    </ngb-panel>
-                    <ngb-panel>
-
-                        <ng-template ngbPanelTitle class="w-100">
-
-                          <h3>Envases Policarbonato</h3>
-                        </ng-template>
-                        <ng-template ngbPanelContent>
-                          <ul>
-
-                              <li *ngFor="let data of Table" (click)="cargarSingle(data)">
-                                 <i class="fa fa-plus"></i> {{data.nombre}}
-                              </li>
-                              <li>
-                              Envase PET 600 ml   Generico 21.5 grs
-                              </li>
-                              <li>
-                              Envase PET 1.50 litros  Generico 42.5 grs
-                              </li>
-                              <li>
-                              Envase PET 2 litros  Generico 46.5 grs
-                              </li>
-                              <li>
-                              Envase PET 3 litros  Generico 58.5 grs
-                              </li>
-                              <li>
-                              Envase PET  3.3 litros Generico 62 grs
-                              </li>
-                              <li>
-                              Envase PET 2.5 litros  Generico 52.5 grs
-                          </li></ul
-                          >
-                        </ng-template>
-                      </ngb-panel>
-                  </ngb-accordion>
+                <ngb-panel *ngFor="let data of Table">
+                    <ng-template ngbPanelTitle class="w-100">
+                    <h3>{{data.nombre}}</h3>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                    <ul *ngIf="selectedData">
+                        <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id)" [class.active]="+selectedData.id==prod.id">
+                            <i class="fa fa-plus"></i> {{prod.nombre}}
+                        </li>
+                    </ul>
+                    <ul *ngIf="!selectedData">
+                        <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id)">
+                            <i class="fa fa-plus"></i> {{prod.nombre}}
+                        </li>
+                    </ul>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" *ngIf="selectedData">
             <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0
@@ -88,6 +38,7 @@
                         <atft-obj-loader
                         (render)="mainRenderer.render()"
                         model="{{selectedData.model}}"
+                        material="{{selectedData.material}}"
                         rotateX={{selectedData.rX}}
                         rotateY={{selectedData.rX}}
                         rotateZ={{selectedData.rX}}

@@ -102,6 +102,14 @@ div[id^='ngb-panel'] ul{
     list-style: none;
     padding-left: 3rem;
     color: #999;
+    cursor: pointer;
+    // font-size: 1.5rem;
+}
+
+div[id^='ngb-panel'] ul li.active{
+    color: #44D62C;
+    cursor: pointer;
+    // font-size: 1.5rem;
 }
 .filtrosAccordeon{
     width: 100%;
@@ -109,8 +117,12 @@ div[id^='ngb-panel'] ul{
     margin-top: 1rem;
     margin-bottom: auto;
 }
-
-
+.pointer:hover{
+    box-shadow: #44D62C 2px 2px 2px 2px;
+}
+.pointer{
+    cursor: pointer;
+}
 .container_mapas{
     display: inline-grid;
     width: 100%;
@@ -269,7 +281,7 @@ div[id^='ngb-panel'] ul{
     position: absolute;
     width: 35%;
     top: 0;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.7);
     z-index: 999;
     font-family: RobotoMedium;
 }
@@ -328,16 +340,38 @@ div[id^='ngb-panel'] ul{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
     border-radius: 52px;
 }
+
+canvas{
+    max-height: 680px !important;
+    max-width: 720px !important;
+    height: 680px!important;
+    width: 720px !important;
+
+    margin: auto;
+}
 @media only screen and (max-width: 1000px){
     .first_slider .owl-carousel .owl-item img{
         height: 100vh !important;
         width: auto !important;
-       
+
+    }
+    .menu-ingrup .owl-theme .owl-nav .owl-prev{
+        left: -15%;
+    }
+
+    .menu-ingrup .owl-theme .owl-nav .owl-next{
+        right: -15%;
+    }
+    .mainCarousell .owl-carousel .owl-item img{
+        height: 100vh !important;
     }
     .mainCarousell .owl-item.ng-tns-c6-1.ng-trigger.ng-trigger-autoHeight.ng-star-inserted.active.cloned {
         width: auto !important;
     }
-
+    .mainControls{
+        height: 100%!important;
+        width: 100%!important;
+    }
     .title_home{
         margin-bottom: 0 !important;
         text-align: center;
