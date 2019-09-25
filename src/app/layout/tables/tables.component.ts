@@ -5,6 +5,7 @@ import {ProductosService } from "./../../shared/services/productos.service";
 import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ActivatedRoute } from '@angular/router';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 
 declare var $: any
 @Component({
@@ -50,6 +51,7 @@ export class TablesComponent implements OnInit {
     Table:any= [];
     selectedData:any =
         {
+            hasModel:false,
             fov:50,
             near:1,
             far:1100,
@@ -118,9 +120,51 @@ export class TablesComponent implements OnInit {
         config.closeOthers = true;
         // config.type = 'success';
       }
-
+    galleryOptions: NgxGalleryOptions[];
+    galleryImages: NgxGalleryImage[];
     ngOnInit() {
         this.getParams();
+        this.galleryOptions = [
+            {
+                width: '90%',
+                height: '600px',
+                thumbnailsColumns: 4,
+                imageAnimation: NgxGalleryAnimation.Slide
+            },
+            // max-width 800
+            {
+                breakpoint: 800,
+                width: '100%',
+                height: '600px',
+                imagePercent: 80,
+                thumbnailsPercent: 20,
+                thumbnailsMargin: 20,
+                thumbnailMargin: 20
+            },
+            // max-width 400
+            {
+                breakpoint: 400,
+                preview: false
+            }
+        ];
+
+        this.galleryImages = [
+            {
+                small: 'assets/images/slider1.jpg',
+                medium: 'assets/images/slider1.jpg',
+                big: 'assets/images/slider1.jpg'
+            },
+            {
+                small: 'assets/images/slider2.jpg',
+                medium: 'assets/images/slider2.jpg',
+                big: 'assets/images/slider2.jpg'
+            },
+            {
+                small: 'assets/images/slider3.jpg',
+                medium: 'assets/images/slider3.jpg',
+                big: 'assets/images/slider3.jpg'
+            }
+        ];
     }
 
     getParams(){

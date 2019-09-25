@@ -1,3 +1,14 @@
+$verde: #44D62C;
+$gris: #A2A2A2;
+$Oscuro: #383838;
+$blanco: #fff;
+$morado: #A456B4;
+$verde-c:#79C61B;
+$rojo-c:#D83239;
+$verde-2:#88C645;
+$purpura: #9D3FD3;
+$celeste:#50ABED;
+$rosado: #E06B70;
 .outer-link{
   display: block;
   border: 1px solid #000;
@@ -346,7 +357,7 @@ body{
   margin-left: 2%;
 }
 .container_data{
-  padding-left: 20%;
+//   padding-left: 20%;
 }
 .phone{
   text-align: right;
@@ -369,16 +380,133 @@ body{
     margin-top: auto;
   }
 
+.title_card{
+    color: $verde;
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: 0;
+}
+.description_card{
+    font-family: RobotoLight;
+    color: $gris;
+    width: 80%;
+    text-align: center;
+    font-size: 1.2rem;
+    span{
+    font-family: RobotoBold;
+    color: $Oscuro;
+
+    }
+}
+.description_card ul li{
+    font-family: RobotoLight;
+    width: 80%;
+    text-align: center;
+    font-size: 1.2rem;
+    span{
+        color: $gris;
+        font-family: RobotoBold;
+    }
+}
+.container_data{
+    justify-content: center;
+    /* border: 1px solid #44D62C; */
+    border-radius: 35px;
+    width: 100%;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    /* padding-bottom: 15%; */
+    /* min-height: 48vh; */
+    /* box-shadow: 1px 1px 50px -20px #00000073; */
+    // background-color: white;
+}
+.padding-w-5{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.description_card{
+    margin: auto;
+}
+.padding-h-5{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.center{
+    justify-items: center;
+}
+.title_valores{
+    color: $verde;
+    text-align: center;
+    width: 100%;
+}
+.img_valores{
+    width: 80%;
+    margin: auto;
+}
+.fondo_cuadros{
+    background-image: url(./../../../assets/images/cuadro-mision-vision.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    width:100%;
+    height:auto;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
+    border-radius: 52px;
+    min-height: 482px;
+    max-height: 482px;
+    display: flex;
+}
+.button_mas{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
+    border-radius: 52px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.button_mas:hover{
+    box-shadow: rgba(60,210,34, 0.5) 0px 0px 15px 5px;
+}
+.fondo_cuadros2{
+    background-image: url(./../../../assets/images/cuadro-proposito-valores.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    width:100%;
+    height:auto;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
+    border-radius: 52px;
+    min-height: 410px;
+    max-height: 410px;
+    display: flex;
+}
+.w-50d{
+    width: 50%;
+}
 @media only screen and (max-width: 1500px){
   .contain_img_row img{
     width: 100%;
   }
 }
 @media only screen and (max-width: 1000px){
-  .mb_auto{
-    width: 50%;
-    padding: 5px;
+  .mb_auto2{
+      margin-bottom: 1rem;
+      margin-top: 1rem;
   }
+  .w-50d{
+    width: 100%;
+}
+  .description_card ul li{
+    font-family: RobotoLight;
+    width: 80%;
+    text-align: center;
+    font-size: 1.2rem;
+    span{
+        color: $gris;
+        font-family: RobotoBold;
+    }
+}
   h1{
     font-size: 1.7em;
   }
@@ -449,4 +577,64 @@ body{
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+
+@media only screen and (max-width: 1000px){
+    .mision{
+        font-size: 1rem;
+    }
+    .title_page{
+        font-size: 3em;
+    }
+    .sub_title_pais{
+        font-size: 0.7em;
+    }
+    .text_codigo{
+        font-size: 1.5em;
+        text-align: center !important;
+    }
+    .d-inline{
+        display: flex !important;
+    }
+    .descargar_forma{
+        margin: auto !important;
+    }
+    .col_green{
+        display: none;
+    }
+    .container_data{
+        width: 100%;
+        margin-top: 15%;
+        margin-bottom: 15%;
+    }
+    .title_valores{
+        font-size: 2.5em;
+    }
+    .title_politica{
+        text-align: center;
+        font-size: 2em;
+    }
+    .sub_title{
+        font-size: 1.6em;
+    }
+    .description_politica{
+        font-size: 1em;
+    }
+    .padding-w-15{
+        padding-left: 5% !important;
+        padding-right: 5% !important;
+    }
+    .card_producto{
+        width: 100%;
+    }
+    .img_personas{
+        height: 40vh;
+    }
+    .vh-100{
+        height: fit-content;
+    }
+    .description_card{
+        width: 95%;
+    }
 }

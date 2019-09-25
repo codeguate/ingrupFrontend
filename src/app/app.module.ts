@@ -8,7 +8,17 @@ import { LanguageTranslationModule } from './shared/modules/language-translation
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import * as Hammer from 'hammerjs';
 
+export class CustomHammerConfig extends HammerGestureConfig {
+  overrides = {
+    'pan': {
+      direction: Hammer.DIRECTION_ALL,
+    }
+  }
+}
+/* End Custom hammer configuration */
 @NgModule({
     imports: [
         CommonModule,
@@ -19,7 +29,7 @@ import { AuthGuard } from './shared';
         AppRoutingModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard],
+    providers: [AuthGuard,{provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig}],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

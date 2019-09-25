@@ -23,7 +23,7 @@
             </ngb-accordion>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" *ngIf="selectedData">
-            <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0
+            <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0 *ngIf="selectedData.hasModel"
                 (render)="mainRenderer.render()" id="mainControls">
                 <atft-webgl-renderer #mainRenderer style="height: 100vh;">
                     <atft-perspective-camera [fov]="selectedData.fov" [near]="selectedData.near" [far]="selectedData.far"
@@ -49,6 +49,9 @@
                     </atft-scene>
                 </atft-webgl-renderer>
             </atft-orbit-controls>
+            <div class="galeria"  *ngIf="!selectedData.hasModel">
+                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages" style="margin:auto;"></ngx-gallery>
+            </div>
         </div>
     </div>
 

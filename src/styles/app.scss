@@ -347,6 +347,12 @@ canvas{
 
     margin: auto;
 }
+.text-ingrup{
+    font-family: RobotoBold;
+    color: rgb(76,73,74);
+    font-size:3.5rem;
+
+}
 @media only screen and (max-width: 1000px){
     .first_slider .owl-carousel .owl-item img{
         height: 100vh !important;
