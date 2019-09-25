@@ -2,3 +2,98 @@
     height: 100vh;
     display: flex;
 }
+.header-ingrup{
+    display: flex;
+    height: 70vh;
+    background-image: url(./../../../assets/images/Mercados/Modulo-1/Fondo.png);
+    background-position: center;
+    background-size: 100%;
+}
+.panel-ingrup:hover{
+    background-color: #44D62C;
+    // border: solid #ffffff 0.5rem;
+    list-style: none;
+    box-shadow: inset #ffffff 0px 0px 13px 1px;
+    cursor:pointer;
+}
+.panel-ingrup:hover .menu-item-ingrup{
+    filter:brightness(1);
+}
+.panel-ingrup:hover .panel-title-ingrup h3{
+    color: #ffffff;
+    padding-left: -0.8rem;
+
+}
+
+.panel-ingrup.active {
+    background-color: #44D62C;
+    // border: solid #ffffff 0.5rem;
+    list-style: none;
+    width: 100%;
+    box-shadow: inset #ffffff 0px 0px 13px 1px;
+    cursor:pointer;
+    padding-left: 1rem;
+}
+.downRow{
+    display: none;
+    width:80%;
+    padding-top:5%;
+}
+.downRow.show{
+    display: flex;
+}
+.panel-ingrup.active .menu-item-ingrup{
+    filter:brightness(1);
+}
+.panel-ingrup.active .panel-title-ingrup h3{
+    color: #ffffff;
+    padding-left: -0.8rem;
+
+}
+.panel-ingrup{
+    padding: 2rem;
+    height: 40vh;
+    width: 80%;
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    // background-color: rgba(255,255,255,0.9);
+}
+.ingrup-content{
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 80%;
+}
+.panel-body-ingrup{
+    display: flex;
+    width: 80%;
+}
+.panel-title-ingrup{
+    text-align: left;
+    width: 70%;
+    padding-left: 1rem;
+    display: block;
+    margin-top: 1rem;
+
+}
+.panel-title-ingrup h3{
+    font-size: 1.7rem;
+    color: #5E5B5C;
+}
+.menu-item-ingrup{
+    filter:brightness(0.3);
+    height: 7vh;
+    width: auto!important;
+    margin-left: 0px;
+    margin-right: auto;
+}
+.menu-ingrup{
+    height: 70%;
+    margin-top: auto;
+}
+@media only screen and (max-width: 900px){
+
+    .panel-title-ingrup h3{
+        font-size: 1rem!important;
+    }
+}

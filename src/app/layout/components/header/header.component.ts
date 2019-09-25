@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
         navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
         center: true,
         // navText:["",""],
-        dots:true,
+        dots:false,
         animateOut: 'slideOutUp',
         animateIn: 'slideInUp',
         responsiveClass:true,

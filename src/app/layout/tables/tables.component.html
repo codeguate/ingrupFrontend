@@ -1,7 +1,33 @@
 <div [@routerTransition]>
     <app-header></app-header>
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex colum_select" *ngIf="Table">
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 offset-xs-1 offset-sm-1 offset-md-1 offset-lg-1 menu-ingrup" *ngIf="Marcas">
+            <owl-carousel-o [options]="customOptions">
+                <ng-container *ngFor="let slide of Marcas.submarca" >
+                <ng-template carouselSlide>
+
+                    <a style="list-style: none;text-decoration: none;" (click)="cargarOfCate(slide.id,true)" [routerLink]="['/mercados/'+id+'/',slide.id]" >
+                        <div class="panel-ingrup" [class.active]="idF==slide.id" >
+                            <div class="ingrup-content">
+                                <div class="panel-body-ingrup">
+                                    <img [src]="slide.foto" class="menu-item-ingrup" >
+                                </div>
+                                <div class="panel-title-ingrup">
+                                    <h3 class="">{{slide.nombre}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div [routerLinkActive]="['show']" class="downRow">
+                                <img src="./../../../../assets/images/Mercados/Modulo-1/flechaAb.png" class="m-auto" style="width: 20%;height:auto;">
+                        </div>
+                    </a>
+
+                </ng-template>
+                </ng-container>
+            </owl-carousel-o>
+
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  d-flex colum_select" *ngIf="Table">
             <ngb-accordion  class="p-20 filtrosAccordeon container_productos" #filtros="ngbAccordion" >
                 <ngb-panel *ngFor="let data of Table">
                     <ng-template ngbPanelTitle class="w-100">

@@ -16,7 +16,7 @@
                 <ng-container *ngFor="let slide of Table" >
                   <ng-template carouselSlide>
 
-                    <a style="list-style: none;text-decoration: none;" (click)="FormComponent.cargarOfCate(slide.id,true)" [routerLink]="['/mercados',slide.id]" >
+                    <a style="list-style: none;text-decoration: none;" (click)="TablesComponent.cargarOfCate(slide.id,true)" [routerLink]="['/mercados',slide.id]" >
                         <div class="panel-ingrup" [routerLinkActive]="['active']">
                             <div class="ingrup-content">
                                 <div class="panel-body-ingrup">
@@ -37,5 +37,6 @@
             </owl-carousel-o>
 
         </div>
+
 
     </div>

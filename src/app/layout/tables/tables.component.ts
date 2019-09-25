@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import {MarcasService } from "./../../shared/services/marcas.service";
 import {CategoriasService } from "./../../shared/services/categorias.service";
 import {ProductosService } from "./../../shared/services/productos.service";
 import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
@@ -17,8 +18,39 @@ declare var $: any
 export class TablesComponent implements OnInit {
 
     @BlockUI() blockUI: NgBlockUI;
+    customOptions: any = {
+        loop: true,
+        autoHeight: false,
+        autoWidth: true,
+        autoplay:false,
+        autoplayTimeout:3000,
+        autoplayHoverPause:true,
+        nav: true,
+        rewindNav : true,
+        navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
+        center: true,
+        // navText:["",""],
+        dots:false,
+        animateOut: 'slideOutUp',
+        animateIn: 'slideInUp',
+        responsiveClass:true,
+        responsive:{
+            600:{
+                items:1
+            },
+            1000:{
+                items:3
+            },
+            1300:{
+                items:5
+            }
+        }
 
+            // URLhashListener:true,
+        // startPosition: 'URLHash',
+    }
     public id:number = null
+    public idF:number = null
     myColor:string="#ffffff";
     configModel:any = {
         color:"0xffffff",
@@ -48,6 +80,7 @@ export class TablesComponent implements OnInit {
             3:"0"
         }
     }
+    Marcas:any= null;
     Table:any= [];
     selectedData:any =
         {
@@ -113,6 +146,7 @@ export class TablesComponent implements OnInit {
     constructor(
         config: NgbAccordionConfig,
         private ProductosService:ProductosService,
+        private MarcasService:MarcasService,
         private route: ActivatedRoute,
         private CategoriasService:CategoriasService
     ) {
@@ -168,9 +202,20 @@ export class TablesComponent implements OnInit {
     }
 
     getParams(){
-        this.id = +this.route.snapshot.paramMap.get("id");
-        if(this.id){
-            this.cargarOfCate(this.id,false)
+        let data = this.route.snapshot.paramMap.get("id")
+        if(data){
+            {
+                this.id = +data;
+                this.cargarOfMarca(this.id,false)
+            }
+        }
+
+        data = this.route.snapshot.paramMap.get("mercado")
+        if(data){
+            {
+                this.idF = +(data);
+                this.cargarOfCate(this.id,false)
+            }
         }
     }
     cargarSingle(id:number){
@@ -227,6 +272,27 @@ export class TablesComponent implements OnInit {
 
     cargarOfCate(id:number,changeUrl:boolean=false){
         if(changeUrl){
+            this.idF=id
+        }
+        this.blockUI.start();
+          let data = {
+            id:this.idF,
+            state:'0',
+            filter:'tipo'
+          }
+          this.ProductosService.getAllFilter(data)
+                              .then(response => {
+                                this.Table=response
+                                // console.log(response);
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear
+                                this.blockUI.stop();
+                              })
+    }
+
+    cargarOfMarca(id:number,changeUrl:boolean=false){
+        if(changeUrl){
             this.id=id
         }
         this.blockUI.start();
@@ -235,10 +301,11 @@ export class TablesComponent implements OnInit {
             state:'0',
             filter:'tipo'
           }
-          this.ProductosService.getAllFilter(data)
+        //   console.log(id)
+          this.MarcasService.getSingle(id)
                               .then(response => {
-                                this.Table=response
-                                console.log(response);
+                                this.Marcas=response
+                                // console.log(response);
                                 this.blockUI.stop();
                             }).catch(error => {
                                 console.clear
