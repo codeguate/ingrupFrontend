@@ -91,6 +91,28 @@
     height: 70%;
     margin-top: auto;
 }
+.owl-item{
+    display: contents;
+}
+/*style antony*/
+.title_sub_produc{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sub_menu_content{
+    width: fit-content;
+}
+.sub_menu_panel,.sub_menu_panel.active{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    height: fit-content;
+}
+.downRow{
+    margin-right: auto;
+    margin-left: auto;
+}
 @media only screen and (max-width: 900px){
 
     .panel-title-ingrup h3{

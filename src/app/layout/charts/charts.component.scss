@@ -28,6 +28,7 @@ $rosado: #E06B70;
     width: 100%;
     margin: 0;
 }
+
 .padding-0{
     padding: 0 !important;
 }
@@ -184,6 +185,10 @@ $rosado: #E06B70;
     background-image: url(../../../assets/images/Nosotros/Modulo-2/fondo-puntos.png);
     background-size: cover;
     background-position: center top;
+}
+.vh-100{
+    height: fit-content;
+    min-height: 100vh;
 }
 @media only screen and (max-width: 1000px){
     .title_page{

@@ -118,29 +118,29 @@ export class TablesComponent implements OnInit {
             data.tX-=1
         }
         if(valor==5){
-            data.rZ+=1
+            data.rZ+= 1
         }
-        if(valor==6){
+        if(valor==6) {
             data.rZ-=1
         }
-        if(valor==7){
+        if(valor==7) {
             data.rX+=1
         }
-        if(valor==8){
+        if(valor== 8) {
             data.rX-=1
         }
-        if(valor==9){
-            data.rY+=10
+        if(valor==9) {
+            data.rY +=10
         }
-        if(valor===10){
-            data.rY-=10
+        if(valor===10) {
+            data.rY-= 10;
         }
-        this.selectedData= data
-        console.log($("#mainControls"));
+        this.selectedData= data;
+        console.log($('#mainControls'));
 
     }
-    escucha(){
-        console.log("si");
+    escucha() {
+        console.log('si');
 
     }
     constructor(
@@ -201,34 +201,34 @@ export class TablesComponent implements OnInit {
         ];
     }
 
-    getParams(){
-        let data = this.route.snapshot.paramMap.get("id")
-        if(data){
+    getParams() {
+        let data = this.route.snapshot.paramMap.get('id');
+        if(data) {
             {
                 this.id = +data;
-                this.cargarOfMarca(this.id,false)
+                this.cargarOfMarca(this.id,false);
             }
         }
 
-        data = this.route.snapshot.paramMap.get("mercado")
-        if(data){
+        data = this.route.snapshot.paramMap.get('mercado');
+        if(data) {
             {
                 this.idF = +(data);
-                this.cargarOfCate(this.id,false)
+                this.cargarOfCate(this.id,false);
             }
         }
     }
-    cargarSingle(id:number){
+    cargarSingle(id:number) {
     this.blockUI.start();
-      let data = {
+      const data = {
         id:1,
         state:'0',
         filter:'evento'
-      }
-      console.log("antes:"+this.selectedData.id+" Ahora"+id);
+      };
+      console.log('antes:'+this.selectedData.id+' Ahora'+id);
 
-      let datas = this.selectedData
-        this.selectedData=null
+      const datas = this.selectedData;
+        this.selectedData=null;
       this.ProductosService.getSingle(id)
                           .then(response => {
                             response.pX = +response.pX;
@@ -243,74 +243,74 @@ export class TablesComponent implements OnInit {
                             response.near = +response.near;
                             response.far = +response.far;
                             response.fov = +response.fov;
-                            response.material = response.model.replace('.obj',".mtl")
-                            this.selectedData=response
+                            response.material = response.model.replace('.obj','.mtl');
+                            this.selectedData=response;
                             // console.log(response);
                             this.blockUI.stop();
                         }).catch(error => {
-                            console.clear
+                            console.clear;
                             this.blockUI.stop();
-                          })
+                          });
     }
-    cargarAll(){
+    cargarAll() {
         this.blockUI.start();
-          let data = {
+          const data = {
             id:1,
             state:'0',
             filter:'categoria'
-          }
+          };
           this.ProductosService.getAll()
                               .then(response => {
-                                this.Table=response
+                                this.Table=response;
                                 // console.log(response);
                                 this.blockUI.stop();
                             }).catch(error => {
-                                console.clear
+                                console.clear;
                                 this.blockUI.stop();
-                              })
+                              });
     }
 
-    cargarOfCate(id:number,changeUrl:boolean=false){
-        if(changeUrl){
-            this.idF=id
+    cargarOfCate(id:number,changeUrl:boolean=false) {
+        if(changeUrl) {
+            this.idF = id;
         }
         this.blockUI.start();
-          let data = {
+          const data = {
             id:this.idF,
             state:'0',
             filter:'tipo'
-          }
+          };
           this.ProductosService.getAllFilter(data)
                               .then(response => {
-                                this.Table=response
+                                this.Table = response;
                                 // console.log(response);
                                 this.blockUI.stop();
                             }).catch(error => {
-                                console.clear
+                                console.clear;
                                 this.blockUI.stop();
-                              })
+                              });
     }
 
-    cargarOfMarca(id:number,changeUrl:boolean=false){
-        if(changeUrl){
-            this.id=id
+    cargarOfMarca(id: number, changeUrl: boolean= false) {
+        if (changeUrl) {
+            this.id = id;
         }
         this.blockUI.start();
-          let data = {
-            id:this.id,
-            state:'0',
-            filter:'tipo'
-          }
+          const data = {
+            id: this.id,
+            state: '0',
+            filter: 'tipo'
+          };
         //   console.log(id)
           this.MarcasService.getSingle(id)
                               .then(response => {
-                                this.Marcas=response
+                                this.Marcas = response;
                                 // console.log(response);
                                 this.blockUI.stop();
                             }).catch(error => {
-                                console.clear
+                                console.clear;
                                 this.blockUI.stop();
-                              })
+                              });
     }
 
 
