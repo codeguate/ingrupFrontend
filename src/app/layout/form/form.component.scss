@@ -1,0 +1,29 @@
+  .filtrosUL{
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    margin-bottom: auto;
+}
+.filtrosUL li{
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+.filtrosUL li h3{
+    color: #999;
+    background-color: #ffffff;
+    text-decoration: none;
+}
+.filtrosUL li.active{
+    h3{
+        background-color: #44D62C!important;
+        color:#ffffff!important;
+    }
+}
+.filtrosUL li:hover{
+    h3{
+        background-color: #44D62C!important;
+        color:#ffffff!important;
+    }
+}

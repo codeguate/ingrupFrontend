@@ -1,29 +1,14 @@
 <div [@routerTransition]>
     <app-menu></app-menu>
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex colum_select" *ngIf="Table">
-            <ngb-accordion  class="p-20 filtrosAccordeon container_productos" #filtros="ngbAccordion" >
-                <ngb-panel *ngFor="let data of Table">
-                    <ng-template ngbPanelTitle class="w-100">
-                    <h3>{{data.nombre}}</h3>
-                    </ng-template>
-                    <ng-template ngbPanelContent>
-                    <ul *ngIf="selectedData">
-                        <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id)" [class.active]="+selectedData.id==prod.id">
-                            <i class="fa fa-plus"></i> {{prod.nombre}}
-                        </li>
-                    </ul>
-                    <ul *ngIf="!selectedData">
-                        <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id)">
-                            <i class="fa fa-plus"></i> {{prod.nombre}}
-                        </li>
-                    </ul>
-                    </ng-template>
-                </ngb-panel>
-            </ngb-accordion>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  d-flex colum_select" *ngIf="Table">
+            <ul class="list-group p-20 filtrosUL container_productos">
+                <li class="list-group-item" *ngFor="let data of Table" (click)="cargarSingle(data.id)" [class.active]="+selectedData.id==data.id"><h3>{{data.nombre}}</h3></li>
+            </ul>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" *ngIf="selectedData">
-            <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0
+            <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0 *ngIf="selectedData.hasModel"
                 (render)="mainRenderer.render()" id="mainControls">
                 <atft-webgl-renderer #mainRenderer style="height: 100vh;">
                     <atft-perspective-camera [fov]="selectedData.fov" [near]="selectedData.near" [far]="selectedData.far"
@@ -49,6 +34,9 @@
                     </atft-scene>
                 </atft-webgl-renderer>
             </atft-orbit-controls>
+            <div class="galeria"  *ngIf="!selectedData.hasModel">
+                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages" style="margin:auto;"></ngx-gallery>
+            </div>
         </div>
     </div>
 

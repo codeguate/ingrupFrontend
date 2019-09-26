@@ -39,6 +39,7 @@ $topnav-background-color: #222;
 .header-ingrup{
     display: flex;
     height: 70vh;
+    background-repeat: no-repeat;
     background-image: url(./../../../../assets/images/Mercados/Modulo-1/Fondo.png);
     background-position: center;
     background-size: 100%;
@@ -87,14 +88,14 @@ $topnav-background-color: #222;
 .panel-ingrup{
     padding: 2rem;
     height: 40vh;
-    width: 80%;
+    width: 100%;
     list-style: none;
     text-decoration: none;
     display: flex;
     // background-color: rgba(255,255,255,0.9);
 }
 .ingrup-content{
-    margin-top: auto;
+    margin-top: 1.5rem;
     margin-bottom: auto;
     width: 80%;
 }
@@ -111,7 +112,7 @@ $topnav-background-color: #222;
 
 }
 .panel-title-ingrup h3{
-    font-size: 2.5rem;
+    font-size: 1.7rem;
     color: #5E5B5C;
 }
 .menu-item-ingrup{
@@ -130,8 +131,15 @@ $topnav-background-color: #222;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
+        height: 50%;
     }
     .panel-title-ingrup h3{
         font-size: 1rem!important;
+    }
+    .panel-ingrup{
+        height: 30vh;
+    }
+    .panel-ingrup.active{
+        padding-left: 0px;
     }
 }

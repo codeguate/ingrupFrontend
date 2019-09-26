@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
         loop: true,
         autoHeight: false,
         autoWidth: true,
-        autoplay:false,
+        autoplay:true,
         autoplayTimeout:3000,
         autoplayHoverPause:true,
         nav: true,
@@ -51,13 +51,10 @@ export class HeaderComponent implements OnInit {
         animateIn: 'slideInUp',
         responsiveClass:true,
         responsive:{
-            600:{
-                items:1
-            },
-            1000:{
+            300:{
                 items:3
             },
-            1300:{
+            1000:{
                 items:5
             }
         }

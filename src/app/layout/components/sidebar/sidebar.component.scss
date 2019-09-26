@@ -158,11 +158,32 @@ $topnav-background-color: #ffffff;
         }
     }
 }
+.cerrarSide{
+    width: 100%;
+}
 @media screen and (max-width: 992px) {
     .sidebar {
         top: 0px;
         left: 100%;
         width: 100%;
+    }
+    .navbar{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .cerrarSide{
+        position: absolute;
+        width: auto;
+        height: auto;
+        z-index: 1;
+    }
+    .list-group {
+        position: absolute;
+        align-self: center;
+        left: 0;
+        top: 1.5rem;
+        font-size: 1.5rem!important;
+        max-width: 100%!important;
     }
     .toggle-button {
         width: 100%;
@@ -177,9 +198,11 @@ $topnav-background-color: #ffffff;
     .header-fields {
         display: none;
     }
+
     .list-group {
         font-size: 1.7rem!important;
     }
+
 }
 
 ::-webkit-scrollbar {
@@ -235,6 +258,7 @@ $topnav-background-color: #ffffff;
     span {
         display: none;
     }
+
 }
 
 

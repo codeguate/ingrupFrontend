@@ -41,13 +41,15 @@ $topnav-background-color: #222;
     height: 70vh;
     background-image: url(./../../../../assets/images/Mercados/Modulo-1/Fondo.png);
     background-position: center;
+    background-repeat: no-repeat;
     background-size: 100%;
 }
 .panel-ingrup:hover{
     background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
-    box-shadow: inset #ffffff 0px 0px 13px 1px;
+    box-shadow:  #44D62C 0px 0px 10px 5px ;
+    border: solid 1px #ffffff;
     cursor:pointer;
 }
 .panel-ingrup:hover .menu-item-ingrup{
@@ -64,7 +66,8 @@ $topnav-background-color: #222;
     // border: solid #ffffff 0.5rem;
     list-style: none;
     width: 100%;
-    box-shadow: inset #ffffff 0px 0px 13px 1px;
+    box-shadow:  #44D62C 0px 0px 10px 5px ;
+    border: solid 1px #ffffff;
     cursor:pointer;
     padding-left: 1rem;
 }
@@ -87,14 +90,15 @@ $topnav-background-color: #222;
 .panel-ingrup{
     padding: 2rem;
     height: 40vh;
-    width: 80%;
+    width: 100%;
     list-style: none;
     text-decoration: none;
+    border-radius: 10px;
     display: flex;
     // background-color: rgba(255,255,255,0.9);
 }
 .ingrup-content{
-    margin-top: auto;
+    margin-top: 1.5rem;
     margin-bottom: auto;
     width: 80%;
 }
@@ -126,8 +130,21 @@ $topnav-background-color: #222;
     margin-top: auto;
 }
 @media only screen and (max-width: 900px){
-
+    .menu-ingrup{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 50%;
+    }
     .panel-title-ingrup h3{
         font-size: 1rem!important;
+    }
+    .panel-ingrup{
+        height: 30vh;
+        padding-left: 0px;
+    }
+    .panel-title-ingrup h3{
+        font-size: 1.5rem;
+        color: #5E5B5C;
     }
 }

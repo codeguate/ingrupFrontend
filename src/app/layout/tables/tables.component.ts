@@ -36,18 +36,12 @@ export class TablesComponent implements OnInit {
         responsiveClass:true,
         responsive:{
             600:{
-                items:1
-            },
-            1000:{
                 items:3
             },
-            1300:{
+            1000:{
                 items:5
             }
-        }
-
-            // URLhashListener:true,
-        // startPosition: 'URLHash',
+        },
     }
     public id:number = null
     public idF:number = null
@@ -214,6 +208,7 @@ export class TablesComponent implements OnInit {
         if(data) {
             {
                 this.idF = +(data);
+                this.customOptions.startPosition = this.idF
                 this.cargarOfCate(this.id,false);
             }
         }

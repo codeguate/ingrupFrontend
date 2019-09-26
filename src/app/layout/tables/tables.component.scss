@@ -13,7 +13,8 @@
     background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
-    box-shadow: inset #ffffff 0px 0px 13px 1px;
+    box-shadow: #44D62C 0px 0px 10px 5px ;
+
     cursor:pointer;
 }
 .panel-ingrup:hover .menu-item-ingrup{
@@ -30,7 +31,8 @@
     // border: solid #ffffff 0.5rem;
     list-style: none;
     width: 100%;
-    box-shadow: inset #ffffff 0px 0px 13px 1px;
+    box-shadow: #44D62C 0px 0px 10px 5px ;
+        border: solid 1px #ffffff;
     cursor:pointer;
     padding-left: 1rem;
 }
@@ -51,16 +53,18 @@
 
 }
 .panel-ingrup{
-    padding: 2rem;
+    border-radius: 10px;
+    padding: 1rem;
     height: 40vh;
     width: 80%;
     list-style: none;
     text-decoration: none;
     display: flex;
+    border: solid #44D62C 1px;
     // background-color: rgba(255,255,255,0.9);
 }
 .ingrup-content{
-    margin-top: auto;
+    margin-top: 1.5rem;
     margin-bottom: auto;
     width: 80%;
 }
@@ -70,14 +74,14 @@
 }
 .panel-title-ingrup{
     text-align: left;
-    width: 70%;
-    padding-left: 1rem;
+    width: 50%;
+    padding-left: -1rem;
     display: block;
     margin-top: 1rem;
 
 }
 .panel-title-ingrup h3{
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     color: #5E5B5C;
 }
 .menu-item-ingrup{
@@ -103,11 +107,13 @@
 .sub_menu_content{
     width: fit-content;
 }
-.sub_menu_panel,.sub_menu_panel.active{
+.sub_menu_panel.active{
+    height: 27vh!important;
+}
+.sub_menu_panel{
     width: 60%;
     margin-left: auto;
     margin-right: auto;
-    height: fit-content;
 }
 .downRow{
     margin-right: auto;
@@ -117,5 +123,26 @@
 
     .panel-title-ingrup h3{
         font-size: 1rem!important;
+    }
+
+.panel-ingrup.active .panel-title-ingrup h3{
+    color: #ffffff;
+    padding-left: -1rem;
+
+}
+.title_sub_produc{
+    margin-left: 0.3rem!important;
+}
+    .sub_menu_panel,.sub_menu_panel.active{
+        width: 99%!important;
+    }
+    .panel-title-ingrup h3{
+        font-size: 0.8rem!important;
+        color: #5E5B5C;
+    }
+
+    .panel-ingrup{
+        height: 30vh;
+        padding-left: 0px;
     }
 }

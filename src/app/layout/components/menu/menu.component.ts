@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { TiposService } from "./../../../shared/services/tipos.service";
+import { CategoriasService } from "./../../../shared/services/categorias.service";
 import { TranslateService } from '@ngx-translate/core';
 import { FormComponent } from "./../../form/form.component";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-menu',
@@ -36,7 +37,8 @@ export class MenuComponent implements OnInit {
     navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
     center: true,
     // navText:["",""],
-    dots:true,
+    dots:false,
+    startPosition:this.route.snapshot.paramMap.get("id"),
     animateOut: 'slideOutUp',
     animateIn: 'slideInUp',
 
@@ -46,9 +48,10 @@ export class MenuComponent implements OnInit {
     }
     constructor(
         private translate: TranslateService,
+        private route: ActivatedRoute,
         public router: Router,
         public FormComponent:FormComponent,
-        private TiposService:TiposService
+        private TiposService:CategoriasService
     ) {
         this.router.events.subscribe(val => {
             if (
