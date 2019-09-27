@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
     // { text: 'Slide 9', dotContent: 'text5'},
     // { text: 'Slide 10', dotContent: 'text5'},
   ];
+  win = Window
   customOptions: any = {
     loop: true,
     // autoWidth: true,
@@ -114,26 +115,45 @@ export class DashboardComponent implements OnInit {
   }
 
     constructor() {
-
-        this.sliders.push(
-            // {
-            //     imagePath: 'assets/images/Home/Modulo-1/Imagen-video-1.png',
-            //     label: 'First slide label',
-            //     text:
-            //         'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-            // },
-            // {
-            //     imagePath: 'assets/images/Home/Modulo-1/imagen-video-2.png',
-            //     label: 'Second slide label',
-            //     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            // },
-            {
-                imagePath: 'assets/images/Home/Modulo-1/foto-de-fondo.png',
-                label: 'Third slide label',
-                text:
-                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-            }
-        );
+        if(window.innerWidth < 992){
+            this.sliders.push(
+                {
+                    imagePath: 'assets/images/Home/slides/mobile/slider1.png',
+                    label: 'Third slide label',
+                },
+                {
+                    imagePath: 'assets/images/Home/slides/mobile/slider2.png',
+                    label: 'Third slide label',
+                },
+                {
+                    imagePath: 'assets/images/Home/slides/mobile/slider3.png',
+                    label: 'Third slide label',
+                },
+                {
+                    imagePath: 'assets/images/Home/slides/mobile/slider4.png',
+                    label: 'Third slide label',
+                }
+            );
+        }else{
+            this.sliders.push(
+                {
+                    imagePath: 'assets/images/Home/slides/home/slider1.png',
+                    label: 'Third slide label',
+                },
+                {
+                    imagePath: 'assets/images/Home/slides/home/slider2.png',
+                    label: 'Third slide label',
+                },
+                {
+                    imagePath: 'assets/images/Home/slides/home/slider3.png',
+                    label: 'Third slide label',
+                },
+                {
+                    imagePath: 'assets/images/Home/slides/home/slider4.png',
+                    label: 'Third slide label',
+                }
+            );
+        }
         this.alerts.push(
             {
                 id: 1,
