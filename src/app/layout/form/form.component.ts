@@ -149,6 +149,10 @@ export class FormComponent implements OnInit {
             }
         ];
 
+        this.resetCarousel();
+    }
+
+    resetCarousel(){
         this.galleryImages = [
             {
                 small: 'assets/images/slider1.jpg',
@@ -167,7 +171,6 @@ export class FormComponent implements OnInit {
             }
         ];
     }
-
     getParams(){
         this.id = +this.route.snapshot.paramMap.get("id");
         if(this.id){
@@ -199,8 +202,24 @@ export class FormComponent implements OnInit {
                             response.near = +response.near;
                             response.far = +response.far;
                             response.fov = +response.fov;
+                            response.hasModel = +response.hasModel;
                             response.material = response.model.replace('.obj',".mtl")
                             this.selectedData=response
+                            if(response.imagenes && response.imagenes.length>0){
+                                let data = []
+                                response.imagenes.forEach(element => {
+                                    let obj = {
+                                        small: element.src,
+                                        medium: element.src,
+                                        big: element.src
+                                    }
+                                    data.push(obj)
+                                });
+                                this.galleryImages = data
+                            }else{
+                                this.resetCarousel();
+
+                            }
                             // console.log(response);
                             this.blockUI.stop();
                         }).catch(error => {

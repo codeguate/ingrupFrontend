@@ -20,8 +20,8 @@ export class TablesComponent implements OnInit {
     @BlockUI() blockUI: NgBlockUI;
     customOptions: any = {
         loop: true,
-        autoHeight: false,
-        autoWidth: true,
+        // autoHeight: false,
+        // autoWidth: false,
         autoplay:false,
         autoplayTimeout:3000,
         autoplayHoverPause:true,
@@ -176,6 +176,9 @@ export class TablesComponent implements OnInit {
             }
         ];
 
+        this.resetCarousel();
+    }
+    resetCarousel(){
         this.galleryImages = [
             {
                 small: 'assets/images/slider1.jpg',
@@ -194,7 +197,6 @@ export class TablesComponent implements OnInit {
             }
         ];
     }
-
     getParams() {
         let data = this.route.snapshot.paramMap.get('id');
         if(data) {
@@ -220,7 +222,7 @@ export class TablesComponent implements OnInit {
         state:'0',
         filter:'evento'
       };
-      console.log('antes:'+this.selectedData.id+' Ahora'+id);
+    //   console.log('antes:'+this.selectedData.id+' Ahora'+id);
 
       const datas = this.selectedData;
         this.selectedData=null;
@@ -238,9 +240,24 @@ export class TablesComponent implements OnInit {
                             response.near = +response.near;
                             response.far = +response.far;
                             response.fov = +response.fov;
+                            response.hasModel = +response.hasModel;
                             response.material = response.model.replace('.obj','.mtl');
                             this.selectedData=response;
-                            // console.log(response);
+                            if(response.imagenes && response.imagenes.length>0){
+                                let data = []
+                                response.imagenes.forEach(element => {
+                                    let obj = {
+                                        small: element.src,
+                                        medium: element.src,
+                                        big: element.src
+                                    }
+                                    data.push(obj)
+                                });
+                                this.galleryImages = data
+                            }else{
+                                this.resetCarousel();
+                            }
+                            console.log(response);
                             this.blockUI.stop();
                         }).catch(error => {
                             console.clear;
@@ -278,7 +295,7 @@ export class TablesComponent implements OnInit {
           this.ProductosService.getAllFilter(data)
                               .then(response => {
                                 this.Table = response;
-                                // console.log(response);
+                                console.log(response);
                                 this.blockUI.stop();
                             }).catch(error => {
                                 console.clear;
@@ -306,6 +323,25 @@ export class TablesComponent implements OnInit {
                                 console.clear;
                                 this.blockUI.stop();
                               });
+    }
+    cargarFotos(id:number){
+        this.blockUI.start();
+          const data = {
+            id: this.id,
+            state: '0',
+            filter: 'tipo'
+          };
+        //   console.log(id)
+          this.MarcasService.getSingle(id)
+                              .then(response => {
+                                this.Marcas = response;
+                                // console.log(response);
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear;
+                                this.blockUI.stop();
+                              });
+
     }
 
 
