@@ -25,6 +25,7 @@ export class TablesComponent implements OnInit {
         autoplay:false,
         autoplayTimeout:3000,
         autoplayHoverPause:true,
+        margin: 0,
         nav: true,
         rewindNav : true,
         navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],

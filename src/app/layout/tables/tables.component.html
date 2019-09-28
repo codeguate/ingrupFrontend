@@ -1,7 +1,7 @@
 <div [@routerTransition]>
     <app-header></app-header>
-    <div class="row">
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 menu-ingrup m-auto" *ngIf="Marcas">
+    <div class="row" *ngIf="Marcas">
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 menu-ingrup m-auto" [class.menu-ingrup-2]="Marcas.submarca.length>2" >
             <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let slide of Marcas.submarca" >
                 <ng-template carouselSlide dataHash="slide.id">
