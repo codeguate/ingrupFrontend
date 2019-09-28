@@ -120,7 +120,7 @@ export class HeaderComponent implements OnInit {
           this.mainService.getAll()
                               .then(response => {
                                 this.Table=response
-                                console.log(response);
+                                // console.log(response);
                             }).catch(error => {
                                 console.clear
                               })

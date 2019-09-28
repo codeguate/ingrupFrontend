@@ -318,7 +318,10 @@ export class TablesComponent implements OnInit {
           this.MarcasService.getSingle(id)
                               .then(response => {
                                 this.Marcas = response;
-                                // console.log(response);
+                                if(response.submarca.length<1){
+                                    this.cargarOfCate(id,true)
+                                }
+                                console.log(response);
                                 this.blockUI.stop();
                             }).catch(error => {
                                 console.clear;

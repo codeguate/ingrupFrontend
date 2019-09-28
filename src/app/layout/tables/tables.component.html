@@ -31,7 +31,7 @@
             <ngb-accordion  class="p-20 filtrosAccordeon container_productos" #filtros="ngbAccordion" >
                 <ngb-panel *ngFor="let data of Table">
                     <ng-template ngbPanelTitle class="w-100" >
-                    <h3 (click)="cargarFotos(1);"> <img src="./../../../../assets/images/Mercados/Modulo-1/flechaDer.png" alt=""> {{data.nombre}}</h3>
+                    <h3> <img src="./../../../../assets/images/Mercados/Modulo-1/flechaDer.png" alt=""> {{data.nombre}}</h3>
                     </ng-template>
                     <ng-template ngbPanelContent>
                     <ul *ngIf="selectedData">

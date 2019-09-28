@@ -23,7 +23,7 @@
                                     <img [src]="slide.foto" class="menu-item-ingrup" >
                                 </div>
                                 <div class="panel-title-ingrup">
-                                    <h3 class="">{{slide.nombre}}</h3>
+                                    <h3 [class.largo]="slide.nombre.length>20">{{slide.nombre}}</h3>
                                 </div>
                             </div>
                         </div>
