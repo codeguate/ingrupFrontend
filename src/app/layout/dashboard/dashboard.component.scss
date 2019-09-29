@@ -389,6 +389,7 @@ body{
     padding-bottom: 1em;
     margin: 0;
 }
+
 .description_card{
     font-family: RobotoLight;
     color: $gris;
@@ -496,6 +497,10 @@ body{
   }
   .w-50d{
     width: 100%;
+}
+.description_card.largo{
+    font-size: 0.8rem;
+
 }
   .description_card ul li{
     font-family: RobotoLight;

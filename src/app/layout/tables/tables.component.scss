@@ -116,6 +116,13 @@
     margin-right: auto;
     margin-left: auto;
 }
+.table thead tr{
+    background-color: #44D62C;
+}
+.table td{
+    border:0px;
+    margin: 0px;
+}
 @media only screen and (max-width: 900px){
 
     .panel-title-ingrup h3{

@@ -19,7 +19,7 @@ export class TablesComponent implements OnInit {
 
     @BlockUI() blockUI: NgBlockUI;
     customOptions: any = {
-        loop: true,
+        loop: false,
         // autoHeight: false,
         // autoWidth: false,
         autoplay:false,
@@ -241,6 +241,7 @@ export class TablesComponent implements OnInit {
                             response.near = +response.near;
                             response.far = +response.far;
                             response.fov = +response.fov;
+
                             response.hasModel = +response.hasModel;
                             response.material = response.model.replace('.obj','.mtl');
                             this.selectedData=response;

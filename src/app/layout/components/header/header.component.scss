@@ -63,13 +63,13 @@ $topnav-background-color: #222;
 
 .panel-ingrup.active {
     background-color: #44D62C;
-    // border: solid #ffffff 0.5rem;
     list-style: none;
-    width: 100%;
-    box-shadow:  #44D62C 0px 0px 10px 5px ;
+    width: 80%;
+    box-shadow: #44D62C 0px 0px 10px 5px;
     border: solid 1px #ffffff;
-    cursor:pointer;
+    cursor: pointer;
     padding-left: 1rem;
+    margin-top: 1rem;
 }
 .downRow{
     display: none;
@@ -89,8 +89,8 @@ $topnav-background-color: #222;
 }
 .panel-ingrup{
     padding: 2rem;
-    height: 40vh;
-    width: 100%;
+    height: 30vh;
+    width: 80%;
     list-style: none;
     text-decoration: none;
     border-radius: 10px;
