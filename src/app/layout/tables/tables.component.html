@@ -6,7 +6,7 @@
                 <ng-container *ngFor="let slide of Marcas.submarca" >
                 <ng-template carouselSlide dataHash="slide.id">
 
-                    <a style="list-style: none;text-decoration: none;" (click)="cargarOfCate(slide.id,true)" [routerLink]="['/mercados/'+id+'/',slide.id]" >
+                    <a style="list-style: none;text-decoration: none;" (click)="cargarOfCate(slide.id,true);scrollMyDiv('tabla1')"  [routerLink]="['/mercados/'+id+'/',slide.id]" >
                         <div class="panel-ingrup sub_menu_panel" [class.active]="idF==slide.id" >
                             <div class="ingrup-content sub_menu_content">
                                 <div class="panel-body-ingrup">
@@ -35,12 +35,12 @@
                     </ng-template>
                     <ng-template ngbPanelContent>
                     <ul *ngIf="selectedData">
-                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id)" [class.active]="+selectedData.id==prod.id">
+                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);scrollMyDiv('tabla1');" [class.active]="+selectedData.id==prod.id">
                             {{prod.nombre}}
                         </li>
                     </ul>
                     <ul *ngIf="!selectedData">
-                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id)">
+                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);scrollMyDiv('tabla1');">
                             {{prod.nombre}}
                         </li>
                     </ul>
@@ -78,7 +78,7 @@
             <div class="galeria"  *ngIf="!selectedData.hasModel">
                     <ngx-gallery [options]="galleryOptions" [images]="galleryImages" style="margin:auto;"></ngx-gallery>
             </div>
-            <div class="w-100 d-block">
+            <div class="w-100 d-block" id="tabla1">
                 <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
                     <thead>
                         <tr>

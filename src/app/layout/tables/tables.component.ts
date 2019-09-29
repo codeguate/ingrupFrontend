@@ -151,7 +151,15 @@ export class TablesComponent implements OnInit {
       }
     galleryOptions: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
+    scrollMyDiv(item) {
+        let section = item;
+        window.scroll(0, 0);  // reset window to top
+        const elem = document.querySelector('#' + section);
+        let offsetTop = elem.getBoundingClientRect().top;
+        window.scroll(0, offsetTop);
+      }
     ngOnInit() {
+
         this.getParams();
         this.galleryOptions = [
             {
@@ -199,6 +207,7 @@ export class TablesComponent implements OnInit {
         ];
     }
     getParams() {
+        $(".galeria").focus();
         let data = this.route.snapshot.paramMap.get('id');
         if(data) {
             {
@@ -297,8 +306,9 @@ export class TablesComponent implements OnInit {
           this.ProductosService.getAllFilter(data)
                               .then(response => {
                                 this.Table = response;
-                                console.log(response);
+                                // console.log(response);
                                 this.blockUI.stop();
+                                this.scrollMyDiv('tabla1');
                             }).catch(error => {
                                 console.clear;
                                 this.blockUI.stop();
