@@ -134,6 +134,9 @@ $topnav-background-color: #222;
     margin-top: auto;
 }
 @media only screen and (max-width: 900px){
+    .panel-ingrup.active {
+        width: 100%!important;
+    }
     .menu-ingrup{
         width: 80%;
         margin-left: auto;
@@ -142,6 +145,10 @@ $topnav-background-color: #222;
     }
     .panel-title-ingrup h3{
         font-size: 1rem!important;
+    }
+    .panel-title-ingrup h3.largo{
+        font-size: 0.7rem!important;
+        color: #5E5B5C;
     }
     .panel-ingrup{
         height: 30vh;
