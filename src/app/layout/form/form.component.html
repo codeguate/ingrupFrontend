@@ -2,10 +2,21 @@
         <app-menu></app-menu>
         <div class="row">
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  d-flex colum_select" *ngIf="Table">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 colum_select" *ngIf="Table">
+                <div class="w-100 h-auto d-block mt-auto">
+                    <h1 style="color:#44D62C;">Productos</h1>
+                </div>
+                <div class="d-block" id="inicio">
                     <ul class="list-group p-20 filtrosUL container_productos">
-                            <li class="list-group-item" *ngFor="let data of Table" (click)="cargarSingle(data.id)" [class.active]="+selectedData.id==data.id"><h3>{{data.nombre}}</h3></li>
-                        </ul>
+                        <li class="list-group-item" *ngFor="let data of Table" [routerLink]="['/productos/'+id+'/',data.id]" (click)="cargarSingle(data.id);scrollMyDiv('inicio');" [class.active]="selectedData && (+selectedData.id==data.id)">
+                            <h3>
+                                {{data.marcas.padre.nombre}} -
+                                {{data.marcas.nombre}} -
+                                {{data.nombre}}
+                            </h3>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" *ngIf="selectedData">
                 <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0 *ngIf="selectedData.hasModel"
@@ -34,9 +45,70 @@
                         </atft-scene>
                     </atft-webgl-renderer>
                 </atft-orbit-controls>
-                <div class="galeria"  *ngIf="!selectedData.hasModel">
+                <div class="galeria" id="galeria"  *ngIf="!selectedData.hasModel">
                         <ngx-gallery [options]="galleryOptions" [images]="galleryImages" style="margin:auto;"></ngx-gallery>
                 </div>
+                <div class="w-100 d-block" id="tabla1" *ngIf="selectedData.presentaciones">
+                    <table class="table table-hover" *ngIf="selectedData.presentaciones.length>0" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+                        <thead>
+                            <tr>
+                                <th style="width:20%;">
+                                  <mfDefaultSorter by="cuello">Cuello</mfDefaultSorter>
+                                </th>
+                                <th style="width:20%;">
+                                  <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
+                                </th>
+                                <th style="width:20%;">
+                                  <mfDefaultSorter by="altura">Altura(mm)</mfDefaultSorter>
+                                </th>
+                                <th style="width:20%;">
+                                  <mfDefaultSorter by="unidades">Unidades</mfDefaultSorter>
+                                </th>
+                                <th style="width:20%;">
+                                  <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of mf.data">
+                                <td>
+                                  <div>
+                                    {{ data.cuello }}
+                                  </div>
+                                </td>
+                                <td>
+                                  <div>
+                                    {{ data.peso }}
+                                  </div>
+                                </td>
+                                <td>
+                                  <div>
+                                    {{ data.altura }}
+                                  </div>
+                                </td>
+                                <td>
+                                  <div>
+                                    {{ data.unidades }}
+                                  </div>
+                                </td>
+                                <td>
+                                  <div>
+                                    {{ data.material }}
+                                  </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <mfBootstrapPaginator></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
             </div>
         </div>
 

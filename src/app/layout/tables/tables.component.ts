@@ -131,7 +131,7 @@ export class TablesComponent implements OnInit {
             data.rY-= 10;
         }
         this.selectedData= data;
-        console.log($('#mainControls'));
+        // console.log($('#mainControls'));
 
     }
     escucha() {
@@ -268,7 +268,7 @@ export class TablesComponent implements OnInit {
                             }else{
                                 this.resetCarousel();
                             }
-                            console.log(response);
+                            // console.log(response);
                             this.blockUI.stop();
                         }).catch(error => {
                             console.clear;
@@ -332,7 +332,7 @@ export class TablesComponent implements OnInit {
                                 if(response.submarca.length<1){
                                     this.cargarOfCate(id,true)
                                 }
-                                console.log(response);
+                                // console.log(response);
                                 this.blockUI.stop();
                             }).catch(error => {
                                 console.clear;

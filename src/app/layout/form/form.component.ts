@@ -18,8 +18,34 @@ declare var $: any
 })
 export class FormComponent implements OnInit {
     @BlockUI() blockUI: NgBlockUI;
-
+    customOptions: any = {
+        loop: false,
+        // autoHeight: false,
+        // autoWidth: false,
+        autoplay:false,
+        autoplayTimeout:3000,
+        autoplayHoverPause:true,
+        margin: 0,
+        nav: true,
+        rewindNav : true,
+        navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
+        center: true,
+        // navText:["",""],
+        dots:false,
+        animateOut: 'slideOutUp',
+        animateIn: 'slideInUp',
+        responsiveClass:true,
+        responsive:{
+            600:{
+                items:3
+            },
+            1000:{
+                items:5
+            }
+        },
+    }
     public id:number = null
+    public idF:number = null
     myColor:string="#ffffff";
     configModel:any = {
         color:"0xffffff",
@@ -49,11 +75,12 @@ export class FormComponent implements OnInit {
             3:"0"
         }
     }
+    Marcas:any= null;
     Table:any= [];
     selectedData:any =
         {
-            fov:50,
             hasModel:false,
+            fov:50,
             near:1,
             far:1100,
             pX:-5,
@@ -86,29 +113,29 @@ export class FormComponent implements OnInit {
             data.tX-=1
         }
         if(valor==5){
-            data.rZ+=1
+            data.rZ+= 1
         }
-        if(valor==6){
+        if(valor==6) {
             data.rZ-=1
         }
-        if(valor==7){
+        if(valor==7) {
             data.rX+=1
         }
-        if(valor==8){
+        if(valor== 8) {
             data.rX-=1
         }
-        if(valor==9){
-            data.rY+=10
+        if(valor==9) {
+            data.rY +=10
         }
-        if(valor===10){
-            data.rY-=10
+        if(valor===10) {
+            data.rY-= 10;
         }
-        this.selectedData= data
-        console.log($("#mainControls"));
+        this.selectedData= data;
+        // console.log($('#mainControls'));
 
     }
-    escucha(){
-        console.log("si");
+    escucha() {
+        console.log('si');
 
     }
     constructor(
@@ -121,9 +148,17 @@ export class FormComponent implements OnInit {
         config.closeOthers = true;
         // config.type = 'success';
       }
-      galleryOptions: NgxGalleryOptions[];
-      galleryImages: NgxGalleryImage[];
+    galleryOptions: NgxGalleryOptions[];
+    galleryImages: NgxGalleryImage[];
+    scrollMyDiv(item) {
+        let section = item;
+        window.scroll(0, 0);  // reset window to top
+        const elem = document.querySelector('#' + section);
+        let offsetTop = elem.getBoundingClientRect().top;
+        window.scroll(0, offsetTop);
+      }
     ngOnInit() {
+
         this.getParams();
         this.galleryOptions = [
             {
@@ -151,7 +186,6 @@ export class FormComponent implements OnInit {
 
         this.resetCarousel();
     }
-
     resetCarousel(){
         this.galleryImages = [
             {
@@ -172,9 +206,22 @@ export class FormComponent implements OnInit {
         ];
     }
     getParams(){
-        this.id = +this.route.snapshot.paramMap.get("id");
-        if(this.id){
-            this.cargarOfCate(this.id,false)
+        $("#inicio").focus();
+
+        let data = this.route.snapshot.paramMap.get('id');
+        if(data) {
+            {
+                this.id = +data;
+                this.cargarOfCate(this.id,false);
+            }
+        }
+
+        data = this.route.snapshot.paramMap.get('producto');
+        if(data) {
+            {
+                this.idF = +(data);
+                this.cargarSingle(this.idF);
+            }
         }
     }
     cargarSingle(id:number){
@@ -184,7 +231,6 @@ export class FormComponent implements OnInit {
         state:'0',
         filter:'evento'
       }
-      console.log("antes:"+this.selectedData.id+" Ahora"+id);
 
       let datas = this.selectedData
         this.selectedData=null
@@ -203,8 +249,8 @@ export class FormComponent implements OnInit {
                             response.far = +response.far;
                             response.fov = +response.fov;
                             response.hasModel = +response.hasModel;
-                            response.material = response.model.replace('.obj',".mtl")
-                            this.selectedData=response
+                            response.material = response.model.replace('.obj','.mtl');
+                            this.selectedData=response;
                             if(response.imagenes && response.imagenes.length>0){
                                 let data = []
                                 response.imagenes.forEach(element => {
@@ -216,10 +262,12 @@ export class FormComponent implements OnInit {
                                     data.push(obj)
                                 });
                                 this.galleryImages = data
+                                this.scrollMyDiv("galeria")
+                                this.ScrollDiv("container_productos","list-group-item.active");
                             }else{
                                 this.resetCarousel();
-
                             }
+                            // console.log(response);
                             // console.log(response);
                             this.blockUI.stop();
                         }).catch(error => {
@@ -227,6 +275,14 @@ export class FormComponent implements OnInit {
                             this.blockUI.stop();
                           })
     }
+    ScrollDiv(classe:string,classe2:string){
+        var posicion = $("."+classe2).offset().top;
+        console.log($("."+classe2));
+
+        $("."+classe).animate({
+            scrollTop: posicion
+        }, 2000);
+     }
     cargarAll(){
         this.blockUI.start();
           let data = {
@@ -258,7 +314,8 @@ export class FormComponent implements OnInit {
           this.ProductosService.getAllFilter(data)
                               .then(response => {
                                 this.Table=response
-                                console.log(response);
+                                // console.log(response);
+                                this.scrollMyDiv("inicio")
                                 this.blockUI.stop();
                             }).catch(error => {
                                 console.clear

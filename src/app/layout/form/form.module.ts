@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DataTableModule } from 'angular-6-datatable';
 
 import { AtftModule } from 'atft';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -15,7 +16,7 @@ import { PageHeaderModule } from './../../shared';
 import { MenuComponent } from './../components/menu/menu.component';
 
 @NgModule({
-    imports: [CommonModule, FormRoutingModule, NgbModule, PageHeaderModule,AtftModule,CarouselModule,FormsModule,NgxGalleryModule],
+    imports: [CommonModule, FormRoutingModule, NgbModule, PageHeaderModule,AtftModule,CarouselModule,DataTableModule,FormsModule,NgxGalleryModule],
     declarations: [FormComponent,MenuComponent],
     providers: [ProductosService]
 })

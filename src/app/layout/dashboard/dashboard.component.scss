@@ -489,6 +489,10 @@ body{
   .contain_img_row img{
     width: 100%;
   }
+  .description_card.largo{
+    font-size: 0.8rem;
+
+    }
 }
 @media only screen and (max-width: 1000px){
   .mb_auto2{
@@ -499,7 +503,7 @@ body{
     width: 100%;
 }
 .description_card.largo{
-    font-size: 0.8rem;
+    font-size: 0.5rem;
 
 }
   .description_card ul li{

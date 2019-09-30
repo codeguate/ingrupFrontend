@@ -1,6 +1,11 @@
 .galeria{
-    height: 100vh;
+    height: 80vh;
     display: flex;
+}
+.container_productos{
+    height: auto;
+    max-height: 90vh;
+    overflow-y: scroll;
 }
 .header-ingrup{
     display: flex;

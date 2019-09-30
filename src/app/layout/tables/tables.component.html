@@ -28,7 +28,7 @@
 
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  d-flex colum_select" *ngIf="Table">
-            <ngb-accordion  class="p-20 filtrosAccordeon container_productos" #filtros="ngbAccordion" >
+            <ngb-accordion  class="p-20 filtrosAccordeon container_productos mt-5" #filtros="ngbAccordion" >
                 <ngb-panel *ngFor="let data of Table">
                     <ng-template ngbPanelTitle class="w-100" >
                     <h3> <img src="./../../../../assets/images/Mercados/Modulo-1/flechaDer.png" alt=""> {{data.nombre}}</h3>

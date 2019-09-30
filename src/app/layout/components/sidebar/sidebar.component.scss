@@ -161,6 +161,80 @@ $topnav-background-color: #ffffff;
 .cerrarSide{
     width: 100%;
 }
+.results:hover{
+    color: #5E5B5C;
+}
+.results ul:hover{
+    color: #5E5B5C;
+}
+.toggle-button{
+    border-left: solid #44D62C 1rem;
+}
+.results{
+
+    height: auto;
+    max-height: 20vh;
+    overflow-y: scroll;
+    background-color: #ffffff;
+}
+.results ul{
+    text-decoration: none;
+    list-style: none;
+}
+.results ul li{
+    cursor: pointer;
+}
+.results ul li:hover{
+    color: #44D62C;
+    cursor: pointer;
+}
+.list-group-item.active{
+    z-index: 2;
+    color: #fff;
+    background-color: #44D62C!important;
+    border-color: #44D62C!important;
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #44D62C!important;
+    border-left: none!important;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgba(68, 214, 64, 0.25)!important;
+}
+.search-control .input-group-prepend .input-group-text:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: #44D62C!important;
+    border-left: none;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgba(68, 214, 64, 0.25)!important;
+}
+.search-control .input-group-prepend .input-group-text{
+    padding:1rem;
+    background: none;
+    border-right: none;
+    border-radius: 1rem 0px 0px 1rem;
+}
+.search-control input{
+    padding:1rem;
+    border-left: none;
+    border-radius: 0 1rem 1rem 0;
+
+
+}
+.list-group-item:focus{
+    z-index: 2;
+    color: #fff;
+    background-color: #44D62C!important;
+    border-color: #44D62C!important;
+    outline: -webkit-focus-ring-color auto 0px;
+}
+.list-group-item h3:focus{
+    background-color: #44D62C!important;
+    border-color: #44D62C!important;
+    outline: -webkit-focus-ring-color auto 0px;
+}
 @media screen and (max-width: 992px) {
     .sidebar {
         top: 0px;
@@ -231,10 +305,10 @@ $topnav-background-color: #ffffff;
         font-size: 23px;
     }
     &:hover {
-        background: darken($topnav-background-color, 5%);
-        color: #44D62C;
+        // background: darken($topnav-background-color, 5%);
+        // color: #44D62C;
     }
-    border-top: 1px solid #5E5B5C;
+    // border-top: 1px solid #5E5B5C;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -ms-transition: all 0.2s ease-in-out;
@@ -260,5 +334,4 @@ $topnav-background-color: #ffffff;
     }
 
 }
-
 

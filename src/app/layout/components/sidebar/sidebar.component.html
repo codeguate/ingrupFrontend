@@ -46,7 +46,7 @@
             <i class="fa fa-fw " [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
             <span>{{ 'Productos' | translate }}</span>
         </a> -->
-        <!-- <div class="nested-menu">
+        <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('products')">
                 <i class="fa fa-fw " [class.fa-plus]="showMenu != 'products'"  [class.fa-chevron-down]="showMenu === 'products'"></i>&nbsp;
                 <span>{{ 'Productos' | translate }}</span>
@@ -63,7 +63,7 @@
 
                 </ul>
             </li>
-        </div> -->
+        </div>
         <!-- <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-desktop"></i>&nbsp;
             <span>{{ 'Bootstrap Element' | translate }}</span>
@@ -146,8 +146,26 @@
             </div>
 
     </div>
-    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleSidebar();toggleCollapsed()">
-        <i class="fa fa-fw fa-angle-double-{{!collapsed?'right':'left'}}"></i>&nbsp;
-        <span>{{ 'Collapse Sidebar' | translate }}</span>
+    <div class="toggle-button" [ngClass]="{collapsed: collapsed}">
+            <div class="results w-50" *ngIf="TableProdsFind">
+                <ul *ngIf="TableProdsFind.length>0">
+                        <li *ngFor="let data of TableProdsFind" (click)="recharge()" [routerLink]="['/'+data.pagina,data.id]">
+                            {{data.nombre}}
+                        </li>
+                </ul>
+                <ngb-alert *ngIf="TableProdsFind.length<=0 && buscado" type="danger" (close)="buscado = false">
+                        <strong>No se ha encontrado nada en esta busqueda...</strong>
+                </ngb-alert>
+
+            </div>
+
+            <div class="input-group mb-2 w-50 search-control">
+                <div class="input-group-prepend">
+                    <button class="input-group-text pointer" (click)="findByName(searchBar.value)">
+                            <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <input type="text" class="form-control" #searchBar id="inlineFormInputGroup" (change)="findByName(searchBar.value)"  placeholder="Buscar">
+            </div>
     </div>
 </nav>

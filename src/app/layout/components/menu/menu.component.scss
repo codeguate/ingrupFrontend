@@ -39,16 +39,17 @@ $topnav-background-color: #222;
 .header-ingrup{
     display: flex;
     height: 70vh;
-    background-repeat: no-repeat;
     background-image: url(./../../../../assets/images/Mercados/Modulo-1/Fondo.png);
     background-position: center;
+    background-repeat: no-repeat;
     background-size: 100%;
 }
 .panel-ingrup:hover{
     background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
-    box-shadow: inset #ffffff 0px 0px 13px 1px;
+    box-shadow:  #44D62C 0px 0px 10px 5px ;
+    border: solid 1px #ffffff;
     cursor:pointer;
 }
 .panel-ingrup:hover .menu-item-ingrup{
@@ -62,12 +63,13 @@ $topnav-background-color: #222;
 
 .panel-ingrup.active {
     background-color: #44D62C;
-    // border: solid #ffffff 0.5rem;
     list-style: none;
-    width: 100%;
-    box-shadow: inset #ffffff 0px 0px 13px 1px;
-    cursor:pointer;
+    width: 80%;
+    box-shadow: #44D62C 0px 0px 10px 5px;
+    border: solid 1px #ffffff;
+    cursor: pointer;
     padding-left: 1rem;
+    margin-top: 1rem;
 }
 .downRow{
     display: none;
@@ -87,10 +89,11 @@ $topnav-background-color: #222;
 }
 .panel-ingrup{
     padding: 2rem;
-    height: 40vh;
-    width: 100%;
+    height: 30vh;
+    width: 80%;
     list-style: none;
     text-decoration: none;
+    border-radius: 10px;
     display: flex;
     // background-color: rgba(255,255,255,0.9);
 }
@@ -115,6 +118,10 @@ $topnav-background-color: #222;
     font-size: 1.7rem;
     color: #5E5B5C;
 }
+.panel-title-ingrup h3.largo{
+    font-size: 1rem;
+    color: #5E5B5C;
+}
 .menu-item-ingrup{
     filter:brightness(0.3);
     height: 7vh;
@@ -127,6 +134,9 @@ $topnav-background-color: #222;
     margin-top: auto;
 }
 @media only screen and (max-width: 900px){
+    .panel-ingrup.active {
+        width: 100%!important;
+    }
     .menu-ingrup{
         width: 80%;
         margin-left: auto;
@@ -136,10 +146,16 @@ $topnav-background-color: #222;
     .panel-title-ingrup h3{
         font-size: 1rem!important;
     }
+    .panel-title-ingrup h3.largo{
+        font-size: 0.7rem!important;
+        color: #5E5B5C;
+    }
     .panel-ingrup{
         height: 30vh;
-    }
-    .panel-ingrup.active{
         padding-left: 0px;
+    }
+    .panel-title-ingrup h3{
+        font-size: 1.5rem;
+        color: #5E5B5C;
     }
 }

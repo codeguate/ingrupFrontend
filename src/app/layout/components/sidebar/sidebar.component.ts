@@ -1,25 +1,40 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MarcasService } from "./../../../shared/services/marcas.service";
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { TiposService } from "./../../../shared/services/tipos.service";
+import { ProductosService } from "./../../../shared/services/productos.service";
+import { CategoriasService } from "./../../../shared/services/categorias.service";
 import { TranslateService } from '@ngx-translate/core';
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+
     isActive: boolean;
     collapsed: boolean;
     showMenu: string;
+    buscado: boolean;
     pushRightClass: string;
     Table:any = []
     TableProds:any = []
+    TableProdsFind:any = []
+    private _success = new Subject<string>();
+
+    staticAlertClosed = false;
+    successMessage: string;
+    @BlockUI() blockUI: NgBlockUI;
     @Output() collapsedEvent = new EventEmitter<boolean>();
     constructor(
         private translate: TranslateService,
         private TiposService:TiposService,
         public router: Router,
+        private CategoriasService:CategoriasService,
+        private ProductosService:ProductosService,
         private MarcasService:MarcasService
     ) {
         this.router.events.subscribe(val => {
@@ -33,11 +48,48 @@ export class SidebarComponent implements OnInit {
         });
     }
     ngOnInit() {
+
+        this._success.subscribe((message) => this.successMessage = message);
+        this.buscado=false
         this.isActive = true;
         this.collapsed = true;
         this.showMenu = '0';
         this.pushRightClass = 'push-right';
         this.cargarAll();
+    }
+    public changeSuccessMessage() {
+        this._success.next(`<strong>No se ha encontrado nada en esta busqueda...</strong>`);
+    }
+    findByName(formData){
+
+    this.blockUI.start();
+      const data = {
+        id:formData,
+        state:'0',
+        filter:'nombre'
+      };
+    //   console.log('antes:'+this.selectedData.id+' Ahora'+id);
+
+    this.CategoriasService.getAllFilter(data)
+                          .then(response => {
+
+                            this.TableProdsFind=response;
+                            if(response.length<=0){
+                                this.buscado=true;
+                            }
+                            console.log(response);
+                            this.blockUI.stop();
+                        }).catch(error => {
+                            console.clear;
+                            this.blockUI.stop();
+                          });
+    }
+    recharge(){
+        setTimeout(() => {
+            this.TableProdsFind.length=0;
+            location.reload();
+
+        }, 500);
     }
     cargarAll(){
 
