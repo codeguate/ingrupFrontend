@@ -176,10 +176,16 @@ $topnav-background-color: #ffffff;
     max-height: 20vh;
     overflow-y: scroll;
     background-color: #ffffff;
+    box-shadow: #5E5B5C 0px 2px 15px 0px;
+    border-radius: 5px;
+    margin-bottom: 1rem;
 }
 .results ul{
     text-decoration: none;
     list-style: none;
+
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 .results ul li{
     cursor: pointer;
