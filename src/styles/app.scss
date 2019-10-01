@@ -376,7 +376,9 @@ canvas{
     font-size:3.5rem;
 
 }
-
+.ngx-gallery-animation-slide .ngx-gallery-image.ngx-gallery-active{
+    background-size: auto 100%!important;
+}
 @media only screen and (max-width: 1000px){
     .first_slider .owl-carousel .owl-item img{
         height: 100vh !important;
