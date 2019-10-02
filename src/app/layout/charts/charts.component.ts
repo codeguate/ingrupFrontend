@@ -8,6 +8,47 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class ChartsComponent implements OnInit {
+
+    customOptions2: any = {
+        loop: true,
+        // autoWidth: true,
+        // autoHeight: false,
+        nav: false,
+        autoplay: true,
+        center: true,
+        dots:true,
+        margin:20,
+        responsiveClass:true,
+        items:7,
+        responsive:{
+            300:{
+                items:2
+            },
+            600:{
+                items: 3
+            },
+            1000:{
+                items: 5
+            }
+        }
+            // URLhashListener:true,
+        // startPosition: 'URLHash',
+
+      }
+      carouselData:any = [
+        { text: 'Slide 1', src: 'assets/images/Nosotros/titulo1.png', dataHash: 'one'},
+        { text: 'Slide 2', src: 'assets/images/Nosotros/titulo2.png', dataHash: 'two'},
+        { text: 'Slide 3', src: 'assets/images/Nosotros/titulo3.png', dataHash: 'three'},
+        { text: 'Slide 4', src: 'assets/images/Nosotros/titulo4.png', dataHash: 'four'},
+        { text: 'Slide 5', src: 'assets/images/Nosotros/titulo5.png', dataHash: 'five'},
+        { text: 'Slide 6', src: 'assets/images/Nosotros/titulo6.png', dataHash: 'five'},
+        { text: 'Slide 7', src: 'assets/images/Nosotros/titulo7.png', dataHash: 'five'},
+        // { text: 'Slide 6', dotContent: 'text5'},
+        // { text: 'Slide 7', dotContent: 'text5'},
+        // { text: 'Slide 8', dotContent: 'text5'},
+        // { text: 'Slide 9', dotContent: 'text5'},
+        // { text: 'Slide 10', dotContent: 'text5'},
+      ];
     // bar chart
     public barChartOptions: any = {
         scaleShowVerticalLines: false,

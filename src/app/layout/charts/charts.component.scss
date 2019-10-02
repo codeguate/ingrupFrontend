@@ -10,10 +10,10 @@ $purpura: #9D3FD3;
 $celeste:#50ABED;
 $rosado: #E06B70;
 .title_page{
-    color: $verde;
-    text-align: center;
+    color: $Oscuro;
+    text-align: right;
     width: 100%;
-    font-size: 5em;
+    font-size: 3em;
     margin-bottom: 3%;
 }
 .sub_title_pais{
@@ -192,9 +192,146 @@ $rosado: #E06B70;
     height: fit-content;
     min-height: 100vh;
 }
+.no-margin, .no-margin *{
+    margin: 0px!important;
+}
+.no-padding, .no-padding *{
+    padding: 0px!important;
+}
+.collage-50{
+    height: 100%;
+    width: auto;
+}
+.politica{
+    background-image: url(./../../../assets/images/Nosotros/fondo-numeros.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    height: 50vh;
+    margin: 1rem;
+}
+.politica-2 img{
+    width: auto;
+    max-width: 100%;
+}
+.politica-2{
+    width: 100%;
+    display: flex;
+}
+.px-10{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.w-20{
+    width: 20%;
+}
+.container_data{
+    justify-content: center;
+    /* border: 1px solid #44D62C; */
+    border-radius: 35px;
+    width: 100%;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    /* padding-bottom: 15%; */
+    /* min-height: 48vh; */
+    /* box-shadow: 1px 1px 50px -20px #00000073; */
+    // background-color: white;
+}
+.proposito{
+    background-image: url(./../../../assets/images/Nosotros/fondo1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #00588B;
+}
+.collage{
+    background-image: url(./../../../assets/images/Nosotros/fondo2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #F9B233;
+}
+.historia-1-iz{
+    background-image: url(./../../../assets/images/Nosotros/fondo1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+    background-color: #A456B4;
+
+}
+.historia-2-iz{
+    background-image: url(../../../assets/images/Home/Modulo-1/fondo22.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+
+}
+.historia-3-iz{
+    background-image: url(./../../../assets/images/Nosotros/fondo2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+    background-color: #79C61B;
+
+}
+.historia-4-iz{
+    background-image: url(../../../assets/images/Home/Modulo-1/fondo22.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+
+}
+.historia-1-der{
+    background-image: url(../../../assets/images/Home/Modulo-1/fondo22.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+
+}
+.historia-2-der{
+    background-image: url(./../../../assets/images/Nosotros/fondo1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+    background-color: #D83239;
+
+}
+.historia-3-der{
+    background-image: url(../../../assets/images/Home/Modulo-1/fondo22.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+
+}
+.historia-4-der{
+    background-image: url(./../../../assets/images/Nosotros/fondo2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+    background-color: #50ABED;
+
+}
+.politica-mejora{
+    background-image: url(./../../../assets/images/Nosotros/fondo2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #F9B233;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.politicas{
+
+}
+.politicas-mejora{
+
+}
+.w-auto{
+    height: auto;
+
+}
+
 @media only screen and (max-width: 1000px){
     .title_page{
-        font-size: 3em;
+        font-size: 2em;
     }
     .sub_title_pais{
         font-size: 0.7em;
