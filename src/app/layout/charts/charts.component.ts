@@ -22,13 +22,13 @@ export class ChartsComponent implements OnInit {
         items:7,
         responsive:{
             300:{
-                items:2
+                items:3
             },
             600:{
-                items: 3
+                items: 5
             },
             1000:{
-                items: 5
+                items: 7
             }
         }
             // URLhashListener:true,

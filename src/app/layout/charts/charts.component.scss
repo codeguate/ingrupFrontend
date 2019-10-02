@@ -1,3 +1,11 @@
+@font-face {
+    font-family: "Impacted";
+    src: url("./../../../assets/fonts/Impacted.ttf");
+}
+@font-face {
+    font-family: "Impact";
+    src: url("./../../../assets/fonts/impact.ttf");
+}
 $verde: #44D62C;
 $gris: #A2A2A2;
 $Oscuro: #383838;
@@ -203,6 +211,7 @@ $rosado: #E06B70;
     width: auto;
 }
 .politica{
+    font-family: Impact;
     background-image: url(./../../../assets/images/Nosotros/fondo-numeros.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -255,7 +264,8 @@ $rosado: #E06B70;
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
-    background-color: #A456B4;
+    display:flex;
+    background-color: rgba(164, 86, 180,0.7);
 
 }
 .historia-2-iz{
@@ -263,6 +273,7 @@ $rosado: #E06B70;
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
+    display:flex;
 
 }
 .historia-3-iz{
@@ -270,6 +281,7 @@ $rosado: #E06B70;
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
+    display:flex;
     background-color: #79C61B;
 
 }
@@ -278,6 +290,7 @@ $rosado: #E06B70;
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
+    display:flex;
 
 }
 .historia-1-der{
@@ -285,6 +298,7 @@ $rosado: #E06B70;
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
+    display:flex;
 
 }
 .historia-2-der{
@@ -292,7 +306,8 @@ $rosado: #E06B70;
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
-    background-color: #D83239;
+    display:flex;
+    background-color: rgba(216, 50, 57,0.7);
 
 }
 .historia-3-der{
@@ -300,6 +315,7 @@ $rosado: #E06B70;
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
+    display:flex;
 
 }
 .historia-4-der{
@@ -307,6 +323,7 @@ $rosado: #E06B70;
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
+    display:flex;
     background-color: #50ABED;
 
 }
@@ -317,17 +334,35 @@ $rosado: #E06B70;
     background-color: #F9B233;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    font-family: Impact;
+    color: #ffffff;
 }
 .politicas{
 
 }
 .politicas-mejora{
-
+    font-family: Impact;
 }
 .w-auto{
     height: auto;
 
 }
+
+.historia-texto{
+    display: block;
+    margin: auto;
+    color: #ffffff;
+    font-family: Impact;
+    .historia-titulo{
+        color: #A2A2A2;
+        border-color: #A2A2A2;
+        border: solid 2px;
+        display: block;
+
+    }
+
+}
+
 
 @media only screen and (max-width: 1000px){
     .title_page{
