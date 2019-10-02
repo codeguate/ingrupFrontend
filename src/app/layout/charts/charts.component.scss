@@ -519,6 +519,49 @@ $rosado: #E06B70;
         min-height: 100vh;
         max-height: inherit;
     }
+    .w-50{
+        width: 100% !important;
+    }
+    .middle-height{
+        height: fit-content;
+        min-height: 50vh !important;
+    }
+    .historia-titulo{
+        margin: auto !important;
+    }
+    .certificaciones_title{
+        font-size: 2.3em;
+    }
+    .content_img_valores div{
+        width: 50% !important;
+    }
+    .contain_title_v{
+        padding: 0;
+    }
+    .content-description h5{
+        padding: 5% !important;
+        padding-left: 5% !important;
+        padding-right: 5% !important;
+        font-size: 1.5em;
+    }
+    .content-proposito h1{
+        font-size: 4.5em !important;
+    }
+    .content-icons div{
+        margin: 10%;
+    }
+    .contain_title_v h1{
+        margin: 10% auto;
+    }
+    .content-icons{
+        padding: 0;
+    }
+    .historia-texto{
+        padding: 0 !important;
+    }
+    .img-middle{
+        height: 50vh !important;
+    }
     .content_img_steps div{
         padding: 10% !important;
     }
