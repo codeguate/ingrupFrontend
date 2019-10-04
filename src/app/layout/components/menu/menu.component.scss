@@ -133,6 +133,12 @@ $topnav-background-color: #222;
     height: 70%;
     margin-top: auto;
 }
+.pb-400{
+    padding-bottom: 4%;
+}
+.pt-400{
+    padding-top: 4%;
+}
 @media only screen and (max-width: 900px){
     .panel-ingrup.active {
         width: 100%!important;

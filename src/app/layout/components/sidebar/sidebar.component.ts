@@ -111,6 +111,7 @@ export class SidebarComponent implements OnInit {
     openMenu(){
         var width_device = window.screen.width;
         if(width_device < 1000){
+            // this.toggleCollapsed();
             this.toggleSidebar();
         }else{
             this.toggleSidebar();
@@ -181,7 +182,8 @@ export class SidebarComponent implements OnInit {
     toggleSidebar() {
         const dom: any = document.querySelector('body');
         dom.classList.toggle(this.pushRightClass);
-        if(window.innerWidth <= 992){
+        var width_device = window.screen.width;
+        if(width_device <= 1000){
             this.collapsed = false;
         }
     }

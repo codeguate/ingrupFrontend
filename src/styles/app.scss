@@ -361,6 +361,17 @@ div[id^='ngb-panel'] ul li.active{
 .videoCarousell .owl-theme .owl-nav .owl-next img{
     height: 100%;
 }
+.videoCarousell .owl-carousel .owl-item{
+    margin-top: 0px!important;
+    height: 30vh!important;
+
+}
+.videoCarousell .owl-carousel .owl-item .img{
+    width: 80% !important;
+    height: 100%!important;
+    margin-left: auto;
+    margin-right: auto;
+}
 .mb_auto img {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
     border-radius: 52px;
@@ -470,7 +481,7 @@ canvas{
 
     .videoCarousell .owl-carousel .owl-item .img{
         width: 80% !important;
-        height: auto!important;
+        height: 260px!important;
         margin-left: auto;
         margin-right: auto;
     }

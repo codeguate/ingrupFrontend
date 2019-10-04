@@ -473,6 +473,18 @@
                                 <img src="http://placehold.it/500X500?text=X" style="max-height: 100%;" id="imagenComentario" class="img-thumbnail m-auto" alt="" srcset="">
                             </div>
                         </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                            <div class="checkbox">
+                                <label>
+                                    Agregar a toda la categoria
+                                    <input type="checkbox" name="multiInsert" id="multiInsert">
+                                </label>
+                            </div>
+
+                        </div>
+
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-3">
                             <button type="button" style="padding: .1em 1em;" disabled class="btn btn-primary" id="guardarImagenes" (click)="guardarImg()">Agregar</button>
                         </div>
@@ -533,6 +545,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-3">
+                            <input type="checkbox" name="multiInsert" id="multiInsertSliders">
                             <button type="button" style="padding: .1em 1em;" disabled class="btn btn-primary" id="guardarImagenesSlide" (click)="guardarSlide()">Agregar</button>
                         </div>
                     </div>

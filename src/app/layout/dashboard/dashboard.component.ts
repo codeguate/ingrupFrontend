@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+declare var $: any
+
 export class CarouselData {
     id?: string;
     text: string;
@@ -106,7 +108,9 @@ export class DashboardComponent implements OnInit {
             nav: true
         },
         1000:{
-            items: 3
+            items: 3,
+            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Home/Modulo-1/videos.png'>"],
+            nav: true
         }
     }
         // URLhashListener:true,
@@ -114,7 +118,9 @@ export class DashboardComponent implements OnInit {
 
   }
 
-    constructor() {
+    constructor(
+        private _sanitizer: DomSanitizer
+    ) {
         if(window.innerWidth < 992){
             this.sliders.push(
                 {
@@ -155,7 +161,9 @@ export class DashboardComponent implements OnInit {
             );
         }
         this.alerts.push(
-            // { id: 0, type: '//www.youtube.com/embed/C0DPdy98e4c?controls=0'},
+            { id: 0, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/f-MN8-0Idew?controls=1&autoplay=1")},
+            { id: 1, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/NQ8hHxjv0RI?controls=1&autoplay=1")},
+            { id: 2, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/e19T_RO8qa8?controls=1&autoplay=1")},
 
             {
                 id: 1,
@@ -173,51 +181,64 @@ export class DashboardComponent implements OnInit {
                 consectetur velit culpa molestias dignissimos
                 voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
             },
-            {
-                id: 2,
-                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
-            {
-                id: 2,
-                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
-            {
-                id: 2,
-                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
-            {
-                id: 2,
-                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
-            {
-                id: 2,
-                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            }
+            // {
+            //     id: 2,
+            //     type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+            //     message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            //     Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+            //     consectetur velit culpa molestias dignissimos
+            //     voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            // },
+            // {
+            //     id: 2,
+            //     type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+            //     message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            //     Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+            //     consectetur velit culpa molestias dignissimos
+            //     voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            // },
+            // {
+            //     id: 2,
+            //     type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+            //     message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            //     Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+            //     consectetur velit culpa molestias dignissimos
+            //     voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            // },
+            // {
+            //     id: 2,
+            //     type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+            //     message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            //     Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+            //     consectetur velit culpa molestias dignissimos
+            //     voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            // },
+            // {
+            //     id: 2,
+            //     type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+            //     message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            //     Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+            //     consectetur velit culpa molestias dignissimos
+            //     voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            // }
         );
     }
 
     ngOnInit() {
+        setTimeout(() => {
+            $(".owl-nav").removeClass("disabled")
+        }, 300);
+    }
+    getVideoIframe(url) {
+        var video, results;
 
+        if (url === null) {
+            return '';
+        }
+        results = url.match('[\\?&]v=([^&#]*)');
+        video   = (results === null) ? url : results[1];
+
+        return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + url+'?controls=1&autoplay=1');
     }
 
     public closeAlert(alert: any) {

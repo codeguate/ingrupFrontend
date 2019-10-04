@@ -546,13 +546,26 @@ export class TablesComponent implements OnInit {
     guardarImg(){
         this.imagen = $('#imagenComentario').attr("src")
         if(this.imagen!=""){
-          let data = {
-            nombre: this.imagen,
-            foto: this.imagen,
-            src: this.imagen,
-            producto: this.edition.id,
-            categoria: this.edition.categoria,
-          }
+            let categoria = $("#multiInsert").prop('checked')
+            console.log(categoria);
+
+            let data = null
+            if(categoria){
+                data = {
+                    nombre: this.imagen,
+                    foto: this.imagen,
+                    src: this.imagen,
+                    producto: this.edition.id,
+                    categoria: this.edition.categoria,
+                  }
+            }else{
+                data = {
+                    nombre: this.imagen,
+                    foto: this.imagen,
+                    src: this.imagen,
+                    producto: this.edition.id,
+                  }
+            }
           this.blockUI.start();
           this.ImagenesService.create(data)
                             .then(response => {
@@ -578,13 +591,26 @@ export class TablesComponent implements OnInit {
       guardarSlide(){
         this.imagen = $('#imagenComentarioSlide').attr("src")
         if(this.imagen!=""){
-          let data = {
-            nombre: this.imagen,
-            foto: this.imagen,
-            src: this.imagen,
-            producto: this.edition.id,
-            categoria: this.edition.categoria,
-          }
+            let categoria = $("#multiInsertSliders").prop('checked')
+
+            let data = null
+            if(categoria){
+                data = {
+                    nombre: this.imagen,
+                    foto: this.imagen,
+                    src: this.imagen,
+                    producto: this.edition.id,
+                    categoria: this.edition.categoria,
+                  }
+            }else{
+                data = {
+                    nombre: this.imagen,
+                    foto: this.imagen,
+                    src: this.imagen,
+                    producto: this.edition.id,
+                  }
+            }
+
           this.blockUI.start();
           this.SlidesService.create(data)
                             .then(response => {

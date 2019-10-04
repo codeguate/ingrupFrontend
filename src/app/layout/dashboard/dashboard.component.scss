@@ -452,8 +452,10 @@ body{
     width: 80%;
     margin: auto;
 }
+.owl-carousel .item-video{height:300px}
+
 .fondo_cuadros{
-    background-image: url(./../../../assets/images/cuadro-mision-vision.png);
+    // background-image: url(./../../../assets/images/cuadro-mision-vision.png);
     background-size: auto 100%;
     background-repeat: no-repeat;
     width:100%;
@@ -474,7 +476,7 @@ body{
     box-shadow: rgba(60,210,34, 0.5) 0px 0px 15px 5px;
 }
 .fondo_cuadros2{
-    background-image: url(./../../../assets/images/cuadro-proposito-valores.png);
+    // background-image: url(./../../../assets/images/cuadro-proposito-valores.png);
     background-size: auto 100%;
     background-repeat: no-repeat;
     width:100%;
@@ -558,7 +560,11 @@ body{
     display: flex;
     margin-bottom: 8%;
   }
-  .contain_img img{
+//   .contain_img img{
+//     width: 45%;
+//     margin: auto;
+//   }
+  .contain_img a{
     width: 45%;
     margin: auto;
   }
