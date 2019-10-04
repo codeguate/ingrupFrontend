@@ -56,14 +56,14 @@ export class TablesComponent implements OnInit {
     }
 
     customOptions2: any = {
-        loop: true,
+        loop: false,
         // autoWidth: true,
         // autoHeight: false,
         nav: false,
         autoplay: true,
         center: true,
         dots:true,
-        margin:20,
+        margin:0,
         responsiveClass:true,
         items:7,
         responsive:{

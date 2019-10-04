@@ -395,6 +395,16 @@ canvas{
 .banners .owl-carousel{
     height: auto;
     max-height: 250px;
+    margin-bottom: 1rem;
+}
+.banners .owl-carousel .owl-item{
+    width: auto!important;
+    margin: 5%!important;
+}
+.banners .owl-carousel .imagen1{
+    height: auto;
+    max-width: 220px;
+    width: auto;
 }
 @media only screen and (max-width: 1000px){
     .first_slider .owl-carousel .owl-item img{
