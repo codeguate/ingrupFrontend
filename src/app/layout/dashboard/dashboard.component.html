@@ -26,7 +26,7 @@
 
                     </div>
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 d-flex">
-                        <h1 face="Arial Black" class="title my-auto"> <div style="color: #44D62C">Ingrup, </div>primera empresa en la región  en firmar el Compromiso Global  <div> para una Nueva Economia Circular.</div></h1>
+                        <h1 face="Arial Black" class="title my-auto"> <div style="color: #44D62C;font-size: 2em;text-shadow: #ffffff 4px 2px 5px;">IN<span style="color: #383838">GRUP </span></div> <span style="font-size: 0.5em;"> primera empresa en la región en firmar el Compromiso Global <h5>para una Nueva Economia Circular.</h5> </span></h1>
 
                     </div>
 
@@ -63,7 +63,8 @@
                         <owl-carousel-o [options]="customOptions3">
                                 <ng-container *ngFor="let slide of alerts">
                                     <ng-template carouselSlide>
-                                    <img [src]="slide.type">
+                                    <iframe *ngIf="!slide.message"  [src]="slide.type" class="img" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <img *ngIf="slide.message" [src]="slide.type" >
                                     </ng-template>
                                 </ng-container>
 

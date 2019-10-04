@@ -155,6 +155,8 @@ export class DashboardComponent implements OnInit {
             );
         }
         this.alerts.push(
+            // { id: 0, type: '//www.youtube.com/embed/C0DPdy98e4c?controls=0'},
+
             {
                 id: 1,
                 type: 'assets/images/Home/Modulo-1/Imagen-video-1.png',

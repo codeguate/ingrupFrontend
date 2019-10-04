@@ -403,7 +403,7 @@ canvas{
 }
 .banners .owl-carousel .imagen1{
     height: auto;
-    max-width: 220px;
+    max-height: 220px;
     width: auto;
 }
 @media only screen and (max-width: 1000px){
@@ -462,6 +462,13 @@ canvas{
         height: 100%!important;
     }
     .videoCarousell .owl-carousel .owl-item img{
+        width: 80% !important;
+        height: auto!important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .videoCarousell .owl-carousel .owl-item .img{
         width: 80% !important;
         height: auto!important;
         margin-left: auto;

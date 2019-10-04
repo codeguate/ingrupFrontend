@@ -205,19 +205,19 @@ export class FormComponent implements OnInit {
     resetCarousel(){
         this.galleryImages = [
             {
-                small: 'assets/images/slider1.jpg',
-                medium: 'assets/images/slider1.jpg',
-                big: 'assets/images/slider1.jpg'
+                small: 'http://placehold.it/1000X500?text=X',
+                medium: 'http://placehold.it/1000X500?text=X',
+                big: 'http://placehold.it/1000X500?text=X'
             },
             {
-                small: 'assets/images/slider2.jpg',
-                medium: 'assets/images/slider2.jpg',
-                big: 'assets/images/slider2.jpg'
+                small: 'http://placehold.it/1000X500?text=X',
+                medium: 'http://placehold.it/1000X500?text=X',
+                big: 'http://placehold.it/1000X500?text=X'
             },
             {
-                small: 'assets/images/slider3.jpg',
-                medium: 'assets/images/slider3.jpg',
-                big: 'assets/images/slider3.jpg'
+                small: 'http://placehold.it/1000X500?text=X',
+                medium: 'http://placehold.it/1000X500?text=X',
+                big: 'http://placehold.it/1000X500?text=X'
             }
         ];
     }

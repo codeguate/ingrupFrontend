@@ -368,7 +368,7 @@
                             </tfoot>
                         </table>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngIf="selectedData">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sliderss" *ngIf="selectedData">
                         <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,selectedData.id,'slides')"></i>
                         <!-- <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,null,'sliders')"></i> -->
                         <div  *ngIf="selectedData && selectedData.slides">
