@@ -10,7 +10,7 @@
                     <ul class="list-group p-20 filtrosUL container_productos">
                         <li class="list-group-item" *ngFor="let data of Table" [routerLink]="['/productos/'+id+'/',data.id]" (click)="cargarSingle(data.id);scrollMyDiv('inicio');" [class.active]="selectedData && (+selectedData.id==data.id)">
                             <h3>
-                                {{data.marcas.padre.nombre}} -
+                                {{data.marcas.padre?data.marcas.padre.nombre+" - ":''}}
                                 {{data.marcas.nombre}} -
                                 {{data.nombre}}
                             </h3>
@@ -45,71 +45,331 @@
                         </atft-scene>
                     </atft-webgl-renderer>
                 </atft-orbit-controls>
-                <div class="galeria" id="galeria"  *ngIf="!selectedData.hasModel">
+                <div class="galeria"  *ngIf="selectedData && !selectedData.hasModel">
+                        <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
+                        <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
                         <ngx-gallery [options]="galleryOptions" [images]="galleryImages" style="margin:auto;"></ngx-gallery>
                 </div>
-                <div class="w-100 d-block" id="tabla1" *ngIf="selectedData.presentaciones">
-                    <table class="table table-hover" *ngIf="selectedData.presentaciones.length>0" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-                        <thead>
-                            <tr>
-                                <th style="width:20%;">
-                                  <mfDefaultSorter by="cuello">Cuello</mfDefaultSorter>
-                                </th>
-                                <th style="width:20%;">
-                                  <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
-                                </th>
-                                <th style="width:20%;">
-                                  <mfDefaultSorter by="altura">Altura(mm)</mfDefaultSorter>
-                                </th>
-                                <th style="width:20%;">
-                                  <mfDefaultSorter by="unidades">Unidades</mfDefaultSorter>
-                                </th>
-                                <th style="width:20%;">
-                                  <mfDefaultSorter by="material">Material</mfDefaultSorter>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let data of mf.data">
-                                <td>
-                                  <div>
-                                    {{ data.cuello }}
-                                  </div>
-                                </td>
-                                <td>
-                                  <div>
-                                    {{ data.peso }}
-                                  </div>
-                                </td>
-                                <td>
-                                  <div>
-                                    {{ data.altura }}
-                                  </div>
-                                </td>
-                                <td>
-                                  <div>
-                                    {{ data.unidades }}
-                                  </div>
-                                </td>
-                                <td>
-                                  <div>
-                                    {{ data.material }}
-                                  </div>
-                                </td>
+                <div class="w-100 d-block" id="tabla1" *ngIf="selectedData">
+                    <div *ngIf="selectedData.categoria==3">
+                        <div *ngIf="!selectedData.calibress">
+                            <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+                                <thead>
+                                    <tr>
+                                        <th style="width:20%;">
+                                        <mfDefaultSorter by="descripcion">Descripcion</mfDefaultSorter>
+                                        </th>
+                                        <th style="width:20%;">
+                                        <mfDefaultSorter by="cuello">Cuello</mfDefaultSorter>
+                                        </th>
+                                        <th style="width:20%;">
+                                        <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
+                                        </th>
+                                        <th style="width:20%;">
+                                        <mfDefaultSorter by="unidades">Unidades</mfDefaultSorter>
+                                        </th>
+                                        <th style="width:20%;">
+                                        <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                                        </th>
+                                        <th style="width:20%;" *ngIf="session">
+                                        <mfDefaultSorter>Editar</mfDefaultSorter>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of mf.data">
+                                        <td>
+                                        <div>
+                                            {{ data.nombre }}
+                                        </div>
+                                        </td>
+                                        <td>
+                                        <div>
+                                            {{ data.cuello }}
+                                        </div>
+                                        </td>
+                                        <td>
+                                        <div>
+                                            {{ data.peso.toFixed(2) }}
+                                        </div>
+                                        </td>
+                                        <td>
+                                        <div>
+                                            {{ data.unidades.toFixed(2) }}
+                                        </div>
+                                        </td>
+                                        <td>
+                                        <div>
+                                            {{ data.material }}
+                                        </div>
+                                        </td>
+                                        <td *ngIf="session">
+                                        <div>
+                                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editPresentacionModal,data.id,'presentacion')"></i>
+                                        </div>
+                                        </td>
 
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="3">
+                                        <mfBootstrapPaginator></mfBootstrapPaginator>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div *ngIf="selectedData.calibress">
+                            <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+                                <thead>
+                                    <tr>
+                                        <th style="width:20%;">
+                                        <mfDefaultSorter by="descripcion">Descripcion</mfDefaultSorter>
+                                        </th>
+                                        <th style="width:60%;">
+                                        <mfDefaultSorter by="calibres">Calibres</mfDefaultSorter>
+                                        </th>
+                                        <th style="width:20%;">
+                                        <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                                        </th>
+                                        <th style="width:20%;" *ngIf="session">
+                                        <mfDefaultSorter>Editar</mfDefaultSorter>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of mf.data">
+                                        <td>
+                                        <div>
+                                            {{ data.nombre }}
+                                        </div>
+                                        </td>
+                                        <td>
+                                        <div>
+                                            {{ data.calibres }}
+                                        </div>
+                                        </td>
+                                        <td>
+                                        <div>
+                                            {{ data.material }}
+                                        </div>
+                                        </td>
+                                        <td *ngIf="session">
+                                        <div>
+                                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editPresentacionModal,data.id,'presentacion')"></i>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="3">
+                                        <mfBootstrapPaginator></mfBootstrapPaginator>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="selectedData.categoria!=3 && selectedData.categoria!=4 && selectedData.categoria!=5 && selectedData.categoria!=6 && selectedData.categoria!=7">
+                        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+                            <thead>
+                                <tr>
+                                    <th style="width:20%;">
+                                    <mfDefaultSorter by="descripcion">Descripcion</mfDefaultSorter>
+                                    </th>
+                                    <th style="width:20%;">
+                                    <mfDefaultSorter by="cuello">Cuello</mfDefaultSorter>
+                                    </th>
+                                    <th style="width:20%;">
+                                    <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
+                                    </th>
+                                    <th style="width:20%;">
+                                    <mfDefaultSorter by="altura">Altura(mm)</mfDefaultSorter>
+                                    </th>
+                                    <th style="width:20%;">
+                                    <mfDefaultSorter by="unidades">Unidades</mfDefaultSorter>
+                                    </th>
+                                    <th style="width:20%;">
+                                    <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                                    </th>
+                                    <th style="width:20%;" *ngIf="session">
+                                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of mf.data">
+                                    <td>
+                                    <div>
+                                        {{ data.nombre }}
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div>
+                                        {{ data.cuello }}
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div>
+                                        {{ data.peso.toFixed(2) }}
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div>
+                                        {{ data.altura.toFixed(2) }}
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div>
+                                        {{ data.unidades.toFixed(2) }}
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div>
+                                        {{ data.material }}
+                                    </div>
+                                    </td>
+                                    <td *ngIf="session">
+                                    <div>
+                                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editPresentacionModal,data.id,'presentacion')"></i>
+                                    </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="3">
+                                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                                </td>
                             </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="3">
-                                <mfBootstrapPaginator></mfBootstrapPaginator>
-                            </td>
-                        </tr>
-                        </tfoot>
-                    </table>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
+
 
             </div>
         </div>
-
     </div>
+
+
+    <ng-template #editModal let-c="dismiss" let-d="dismiss">
+        <div class="modal-header">
+                <h4 class="modal-title">Editar</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="modal-body">
+                <form class="form-signin" *ngIf="edition" >
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control shadow-input" name="editarVal" required
+                        ngModel #editarVal="ngModel" [(ngModel)]="edition.nombre">
+                    </div>
+                </form>
+        </div>
+        <div class="modal-footer">
+                <button class="btn btn-lg btn-primary btn-block" type="button" (click)="update(edition);c('Close click');" >Guardar Cambios</button>
+
+        </div>
+
+    </ng-template>
+
+    <ng-template #editPresentacionModal let-c="dismiss" let-d="dismiss">
+        <div class="modal-header">
+                <h4 class="modal-title">Editar Presentacion</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="modal-body">
+                <form class="form-signin" *ngIf="edition" >
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control shadow-input" name="editarVal" required
+                        ngModel #editarVal="ngModel" [(ngModel)]="edition.nombre">
+                    </div>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control shadow-input" name="editarVal2" required
+                        ngModel #editarVal2="ngModel" [(ngModel)]="edition.cuello">
+                    </div>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control shadow-input" name="editarVal3" required
+                        ngModel #editarVal3="ngModel" [(ngModel)]="edition.peso">
+                    </div>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control shadow-input" name="editarVal4" required
+                        ngModel #editarVal4="ngModel" [(ngModel)]="edition.altura">
+                    </div>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control shadow-input" name="editarVal5" required
+                        ngModel #editarVal5="ngModel" [(ngModel)]="edition.largo">
+                    </div>
+                </form>
+        </div>
+        <div class="modal-footer">
+                <button class="btn btn-lg btn-primary btn-block" type="button" (click)="update(edition);c('Close click');" >Guardar Cambios</button>
+
+        </div>
+
+    </ng-template>
+
+    <ng-template #editGaleriaModal let-c="dismiss" let-d="dismiss">
+        <div class="modal-header">
+                <h4 class="modal-title">Editar Galeria</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="modal-body" *ngIf="edition">
+
+                <div class="row" *ngIf="edition.id">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 px-3 row">
+                        <div class="shadow py-3 mt-3 profile-main">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+                                <label for="uploadImagenComentario" class="text icon">Seleccionar archivo</label>
+                                <progress value="0" max="100" class="loader_img" id="barra_de_progreso"></progress>
+                                <input type="file" id="uploadImagenComentario" (change)="subirImagenes($event,{id:0},'uploadImagenComentario');blockUI.start()"/>
+                                <button type="button" (click)="blockUI.stop()" id="stopLoader" class="form-control border-morado  text icon d-none" placeholder="">Tomar Foto </button>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="cuadro-img d-flex">
+                                    <img src="http://placehold.it/500X500?text=X" style="max-height: 100%;" id="imagenComentario" class="img-thumbnail m-auto" alt="" srcset="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-3">
+                                <button type="button" style="padding: .1em 1em;" disabled class="btn btn-primary" id="guardarImagenes" (click)="guardarImg()">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pb-3">
+                        <div class="shadow p-3 mt-3 profile-main">
+                            <table class="table table-hover w-100" *ngIf="edition.imagenes" [mfData]="edition.imagenes" #mf="mfDataTable" [mfRowsOnPage]="6">
+                                <div class="w-100">
+                                    <div class="row p-3" >
+                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 cuadro-img-min d-flex" *ngFor="let data of mf.data">
+                                            <img src="./../../../assets/images/menu/X.png" class="eliminarIMG" (click)="eliminarIMG(data.id)">
+                                        <img src="{{data.src}}" style="max-height: 100%;" class="img-thumbnail m-auto" alt="" srcset="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <mfBootstrapPaginator></mfBootstrapPaginator>
+                                    </div>
+                                </div>
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <span *ngIf="!edition.id">
+                        Bienvenido a la galeria por defecto
+                </span>
+
+        </div>
+
+    </ng-template>

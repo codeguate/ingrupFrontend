@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import {MarcasService } from "./../../shared/services/marcas.service";
 import {CategoriasService } from "./../../shared/services/categorias.service";
 import {ProductosService } from "./../../shared/services/productos.service";
+import {ImagenesService } from "./../../shared/services/imagenes.service";
+import {PresentacionesService } from "./../../shared/services/presentaciones.service";
 import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { source } from "./../../../environments/config";
 
 declare var $: any
 
@@ -17,7 +22,13 @@ declare var $: any
     providers: [NgbAccordionConfig]
 })
 export class FormComponent implements OnInit {
+    private basePath:string = source.production?source.url:source.urlDev;
+
+    session:boolean = localStorage.getItem('currentUser')?true:false;
+    closeResult: string;
+    abierto:boolean = false;
     @BlockUI() blockUI: NgBlockUI;
+    imagen:any = ""
     customOptions: any = {
         loop: false,
         // autoHeight: false,
@@ -44,6 +55,7 @@ export class FormComponent implements OnInit {
             }
         },
     }
+    public edition:any
     public id:number = null
     public idF:number = null
     myColor:string="#ffffff";
@@ -140,8 +152,12 @@ export class FormComponent implements OnInit {
     }
     constructor(
         config: NgbAccordionConfig,
+        private modalService: NgbModal,
         private ProductosService:ProductosService,
+        private MarcasService:MarcasService,
         private route: ActivatedRoute,
+        private ImagenesService:ImagenesService,
+        private PresentacionesService:PresentacionesService,
         private CategoriasService:CategoriasService
     ) {
         // customize default values of accordions used by this component tree
@@ -205,9 +221,8 @@ export class FormComponent implements OnInit {
             }
         ];
     }
-    getParams(){
-        $("#inicio").focus();
-
+    getParams() {
+        $(".galeria").focus();
         let data = this.route.snapshot.paramMap.get('id');
         if(data) {
             {
@@ -231,11 +246,13 @@ export class FormComponent implements OnInit {
         state:'0',
         filter:'evento'
       }
+    //   console.log('antes:'+this.selectedData.id+' Ahora'+id);
 
       let datas = this.selectedData
         this.selectedData=null
       this.ProductosService.getSingle(id)
                           .then(response => {
+                            // console.log(response);
                             response.pX = +response.pX;
                             response.pY = +response.pY;
                             response.pZ = +response.pZ;
@@ -244,10 +261,24 @@ export class FormComponent implements OnInit {
                             response.tZ = +response.tZ;
                             response.rX = +response.rX;
                             response.rY = +response.rY;
+                            response.categoria = +response.categoria;
                             response.rZ = +response.rZ;
                             response.near = +response.near;
                             response.far = +response.far;
                             response.fov = +response.fov;
+                            response.calibress = false;
+                            if(response.presentaciones && response.presentaciones.length>0){
+                                let data = []
+                                response.presentaciones.forEach(element => {
+                                    if(element.calibres!=""){
+                                        element.calibres = element.calibres?element.calibres.replace(/,/g," "):'';
+                                        response.calibress=true;
+                                    }
+                                });
+                                this.galleryImages = data
+                            }else{
+                                this.resetCarousel();
+                            }
                             response.hasModel = +response.hasModel;
                             response.material = response.model.replace('.obj','.mtl');
                             this.selectedData=response;
@@ -267,8 +298,6 @@ export class FormComponent implements OnInit {
                             }else{
                                 this.resetCarousel();
                             }
-                            // console.log(response);
-                            // console.log(response);
                             this.blockUI.stop();
                         }).catch(error => {
                             console.clear
@@ -322,6 +351,275 @@ export class FormComponent implements OnInit {
                                 this.blockUI.stop();
                               })
     }
+
+    cargarOfMarca(id: number, changeUrl: boolean= false) {
+        if (changeUrl) {
+            this.id = id;
+        }
+        this.blockUI.start();
+          const data = {
+            id: this.id,
+            state: '0',
+            filter: 'tipo'
+          };
+        //   console.log(id)
+          this.MarcasService.getSingle(id)
+                              .then(response => {
+                                this.Marcas = response;
+                                if(response.submarca.length<1){
+                                    this.cargarOfCate(id,true)
+                                }
+                                // console.log(response);
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear;
+                                this.blockUI.stop();
+                              });
+    }
+    cargarFotos(id:number){
+        this.blockUI.start();
+          const data = {
+            id: this.id,
+            state: '0',
+            filter: 'tipo'
+          };
+        //   console.log(id)
+          this.MarcasService.getSingle(id)
+                              .then(response => {
+                                this.Marcas = response;
+                                // console.log(response);
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear;
+                                this.blockUI.stop();
+                              });
+
+    }
+
+    open(content,id,tipo) {
+        this.edition = null
+        this.abierto=true;
+        switch(tipo){
+            case "categorias":{
+                this.CategoriasService.getSingle(id)
+                      .then(response => {
+                        // console.log(response);
+                        this.edition=response;
+                        this.edition.tipo = tipo
+                        this.blockUI.stop();
+                    }).catch(error => {
+                        console.clear;
+                        this.blockUI.stop();
+                      });
+                break;
+            }
+            case "productos":{
+                this.ProductosService.getSingle(id)
+                      .then(response => {
+                        // console.log(response);
+                        this.edition=response;
+                        this.edition.tipos = tipo
+                        this.blockUI.stop();
+                    }).catch(error => {
+                        console.clear;
+                        this.blockUI.stop();
+                      });
+                break;
+            }
+            case "presentacion":{
+                this.PresentacionesService.getSingle(id)
+                      .then(response => {
+                        console.log(response);
+                        this.edition=response;
+                        this.edition.tipos = tipo
+                        this.blockUI.stop();
+                    }).catch(error => {
+                        console.clear;
+                        this.blockUI.stop();
+                      });
+                break;
+            }
+            case "galeria":{
+                if(id){
+                    this.ProductosService.getSingle(id)
+                                            .then(response => {
+                                            // console.log(response);
+                                            this.edition=response;
+                                            this.edition.tipos = tipo
+                                            this.blockUI.stop();
+                                        }).catch(error => {
+                                            console.clear;
+                                            this.blockUI.stop();
+                                            });
+                }else{
+                    let data = {
+                        tipos:tipo
+                    }
+                    this.edition = data
+                    this.blockUI.stop();
+                }
+
+                break;
+            }
+        }
+        if(content){
+            this.modalService.open(content).result.then((result) => {
+                this.closeResult = `Closed with: ${result}`;
+            }, (reason) => {
+                this.abierto=false;
+                this.cargarSingle(this.edition.id)
+                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+            });
+        }
+
+    }
+
+    guardarImg(){
+        this.imagen = $('#imagenComentario').attr("src")
+        if(this.imagen!=""){
+          let data = {
+            nombre: this.imagen,
+            foto: this.imagen,
+            src: this.imagen,
+            producto: this.edition.id,
+            categoria: this.edition.categoria,
+          }
+          this.blockUI.start();
+          this.ImagenesService.create(data)
+                            .then(response => {
+                                this.imagen = response.url
+                                // console.log(response);
+                                if(response.id){
+                                  $('#imagenComentario').attr("src",'http://placehold.it/500X500?text=X');
+                                  $('#uploadImagenComentario').attr("value",'');
+                                  this.imagen="";
+                                  this.open(null,this.edition.id,'galeria');
+                                }
+                                console.clear
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear
+
+                                this.blockUI.stop();
+                                alert(error)
+                            })
+        }
+
+      }
+      subirImagenes(archivo,form,id){
+        var archivos=archivo.srcElement.files;
+        // ${this.basePath}/
+        let url = `${this.basePath}/api/upload`
+
+        var i=0;
+        var size=archivos[i].size;
+        var type=archivos[i].type;
+            if(size<(5*(1024*1024))){
+              if(type=="image/png" || type=="image/jpeg" || type=="image/jpg"){
+            $("#"+id).upload(url,
+                {
+                  avatar: archivos[i],
+                  carpeta: "ProductosIngrup"
+              },
+              function(respuesta)
+              {
+                $('#imagenComentario').attr("src",'')
+                $('#imagenComentario').attr("src",respuesta)
+                $("#"+id).val('')
+                $("#barra_de_progreso").val(0)
+                $('#guardarImagenes').attr("disabled",false)
+                $("#stopLoader").click();
+              },
+              function(progreso, valor)
+              {
+
+                $("#barra_de_progreso").val(valor);
+              }
+            );
+              }else{
+                alert("El tipo de imagen no es valido")
+              }
+          }else{
+            alert("La imagen es demaciado grande")
+          }
+    }
+
+  update(formValue:any){
+      formValue = this.edition
+        this.blockUI.start();
+    switch (formValue.tipos) {
+        case "categorias":{
+            this.CategoriasService.update(formValue)
+                                    .then(response => {
+                                    console.log(response);
+                                    this.getParams();
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+        case "productos":{
+            this.ProductosService.update(formValue)
+                                    .then(response => {
+                                    console.log(response);
+                                    this.getParams();
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+        case "presentacion":{
+            this.PresentacionesService.update(formValue)
+                                    .then(response => {
+                                    console.log(response);
+                                    this.cargarSingle(response.producto);
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+    }
+
+
+  }
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return  `with: ${reason}`;
+        }
+    }
+    eliminarIMG(id:string){
+        this.blockUI.start();
+        if(confirm("¿Desea eliminar la Foto?")){
+          this.ImagenesService.delete(id)
+                            .then(response => {
+                              this.open(null,response.producto,'galeria')
+                              console.clear
+                              this.blockUI.stop();
+                          }).catch(error => {
+                              console.clear
+                              this.blockUI.stop();
+                            })
+        }else{
+          $('#Loading').css('display','none')
+        }
+
+      }
 
 
 }

@@ -14,7 +14,7 @@ import {debounceTime} from 'rxjs/operators';
     styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
+    session:boolean = localStorage.getItem('currentUser')?true:false;
     isActive: boolean;
     collapsed: boolean;
     showMenu: string;
@@ -130,6 +130,31 @@ export class SidebarComponent implements OnInit {
 
     }
 
+    logout(){
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentEmail');
+        localStorage.removeItem('currentFirstName');
+        localStorage.removeItem('currentLastName');
+        localStorage.removeItem('currentId');
+        localStorage.removeItem('currentPicture');
+        localStorage.removeItem('currentState');
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentBisCardId');
+        localStorage.removeItem('currentEmail');
+        localStorage.removeItem('currentApellidos');
+        localStorage.removeItem('currentNombres');
+        localStorage.removeItem('currentEstado');
+        localStorage.removeItem('currentSalt');
+        localStorage.removeItem('currentTelefono');
+        localStorage.removeItem('currentAvatar');
+        localStorage.removeItem('token');
+        localStorage.removeItem('currentNuevaSesion');
+        localStorage.removeItem('currentTipoUsuarioId');
+        localStorage.clear();
+        this.session=false;
+          this.router.navigate([`../../../../`])
+
+      }
 
     eventCalled() {
         this.isActive = !this.isActive;

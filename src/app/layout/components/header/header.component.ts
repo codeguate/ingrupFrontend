@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MarcasService } from "./../../../shared/services/marcas.service";
 import { TranslateService } from '@ngx-translate/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ActivatedRoute } from '@angular/router';
 export class CarouselData {
     id?: string;
     text: string;
@@ -50,6 +50,7 @@ export class HeaderComponent implements OnInit {
         animateOut: 'slideOutUp',
         animateIn: 'slideInUp',
         responsiveClass:true,
+        startPosition:this.route.snapshot.paramMap.get("id"),
         responsive:{
             300:{
                 items:3
@@ -64,6 +65,7 @@ export class HeaderComponent implements OnInit {
     }
     constructor(
         private translate: TranslateService,
+        private route: ActivatedRoute,
         public router: Router,
         private mainService:MarcasService
     ) {

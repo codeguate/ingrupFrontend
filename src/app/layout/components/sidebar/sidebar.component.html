@@ -68,34 +68,10 @@
             <i class="fa fa-fw fa-desktop"></i>&nbsp;
             <span>{{ 'Bootstrap Element' | translate }}</span>
         </a> -->
-        <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('pages')">
-                <i class="fa fa-fw " [class.fa-plus]="showMenu != 'pages'"  [class.fa-chevron-down]="showMenu === 'pages'"></i>&nbsp;
-                <span>{{ 'Sostenibilidad' | translate }}</span>
-            </a>
-            <li class="nested" [class.expand]="showMenu === 'pages'">
-                <ul class="submenu">
-                    <li>
-                        <a [routerLink]="['/sostenibilidad1']" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" >
-                            <i class="fa" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
-                            <span>{{ 'Sostenibilidad' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/sostenibilidad2']" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" >
-                            <i class="fa" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
-                            <span>{{ 'Sostenibilidad' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/sostenibilidad3']" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" >
-                            <i class="fa" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
-                            <span>{{ 'Sostenibilidad' | translate }}</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </div>
+        <a routerLink="/sostenibilidad1" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw " [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
+            <span>{{ 'Sostenibilidad' | translate }}</span>
+        </a>
         <a [routerLink]="['/contactenos']" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
             <span>{{ 'Contáctenos' | translate }}</span>
@@ -107,38 +83,13 @@
                 <li class="nested" [class.expand]="showMenu === 'languages'">
                     <ul class="submenu">
                         <li>
-                            <a href="javascript:void(0)" (click)="changeLang('en')">
-                                {{ 'English' | translate }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('fr')">
-                                {{ 'French' | translate }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('ur')">
-                                {{ 'Urdu' | translate }}
-                            </a>
-                        </li>
-                        <li>
                             <a href="javascript:void(0)" (click)="changeLang('es')">
                                 {{ 'Spanish' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" (click)="changeLang('it')">
-                                {{ 'Italian' | translate }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('fa')">
-                                {{ 'Farsi' | translate }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('de')">
-                                {{ 'German' | translate }}
+                            <a href="javascript:void(0)" (click)="changeLang('en')">
+                                {{ 'English' | translate }}
                             </a>
                         </li>
                     </ul>
@@ -166,6 +117,11 @@
                     </button>
                 </div>
                 <input type="text" class="form-control" #searchBar id="inlineFormInputGroup" (change)="findByName(searchBar.value)"  placeholder="Buscar">
+                <div class="input-group-prepend" *ngIf="session">
+                    <button class="input-group-text2 pointer" (click)="logout()">
+                            <i class="fa fa-sign-out"></i>
+                    </button>
+                </div>
             </div>
     </div>
 </nav>

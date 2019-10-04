@@ -3,10 +3,15 @@ import { routerTransition } from '../../router.animations';
 import {MarcasService } from "./../../shared/services/marcas.service";
 import {CategoriasService } from "./../../shared/services/categorias.service";
 import {ProductosService } from "./../../shared/services/productos.service";
+import {ImagenesService } from "./../../shared/services/imagenes.service";
+import {SlidesService } from "./../../shared/services/slides.service";
+import {PresentacionesService } from "./../../shared/services/presentaciones.service";
 import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { source } from "./../../../environments/config";
 
 declare var $: any
 @Component({
@@ -16,8 +21,13 @@ declare var $: any
     animations: [routerTransition()]
 })
 export class TablesComponent implements OnInit {
+    private basePath:string = source.production?source.url:source.urlDev;
 
+    session:boolean = localStorage.getItem('currentUser')?true:false;
+    closeResult: string;
+    abierto:boolean = false;
     @BlockUI() blockUI: NgBlockUI;
+    imagen:any = ""
     customOptions: any = {
         loop: false,
         // autoHeight: false,
@@ -44,6 +54,48 @@ export class TablesComponent implements OnInit {
             }
         },
     }
+
+    customOptions2: any = {
+        loop: true,
+        // autoWidth: true,
+        // autoHeight: false,
+        nav: false,
+        autoplay: true,
+        center: true,
+        dots:true,
+        margin:20,
+        responsiveClass:true,
+        items:7,
+        responsive:{
+            300:{
+                items:3
+            },
+            600:{
+                items: 5
+            },
+            1000:{
+                items: 7
+            }
+        }
+            // URLhashListener:true,
+        // startPosition: 'URLHash',
+
+      }
+      carouselData:any = [
+        { text: 'Slide 1', src: 'assets/images/Nosotros/titulo1.png', dataHash: 'one'},
+        { text: 'Slide 2', src: 'assets/images/Nosotros/titulo2.png', dataHash: 'two'},
+        { text: 'Slide 3', src: 'assets/images/Nosotros/titulo3.png', dataHash: 'three'},
+        { text: 'Slide 4', src: 'assets/images/Nosotros/titulo4.png', dataHash: 'four'},
+        { text: 'Slide 5', src: 'assets/images/Nosotros/titulo5.png', dataHash: 'five'},
+        { text: 'Slide 6', src: 'assets/images/Nosotros/titulo6.png', dataHash: 'five'},
+        { text: 'Slide 7', src: 'assets/images/Nosotros/titulo7.png', dataHash: 'five'},
+        // { text: 'Slide 6', dotContent: 'text5'},
+        // { text: 'Slide 7', dotContent: 'text5'},
+        // { text: 'Slide 8', dotContent: 'text5'},
+        // { text: 'Slide 9', dotContent: 'text5'},
+        // { text: 'Slide 10', dotContent: 'text5'},
+      ];
+    public edition:any
     public id:number = null
     public idF:number = null
     myColor:string="#ffffff";
@@ -140,9 +192,13 @@ export class TablesComponent implements OnInit {
     }
     constructor(
         config: NgbAccordionConfig,
+        private modalService: NgbModal,
         private ProductosService:ProductosService,
         private MarcasService:MarcasService,
         private route: ActivatedRoute,
+        private ImagenesService:ImagenesService,
+        private SlidesService:SlidesService,
+        private PresentacionesService:PresentacionesService,
         private CategoriasService:CategoriasService
     ) {
         // customize default values of accordions used by this component tree
@@ -220,7 +276,7 @@ export class TablesComponent implements OnInit {
         if(data) {
             {
                 this.idF = +(data);
-                this.customOptions.startPosition = this.idF
+                // this.customOptions.startPosition = this.idF
                 this.cargarOfCate(this.id,false);
             }
         }
@@ -238,6 +294,7 @@ export class TablesComponent implements OnInit {
         this.selectedData=null;
       this.ProductosService.getSingle(id)
                           .then(response => {
+                            // console.log(response);
                             response.pX = +response.pX;
                             response.pY = +response.pY;
                             response.pZ = +response.pZ;
@@ -246,14 +303,29 @@ export class TablesComponent implements OnInit {
                             response.tZ = +response.tZ;
                             response.rX = +response.rX;
                             response.rY = +response.rY;
+                            response.categoria = +response.categoria;
                             response.rZ = +response.rZ;
                             response.near = +response.near;
                             response.far = +response.far;
                             response.fov = +response.fov;
+                            response.calibress = false;
+                            if(response.presentaciones && response.presentaciones.length>0){
+                                let data = []
+                                response.presentaciones.forEach(element => {
+                                    if(element.calibres!=""){
+                                        element.calibres = element.calibres?element.calibres.replace(/,/g," / "):'';
+                                        response.calibress=true;
+                                    }
+                                });
+                                this.galleryImages = data
+                            }else{
+                                this.resetCarousel();
+                            }
 
                             response.hasModel = +response.hasModel;
                             response.material = response.model.replace('.obj','.mtl');
                             this.selectedData=response;
+
                             if(response.imagenes && response.imagenes.length>0){
                                 let data = []
                                 response.imagenes.forEach(element => {
@@ -268,7 +340,19 @@ export class TablesComponent implements OnInit {
                             }else{
                                 this.resetCarousel();
                             }
-                            // console.log(response);
+                            if(response.slides && response.slides.length>0){
+                                let data = []
+                                response.slides.forEach(element => {
+                                    let obj = {
+                                        src: element.src,
+                                        text: element.src,
+                                        hash: element.src
+                                    }
+                                    data.push(obj)
+                                });
+                                this.carouselData = data
+                            }
+
                             this.blockUI.stop();
                         }).catch(error => {
                             console.clear;
@@ -359,5 +443,320 @@ export class TablesComponent implements OnInit {
 
     }
 
+    open(content,id,tipo) {
+        this.edition = null
+        this.abierto=true;
+        switch(tipo){
+            case "categorias":{
+                this.CategoriasService.getSingle(id)
+                      .then(response => {
+                        // console.log(response);
+                        this.edition=response;
+                        this.edition.tipo = tipo
+                        this.blockUI.stop();
+                    }).catch(error => {
+                        console.clear;
+                        this.blockUI.stop();
+                      });
+                break;
+            }
+            case "productos":{
+                this.ProductosService.getSingle(id)
+                      .then(response => {
+                        // console.log(response);
+                        this.edition=response;
+                        this.edition.tipos = tipo
+                        this.blockUI.stop();
+                    }).catch(error => {
+                        console.clear;
+                        this.blockUI.stop();
+                      });
+                break;
+            }
+            case "presentacion":{
+                this.PresentacionesService.getSingle(id)
+                      .then(response => {
+                        console.log(response);
+                        this.edition=response;
+                        this.edition.tipos = tipo
+                        this.blockUI.stop();
+                    }).catch(error => {
+                        console.clear;
+                        this.blockUI.stop();
+                      });
+                break;
+            }
+            case "galeria":{
+                if(id){
+                    this.ProductosService.getSingle(id)
+                                            .then(response => {
+                                            // console.log(response);
+                                            this.edition=response;
+                                            this.edition.tipos = tipo
+                                            this.blockUI.stop();
+                                        }).catch(error => {
+                                            console.clear;
+                                            this.blockUI.stop();
+                                            });
+                }else{
+                    let data = {
+                        tipos:tipo
+                    }
+                    this.edition = data
+                    this.blockUI.stop();
+                }
+
+                break;
+            }
+            case "slides":{
+                if(id){
+                    this.ProductosService.getSingle(id)
+                                            .then(response => {
+                                            // console.log(response);
+                                            this.edition=response;
+                                            this.edition.tipos = tipo
+                                            this.blockUI.stop();
+                                        }).catch(error => {
+                                            console.clear;
+                                            this.blockUI.stop();
+                                            });
+                }else{
+                    let data = {
+                        tipos:tipo
+                    }
+                    this.edition = data
+                    this.blockUI.stop();
+                }
+
+                break;
+            }
+        }
+        if(content){
+            this.modalService.open(content).result.then((result) => {
+                this.closeResult = `Closed with: ${result}`;
+            }, (reason) => {
+                this.abierto=false;
+                this.cargarSingle(this.edition.id)
+                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+            });
+        }
+
+    }
+
+    guardarImg(){
+        this.imagen = $('#imagenComentario').attr("src")
+        if(this.imagen!=""){
+          let data = {
+            nombre: this.imagen,
+            foto: this.imagen,
+            src: this.imagen,
+            producto: this.edition.id,
+            categoria: this.edition.categoria,
+          }
+          this.blockUI.start();
+          this.ImagenesService.create(data)
+                            .then(response => {
+                                this.imagen = response.url
+                                // console.log(response);
+                                if(response.id){
+                                  $('#imagenComentario').attr("src",'http://placehold.it/500X500?text=X');
+                                  $('#uploadImagenComentario').attr("value",'');
+                                  this.imagen="";
+                                  this.open(null,this.edition.id,'galeria');
+                                }
+                                console.clear
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear
+
+                                this.blockUI.stop();
+                                alert(error)
+                            })
+        }
+
+      }
+      guardarSlide(){
+        this.imagen = $('#imagenComentarioSlide').attr("src")
+        if(this.imagen!=""){
+          let data = {
+            nombre: this.imagen,
+            foto: this.imagen,
+            src: this.imagen,
+            producto: this.edition.id,
+            categoria: this.edition.categoria,
+          }
+          this.blockUI.start();
+          this.SlidesService.create(data)
+                            .then(response => {
+                                this.imagen = response.url
+                                // console.log(response);
+                                if(response.id){
+                                  $('#imagenComentarioSlide').attr("src",'http://placehold.it/500X500?text=X');
+                                  $('#uploadimagenComentarioSlide').attr("value",'');
+                                  this.imagen="";
+                                  this.open(null,this.edition.id,'slides');
+                                }
+                                console.clear
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear
+
+                                this.blockUI.stop();
+                                alert(error)
+                            })
+        }
+
+      }
+      subirImagenes(archivo,form,id){
+        var archivos=archivo.srcElement.files;
+        // ${this.basePath}/
+        let url = `${this.basePath}/api/upload`
+
+        var i=0;
+        var size=archivos[i].size;
+        var type=archivos[i].type;
+            if(size<(5*(1024*1024))){
+              if(type=="image/png" || type=="image/jpeg" || type=="image/jpg"){
+            $("#"+id).upload(url,
+                {
+                  avatar: archivos[i],
+                  carpeta: "ProductosIngrup"
+              },
+              function(respuesta)
+              {
+                $('#imagenComentario').attr("src",'')
+                $('#imagenComentario').attr("src",respuesta)
+                $("#"+id).val('')
+                $("#barra_de_progreso").val(0)
+                $('#guardarImagenes').attr("disabled",false)
+                $("#stopLoader").click();
+              },
+              function(progreso, valor)
+              {
+
+                $("#barra_de_progreso").val(valor);
+              }
+            );
+              }else{
+                alert("El tipo de imagen no es valido")
+              }
+          }else{
+            alert("La imagen es demaciado grande")
+          }
+    }
+    subirSlides(archivo,form,id){
+        var archivos=archivo.srcElement.files;
+        // ${this.basePath}/
+        let url = `${this.basePath}/api/upload`
+
+        var i=0;
+        var size=archivos[i].size;
+        var type=archivos[i].type;
+            if(size<(5*(1024*1024))){
+              if(type=="image/png" || type=="image/jpeg" || type=="image/jpg"){
+            $("#"+id).upload(url,
+                {
+                  avatar: archivos[i],
+                  carpeta: "ProductosIngrupSlides"
+              },
+              function(respuesta)
+              {
+                $('#imagenComentarioSlide').attr("src",'')
+                $('#imagenComentarioSlide').attr("src",respuesta)
+                $("#"+id).val('')
+                $("#barra_de_progreso2").val(0)
+                $('#guardarImagenesSlide').attr("disabled",false)
+                $("#stopLoader2").click();
+              },
+              function(progreso, valor)
+              {
+
+                $("#barra_de_progreso").val(valor);
+              }
+            );
+              }else{
+                alert("El tipo de imagen no es valido")
+              }
+          }else{
+            alert("La imagen es demaciado grande")
+          }
+    }
+
+  update(formValue:any){
+      formValue = this.edition
+        this.blockUI.start();
+    switch (formValue.tipos) {
+        case "categorias":{
+            this.CategoriasService.update(formValue)
+                                    .then(response => {
+                                    console.log(response);
+                                    this.getParams();
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+        case "productos":{
+            this.ProductosService.update(formValue)
+                                    .then(response => {
+                                    console.log(response);
+                                    this.getParams();
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+        case "presentacion":{
+            this.PresentacionesService.update(formValue)
+                                    .then(response => {
+                                    console.log(response);
+                                    this.cargarSingle(response.producto);
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+    }
+
+
+  }
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return  `with: ${reason}`;
+        }
+    }
+    eliminarIMG(id:string){
+        this.blockUI.start();
+        if(confirm("¿Desea eliminar la Foto?")){
+          this.ImagenesService.delete(id)
+                            .then(response => {
+                              this.open(null,response.producto,'galeria')
+                              console.clear
+                              this.blockUI.stop();
+                          }).catch(error => {
+                              console.clear
+                              this.blockUI.stop();
+                            })
+        }else{
+          $('#Loading').css('display','none')
+        }
+
+      }
 
 }
