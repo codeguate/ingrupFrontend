@@ -6,7 +6,7 @@
                 <ng-container *ngFor="let slide of Marcas.submarca" >
                 <ng-template carouselSlide dataHash="slide.id">
 
-                    <a style="list-style: none;text-decoration: none;" (click)="cargarOfCate(slide.id,true);scrollMyDiv('tabla1');agregarMercado(slide)"  [routerLink]="['/mercados/'+id+'/',slide.id]" >
+                    <a style="list-style: none;text-decoration: none;" (click)="cargarOfCate(slide.id,true);scrollMyDiv('header');"  [routerLink]="['/mercados/'+id+'/',slide.id]" >
                         <div class="panel-ingrup sub_menu_panel" [class.active]="idF==slide.id" >
                             <div class="ingrup-content sub_menu_content">
                                 <div class="panel-body-ingrup">
@@ -28,7 +28,7 @@
 
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngIf="datoPEnviar2.titulo!=''">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 header" id="header" *ngIf="datoPEnviar2.titulo!=''">
             <app-page-header [heading]="titulo_texto" [data]="datoPEnviar" [icon]="'fa-bar-chart-o'"></app-page-header>
         </div>
 
@@ -40,6 +40,7 @@
                         <img src="./../../../../assets/images/Mercados/Modulo-1/flechaDer.png" alt="">
                         {{data.nombre}}
                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
                     </h3>
                     </ng-template>
                     <ng-template ngbPanelContent>

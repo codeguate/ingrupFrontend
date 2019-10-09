@@ -388,6 +388,7 @@ export class TablesComponent implements OnInit {
     }
 
     cargarOfCate(id:number,changeUrl:boolean=false) {
+        this.datoPEnviar2.mercados.pop()
         if(changeUrl) {
             this.idF = id;
         }
@@ -402,16 +403,12 @@ export class TablesComponent implements OnInit {
                                 this.Table = response;
                                 this.Marcas.submarca.forEach(element => {
                                     if(element.id==data.id){
-                                        let data = {
-                                            icon:"fa-bar-chart-o",
-                                            nombre:element.nombre
-                                        }
-                                        this.datoPEnviar.mercados.push(data)
+                                        this.agregarMercado(element)
                                     }
                                 });
 
                                 this.datoPEnviar2 = this.datoPEnviar
-                                console.log(this.datoPEnviar2);
+                                // console.log(this.datoPEnviar2);
                                 this.blockUI.stop();
                                 this.scrollMyDiv('tabla1');
                             }).catch(error => {
@@ -428,6 +425,7 @@ export class TablesComponent implements OnInit {
         this.datoPEnviar.mercados.push(data)
     }
     cargarOfMarca(id: number, changeUrl: boolean= false) {
+        this.datoPEnviar.mercados.length = 0;
         if (changeUrl) {
             this.id = id;
         }
@@ -441,16 +439,13 @@ export class TablesComponent implements OnInit {
           this.MarcasService.getSingle(id)
                               .then(response => {
                                 this.Marcas = response;
-                                let data = {
-                                    icon:"fa-bar-chart-o",
-                                    nombre:response.nombre
-                                }
-                                this.datoPEnviar.mercados.push(data)
+                                this.datoPEnviar.mercados.pop();
+                                this.agregarMercado(response)
                                 this.titulo_texto=response.nombre;
                                 if(response.submarca.length<1){
                                     this.cargarOfCate(id,true)
                                 }else{
-                                    let index = response?response.submarca.findIndex(element => {return element.id==this.idF}):this.idF;
+                                    let index = response.submarca?((response.submarca.findIndex(element => {return element.id==this.idF}))>0?response.submarca.findIndex(element => {return element.id==this.idF})-1:1):1;
                                     this.customOptions.startPosition = index
                                 }
                                 // console.log(response);
@@ -513,7 +508,7 @@ export class TablesComponent implements OnInit {
             case "presentacion":{
                 this.PresentacionesService.getSingle(id)
                       .then(response => {
-                        console.log(response);
+                        // console.log(response);
                         this.edition=response;
                         this.edition.tipos = tipo
                         this.blockUI.stop();
@@ -584,7 +579,7 @@ export class TablesComponent implements OnInit {
         this.imagen = $('#imagenComentario').attr("src")
         if(this.imagen!=""){
             let categoria = $("#multiInsert").prop('checked')
-            console.log(categoria);
+            // console.log(categoria);
 
             let data = null
             if(categoria){
@@ -752,7 +747,7 @@ export class TablesComponent implements OnInit {
         case "categorias":{
             this.CategoriasService.update(formValue)
                                     .then(response => {
-                                    console.log(response);
+                                    // console.log(response);
                                     this.getParams();
                                     console.clear
                                     this.blockUI.stop();
@@ -766,7 +761,7 @@ export class TablesComponent implements OnInit {
         case "productos":{
             this.ProductosService.update(formValue)
                                     .then(response => {
-                                    console.log(response);
+                                    // console.log(response);
                                     this.getParams();
                                     console.clear
                                     this.blockUI.stop();
@@ -780,7 +775,7 @@ export class TablesComponent implements OnInit {
         case "presentacion":{
             this.PresentacionesService.update(formValue)
                                     .then(response => {
-                                    console.log(response);
+                                    // console.log(response);
                                     this.cargarSingle(response.producto);
                                     console.clear
                                     this.blockUI.stop();
