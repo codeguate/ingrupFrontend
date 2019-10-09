@@ -68,10 +68,38 @@
             <i class="fa fa-fw fa-desktop"></i>&nbsp;
             <span>{{ 'Bootstrap Element' | translate }}</span>
         </a> -->
-        <a routerLink="/sostenibilidad1" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <!-- <a routerLink="/medio-ambiente" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw " [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
             <span>{{ 'Sostenibilidad' | translate }}</span>
-        </a>
+        </a> -->
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <i class="fa fa-fw " [class.fa-plus]="showMenu != 'pages'"  [class.fa-chevron-down]="showMenu === 'pages'"></i>&nbsp;
+                <span>{{ 'Sostenibilidad' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['/medio-ambiente']" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" >
+                            <i class="fa" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
+                            <span>{{ 'Medio Ambiente' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/sostenibilidad']" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" >
+                            <i class="fa" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
+                            <span>{{ 'Informe Sostenibilidad' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/social']" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" >
+                            <i class="fa" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
+                            <span>{{ 'Social' | translate }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
         <a [routerLink]="['/contactenos']" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
             <span>{{ 'Contáctenos' | translate }}</span>

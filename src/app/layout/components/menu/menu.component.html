@@ -7,7 +7,9 @@
     </div>
     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 mx-auto pt-400 pb-400">
             <h1 class="h1 text-ingrup my-auto text-center">
-                Productos
+                <span class="titulo-General">
+                    Productos
+                </span>
             </h1>
         </div>
     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 offset-xs-1 offset-sm-1 offset-md-1 offset-lg-1 menu-ingrup">
@@ -22,7 +24,7 @@
                                 <img [src]="slide.foto" class="menu-item-ingrup" >
                             </div>
                             <div class="panel-title-ingrup">
-                                <h3 class="">{{slide.nombre}}</h3>
+                                <h3 [class.largo]="slide.nombre.length>15">{{slide.nombre}}</h3>
                             </div>
                         </div>
                     </div>

@@ -22,11 +22,12 @@ declare var $: any
 })
 export class TablesComponent implements OnInit {
     private basePath:string = source.production?source.url:source.urlDev;
-
+    Marcas:any= null;
     session:boolean = localStorage.getItem('currentUser')?true:false;
     closeResult: string;
     abierto:boolean = false;
     @BlockUI() blockUI: NgBlockUI;
+    titulo_texto:any="";
     imagen:any = ""
     customOptions: any = {
         loop: false,
@@ -44,6 +45,7 @@ export class TablesComponent implements OnInit {
         dots:false,
         animateOut: 'slideOutUp',
         animateIn: 'slideInUp',
+        // startPosition:this.Marcas?this.Marcas.submarca.findIndex(element => { element.id==this.route.snapshot.paramMap.get('mercado') }):this.route.snapshot.paramMap.get('mercado'),
         responsiveClass:true,
         responsive:{
             600:{
@@ -54,7 +56,14 @@ export class TablesComponent implements OnInit {
             }
         },
     }
-
+    datoPEnviar={
+        titulo:"Mercados",
+        mercados:[]
+    }
+    datoPEnviar2={
+        titulo:"",
+        mercados:[]
+    }
     customOptions2: any = {
         loop: false,
         // autoWidth: true,
@@ -127,7 +136,6 @@ export class TablesComponent implements OnInit {
             3:"0"
         }
     }
-    Marcas:any= null;
     Table:any= [];
     selectedData:any =
         {
@@ -276,7 +284,9 @@ export class TablesComponent implements OnInit {
         if(data) {
             {
                 this.idF = +(data);
-                // this.customOptions.startPosition = this.idF
+
+                // startPosition:this.Marcas?this.Marcas.submarca.findIndex(element => { element.id==this.route.snapshot.paramMap.get('mercado') }):this.route.snapshot.paramMap.get('mercado'),
+
                 this.cargarOfCate(this.id,false);
             }
         }
@@ -390,7 +400,18 @@ export class TablesComponent implements OnInit {
           this.ProductosService.getAllFilter(data)
                               .then(response => {
                                 this.Table = response;
-                                // console.log(response);
+                                this.Marcas.submarca.forEach(element => {
+                                    if(element.id==data.id){
+                                        let data = {
+                                            icon:"fa-bar-chart-o",
+                                            nombre:element.nombre
+                                        }
+                                        this.datoPEnviar.mercados.push(data)
+                                    }
+                                });
+
+                                this.datoPEnviar2 = this.datoPEnviar
+                                console.log(this.datoPEnviar2);
                                 this.blockUI.stop();
                                 this.scrollMyDiv('tabla1');
                             }).catch(error => {
@@ -399,6 +420,13 @@ export class TablesComponent implements OnInit {
                               });
     }
 
+    agregarMercado(dat){
+        let data = {
+            icon:"fa-bar-chart-o",
+            nombre:dat.nombre
+        }
+        this.datoPEnviar.mercados.push(data)
+    }
     cargarOfMarca(id: number, changeUrl: boolean= false) {
         if (changeUrl) {
             this.id = id;
@@ -413,8 +441,17 @@ export class TablesComponent implements OnInit {
           this.MarcasService.getSingle(id)
                               .then(response => {
                                 this.Marcas = response;
+                                let data = {
+                                    icon:"fa-bar-chart-o",
+                                    nombre:response.nombre
+                                }
+                                this.datoPEnviar.mercados.push(data)
+                                this.titulo_texto=response.nombre;
                                 if(response.submarca.length<1){
                                     this.cargarOfCate(id,true)
+                                }else{
+                                    let index = response?response.submarca.findIndex(element => {return element.id==this.idF}):this.idF;
+                                    this.customOptions.startPosition = index
                                 }
                                 // console.log(response);
                                 this.blockUI.stop();
@@ -784,5 +821,22 @@ export class TablesComponent implements OnInit {
         }
 
       }
+      eliminarSlides(id:string){
+          this.blockUI.start();
+          if(confirm("¿Desea eliminar la Foto?")){
+            this.SlidesService.delete(id)
+                              .then(response => {
+                                this.open(null,response.producto,'slides')
+                                console.clear
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear
+                                this.blockUI.stop();
+                              })
+          }else{
+            $('#Loading').css('display','none')
+          }
+
+        }
 
 }

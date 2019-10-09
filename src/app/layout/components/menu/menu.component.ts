@@ -17,19 +17,19 @@ export class MenuComponent implements OnInit {
     responsiveClass:true,
     responsive:{
         600:{
-            items:1
-        },
-        1000:{
             items:3
         },
-        1300:{
+        1000:{
             items:5
+        },
+        1300:{
+            items:7
         }
     },
     loop: true,
     autoHeight: false,
     autoWidth: true,
-    autoplay:true,
+    autoplay:false,
     autoplayTimeout:3000,
     autoplayHoverPause:true,
     nav: true,

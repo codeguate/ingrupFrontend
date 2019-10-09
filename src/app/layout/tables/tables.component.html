@@ -6,7 +6,7 @@
                 <ng-container *ngFor="let slide of Marcas.submarca" >
                 <ng-template carouselSlide dataHash="slide.id">
 
-                    <a style="list-style: none;text-decoration: none;" (click)="cargarOfCate(slide.id,true);scrollMyDiv('tabla1')"  [routerLink]="['/mercados/'+id+'/',slide.id]" >
+                    <a style="list-style: none;text-decoration: none;" (click)="cargarOfCate(slide.id,true);scrollMyDiv('tabla1');agregarMercado(slide)"  [routerLink]="['/mercados/'+id+'/',slide.id]" >
                         <div class="panel-ingrup sub_menu_panel" [class.active]="idF==slide.id" >
                             <div class="ingrup-content sub_menu_content">
                                 <div class="panel-body-ingrup">
@@ -27,6 +27,11 @@
             </owl-carousel-o>
 
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngIf="datoPEnviar2.titulo!=''">
+            <app-page-header [heading]="titulo_texto" [data]="datoPEnviar" [icon]="'fa-bar-chart-o'"></app-page-header>
+        </div>
+
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  d-flex colum_select" *ngIf="Table">
             <ngb-accordion  class="p-20 filtrosAccordeon container_productos mt-5" #filtros="ngbAccordion" >
                 <ngb-panel *ngFor="let data of Table">
@@ -93,7 +98,7 @@
                             <thead>
                                 <tr>
                                     <th style="width:20%;">
-                                    <mfDefaultSorter by="descripcion">Descripcion</mfDefaultSorter>
+                                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
                                     </th>
                                     <th style="width:20%;">
                                     <mfDefaultSorter by="cuello">Cuello</mfDefaultSorter>
@@ -161,10 +166,13 @@
                             <thead>
                                 <tr>
                                     <th style="width:20%;">
-                                    <mfDefaultSorter by="descripcion">Descripcion</mfDefaultSorter>
+                                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
                                     </th>
                                     <th style="width:60%;">
                                     <mfDefaultSorter by="calibres">Calibres</mfDefaultSorter>
+                                    </th>
+                                    <th style="width:20%;">
+                                    <mfDefaultSorter by="material">Botella</mfDefaultSorter>
                                     </th>
                                     <th style="width:20%;">
                                     <mfDefaultSorter by="material">Material</mfDefaultSorter>
@@ -184,6 +192,11 @@
                                     <td>
                                     <div style="width: 100%;text-align:center;">
                                         {{ data.calibres }}
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div>
+                                        {{ data.unidades }}
                                     </div>
                                     </td>
                                     <td>
@@ -208,12 +221,12 @@
                         </table>
                     </div>
                 </div>
-                <div *ngIf="selectedData.categoria!=3 && selectedData.categoria!=4 && selectedData.categoria!=5 && selectedData.categoria!=6 && selectedData.categoria!=7">
+                <div *ngIf="selectedData.categoria==1 || selectedData.categoria==2">
                     <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
                         <thead>
                             <tr>
                                 <th style="width:20%;">
-                                <mfDefaultSorter by="descripcion">Descripcion</mfDefaultSorter>
+                                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
                                 </th>
                                 <th style="width:20%;">
                                 <mfDefaultSorter by="cuello">Cuello</mfDefaultSorter>
@@ -289,7 +302,7 @@
                             <thead>
                                 <tr>
                                     <th style="width:20%;">
-                                    <mfDefaultSorter by="descripcion">Descripcion</mfDefaultSorter>
+                                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
                                     </th>
                                     <th style="width:20%;">
                                     <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
@@ -544,8 +557,20 @@
                                 <img src="http://placehold.it/500X500?text=X" style="max-height: 100%;" id="imagenComentarioSlide" class="img-thumbnail m-auto" alt="" srcset="">
                             </div>
                         </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                            <div class="checkbox">
+                                <label>
+                                    Agregar a toda la categoria
+                                    <input type="checkbox" name="multiInsertSliders" id="multiInsertSliders">
+                                </label>
+                            </div>
+
+                        </div>
+
+
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-3">
-                            <input type="checkbox" name="multiInsert" id="multiInsertSliders">
                             <button type="button" style="padding: .1em 1em;" disabled class="btn btn-primary" id="guardarImagenesSlide" (click)="guardarSlide()">Agregar</button>
                         </div>
                     </div>

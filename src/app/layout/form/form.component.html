@@ -1,23 +1,33 @@
 <div [@routerTransition]>
     <app-menu></app-menu>
-        <div class="row">
-
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 colum_select" *ngIf="Table">
-                <div class="w-100 h-auto d-block mt-auto">
-                    <h1 style="color:#44D62C;">Productos</h1>
-                </div>
-                <div class="d-block" id="inicio">
-                    <ul class="list-group p-20 filtrosUL container_productos">
-                        <li class="list-group-item" *ngFor="let data of Table" [routerLink]="['/productos/'+id+'/',data.id]" (click)="cargarSingle(data.id);scrollMyDiv('inicio');" [class.active]="selectedData && (+selectedData.id==data.id)">
-                            <h3>
-                                {{data.marcas.padre?data.marcas.padre.nombre+" - ":''}}
-                                {{data.marcas.nombre}} -
-                                {{data.nombre}}
-                            </h3>
+    <div class="row" *ngIf="Table">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  d-flex colum_select" *ngIf="Table">
+            <ngb-accordion  class="p-20 filtrosAccordeon container_productos mt-5" #filtros="ngbAccordion" >
+                <ngb-panel *ngFor="let data of Table">
+                    <ng-template ngbPanelTitle class="w-100" >
+                    <h3>
+                        <img src="./../../../../assets/images/Mercados/Modulo-1/flechaDer.png" alt="">
+                        {{data.nombre}}
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
+                    </h3>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                    <ul *ngIf="selectedData">
+                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);scrollMyDiv('tabla1');" [class.active]="+selectedData.id==prod.id">
+                            {{prod.nombre}}
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
                         </li>
                     </ul>
-                </div>
-            </div>
+                    <ul *ngIf="!selectedData">
+                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);scrollMyDiv('tabla1');">
+                            {{prod.nombre}}
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
+                        </li>
+                    </ul>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+        </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" *ngIf="selectedData">
             <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0 *ngIf="selectedData.hasModel"
                 (render)="mainRenderer.render()" id="mainControls">

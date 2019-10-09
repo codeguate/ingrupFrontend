@@ -417,6 +417,10 @@ canvas{
     max-height: 220px;
     width: auto;
 }
+.titulo-General{
+    border: #383838 solid 1px;
+    line-height: 0.95;
+}
 @media only screen and (max-width: 1000px){
     .first_slider .owl-carousel .owl-item img{
         height: 100vh !important;

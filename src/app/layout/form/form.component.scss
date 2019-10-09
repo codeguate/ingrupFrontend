@@ -1,6 +1,8 @@
 .galeria{
     height: auto;
     display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 .container_productos{
     height: auto;
@@ -156,6 +158,10 @@
 .eliminarIMG{
     text-shadow: 2px 2px 2px #A2A2A2;
 }
+.sliderss{
+    min-height: 50px;
+}
+
 @media only screen and (max-width: 900px){
 
     .panel-title-ingrup h3{

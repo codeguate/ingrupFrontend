@@ -5,6 +5,7 @@ import {CategoriasService } from "./../../shared/services/categorias.service";
 import {ProductosService } from "./../../shared/services/productos.service";
 import {ImagenesService } from "./../../shared/services/imagenes.service";
 import {PresentacionesService } from "./../../shared/services/presentaciones.service";
+import {SlidesService } from "./../../shared/services/slides.service";
 import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ActivatedRoute } from '@angular/router';
@@ -55,6 +56,47 @@ export class FormComponent implements OnInit {
             }
         },
     }
+
+    customOptions2: any = {
+        loop: false,
+        // autoWidth: true,
+        // autoHeight: false,
+        nav: false,
+        autoplay: true,
+        center: true,
+        dots:true,
+        margin:0,
+        responsiveClass:true,
+        items:7,
+        responsive:{
+            300:{
+                items:3
+            },
+            600:{
+                items: 5
+            },
+            1000:{
+                items: 7
+            }
+        }
+            // URLhashListener:true,
+        // startPosition: 'URLHash',
+
+      }
+      carouselData:any = [
+        { text: 'Slide 1', src: 'assets/images/Nosotros/titulo1.png', dataHash: 'one'},
+        { text: 'Slide 2', src: 'assets/images/Nosotros/titulo2.png', dataHash: 'two'},
+        { text: 'Slide 3', src: 'assets/images/Nosotros/titulo3.png', dataHash: 'three'},
+        { text: 'Slide 4', src: 'assets/images/Nosotros/titulo4.png', dataHash: 'four'},
+        { text: 'Slide 5', src: 'assets/images/Nosotros/titulo5.png', dataHash: 'five'},
+        { text: 'Slide 6', src: 'assets/images/Nosotros/titulo6.png', dataHash: 'five'},
+        { text: 'Slide 7', src: 'assets/images/Nosotros/titulo7.png', dataHash: 'five'},
+        // { text: 'Slide 6', dotContent: 'text5'},
+        // { text: 'Slide 7', dotContent: 'text5'},
+        // { text: 'Slide 8', dotContent: 'text5'},
+        // { text: 'Slide 9', dotContent: 'text5'},
+        // { text: 'Slide 10', dotContent: 'text5'},
+      ];
     public edition:any
     public id:number = null
     public idF:number = null
@@ -156,6 +198,7 @@ export class FormComponent implements OnInit {
         private ProductosService:ProductosService,
         private MarcasService:MarcasService,
         private route: ActivatedRoute,
+        private SlidesService:SlidesService,
         private ImagenesService:ImagenesService,
         private PresentacionesService:PresentacionesService,
         private CategoriasService:CategoriasService
@@ -292,6 +335,18 @@ export class FormComponent implements OnInit {
                                     }
                                     data.push(obj)
                                 });
+                                if(response.slides && response.slides.length>0){
+                                    let data = []
+                                    response.slides.forEach(element => {
+                                        let obj = {
+                                            src: element.src,
+                                            text: element.src,
+                                            hash: element.src
+                                        }
+                                        data.push(obj)
+                                    });
+                                    this.carouselData = data
+                                }
                                 this.galleryImages = data
                                 this.scrollMyDiv("galeria")
                                 this.ScrollDiv("container_productos","list-group-item.active");
@@ -338,12 +393,12 @@ export class FormComponent implements OnInit {
           let data = {
             id:this.id,
             state:'0',
-            filter:'categoria'
+            filter:'marca'
           }
           this.ProductosService.getAllFilter(data)
                               .then(response => {
                                 this.Table=response
-                                // console.log(response);
+                                console.log(response);
                                 this.scrollMyDiv("inicio")
                                 this.blockUI.stop();
                             }).catch(error => {
@@ -461,6 +516,28 @@ export class FormComponent implements OnInit {
 
                 break;
             }
+            case "slides":{
+                if(id){
+                    this.ProductosService.getSingle(id)
+                                            .then(response => {
+                                            // console.log(response);
+                                            this.edition=response;
+                                            this.edition.tipos = tipo
+                                            this.blockUI.stop();
+                                        }).catch(error => {
+                                            console.clear;
+                                            this.blockUI.stop();
+                                            });
+                }else{
+                    let data = {
+                        tipos:tipo
+                    }
+                    this.edition = data
+                    this.blockUI.stop();
+                }
+
+                break;
+            }
         }
         if(content){
             this.modalService.open(content).result.then((result) => {
@@ -506,6 +583,51 @@ export class FormComponent implements OnInit {
         }
 
       }
+      guardarSlide(){
+        this.imagen = $('#imagenComentarioSlide').attr("src")
+        if(this.imagen!=""){
+            let categoria = $("#multiInsertSliders").prop('checked')
+
+            let data = null
+            if(categoria){
+                data = {
+                    nombre: this.imagen,
+                    foto: this.imagen,
+                    src: this.imagen,
+                    producto: this.edition.id,
+                    categoria: this.edition.categoria,
+                  }
+            }else{
+                data = {
+                    nombre: this.imagen,
+                    foto: this.imagen,
+                    src: this.imagen,
+                    producto: this.edition.id,
+                  }
+            }
+
+          this.blockUI.start();
+          this.SlidesService.create(data)
+                            .then(response => {
+                                this.imagen = response.url
+                                // console.log(response);
+                                if(response.id){
+                                  $('#imagenComentarioSlide').attr("src",'http://placehold.it/500X500?text=X');
+                                  $('#uploadimagenComentarioSlide').attr("value",'');
+                                  this.imagen="";
+                                  this.open(null,this.edition.id,'slides');
+                                }
+                                console.clear
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear
+
+                                this.blockUI.stop();
+                                alert(error)
+                            })
+        }
+
+      }
       subirImagenes(archivo,form,id){
         var archivos=archivo.srcElement.files;
         // ${this.basePath}/
@@ -529,6 +651,43 @@ export class FormComponent implements OnInit {
                 $("#barra_de_progreso").val(0)
                 $('#guardarImagenes').attr("disabled",false)
                 $("#stopLoader").click();
+              },
+              function(progreso, valor)
+              {
+
+                $("#barra_de_progreso").val(valor);
+              }
+            );
+              }else{
+                alert("El tipo de imagen no es valido")
+              }
+          }else{
+            alert("La imagen es demaciado grande")
+          }
+    }
+    subirSlides(archivo,form,id){
+        var archivos=archivo.srcElement.files;
+        // ${this.basePath}/
+        let url = `${this.basePath}/api/upload`
+
+        var i=0;
+        var size=archivos[i].size;
+        var type=archivos[i].type;
+            if(size<(5*(1024*1024))){
+              if(type=="image/png" || type=="image/jpeg" || type=="image/jpg"){
+            $("#"+id).upload(url,
+                {
+                  avatar: archivos[i],
+                  carpeta: "ProductosIngrupSlides"
+              },
+              function(respuesta)
+              {
+                $('#imagenComentarioSlide').attr("src",'')
+                $('#imagenComentarioSlide').attr("src",respuesta)
+                $("#"+id).val('')
+                $("#barra_de_progreso2").val(0)
+                $('#guardarImagenesSlide').attr("disabled",false)
+                $("#stopLoader2").click();
               },
               function(progreso, valor)
               {

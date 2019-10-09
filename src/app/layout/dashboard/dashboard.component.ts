@@ -23,12 +23,12 @@ export class DashboardComponent implements OnInit {
     public sliders: Array<any> = [];
     isDragging: boolean;
   carouselData: CarouselData[] = [
-    { text: 'Slide 1', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'one'},
-    { text: 'Slide 2', src: 'assets/images/Home/Modulo-3/Botella-2-pequena.png', dataHash: 'two'},
-    { text: 'Slide 3', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'three'},
-    { text: 'Slide 4', src: 'assets/images/Home/Modulo-3/Botella-2-pequena.png', dataHash: 'four'},
-    { text: 'Slide 5', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'five'},
-    { text: 'Slide 5', src: 'assets/images/Home/Modulo-3/Botella-2-pequena.png', dataHash: 'five'},
+    // { text: 'Slide 1', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'one'},
+    { text: 'Slide 2', src: 'assets/fotos/envase1.jpg', dataHash: 'two'},
+    // { text: 'Slide 3', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'three'},
+    { text: 'Slide 4', src: 'assets/fotos/tapas1.jpg', dataHash: 'four'},
+    // { text: 'Slide 5', src: 'assets/images/Home/Modulo-3/Botella-1-grande.png', dataHash: 'five'},
+    { text: 'Slide 5', src: 'assets/fotos/envase3.jpg', dataHash: 'five'},
     // { text: 'Slide 6', dotContent: 'text5'},
     // { text: 'Slide 7', dotContent: 'text5'},
     // { text: 'Slide 8', dotContent: 'text5'},
@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
     // autoWidth: true,
     // autoHeight: false,
     nav: false,
-    autoplay: true,
+    autoplay: false,
     center: true,
     dots:true,
     responsiveClass:true,
@@ -161,9 +161,9 @@ export class DashboardComponent implements OnInit {
             );
         }
         this.alerts.push(
-            { id: 0, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/f-MN8-0Idew?controls=1&autoplay=1&loop=1")},
-            { id: 1, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/NQ8hHxjv0RI?controls=1&autoplay=1&loop=1")},
-            { id: 2, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/e19T_RO8qa8?controls=1&autoplay=1&loop=1")},
+            { id: 0, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/f-MN8-0Idew?controls=1&autoplay=0&loop=1")},
+            { id: 1, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/NQ8hHxjv0RI?controls=1&autoplay=0&loop=1")},
+            { id: 2, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/e19T_RO8qa8?controls=1&autoplay=0&loop=1")},
 
             {
                 id: 1,
