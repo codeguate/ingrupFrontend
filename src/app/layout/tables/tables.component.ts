@@ -214,6 +214,7 @@ export class TablesComponent implements OnInit {
         // config.type = 'success';
       }
     galleryOptions: NgxGalleryOptions[];
+    galleryOptions2: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
     scrollMyDiv(item) {
         let section = item;
@@ -246,6 +247,29 @@ export class TablesComponent implements OnInit {
             {
                 breakpoint: 400,
                 preview: false
+            }
+        ];
+        this.galleryOptions2 = [
+            {
+                width: '90%',
+                height: '600px',
+                imagePercent: 100,
+                thumbnails: false,
+            },
+            // max-width 800
+            {
+                breakpoint: 800,
+                width: '100%',
+                height: '600px',
+                imagePercent: 100,
+                thumbnails: false,
+            },
+            // max-width 400
+            {
+                breakpoint: 400,
+                imagePercent: 100,
+                preview: false,
+                thumbnails: false,
             }
         ];
 
@@ -322,7 +346,7 @@ export class TablesComponent implements OnInit {
                             if(response.presentaciones && response.presentaciones.length>0){
                                 let data = []
                                 response.presentaciones.forEach(element => {
-                                    if(element.calibres!=""){
+                                    if(element.calibres && element.calibres.length>0){
                                         element.calibres = element.calibres?element.calibres.replace(/,/g," / "):'';
                                         response.calibress=true;
                                     }
@@ -410,7 +434,7 @@ export class TablesComponent implements OnInit {
                                 this.datoPEnviar2 = this.datoPEnviar
                                 // console.log(this.datoPEnviar2);
                                 this.blockUI.stop();
-                                this.scrollMyDiv('tabla1');
+                                this.scrollMyDiv('header');
                             }).catch(error => {
                                 console.clear;
                                 this.blockUI.stop();
@@ -477,9 +501,10 @@ export class TablesComponent implements OnInit {
 
     open(content,id,tipo) {
         this.edition = null
-        this.abierto=true;
+
         switch(tipo){
             case "categorias":{
+        this.abierto=true;
                 this.CategoriasService.getSingle(id)
                       .then(response => {
                         // console.log(response);
@@ -493,6 +518,7 @@ export class TablesComponent implements OnInit {
                 break;
             }
             case "productos":{
+        this.abierto=true;
                 this.ProductosService.getSingle(id)
                       .then(response => {
                         // console.log(response);
@@ -506,6 +532,7 @@ export class TablesComponent implements OnInit {
                 break;
             }
             case "presentacion":{
+        this.abierto=true;
                 this.PresentacionesService.getSingle(id)
                       .then(response => {
                         // console.log(response);
@@ -518,7 +545,30 @@ export class TablesComponent implements OnInit {
                       });
                 break;
             }
+            case "presentacionC":{
+                    this.abierto=true;
+                        let data ={
+                            nombre:"",
+                            descripcion:"",
+                            producto:id,
+                            tipos:tipo,
+                            tipo:tipo,
+                            unidades:0,
+                            calibres:"",
+                            separador:"",
+                            material:"",
+                            peso:"",
+                            cuello:"",
+                            altura:"",
+                            largo:0
+                        }
+                        this.edition=data;
+                        this.blockUI.stop();
+
+                break;
+            }
             case "galeria":{
+                this.abierto=true;
                 if(id){
                     this.ProductosService.getSingle(id)
                                             .then(response => {
@@ -541,6 +591,7 @@ export class TablesComponent implements OnInit {
                 break;
             }
             case "slides":{
+        this.abierto=true;
                 if(id){
                     this.ProductosService.getSingle(id)
                                             .then(response => {
@@ -568,7 +619,6 @@ export class TablesComponent implements OnInit {
                 this.closeResult = `Closed with: ${result}`;
             }, (reason) => {
                 this.abierto=false;
-                this.cargarSingle(this.edition.id)
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             });
         }
@@ -790,6 +840,57 @@ export class TablesComponent implements OnInit {
 
 
   }
+
+  create(formValue:any){
+      formValue = this.edition
+        this.blockUI.start();
+    switch (formValue.tipos) {
+        case "categorias":{
+            this.CategoriasService.update(formValue)
+                                    .then(response => {
+                                    // console.log(response);
+                                    this.getParams();
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+        case "productos":{
+            this.ProductosService.create(formValue)
+                                    .then(response => {
+                                    // console.log(response);
+                                    this.getParams();
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+        case "presentacionC":{
+            this.PresentacionesService.create(formValue)
+                                    .then(response => {
+                                    console.log(response);
+                                    this.cargarSingle(response.producto);
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+    }
+
+
+  }
     private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
             return 'by pressing ESC';
@@ -804,6 +905,9 @@ export class TablesComponent implements OnInit {
         if(confirm("¿Desea eliminar la Foto?")){
           this.ImagenesService.delete(id)
                             .then(response => {
+                                if(response){
+                                    this.cargarSingle(response.producto)
+                                }
                               this.open(null,response.producto,'galeria')
                               console.clear
                               this.blockUI.stop();
@@ -821,6 +925,9 @@ export class TablesComponent implements OnInit {
           if(confirm("¿Desea eliminar la Foto?")){
             this.SlidesService.delete(id)
                               .then(response => {
+                                if(response){
+                                    this.cargarSingle(response.producto)
+                                }
                                 this.open(null,response.producto,'slides')
                                 console.clear
                                 this.blockUI.stop();
@@ -833,5 +940,52 @@ export class TablesComponent implements OnInit {
           }
 
         }
+        delete(data:any){
+            this.blockUI.start();
+            switch (data.tipos) {
+                case "categorias":{
+                    this.CategoriasService.update(data)
+                                            .then(response => {
+                                            // console.log(response);
+                                            this.abierto=false
+                                            this.getParams();
+                                            console.clear
+                                            this.blockUI.stop();
+                                            }).catch(error => {
+                                            console.clear
+
+                                            this.blockUI.stop();
+                                            })
+                                            break;
+                }
+                case "productos":{
+                    this.ProductosService.delete(data.id)
+                                .then(response => {
+                                  console.clear
+                                  this.cargarOfCate(response.categoria)
+                                  this.edition = null
+                                //   location.reload();
+                                  this.blockUI.stop();
+                              }).catch(error => {
+                                  console.clear
+                                  this.blockUI.stop();
+                                })
+                                break;
+                }
+                case "presentacion":{
+                    this.PresentacionesService.delete(data.id)
+                                                .then(response => {
+                                                console.clear
+                                                this.cargarSingle(response.producto)
+                                                this.blockUI.stop();
+                                            }).catch(error => {
+                                                console.clear
+                                                this.blockUI.stop();
+                                                })
+                                            break;
+                }
+            }
+
+          }
 
 }

@@ -24,11 +24,11 @@ declare var $: any
 })
 export class FormComponent implements OnInit {
     private basePath:string = source.production?source.url:source.urlDev;
-
     session:boolean = localStorage.getItem('currentUser')?true:false;
     closeResult: string;
     abierto:boolean = false;
     @BlockUI() blockUI: NgBlockUI;
+    titulo_texto:any="";
     imagen:any = ""
     customOptions: any = {
         loop: false,
@@ -208,6 +208,7 @@ export class FormComponent implements OnInit {
         // config.type = 'success';
       }
     galleryOptions: NgxGalleryOptions[];
+    galleryOptions2: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
     scrollMyDiv(item) {
         let section = item;
@@ -240,6 +241,29 @@ export class FormComponent implements OnInit {
             {
                 breakpoint: 400,
                 preview: false
+            }
+        ];
+        this.galleryOptions2 = [
+            {
+                width: '90%',
+                height: '600px',
+                imagePercent: 100,
+                thumbnails: false,
+            },
+            // max-width 800
+            {
+                breakpoint: 800,
+                width: '100%',
+                height: '600px',
+                imagePercent: 100,
+                thumbnails: false,
+            },
+            // max-width 400
+            {
+                breakpoint: 400,
+                imagePercent: 100,
+                preview: false,
+                thumbnails: false,
             }
         ];
 
@@ -313,8 +337,8 @@ export class FormComponent implements OnInit {
                             if(response.presentaciones && response.presentaciones.length>0){
                                 let data = []
                                 response.presentaciones.forEach(element => {
-                                    if(element.calibres!=""){
-                                        element.calibres = element.calibres?element.calibres.replace(/,/g," "):'';
+                                    if(element.calibres && element.calibres.length>0){
+                                        element.calibres = element.calibres?element.calibres.replace(/,/g," / "):'';
                                         response.calibress=true;
                                     }
                                 });
@@ -335,24 +359,25 @@ export class FormComponent implements OnInit {
                                     }
                                     data.push(obj)
                                 });
-                                if(response.slides && response.slides.length>0){
-                                    let data = []
-                                    response.slides.forEach(element => {
-                                        let obj = {
-                                            src: element.src,
-                                            text: element.src,
-                                            hash: element.src
-                                        }
-                                        data.push(obj)
-                                    });
-                                    this.carouselData = data
-                                }
-                                this.galleryImages = data
-                                this.scrollMyDiv("galeria")
-                                this.ScrollDiv("container_productos","list-group-item.active");
-                            }else{
-                                this.resetCarousel();
+
+                            if(response.slides && response.slides.length>0){
+                                let data = []
+                                response.slides.forEach(element => {
+                                    let obj = {
+                                        src: element.src,
+                                        text: element.src,
+                                        hash: element.src
+                                    }
+                                    data.push(obj)
+                                });
+                                this.carouselData = data
                             }
+                            this.galleryImages = data
+                            this.scrollMyDiv("galeria")
+                            this.ScrollDiv("container_productos","list-group-item.active");
+                        }else{
+                            this.resetCarousel();
+                        }
                             this.blockUI.stop();
                         }).catch(error => {
                             console.clear
@@ -369,7 +394,7 @@ export class FormComponent implements OnInit {
      }
     cargarAll(){
         this.blockUI.start();
-          let data = {
+        let data = {
             id:1,
             state:'0',
             filter:'categoria'
@@ -380,9 +405,9 @@ export class FormComponent implements OnInit {
                                 // console.log(response);
                                 this.blockUI.stop();
                             }).catch(error => {
-                                console.clear
+                                console.clear;
                                 this.blockUI.stop();
-                              })
+                              });
     }
 
     cargarOfCate(id:number,changeUrl:boolean=false){
@@ -398,7 +423,7 @@ export class FormComponent implements OnInit {
           this.ProductosService.getAllFilter(data)
                               .then(response => {
                                 this.Table=response
-                                console.log(response);
+                                // console.log(response);
                                 this.scrollMyDiv("inicio")
                                 this.blockUI.stop();
                             }).catch(error => {
@@ -421,8 +446,12 @@ export class FormComponent implements OnInit {
           this.MarcasService.getSingle(id)
                               .then(response => {
                                 this.Marcas = response;
+                                this.titulo_texto=response.nombre;
                                 if(response.submarca.length<1){
                                     this.cargarOfCate(id,true)
+                                }else{
+                                    let index = response.submarca?((response.submarca.findIndex(element => {return element.id==this.idF}))>0?response.submarca.findIndex(element => {return element.id==this.idF})-1:1):1;
+                                    this.customOptions.startPosition = index
                                 }
                                 // console.log(response);
                                 this.blockUI.stop();
@@ -453,9 +482,10 @@ export class FormComponent implements OnInit {
 
     open(content,id,tipo) {
         this.edition = null
-        this.abierto=true;
+
         switch(tipo){
             case "categorias":{
+        this.abierto=true;
                 this.CategoriasService.getSingle(id)
                       .then(response => {
                         // console.log(response);
@@ -469,6 +499,7 @@ export class FormComponent implements OnInit {
                 break;
             }
             case "productos":{
+        this.abierto=true;
                 this.ProductosService.getSingle(id)
                       .then(response => {
                         // console.log(response);
@@ -482,9 +513,10 @@ export class FormComponent implements OnInit {
                 break;
             }
             case "presentacion":{
+        this.abierto=true;
                 this.PresentacionesService.getSingle(id)
                       .then(response => {
-                        console.log(response);
+                        // console.log(response);
                         this.edition=response;
                         this.edition.tipos = tipo
                         this.blockUI.stop();
@@ -494,7 +526,30 @@ export class FormComponent implements OnInit {
                       });
                 break;
             }
+            case "presentacionC":{
+                    this.abierto=true;
+                        let data ={
+                            nombre:"",
+                            descripcion:"",
+                            producto:id,
+                            tipos:tipo,
+                            tipo:tipo,
+                            unidades:0,
+                            calibres:"",
+                            separador:"",
+                            material:"",
+                            peso:"",
+                            cuello:"",
+                            altura:"",
+                            largo:0
+                        }
+                        this.edition=data;
+                        this.blockUI.stop();
+
+                break;
+            }
             case "galeria":{
+                this.abierto=true;
                 if(id){
                     this.ProductosService.getSingle(id)
                                             .then(response => {
@@ -517,6 +572,7 @@ export class FormComponent implements OnInit {
                 break;
             }
             case "slides":{
+        this.abierto=true;
                 if(id){
                     this.ProductosService.getSingle(id)
                                             .then(response => {
@@ -544,7 +600,6 @@ export class FormComponent implements OnInit {
                 this.closeResult = `Closed with: ${result}`;
             }, (reason) => {
                 this.abierto=false;
-                this.cargarSingle(this.edition.id)
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             });
         }
@@ -554,13 +609,26 @@ export class FormComponent implements OnInit {
     guardarImg(){
         this.imagen = $('#imagenComentario').attr("src")
         if(this.imagen!=""){
-          let data = {
-            nombre: this.imagen,
-            foto: this.imagen,
-            src: this.imagen,
-            producto: this.edition.id,
-            categoria: this.edition.categoria,
-          }
+            let categoria = $("#multiInsert").prop('checked')
+            // console.log(categoria);
+
+            let data = null
+            if(categoria){
+                data = {
+                    nombre: this.imagen,
+                    foto: this.imagen,
+                    src: this.imagen,
+                    producto: this.edition.id,
+                    categoria: this.edition.categoria,
+                  }
+            }else{
+                data = {
+                    nombre: this.imagen,
+                    foto: this.imagen,
+                    src: this.imagen,
+                    producto: this.edition.id,
+                  }
+            }
           this.blockUI.start();
           this.ImagenesService.create(data)
                             .then(response => {
@@ -710,7 +778,7 @@ export class FormComponent implements OnInit {
         case "categorias":{
             this.CategoriasService.update(formValue)
                                     .then(response => {
-                                    console.log(response);
+                                    // console.log(response);
                                     this.getParams();
                                     console.clear
                                     this.blockUI.stop();
@@ -724,7 +792,7 @@ export class FormComponent implements OnInit {
         case "productos":{
             this.ProductosService.update(formValue)
                                     .then(response => {
-                                    console.log(response);
+                                    // console.log(response);
                                     this.getParams();
                                     console.clear
                                     this.blockUI.stop();
@@ -738,7 +806,58 @@ export class FormComponent implements OnInit {
         case "presentacion":{
             this.PresentacionesService.update(formValue)
                                     .then(response => {
-                                    console.log(response);
+                                    // console.log(response);
+                                    this.cargarSingle(response.producto);
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+    }
+
+
+  }
+
+  create(formValue:any){
+      formValue = this.edition
+        this.blockUI.start();
+    switch (formValue.tipos) {
+        case "categorias":{
+            this.CategoriasService.update(formValue)
+                                    .then(response => {
+                                    // console.log(response);
+                                    this.getParams();
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+        case "productos":{
+            this.ProductosService.create(formValue)
+                                    .then(response => {
+                                    // console.log(response);
+                                    this.getParams();
+                                    console.clear
+                                    this.blockUI.stop();
+                                    }).catch(error => {
+                                    console.clear
+
+                                    this.blockUI.stop();
+                                    })
+                                    break;
+        }
+        case "presentacionC":{
+            this.PresentacionesService.create(formValue)
+                                    .then(response => {
+                                    // console.log(response);
                                     this.cargarSingle(response.producto);
                                     console.clear
                                     this.blockUI.stop();
@@ -767,6 +886,9 @@ export class FormComponent implements OnInit {
         if(confirm("¿Desea eliminar la Foto?")){
           this.ImagenesService.delete(id)
                             .then(response => {
+                                if(response){
+                                    this.cargarSingle(response.producto)
+                                }
                               this.open(null,response.producto,'galeria')
                               console.clear
                               this.blockUI.stop();
@@ -779,6 +901,72 @@ export class FormComponent implements OnInit {
         }
 
       }
+      eliminarSlides(id:string){
+          this.blockUI.start();
+          if(confirm("¿Desea eliminar la Foto?")){
+            this.SlidesService.delete(id)
+                              .then(response => {
+                                if(response){
+                                    this.cargarSingle(response.producto)
+                                }
+                                this.open(null,response.producto,'slides')
+                                console.clear
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear
+                                this.blockUI.stop();
+                              })
+          }else{
+            $('#Loading').css('display','none')
+          }
 
+        }
+        delete(data:any){
+            this.blockUI.start();
+            switch (data.tipos) {
+                case "categorias":{
+                    this.CategoriasService.update(data)
+                                            .then(response => {
+                                            // console.log(response);
+                                            this.abierto=false
+                                            this.getParams();
+                                            console.clear
+                                            this.blockUI.stop();
+                                            }).catch(error => {
+                                            console.clear
+
+                                            this.blockUI.stop();
+                                            })
+                                            break;
+                }
+                case "productos":{
+                    this.ProductosService.delete(data.id)
+                                .then(response => {
+                                  console.clear
+                                  this.cargarOfCate(response.categoria)
+                                  this.edition = null
+                                //   location.reload();
+                                  this.blockUI.stop();
+                              }).catch(error => {
+                                  console.clear
+                                  this.blockUI.stop();
+                                })
+                                break;
+                }
+                case "presentacion":{
+                    this.PresentacionesService.delete(data.id)
+                                                .then(response => {
+                                                console.clear
+                                                this.cargarSingle(response.producto)
+                                                this.blockUI.stop();
+                                            }).catch(error => {
+                                                console.clear
+                                                this.blockUI.stop();
+                                                })
+                                            break;
+                }
+            }
+
+          }
 
 }

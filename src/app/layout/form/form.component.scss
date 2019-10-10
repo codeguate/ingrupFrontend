@@ -162,6 +162,18 @@
     min-height: 50px;
 }
 
+
+.uniqueImageContainer{
+    height: 700px;
+    width:90%;
+    display: flex;
+    .uniqueImage{
+        width: 100%;
+        height: auto;
+        margin: auto;
+        max-height: 100%;
+    }
+}
 @media only screen and (max-width: 900px){
 
     .panel-title-ingrup h3{

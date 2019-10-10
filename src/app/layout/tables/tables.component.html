@@ -28,8 +28,9 @@
 
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 header" id="header" *ngIf="datoPEnviar2.titulo!=''">
-            <app-page-header [heading]="titulo_texto" [data]="datoPEnviar" [icon]="'fa-bar-chart-o'"></app-page-header>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-3 header" id="header" *ngIf="datoPEnviar2.titulo!=''">
+            <app-page-header [heading]="titulo_texto" [data]="datoPEnviar2" [icon]="'fa-bar-chart-o'"></app-page-header>
+            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createModal,idF,'categorias')"></i>
         </div>
 
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  d-flex colum_select" *ngIf="Table">
@@ -40,20 +41,26 @@
                         <img src="./../../../../assets/images/Mercados/Modulo-1/flechaDer.png" alt="">
                         {{data.nombre}}
                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createModal,data.id,'productos')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,data.id,'categorias')"></i>
                     </h3>
                     </ng-template>
                     <ng-template ngbPanelContent>
                     <ul *ngIf="selectedData">
                         <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);scrollMyDiv('tabla1');" [class.active]="+selectedData.id==prod.id">
                             {{prod.nombre}}
+
                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,prod.id,'productos')"></i>
                         </li>
                     </ul>
                     <ul *ngIf="!selectedData">
                         <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);scrollMyDiv('tabla1');">
                             {{prod.nombre}}
                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,prod.id,'productos')"></i>
                         </li>
                     </ul>
                     </ng-template>
@@ -90,10 +97,14 @@
             <div class="galeria mt-3"  *ngIf="selectedData && !selectedData.hasModel">
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
-                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages" style="margin:auto;"></ngx-gallery>
+                    <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages" style="margin:auto;"></ngx-gallery>
+                    <!-- <ngx-gallery  [options]="galleryOptions2" [images]="galleryImages" style="margin:auto;"></ngx-gallery> -->
+                    <div *ngIf="galleryImages.length==1" class="uniqueImageContainer">
+                        <img src="{{galleryImages[0].medium}}" class="uniqueImage">
+                    </div>
             </div>
             <div class="w-100 d-block" id="tabla1" *ngIf="selectedData">
-                <div *ngIf="selectedData.categoria==3">
+                <div *ngIf="selectedData.categoria==3 && selectedData.marca!=4">
                     <div *ngIf="!selectedData.calibress">
                         <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
                             <thead>
@@ -132,12 +143,12 @@
                                     </td>
                                     <td>
                                     <div>
-                                        {{ data.peso.toFixed(2) }}
+                                        {{ data.peso?data.peso.toFixed(2):data.peso }}
                                     </div>
                                     </td>
                                     <td>
                                     <div>
-                                        {{ data.unidades.toFixed(2) }}
+                                        {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
                                     </div>
                                     </td>
                                     <td>
@@ -148,6 +159,7 @@
                                     <td *ngIf="session">
                                     <div>
                                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editPresentacionModal,data.id,'presentacion')"></i>
+                                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deletePresentacionModal,data.id,'presentacion')"></i>
                                     </div>
                                     </td>
 
@@ -197,7 +209,7 @@
                                     </td>
                                     <td>
                                     <div>
-                                        {{ data.unidades }}
+                                        {{ data.separador }}
                                     </div>
                                     </td>
                                     <td>
@@ -208,6 +220,7 @@
                                     <td *ngIf="session">
                                     <div>
                                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editPresentacionModal,data.id,'presentacion')"></i>
+                                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deletePresentacionModal,data.id,'presentacion')"></i>
                                     </div>
                                     </td>
                                 </tr>
@@ -263,17 +276,17 @@
                                 </td>
                                 <td>
                                 <div>
-                                    {{ data.peso.toFixed(2) }}
+                                    {{ data.peso?data.peso.toFixed(2):data.peso }}
                                 </div>
                                 </td>
                                 <td>
                                 <div>
-                                    {{ data.altura.toFixed(2) }}
+                                    {{ data.altura?data.altura.toFixed(2):data.altura }}
                                 </div>
                                 </td>
                                 <td>
                                 <div>
-                                    {{ data.unidades.toFixed(2) }}
+                                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
                                 </div>
                                 </td>
                                 <td>
@@ -284,6 +297,113 @@
                                 <td *ngIf="session">
                                 <div>
                                     <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editPresentacionModal,data.id,'presentacion')"></i>
+                                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deletePresentacionModal,data.id,'presentacion')"></i>
+                                </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <mfBootstrapPaginator></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div *ngIf="selectedData.categoria==3 && selectedData.marca==4">
+                    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+                        <thead>
+                            <tr>
+                                <th style="width:20%;">
+                                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                                </th>
+                                <th style="width:20%;">
+                                <mfDefaultSorter by="unidades">Unidades por Caja</mfDefaultSorter>
+                                </th>
+                                <th style="width:20%;">
+                                <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                                </th>
+                                <th style="width:20%;" *ngIf="session">
+                                <mfDefaultSorter>Editar</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of mf.data">
+                                <td>
+                                <div>
+                                    {{ data.nombre }}
+                                </div>
+                                </td>
+                                <td>
+                                <div>
+                                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                                </div>
+                                </td>
+                                <td>
+                                <div>
+                                    {{ data.material }}
+                                </div>
+                                </td>
+                                <td *ngIf="session">
+                                <div>
+                                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editPresentacionModal,data.id,'presentacion')"></i>
+                                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deletePresentacionModal,data.id,'presentacion')"></i>
+                                </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <mfBootstrapPaginator></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div *ngIf="selectedData.categoria==8 || selectedData.categoria==26">
+                    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+                        <thead>
+                            <tr>
+                                <th style="width:20%;">
+                                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                                </th>
+                                <th style="width:20%;">
+                                <mfDefaultSorter by="unidades">Unidades por Caja</mfDefaultSorter>
+                                </th>
+                                <th style="width:20%;">
+                                <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                                </th>
+                                <th style="width:20%;" *ngIf="session">
+                                <mfDefaultSorter>Editar</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of mf.data">
+                                <td>
+                                <div>
+                                    {{ data.nombre }}
+                                </div>
+                                </td>
+                                <td>
+                                <div>
+                                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                                </div>
+                                </td>
+                                <td>
+                                <div>
+                                    {{ data.material }}
+                                </div>
+                                </td>
+                                <td *ngIf="session">
+                                <div>
+                                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editPresentacionModal,data.id,'presentacion')"></i>
+                                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deletePresentacionModal,data.id,'presentacion')"></i>
                                 </div>
                                 </td>
 
@@ -337,27 +457,27 @@
                                     </td>
                                     <td>
                                     <div>
-                                        {{ data.peso.toFixed(2) }}
+                                        {{ data.peso?data.peso.toFixed(2):data.peso }}
                                     </div>
                                     </td>
                                     <td>
                                     <div>
-                                        {{ data.largo.toFixed(2) }}
+                                        {{ data.largo?data.largo.toFixed(2):data.largo }}
                                     </div>
                                     </td>
                                     <td>
                                     <div>
-                                        {{ data.cuello.toFixed(2) }}
+                                        {{ data.cuello }}
                                     </div>
                                     </td>
                                     <td>
                                     <div>
-                                        {{ data.altura.toFixed(2) }}
+                                        {{ data.altura?data.altura.toFixed(2):data.altura }}
                                     </div>
                                     </td>
                                     <td>
                                     <div>
-                                        {{ data.unidades.toFixed(2) }}
+                                        {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
                                     </div>
                                     </td>
                                     <td>
@@ -368,6 +488,7 @@
                                     <td *ngIf="session">
                                     <div>
                                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editPresentacionModal,data.id,'presentacion')"></i>
+                                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deletePresentacionModal,data.id,'presentacion')"></i>
                                     </div>
                                     </td>
 
@@ -426,9 +547,9 @@
 
 </ng-template>
 
-<ng-template #editPresentacionModal let-c="dismiss" let-d="dismiss">
-    <div class="modal-header">
-            <h4 class="modal-title">Editar Presentacion</h4>
+<ng-template #deleteModal let-c="dismiss" let-d="dismiss">
+    <div class="modal-header" *ngIf="edition">
+            <h4 class="modal-title">En verdad Desea eliminar este {{edition.tipos}}?</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -439,26 +560,188 @@
                     <input type="text" class="form-control shadow-input" name="editarVal" required
                     ngModel #editarVal="ngModel" [(ngModel)]="edition.nombre">
                 </div>
+            </form>
+    </div>
+    <div class="modal-footer">
+            <button class="btn btn-lg btn-primary btn-block" type="button" (click)="delete(edition);c('Close click');" >Deseo Eliminar</button>
+
+    </div>
+
+</ng-template>
+
+<ng-template #deletePresentacionModal let-c="dismiss" let-d="dismiss">
+    <div class="modal-header" *ngIf="edition">
+            <h4 class="modal-title">En verdad Desea eliminar este {{edition.tipos}}?</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+    <div class="modal-body">
+            <form class="form-signin" *ngIf="edition" >
                 <div class="input-group mb-2">
+                    <input type="text" class="form-control shadow-input" name="editarVal" required
+                    ngModel #editarVal="ngModel" [(ngModel)]="edition.nombre">
+                </div>
+            </form>
+    </div>
+    <div class="modal-footer">
+            <button class="btn btn-lg btn-primary btn-block" type="button" (click)="delete(edition);c('Close click');" >Deseo Eliminar</button>
+
+    </div>
+
+</ng-template>
+
+<ng-template #editPresentacionModal let-c="dismiss" let-d="dismiss">
+    <div class="modal-header">
+            <h4 class="modal-title">Editar Presentacion</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+    <div class="modal-body">
+            <form class="form-signin" *ngIf="edition" >
+                <div class="form-group mb-2">
+                    <label class="w-100">Nombre
+                    <input type="text" class="form-control shadow-input" name="editarVal" required
+                    ngModel #editarVal="ngModel" [(ngModel)]="edition.nombre">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Cuello
                     <input type="text" class="form-control shadow-input" name="editarVal2" required
                     ngModel #editarVal2="ngModel" [(ngModel)]="edition.cuello">
+                    </label>
                 </div>
-                <div class="input-group mb-2">
+                <div class="form-group mb-2">
+                    <label class="w-100">Peso
                     <input type="text" class="form-control shadow-input" name="editarVal3" required
                     ngModel #editarVal3="ngModel" [(ngModel)]="edition.peso">
+                    </label>
                 </div>
-                <div class="input-group mb-2">
+                <div class="form-group mb-2">
+                    <label class="w-100">Altura
                     <input type="text" class="form-control shadow-input" name="editarVal4" required
                     ngModel #editarVal4="ngModel" [(ngModel)]="edition.altura">
+                    </label>
                 </div>
-                <div class="input-group mb-2">
+                <div class="form-group mb-2">
+                    <label class="w-100">Descripcion
                     <input type="text" class="form-control shadow-input" name="editarVal5" required
-                    ngModel #editarVal5="ngModel" [(ngModel)]="edition.largo">
+                    ngModel #editarVal5="ngModel" [(ngModel)]="edition.descripcion">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Calibres
+                    <input type="text" class="form-control shadow-input" name="editarVal6" required
+                    ngModel #editarVal6="ngModel" [(ngModel)]="edition.calibres">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Separador
+                    <input type="text" class="form-control shadow-input" name="editarVal7" required
+                    ngModel #editarVal7="ngModel" [(ngModel)]="edition.separador">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Material
+                    <input type="text" class="form-control shadow-input" name="editarVal8" required
+                    ngModel #editarVal8="ngModel" [(ngModel)]="edition.material">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Unidades
+                    <input type="text" class="form-control shadow-input" name="editarVal9" required
+                    ngModel #editarVal9="ngModel" [(ngModel)]="edition.unidades">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Largo
+                    <input type="text" class="form-control shadow-input" name="editarVal10" required
+                    ngModel #editarVal10="ngModel" [(ngModel)]="edition.largo">
+                    </label>
                 </div>
             </form>
     </div>
     <div class="modal-footer">
             <button class="btn btn-lg btn-primary btn-block" type="button" (click)="update(edition);c('Close click');" >Guardar Cambios</button>
+
+    </div>
+
+</ng-template>
+
+<ng-template #createPresentacionModal let-c="dismiss" let-d="dismiss">
+    <div class="modal-header">
+            <h4 class="modal-title">Crear Presentacion</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+    <div class="modal-body">
+            <form class="form-signin" *ngIf="edition" >
+                <div class="form-group mb-2">
+                    <label class="w-100">Nombre
+                    <input type="text" class="form-control shadow-input" name="editarVal" required
+                    ngModel #editarVal="ngModel" [(ngModel)]="edition.nombre">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Cuello
+                    <input type="text" class="form-control shadow-input" name="editarVal2" required
+                    ngModel #editarVal2="ngModel" [(ngModel)]="edition.cuello">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Peso
+                    <input type="text" class="form-control shadow-input" name="editarVal3" required
+                    ngModel #editarVal3="ngModel" [(ngModel)]="edition.peso">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Altura
+                    <input type="text" class="form-control shadow-input" name="editarVal4" required
+                    ngModel #editarVal4="ngModel" [(ngModel)]="edition.altura">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Descripcion
+                    <input type="text" class="form-control shadow-input" name="editarVal5" required
+                    ngModel #editarVal5="ngModel" [(ngModel)]="edition.descripcion">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Calibres
+                    <input type="text" class="form-control shadow-input" name="editarVal6" required
+                    ngModel #editarVal6="ngModel" [(ngModel)]="edition.calibres">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Separador
+                    <input type="text" class="form-control shadow-input" name="editarVal7" required
+                    ngModel #editarVal7="ngModel" [(ngModel)]="edition.separador">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Material
+                    <input type="text" class="form-control shadow-input" name="editarVal8" required
+                    ngModel #editarVal8="ngModel" [(ngModel)]="edition.material">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Unidades
+                    <input type="text" class="form-control shadow-input" name="editarVal9" required
+                    ngModel #editarVal9="ngModel" [(ngModel)]="edition.unidades">
+                    </label>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="w-100">Largo
+                    <input type="text" class="form-control shadow-input" name="editarVal10" required
+                    ngModel #editarVal10="ngModel" [(ngModel)]="edition.largo">
+                    </label>
+                </div>
+            </form>
+    </div>
+    <div class="modal-footer">
+            <button class="btn btn-lg btn-primary btn-block" type="button" (click)="create(edition);c('Close click');" >Guardar Cambios</button>
 
     </div>
 
