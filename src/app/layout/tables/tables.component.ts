@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { source } from "./../../../environments/config";
+import { Lightbox } from 'ngx-lightbox';
 
 declare var $: any
 @Component({
@@ -66,26 +67,36 @@ export class TablesComponent implements OnInit {
     }
     customOptions2: any = {
         loop: false,
-        // autoWidth: true,
-        // autoHeight: false,
-        nav: false,
-        autoplay: true,
+        autoplay: false,
         center: true,
-        dots:true,
+        animateOut: 'slideOutUp',
+        animateIn: 'slideInUp',
+        dots:false,
         margin:0,
         responsiveClass:true,
         items:7,
         responsive:{
             300:{
+                nav: true,
+                rewindNav : true,
+                navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
                 items:3
             },
             600:{
+                nav: true,
+                rewindNav : true,
+                navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
                 items: 5
             },
             1000:{
+                nav: true,
+                rewindNav : true,
+                navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
                 items: 7
             }
-        }
+        },
+        nav: true,
+
             // URLhashListener:true,
         // startPosition: 'URLHash',
 
@@ -105,6 +116,7 @@ export class TablesComponent implements OnInit {
         // { text: 'Slide 10', dotContent: 'text5'},
       ];
     public edition:any
+    public categoriasCombo:any
     public id:number = null
     public idF:number = null
     myColor:string="#ffffff";
@@ -203,6 +215,7 @@ export class TablesComponent implements OnInit {
         private modalService: NgbModal,
         private ProductosService:ProductosService,
         private MarcasService:MarcasService,
+        private _lightbox: Lightbox,
         private route: ActivatedRoute,
         private ImagenesService:ImagenesService,
         private SlidesService:SlidesService,
@@ -216,6 +229,7 @@ export class TablesComponent implements OnInit {
     galleryOptions: NgxGalleryOptions[];
     galleryOptions2: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
+    galleryImages2:any = [];
     scrollMyDiv(item) {
         let section = item;
         window.scroll(0, 0);  // reset window to top
@@ -226,6 +240,7 @@ export class TablesComponent implements OnInit {
     ngOnInit() {
 
         this.getParams();
+        this.cargarCombosMarcas();
         this.galleryOptions = [
             {
                 width: '90%',
@@ -274,6 +289,12 @@ export class TablesComponent implements OnInit {
         ];
 
         this.resetCarousel();
+        $(document).ready(function () {
+            if($('.slides-ingrup .owl-nav').hasClass('disabled'))
+            {
+                $('.slides-ingrup .owl-nav').removeClass('disabled');
+            }
+        });
     }
     resetCarousel(){
         this.galleryImages = [
@@ -328,6 +349,7 @@ export class TablesComponent implements OnInit {
         this.selectedData=null;
       this.ProductosService.getSingle(id)
                           .then(response => {
+                            this.customOptions2.nav = true
                             // console.log(response);
                             response.pX = +response.pX;
                             response.pY = +response.pY;
@@ -362,15 +384,23 @@ export class TablesComponent implements OnInit {
 
                             if(response.imagenes && response.imagenes.length>0){
                                 let data = []
+                                let data2 = []
                                 response.imagenes.forEach(element => {
                                     let obj = {
                                         small: element.src,
                                         medium: element.src,
                                         big: element.src
                                     }
+                                    let obj2 = {
+                                        src: element.src,
+                                        caption: element.src,
+                                        thumb: element.src
+                                    }
                                     data.push(obj)
+                                    data2.push(obj2)
                                 });
                                 this.galleryImages = data
+                                this.galleryImages2 = data2
                             }else{
                                 this.resetCarousel();
                             }
@@ -385,6 +415,12 @@ export class TablesComponent implements OnInit {
                                     data.push(obj)
                                 });
                                 this.carouselData = data
+
+                                setTimeout(() => {
+                                    $('.owl-nav').removeClass('disabled');
+                                }, 500);
+                                // console.log(this.customOptions2);
+
                             }
 
                             this.blockUI.stop();
@@ -392,6 +428,10 @@ export class TablesComponent implements OnInit {
                             console.clear;
                             this.blockUI.stop();
                           });
+    }
+    openGallery(index: number): void {
+        // open lightbox
+        this._lightbox.open(this.galleryImages2, index,{ fitImageInViewPort: true, showImageNumberLabel: false,centerVertically:true, albumLabel:"" });
     }
     cargarAll() {
         this.blockUI.start();
@@ -433,6 +473,7 @@ export class TablesComponent implements OnInit {
 
                                 this.datoPEnviar2 = this.datoPEnviar
                                 // console.log(this.datoPEnviar2);
+
                                 this.blockUI.stop();
                                 this.scrollMyDiv('header');
                             }).catch(error => {
@@ -469,8 +510,17 @@ export class TablesComponent implements OnInit {
                                 if(response.submarca.length<1){
                                     this.cargarOfCate(id,true)
                                 }else{
+
+                                    let first = response.submarca?response.submarca[0].id:1;
                                     let index = response.submarca?((response.submarca.findIndex(element => {return element.id==this.idF}))>0?response.submarca.findIndex(element => {return element.id==this.idF})-1:1):1;
                                     this.customOptions.startPosition = index
+                                    if(this.route.snapshot.paramMap.get('mercado')){
+                                        this.cargarOfCate(first,false)
+
+                                    }else{
+                                        this.cargarOfCate(first,true)
+
+                                    }
                                 }
                                 // console.log(response);
                                 this.blockUI.stop();
@@ -499,22 +549,55 @@ export class TablesComponent implements OnInit {
 
     }
 
+
+    cargarCombosMarcas(){
+
+        //   console.log(id)
+          this.CategoriasService.getAll()
+                              .then(response => {
+                                this.categoriasCombo = response;
+                                // console.log(response);
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear;
+                                this.blockUI.stop();
+                              });
+
+    }
+
     open(content,id,tipo) {
         this.edition = null
 
         switch(tipo){
             case "categorias":{
-        this.abierto=true;
+            this.abierto=true;
                 this.CategoriasService.getSingle(id)
                       .then(response => {
                         // console.log(response);
                         this.edition=response;
-                        this.edition.tipo = tipo
+                        this.edition.tipos = tipo
                         this.blockUI.stop();
                     }).catch(error => {
                         console.clear;
                         this.blockUI.stop();
                       });
+                break;
+            }
+            case "categoriasC":{
+            this.abierto=true;
+            this.ProductosService.getSingle(id)
+                      .then(response => {
+                        // console.log(response);
+                        response.nombre=""
+                        this.edition=response;
+                        this.edition.tipos = tipo
+                        this.edition.id = null;
+                        this.blockUI.stop();
+                    }).catch(error => {
+                        console.clear;
+                        this.blockUI.stop();
+                      });
+
                 break;
             }
             case "productos":{
@@ -524,6 +607,22 @@ export class TablesComponent implements OnInit {
                         // console.log(response);
                         this.edition=response;
                         this.edition.tipos = tipo
+                        this.blockUI.stop();
+                    }).catch(error => {
+                        console.clear;
+                        this.blockUI.stop();
+                      });
+                break;
+            }
+            case "productosC":{
+                this.abierto=true;
+
+                this.ProductosService.getSingle(id)
+                      .then(response => {
+                        // console.log(response);
+                        this.edition=response;
+                        this.edition.tipos = tipo
+                        this.edition.id = null;
                         this.blockUI.stop();
                     }).catch(error => {
                         console.clear;
@@ -845,21 +944,25 @@ export class TablesComponent implements OnInit {
       formValue = this.edition
         this.blockUI.start();
     switch (formValue.tipos) {
-        case "categorias":{
-            this.CategoriasService.update(formValue)
+        case "categoriasC":{
+            formValue.descripcion = formValue.nombre
+            formValue.tipo = formValue.categoria
+            formValue.codigo = btoa(formValue.nombre).substr(0,10);
+            this.ProductosService.create(formValue)
                                     .then(response => {
-                                    // console.log(response);
-                                    this.getParams();
-                                    console.clear
+                                        // console.log(response);
+                                        this.getParams();
+                                        console.clear
                                     this.blockUI.stop();
                                     }).catch(error => {
                                     console.clear
-
                                     this.blockUI.stop();
                                     })
                                     break;
         }
-        case "productos":{
+        case "productosC":{
+            formValue.descripcion = formValue.nombre
+            formValue.codigo = btoa(formValue.nombre).substr(0,10);
             this.ProductosService.create(formValue)
                                     .then(response => {
                                     // console.log(response);
@@ -876,7 +979,7 @@ export class TablesComponent implements OnInit {
         case "presentacionC":{
             this.PresentacionesService.create(formValue)
                                     .then(response => {
-                                    console.log(response);
+                                    // console.log(response);
                                     this.cargarSingle(response.producto);
                                     console.clear
                                     this.blockUI.stop();
@@ -941,14 +1044,19 @@ export class TablesComponent implements OnInit {
 
         }
         delete(data:any){
+            console.log("eliminando: ",data.tipos);
+
             this.blockUI.start();
             switch (data.tipos) {
                 case "categorias":{
-                    this.CategoriasService.update(data)
+            console.log("eliminando2");
+
+                    this.CategoriasService.delete(data.id)
                                             .then(response => {
-                                            // console.log(response);
+                                            console.log(response);
                                             this.abierto=false
-                                            this.getParams();
+            console.log("eliminado");
+            this.getParams();
                                             console.clear
                                             this.blockUI.stop();
                                             }).catch(error => {

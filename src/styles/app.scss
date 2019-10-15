@@ -79,6 +79,19 @@
     right: -5%;
     top:30%;
 }
+.banners .owl-theme .owl-nav .owl-prev{
+    position: absolute;
+    background: none!important;
+    left: 0;
+    top:35%;
+}
+
+.banners .owl-theme .owl-nav .owl-next{
+    position: absolute;
+    background: none!important;
+    right: 0;
+    top:35%;
+}
 
 .menu-ingrup .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span{
     background-color: #44D62C!important;
@@ -280,7 +293,14 @@ div[id^='ngb-panel'] ul li.active{
 .mainCarousell .owl-carousel .owl-stage-outer{
     height: 100%!important;
 }
-.mainCarousell .owl-carousel .owl-stage-outer .owl-stage{
+
+.mainCarousell .owl-carousel .owl-stage-outer{
+    height: 100%!important;
+}
+.mainCarousell .owl-carousel .owl-stage-outer owl-stage{
+    height: 100%!important;
+}
+.mainCarousell .owl-carousel .owl-stage-outer owl-stage div{
     height: 100%!important;
 }
 .videoCarousell{
@@ -306,7 +326,7 @@ div[id^='ngb-panel'] ul li.active{
     position: absolute;
     width: 35%;
     top: 0;
-    background-color: rgba(255,255,255,0.7);
+    // background-color: rgba(255,255,255,0.7);
     z-index: 999;
     font-family: RobotoMedium;
 }
@@ -320,12 +340,16 @@ div[id^='ngb-panel'] ul li.active{
     color: #ffffff;
     font-family: RobotoMedium;
 }
+.owl-carousel .owl-item img{
+    max-width: 100%!important;
+    max-height: 100%!important;
+}
 .transparentStyle .preview{
-    height: 20%;
+    height: 15%;
     background-color: #ffffff;
 }
 .transparentStyle .contanter{
-    height: 80%;
+    height: 85%;
 }
 
 .transparentStyle .contanter .logo{
@@ -416,6 +440,9 @@ canvas{
     height: auto;
     max-height: 220px;
     width: auto;
+}
+.lb-caption{
+    display: none!important;
 }
 .titulo-General{
     border: #383838 solid 1px;

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableModule } from 'angular-6-datatable';
+import { LightboxModule } from 'ngx-lightbox';
 
 import { AtftModule } from 'atft';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -19,7 +20,7 @@ import { PageHeaderModule } from './../../shared';
 import { HeaderComponent } from './../components/header/header.component';
 
 @NgModule({
-    imports: [CommonModule, TablesRoutingModule,FormsModule, NgbModule,DataTableModule,PageHeaderModule,AtftModule,CarouselModule, NgxGalleryModule],
+    imports: [CommonModule, TablesRoutingModule,LightboxModule,FormsModule, NgbModule,DataTableModule,PageHeaderModule,AtftModule,CarouselModule, NgxGalleryModule],
     declarations: [TablesComponent,HeaderComponent],
     providers: [ProductosService,ImagenesService,PresentacionesService,SlidesService]
 })
