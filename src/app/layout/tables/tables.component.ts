@@ -350,7 +350,7 @@ export class TablesComponent implements OnInit {
       this.ProductosService.getSingle(id)
                           .then(response => {
                             this.customOptions2.nav = true
-                            // console.log(response);
+                            console.log(response);
                             response.pX = +response.pX;
                             response.pY = +response.pY;
                             response.pZ = +response.pZ;
@@ -452,7 +452,7 @@ export class TablesComponent implements OnInit {
     }
 
     cargarOfCate(id:number,changeUrl:boolean=false) {
-        this.datoPEnviar2.mercados.pop()
+        // this.datoPEnviar2.mercados.pop()
         if(changeUrl) {
             this.idF = id;
         }
@@ -487,6 +487,29 @@ export class TablesComponent implements OnInit {
             icon:"fa-bar-chart-o",
             nombre:dat.nombre
         }
+        // console.log(dat);
+        if(dat.padre){
+            this.datoPEnviar2.mercados.pop();
+        }
+        if(dat.fotoDefault){
+            let data2 = []
+            let data3 = []
+            let obj = {
+                small: dat.fotoDefault,
+                medium: dat.fotoDefault,
+                big: dat.fotoDefault
+            }
+            let obj2 = {
+                src: dat.fotoDefault,
+                caption: dat.fotoDefault,
+                thumb: dat.fotoDefault
+            }
+            data2.push(obj)
+            data3.push(obj2)
+            this.galleryImages = data2
+            this.galleryImages2 = data3
+        }
+
         this.datoPEnviar.mercados.push(data)
     }
     cargarOfMarca(id: number, changeUrl: boolean= false) {
@@ -634,7 +657,7 @@ export class TablesComponent implements OnInit {
         this.abierto=true;
                 this.PresentacionesService.getSingle(id)
                       .then(response => {
-                        // console.log(response);
+                        console.log(response);
                         this.edition=response;
                         this.edition.tipos = tipo
                         this.blockUI.stop();

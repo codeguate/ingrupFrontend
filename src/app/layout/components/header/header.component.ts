@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit {
         autoHeight: false,
         autoWidth: true,
         autoplay:false,
+        margin:10,
         autoplayTimeout:3000,
         autoplayHoverPause:true,
         nav: true,

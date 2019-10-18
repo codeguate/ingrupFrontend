@@ -43,11 +43,13 @@ $topnav-background-color: #222;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
+    background-color: rgb(242,242,242);
 }
 .panel-ingrup:hover{
     background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
+    width: 80%;
     box-shadow:  #44D62C 0px 0px 10px 5px ;
     border: solid 1px #ffffff;
     cursor:pointer;
@@ -89,8 +91,8 @@ $topnav-background-color: #222;
 }
 .panel-ingrup{
     padding: 2rem;
-    height: 30vh;
-    width: 80%;
+    // height: 30vh;
+    // width: 80%;
     list-style: none;
     text-decoration: none;
     border-radius: 10px;
@@ -98,9 +100,9 @@ $topnav-background-color: #222;
     // background-color: rgba(255,255,255,0.9);
 }
 .ingrup-content{
-    margin-top: 1.5rem;
-    margin-bottom: auto;
-    width: 80%;
+    // margin-bottom: 1.5rem;
+    margin-top: auto;
+    width: 100%;
 }
 .panel-body-ingrup{
     display: flex;
@@ -124,13 +126,13 @@ $topnav-background-color: #222;
 }
 .menu-item-ingrup{
     filter:brightness(0.3);
-    height: 7vh;
+    // height: 7vh;
     width: auto!important;
     margin-left: 0px;
     margin-right: auto;
 }
 .menu-ingrup{
-    height: 70%;
+    // height: 70%;
     margin-top: auto;
 }
 .pb-400{
@@ -140,14 +142,14 @@ $topnav-background-color: #222;
     padding-top: 4%;
 }
 @media only screen and (max-width: 900px){
-    .panel-ingrup.active {
-        width: 100%!important;
+    .panel-ingrup.active{
+        width: auto;
     }
     .menu-ingrup{
         width: 80%;
         margin-left: auto;
         margin-right: auto;
-        height: 50%;
+        // height: 50%;
     }
     .panel-title-ingrup h3{
         font-size: 1rem!important;
@@ -157,7 +159,7 @@ $topnav-background-color: #222;
         color: #5E5B5C;
     }
     .panel-ingrup{
-        height: 30vh;
+        // height: 30vh;
         padding-left: 0px;
     }
     .panel-title-ingrup h3{

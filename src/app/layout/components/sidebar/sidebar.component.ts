@@ -100,7 +100,7 @@ export class SidebarComponent implements OnInit {
                             }).catch(error => {
                                 console.clear
                               })
-        this.TiposService.getAll()
+        this.CategoriasService.getAll()
                               .then(response => {
                                 this.TableProds=response
                                 // console.log(response);

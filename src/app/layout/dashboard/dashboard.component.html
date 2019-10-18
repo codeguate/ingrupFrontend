@@ -169,25 +169,28 @@
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
             <h1 class="title2"> <span style="color: #44D62C">Soluciones</span> para sus empaques</h1>
           </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row px-3" style="margin:0px;padding:0px;" *ngIf="categoriasBox">
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 m-auto" [class.pt-5]="i!=1 && i!=4 && i!=7 && i!=10 && i!=13 && i!=16 && i!=19 && i!=22 && i!=25 && i!=28" *ngFor="let data of categoriasBox; let i = index">
+                        <div class="CategoriaCard">
+                            <div class="fondo_cuadros my-3" [routerLink]="['/mercados/',data.id]">
+                                <div class="row w-100">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row mt-50 icon">
+                                            <div class="circleIcon">
+                                                    <img [src]="data.foto" alt="" />
+                                                </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mx-auto row mb-auto text">
+                                        <span>
+                                            {{ data.nombre }}
+                                        </span>
+                                    </div>
+                                </div>
 
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 pdt-5">
-            <img src="./assets/images/Home/Modulo-3/Bebidas-completo.png" alt="" />
-            <img src="./assets/images/Home/Modulo-3/Food-service-completo.png" alt="" />
+                            </div>
+                    </div>
+
+              </div>
           </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <img src="./assets/images/Home/Modulo-3/Alimentos-completo.png" alt="" />
-            <img src="./assets/images/Home/Modulo-3/Resinas-recicladas-completo.png" alt="" />
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 pdt-5">
-            <img src="./assets/images/Home/Modulo-3/Home-care-completo.png" alt="" />
-            <img src="./assets/images/Home/Modulo-3/Soluciones-de-almacenamiento-de-agua-completo.png" alt="" />
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 offset-xs-2 offset-sm-2 offset-md-2 offset-lg-2 mgt-5">
-            <img src="./assets/images/Home/Modulo-3/Linea-agro-industria-completo.png" alt="" />
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 mgt-5">
-            <img src="./assets/images/Home/Modulo-3/Linea-vial-completo.png" alt="" />
-            </div>
 
       </div>
         <!--puntos-->
@@ -202,7 +205,7 @@
                     <h1 class="texto_proposito ml-3 hashtag" style="color: #44D62C">Comprometidos con el Planeta <div class="line-title"></div></h1>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pb-3" >
                     <owl-carousel-o [options]="customOptions2" style="height: 100vh;width:100%;">
 
                             <ng-container *ngFor="let slide of carouselData; let i = index" style="margin:auto;">

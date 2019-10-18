@@ -43,6 +43,7 @@ $topnav-background-color: #222;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
+    background-color: rgb(242,242,242);
 }
 .panel-ingrup:hover{
     background-color: #44D62C;
@@ -68,7 +69,7 @@ $topnav-background-color: #222;
     box-shadow: #44D62C 0px 0px 10px 5px;
     border: solid 1px #ffffff;
     cursor: pointer;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
     margin-top: 1rem;
 }
 .downRow{
@@ -95,7 +96,7 @@ $topnav-background-color: #222;
 }
 .panel-ingrup{
     padding: 2rem;
-    height: 30vh;
+    // height: 30vh;
     width: 80%;
     list-style: none;
     text-decoration: none;
@@ -104,9 +105,9 @@ $topnav-background-color: #222;
     // background-color: rgba(255,255,255,0.9);
 }
 .ingrup-content{
-    margin-top: 1.5rem;
+    // margin-top: 1.5rem;
     margin-bottom: auto;
-    width: 80%;
+    // width: 80%;
 }
 .panel-body-ingrup{
     display: flex;
@@ -115,7 +116,7 @@ $topnav-background-color: #222;
 .panel-title-ingrup{
     text-align: left;
     width: 70%;
-    padding-left: 1rem;
+    // padding-left: 1rem;
     display: block;
     margin-top: 1rem;
 
@@ -130,7 +131,7 @@ $topnav-background-color: #222;
 }
 .menu-item-ingrup{
     filter:brightness(0.3);
-    height: 7vh;
+    height: 5vh;
     width: auto!important;
     margin-left: 0px;
     margin-right: auto;
@@ -157,7 +158,7 @@ $topnav-background-color: #222;
         color: #5E5B5C;
     }
     .panel-ingrup{
-        height: 30vh;
+        // height: 30vh;
         padding-left: 0px;
     }
     .panel-title-ingrup h3{

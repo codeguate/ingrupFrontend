@@ -18,10 +18,11 @@ import { TablesRoutingModule } from './tables-routing.module';
 import { TablesComponent } from './tables.component';
 import { PageHeaderModule } from './../../shared';
 import { HeaderComponent } from './../components/header/header.component';
+import { TablesDataComponent } from './../components/tables/tables.component';
 
 @NgModule({
     imports: [CommonModule, TablesRoutingModule,LightboxModule,FormsModule, NgbModule,DataTableModule,PageHeaderModule,AtftModule,CarouselModule, NgxGalleryModule],
-    declarations: [TablesComponent,HeaderComponent],
+    declarations: [TablesComponent,HeaderComponent,TablesDataComponent],
     providers: [ProductosService,ImagenesService,PresentacionesService,SlidesService]
 })
 export class TablesModule {}

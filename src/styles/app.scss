@@ -41,7 +41,7 @@
     margin:auto!important;
 }
 .menu-ingrup .sub_menu_panel{
-    min-height: 216px;
+    // min-height: 216px;
 }
 .menu-ingrup-2 .panel-ingrup{
     width: 100% !important;
@@ -99,12 +99,12 @@
 }
 
 .menu-ingrup .owl-theme .owl-dots .owl-dot span, .owl-theme .owl-dots .owl-dot span{
-    background-color: #ffffff!important;
+    background-color: rgb(242,242,242)!important;
     padding: 0.5rem;
     border: #A2A2A2 solid 0.05rem;
 }
 .filtrosAccordeon .card{
-    background-color: #ffffff;
+    background-color: rgb(242,242,242);
     border: none;
 }
 
@@ -113,23 +113,29 @@
    }
    .filtrosAccordeon button.collapsed h3{
     .filtrosAccordeon .card .card-header {
-        background-color: #ffffff!important;
+        background-color: rgb(242,242,242)!important;
     }
     color: #44D62C!important;
-    background-color: #ffffff!important;
+    background-color: rgb(242,242,242)!important;
     text-decoration: none;
 }
 .filtrosAccordeon .btn-link h3{
-    color:#ffffff;
+    color:rgb(242,242,242);
     text-decoration: none;
 }
 .filtrosAccordeon h3:hover{
-    color:#ffffff;
+    color:rgb(242,242,242);
     text-decoration: none;
    }
 .filtrosAccordeon .card .card-header {
-    background-color: #ffffff;
+    background-color: rgb(242,242,242);
 
+}
+.ngx-gallery-thumbnail{
+    background-size: auto 100%!important;
+}
+.back-gris{
+    background-color: rgb(242,242,242);
 }
 div[id^='ngb-panel']{
     -webkit-transition: display 3s ease-in-out;
@@ -438,7 +444,7 @@ canvas{
 }
 .banners .owl-carousel .imagen1{
     height: auto;
-    max-height: 220px;
+    max-height: 220px!important;
     width: auto;
 }
 .lb-caption{

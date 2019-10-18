@@ -46,6 +46,73 @@ body{
   background-size: cover;
 
 }
+.mt-50{
+    margin-top:10%;
+}
+.CategoriaCard{
+    height: auto;
+    width: auto;
+    max-height: 509px;
+    max-width: 477px;
+    border-radius: 50px;
+    cursor: pointer;
+    .fondo_cuadros:hover{
+        box-shadow: rgba(68, 214, 44, 0.2) 0px 0px 15px 5px;
+        border: solid rgb(255,255,255) 2px;
+        background-color: #44D62C;
+        .circleIcon{
+            // background-color: #5E5B5C!important;
+        }
+        .text{
+            span{
+                color: #ffffff;
+            }
+        }
+
+    }
+    .fondo_cuadros{
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        border: solid rgb(68, 214, 44) 2px;
+        width: 70%;
+        margin: auto;
+        height: 360px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
+        border-radius: 52px;
+        display: flex;
+    }
+    .row{
+        margin: 0px;
+        padding: 0px;
+    }
+    .icon{
+        text-align: center;
+        .circleIcon{
+            height: 100px;
+            width: 100px;
+            margin: auto;
+            border-radius: 50%;
+            background-color: #44D62C;
+            display: flex;
+            img{
+                height: 50px;
+                width: 50px;
+                margin: auto;
+            }
+        }
+    }
+    .text{
+        padding: 1rem;
+        span{
+            width: 100%;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #5E5B5C;
+            font-family: RobotoBold;
+        }
+    }
+}
   .contain_img_row{
     background-image: url(../../../assets/images/Home/Modulo-1/fondo22.png);
     background-size: cover;
@@ -461,11 +528,11 @@ body{
     background-size: auto 100%;
     background-repeat: no-repeat;
     width:100%;
-    height:auto;
+    height:482px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
     border-radius: 52px;
-    min-height: 482px;
-    max-height: 482px;
+    // min-height: 482px;
+    // max-height: 482px;
     display: flex;
 }
 .button_mas{
@@ -501,7 +568,24 @@ body{
 
     }
 }
+@media only screen and (max-width: 500px){
+    .description_card.largo{
+        font-size: 1rem!important;
+
+    }
+}
 @media only screen and (max-width: 1000px){
+    .CategoriaCard{
+        .fondo_cuadros{
+            height: 260px;
+        }
+        .text{
+            font-size: 0.6rem;
+        }
+    }
+    .pt-5{
+        padding-top: 0px!important;
+    }
   .mb_auto2{
       margin-bottom: 1rem;
       margin-top: 1rem;
