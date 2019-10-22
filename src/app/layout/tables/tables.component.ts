@@ -115,6 +115,8 @@ export class TablesComponent implements OnInit {
         // { text: 'Slide 9', dotContent: 'text5'},
         // { text: 'Slide 10', dotContent: 'text5'},
       ];
+  win = Window
+
     public edition:any
     public categoriasCombo:any
     public id:number = null
@@ -232,10 +234,42 @@ export class TablesComponent implements OnInit {
     galleryImages2:any = [];
     scrollMyDiv(item) {
         let section = item;
-        window.scroll(0, 0);  // reset window to top
+        // window.scrollTo(0, 0);  // reset window to top
         const elem = document.querySelector('#' + section);
-        let offsetTop = elem.getBoundingClientRect().top;
-        window.scroll(0, offsetTop);
+        // console.log(parseInt(elem.scrollHeight+''));
+
+        let offsetTop = parseInt(elem.scrollHeight+'');
+        if(window.innerWidth < 992){
+            if(offsetTop>500){
+                window.scrollTo(0, 1500);
+
+            }else{
+                setTimeout(() => {
+                    window.scrollTo(0, 500);
+                }, 300);
+            }
+        }else{
+            if(offsetTop>200){
+                if(section=="Galeria"){
+                    window.scrollTo(0, 1500);
+                }else{
+                    window.scrollTo(0, 800);
+
+                }
+
+            }else{
+                if(offsetTop<100){
+                        window.scrollTo(0, 1500);
+                }else{
+                    setTimeout(() => {
+                        window.scrollTo(0, offsetTop);
+                    }, 300);
+                }
+
+            }
+        }
+
+
       }
     ngOnInit() {
 
@@ -344,13 +378,14 @@ export class TablesComponent implements OnInit {
         filter:'evento'
       };
     //   console.log('antes:'+this.selectedData.id+' Ahora'+id);
-
+    this.scrollMyDiv('Galeria');
+    //   console.log(this.idF)
       const datas = this.selectedData;
         this.selectedData=null;
       this.ProductosService.getSingle(id)
                           .then(response => {
                             this.customOptions2.nav = true
-                            console.log(response);
+                            // console.log(response.id);
                             response.pX = +response.pX;
                             response.pY = +response.pY;
                             response.pZ = +response.pZ;
@@ -418,6 +453,7 @@ export class TablesComponent implements OnInit {
 
                                 setTimeout(() => {
                                     $('.owl-nav').removeClass('disabled');
+                                    this.scrollMyDiv('Galeria');
                                 }, 500);
                                 // console.log(this.customOptions2);
 
@@ -475,7 +511,7 @@ export class TablesComponent implements OnInit {
                                 // console.log(this.datoPEnviar2);
 
                                 this.blockUI.stop();
-                                this.scrollMyDiv('header');
+                                this.scrollMyDiv('stinkyEnd');
                             }).catch(error => {
                                 console.clear;
                                 this.blockUI.stop();
@@ -540,10 +576,13 @@ export class TablesComponent implements OnInit {
                                     if(this.route.snapshot.paramMap.get('mercado')){
                                         this.cargarOfCate(first,false)
 
+
                                     }else{
                                         this.cargarOfCate(first,true)
 
                                     }
+                                    this.scrollMyDiv('Galeria');
+
                                 }
                                 // console.log(response);
                                 this.blockUI.stop();

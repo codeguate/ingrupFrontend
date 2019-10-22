@@ -6,7 +6,7 @@
                 <ng-container *ngFor="let slide of Marcas.submarca" >
                 <ng-template carouselSlide dataHash="slide.id">
 
-                    <a style="list-style: none;text-decoration: none;" (click)="cargarOfCate(slide.id,true);scrollMyDiv('header');"  [routerLink]="['/mercados/'+id+'/',slide.id]" >
+                    <a style="list-style: none;text-decoration: none;" (click)="cargarOfCate(slide.id,true);"  [routerLink]="['/mercados/'+id+'/',slide.id]" >
                         <div class="panel-ingrup sub_menu_panel" [class.active]="idF==slide.id" >
                             <div class="ingrup-content sub_menu_content">
                                 <div class="panel-body-ingrup">
@@ -47,7 +47,7 @@
                     </ng-template>
                     <ng-template ngbPanelContent>
                     <ul *ngIf="selectedData">
-                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);scrollMyDiv('tabla1');" [class.active]="+selectedData.id==prod.id">
+                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);" [class.active]="+selectedData.id==prod.id">
                             {{prod.nombre}}
 
                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
@@ -56,7 +56,7 @@
                         </li>
                     </ul>
                     <ul *ngIf="!selectedData">
-                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);scrollMyDiv('tabla1');">
+                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);">
                             {{prod.nombre}}
                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
                         <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
@@ -94,7 +94,7 @@
                     </atft-scene>
                 </atft-webgl-renderer>
             </atft-orbit-controls>
-            <div class="galeria mt-3"  *ngIf="selectedData && !selectedData.hasModel">
+            <div class="galeria mt-3" id="Galeria" *ngIf="selectedData && !selectedData.hasModel">
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
                     <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages" style="margin:auto;"></ngx-gallery>
@@ -106,11 +106,9 @@
                         <img *ngFor="let image of galleryImages2; let i=index" class="uniqueImage" [src]="image.thumb" (click)="openGallery(i)" />
                     </div>
             </div>
-            <div class="w-100 text-left mt-3" *ngIf="selectedData && selectedData.id>0">
-                <a [routerLink]="['/contactenos',idF]">
-                <img src="./../../../assets/images/Mercados/Modulo-2/boton cotizar con texto.png" alt=""></a>
-            </div>
+
             <div class="w-100 d-block" id="tabla1" *ngIf="selectedData">
+
                 <tables-data [selectedData]="selectedData"></tables-data>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sliderss" *ngIf="selectedData">
                         <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,selectedData.id,'slides')"></i>
@@ -128,9 +126,9 @@
                     </div>
             </div>
 
-
         </div>
     </div>
+    <div id="stinkyEnd"></div>
 </div>
 
 
