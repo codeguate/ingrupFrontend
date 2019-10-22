@@ -396,11 +396,21 @@ div[id^='ngb-panel'] ul li.active{
     height: 30vh!important;
 
 }
-.videoCarousell .owl-carousel .owl-item .img{
-    width: 80% !important;
-    height: 100%!important;
+.videoCarousell .owl-carousel .owl-item .img , .videoCarousell .owl-carousel .owl-item img{
+    width: 315px !important;
+    height:177px !important;
+    margin-top: auto;
+    margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
+}
+.owl-item{
+    display: flex;
+}
+.ytp-chrome-top.ytp-show-watch-later-title.ytp-share-button-visible.ytp-show-share-title.ytp-show-cards-title{
+    display: none !important;
+    visibility: none !important;
+
 }
 .mb_auto img {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
@@ -516,9 +526,11 @@ canvas{
         margin-right: auto;
     }
 
-    .videoCarousell .owl-carousel .owl-item .img{
-        width: 80% !important;
-        height: 260px!important;
+    .videoCarousell .owl-carousel .owl-item .img , .videoCarousell .owl-carousel .owl-item img{
+        width: 165px !important;
+        height: 92px !important;
+        margin-top: auto;
+        margin-bottom: auto;
         margin-left: auto;
         margin-right: auto;
     }
