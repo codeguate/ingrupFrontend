@@ -105,18 +105,18 @@ export class DashboardComponent implements OnInit {
         100:{
             items:1,
             rewindNav : true,
-            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
+            navText: ["<img class='flechaIz' src='assets/images/FlechaIz.png'>","<img class='flechaDer' src='assets/images/FlechaDer.png'>"],
             nav: true
         },
         600:{
             items: 1,
             rewindNav : true,
-            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
+            navText: ["<img class='flechaIz' src='assets/images/FlechaIz.png'>","<img class='flechaDer' src='assets/images/FlechaDer.png'>"],
             nav: true
         },
         1000:{
             items: 1,
-            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
+            navText: ["<img class='flechaIz' src='assets/images/FlechaIz.png'>","<img class='flechaDer' src='assets/images/FlechaDer.png'>"],
             nav: true
         },
     }

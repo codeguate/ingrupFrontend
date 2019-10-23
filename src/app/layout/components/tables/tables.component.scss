@@ -4,6 +4,9 @@
     margin-top: auto;
     margin-bottom: auto;
 }
+.w-60{
+    width:60%!important;
+}
 .container_productos{
     height: auto;
     max-height: 90vh;
@@ -126,6 +129,9 @@
 }
 .ficha-tecnica{
     border-radius: 10px 10px 0 0;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .header-ingrup-table{
     background-color: #44D62C;

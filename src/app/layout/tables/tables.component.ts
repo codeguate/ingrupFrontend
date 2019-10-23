@@ -469,6 +469,9 @@ export class TablesComponent implements OnInit {
         // open lightbox
         this._lightbox.open(this.galleryImages2, index,{ fitImageInViewPort: true, showImageNumberLabel: false,centerVertically:true, albumLabel:"" });
     }
+    openGallery2(){
+        $('.ngx-gallery-clickable').click();
+    }
     cargarAll() {
         this.blockUI.start();
           const data = {

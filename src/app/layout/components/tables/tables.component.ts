@@ -12,9 +12,56 @@ export class TablesDataComponent implements OnInit {
   constructor(
       private TablesComponent:TablesComponent
   ) { }
-
-  ngOnInit() {
-
+  selected:any = {
+      descripcion: [],
+      peso: [],
+      largo: [],
+      cuello: [],
+      altura: [],
+      unidades: [],
+      separador: []
+  }
+  complete:any = {
+      descripcion: [],
+      peso: [],
+      largo: [],
+      cuello: [],
+      altura: [],
+      unidades: [],
+      separador: []
   }
 
+  ngOnInit() {
+    if(this.selectedData.presentaciones){
+        this.selected.descripcion = [
+          this.selectedData.presentaciones[0]
+        ]
+        this.complete.descripcion = this.removeDuplicates(this.selectedData.presentaciones,"descripcion")
+
+        this.selected.peso = [
+          this.selectedData.presentaciones[0]
+        ]
+        this.selected.largo = [
+          this.selectedData.presentaciones[0]
+        ]
+        this.selected.cuello = [
+          this.selectedData.presentaciones[0]
+        ]
+        this.selected.altura = [
+          this.selectedData.presentaciones[0]
+        ]
+        this.selected.unidades = [
+          this.selectedData.presentaciones[0]
+        ]
+        this.selected.separador = [
+          this.selectedData.presentaciones[0]
+        ]
+      }
+  }
+
+  removeDuplicates(originalArray, prop) {
+
+
+
+    }
 }

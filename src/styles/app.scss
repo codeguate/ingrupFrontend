@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bootstrap/bootstrap";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 @import "spinner";
@@ -499,6 +500,40 @@ canvas{
 .lightbox{
     position: fixed;
     top: 10% !important;
+}
+.pantallaCompleta{
+    cursor: pointer;
+    position: absolute !important;
+    left: 0;
+    width: 50px;
+    height: auto;
+}
+.content_all_videos{
+    .owl-theme {
+        .owl-nav{
+            // margin-left: 100% !important;
+            width: 100% !important;
+            top: auto;
+            height: 100%;
+            position: absolute;
+            .owl-prev{
+                margin-bottom: 100%;
+                width:10%;
+                background-color: transparent;
+            }
+            .owl-next{
+                margin-top: 100%;
+                background-color: transparent;
+                width:10%;
+            }
+            .flechaIz{
+                width:auto;
+            }
+            .flechaDer{
+                width:auto;
+            }
+        }
+    }
 }
 @media only screen and (max-width: 1000px){
     .logo.pointer{

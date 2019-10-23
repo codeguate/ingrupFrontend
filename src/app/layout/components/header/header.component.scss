@@ -69,7 +69,7 @@ $topnav-background-color: #222;
     box-shadow: #44D62C 0px 0px 10px 5px;
     border: solid 1px #ffffff;
     cursor: pointer;
-    padding-left: 0.5rem;
+    // padding-left: 0.5rem;
     margin-top: 1rem;
 }
 .downRow{
@@ -82,7 +82,7 @@ $topnav-background-color: #222;
 }
 
 .panel-ingrup.active .menu-item-ingrup{
-    filter:brightness(1);
+    // filter:brightness(1);
 }
 .panel-ingrup.active .panel-title-ingrup h3{
     color: #ffffff;
@@ -96,14 +96,14 @@ $topnav-background-color: #222;
     padding-top: 4%;
 }
 .panel-ingrup{
-    padding: 2rem;
+    // padding: 2rem;
     // height: 30vh;
     width: 80%;
     list-style: none;
     text-decoration: none;
     border-radius: 10px;
     display: flex;
-    // background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.9);
 }
 .ingrup-content{
     // margin-top: 1.5rem;
@@ -131,8 +131,8 @@ $topnav-background-color: #222;
     color: #5E5B5C;
 }
 .menu-item-ingrup{
-    filter:brightness(0.3);
-    height: 5vh;
+    // filter:brightness(0.3);
+    // height: 5vh;
     width: auto!important;
     margin-left: 0px;
     margin-right: auto;

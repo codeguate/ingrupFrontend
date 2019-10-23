@@ -20,14 +20,15 @@
 
                     <a style="list-style: none;text-decoration: none;" (click)="TablesComponent.cargarOfCate(slide.id,true)" [routerLink]="['/mercados',slide.id]" >
                         <div class="panel-ingrup" [routerLinkActive]="['active']">
-                            <div class="ingrup-content">
+                            <img [src]="slide.foto" class="menu-item-ingrup" >
+                            <!-- <div class="ingrup-content">
                                 <div class="panel-body-ingrup">
                                     <img [src]="slide.foto" class="menu-item-ingrup" >
                                 </div>
                                 <div class="panel-title-ingrup">
                                     <h3 [class.largo]="slide.nombre.length>20">{{slide.nombre}}</h3>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div [routerLinkActive]="['show']" class="downRow">
                                 <img src="./../../../../assets/images/Mercados/Modulo-1/flechaAb.png" class="m-auto" style="width: 22px">

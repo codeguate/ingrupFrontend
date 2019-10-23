@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableModule } from 'angular-6-datatable';
 import { LightboxModule } from 'ngx-lightbox';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AtftModule } from 'atft';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -21,7 +22,7 @@ import { HeaderComponent } from './../components/header/header.component';
 import { TablesDataComponent } from './../components/tables/tables.component';
 
 @NgModule({
-    imports: [CommonModule, TablesRoutingModule,LightboxModule,FormsModule, NgbModule,DataTableModule,PageHeaderModule,AtftModule,CarouselModule, NgxGalleryModule],
+    imports: [CommonModule, TablesRoutingModule,LightboxModule,FormsModule, NgSelectModule,NgbModule,DataTableModule,PageHeaderModule,AtftModule,CarouselModule, NgxGalleryModule],
     declarations: [TablesComponent,HeaderComponent,TablesDataComponent],
     providers: [ProductosService,ImagenesService,PresentacionesService,SlidesService]
 })
