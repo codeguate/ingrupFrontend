@@ -59,7 +59,7 @@
                             </h3> -->
 
                     </div>
-                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 offset-xs-1 offset-sm-1 offset-md-1 offset-lg-1 videoCarousell mt-auto text-right second_new">
+                    <!-- <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 offset-xs-1 offset-sm-1 offset-md-1 offset-lg-1 videoCarousell mt-auto text-right second_new">
                         <owl-carousel-o [options]="customOptions3">
                                 <ng-container *ngFor="let slide of alerts">
                                     <ng-template carouselSlide>
@@ -69,13 +69,86 @@
                                 </ng-container>
 
                         </owl-carousel-o>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
-
+    
+    <div class="row d-flex new_row">
+            
+            <div style="background-color:#44D62C"  class="col-xs-8 col-sm-8 col-md-8 col-lg-8 content_all_videos">
+                <owl-carousel-o [options]="customOptions3">
+                    <ng-container *ngFor="let slide of alerts">
+                        <ng-template carouselSlide>
+                            <iframe height="508px" width="100%"  *ngIf="!slide.message"  [src]="slide.type" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+            </div>
+            
+            <div  class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col_comprometidos">
+                <p>INGRUP</p>
+                <p>Comprometidos</p>
+                <p>con el Medio Ambiente</p>
+            </div>
+    </div>
+    
     <div class="row contenedor1">
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row content_img mt-5 mb">
+            <ngb-carousel class="w-100">
+                <ng-template ngbSlide class="w-100">
+                    <div class="w-100">
+                        <div class="fondo_cuadros">
+                            <div class="container_data">
+                                <p class="title_card">Misión</p>
+                                <p class="description_card mision largo">Proveemos <span>soluciones de empaque</span> a nivel regional, mediante tecnología de punta y un equipo <span>humano competente y comprometido,</span> generando beneficios para nuestros clientes, inversionistas y colaboradores. Estamos <span>comprometidos con el medio ambiente</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide class="w-100">
+                        <div class="w-100">
+                            <div class="fondo_cuadros">
+                                <div class="container_data">
+                                    <p class="title_card">Visión</p>
+                                    <p class="description_card">Ser el proveedor <span> mas confiable e innovador </span>de empaques.</p>
+                                </div>
+                            </div>
+                        </div>
+                </ng-template>
+                <ng-template ngbSlide class="w-100">
+                        <div class="w-100">
+                            <div class="fondo_cuadros2">
+                                <div class="container_data">
+                                    <p class="title_card">Propósito</p>
+                                    <p class="description_card largo">Agregar <span>valor a las marcas</span>  de nuestros clientes con soluciones de empaque confiables, innovadoras y amigables con el medio ambiente.</p>
+                                </div>
+                            </div>
+                        </div>
+                </ng-template>
+                <ng-template ngbSlide class="w-100">
+                    <div class="w-100">
+                        <div class="fondo_cuadros2">
+                            <div class="container_data">
+                                <p class="title_card">Valores</p>
+                                <div class="description_card w-100">
+                                    <ul>
+                                        <li><span>Integridad</span></li>
+                                        <li><span>Confianza</span></li>
+                                        <li><span>Compromiso</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+    </div>
+    </div>
+
+    <div class="row contenedor1 dato_only_pc">
 
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row content_img mt-5">
 
@@ -88,6 +161,7 @@
                 <h3 style="color: #5E5B5C">Nuestro Propósito</h3>
                 <h5>
                     Agregar valor a las marcas de nuestros clientes con soluciones de empaque confiables, innovadores y amigables con el ambiente.
+
                 </h5>
             </div> -->
 
@@ -169,7 +243,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
             <h1 class="title2"> <span style="color: #44D62C">Soluciones</span> para sus empaques</h1>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row px-3" style="margin:0px;padding:0px;" *ngIf="categoriasBox">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row px-3 dato_only_pc" style="margin:0px;padding:0px;" *ngIf="categoriasBox">
               <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 m-auto" [class.pt-5]="i!=1 && i!=4 && i!=7 && i!=10 && i!=13 && i!=16 && i!=19 && i!=22 && i!=25 && i!=28" *ngFor="let data of categoriasBox; let i = index">
                         <div class="CategoriaCard">
                             <div class="fondo_cuadros my-3" [routerLink]="['/mercados/',data.id]">
@@ -191,6 +265,29 @@
 
               </div>
           </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row px-3 w-100 mb" style="margin:0px;padding:0px;" *ngIf="categoriasBox">
+                <ngb-carousel class="w-100">
+                        <ng-template ngbSlide *ngFor="let data of categoriasBox; let i = index">
+                                <div class="CategoriaCard">
+                                        <div class="fondo_cuadros my-3" [routerLink]="['/mercados/',data.id]">
+                                            <div class="row w-100">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row mt-50 icon">
+                                                        <div class="circleIcon">
+                                                                <img [src]="data.foto" alt="" />
+                                                            </div>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mx-auto row mb-auto text">
+                                                    <span>
+                                                        {{ data.nombre }}
+                                                    </span>
+                                                </div>
+                                            </div>
+            
+                                        </div>
+                                </div>
+                        </ng-template>
+                    </ngb-carousel>
+            </div>
 
       </div>
         <!--puntos-->
@@ -201,7 +298,7 @@
         <div class="row">
 
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_data">
-                    <img src="./../../../assets/images/logo-animado.gif" class="logo-completo-titulo">
+                    <img width="240" src="./../../../assets/images/logo-animado2.gif" class="logo-completo-titulo">
                     <h1 class="texto_proposito ml-3 hashtag" style="color: #44D62C">Comprometidos con el Planeta <div class="line-title"></div></h1>
             </div>
 

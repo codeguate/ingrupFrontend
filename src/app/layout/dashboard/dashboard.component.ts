@@ -22,6 +22,7 @@ export class CarouselData {
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
+    public slider_cards = [];
     isDragging: boolean;
   carouselData: CarouselData[] = [
     { text: 'Slide 1', src: 'assets/images/Home/slides/slide1.jpg', dataHash: 'one'},
@@ -96,31 +97,28 @@ export class DashboardComponent implements OnInit {
 
   customOptions3: any = {
     center: true,
-    autoWidth: true,
     // autoHeight: false,
     nav: true,
     dots:false,
-    rewindNav : true,
-    navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Home/Modulo-1/videos.png'>"],
     responsiveClass:true,
     responsive:{
         100:{
-            items:2,
+            items:1,
             rewindNav : true,
-            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Home/Modulo-1/videos.png'>"],
+            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
             nav: true
         },
         600:{
-            items: 2,
+            items: 1,
             rewindNav : true,
-            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Home/Modulo-1/videos.png'>"],
+            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
             nav: true
         },
         1000:{
-            items: 3,
-            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Home/Modulo-1/videos.png'>"],
+            items: 1,
+            navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
             nav: true
-        }
+        },
     }
         // URLhashListener:true,
     // startPosition: 'URLHash',

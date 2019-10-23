@@ -463,8 +463,42 @@ canvas{
 .titulo-General{
     border: #383838 solid 1px;
     line-height: 0.95;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    text-align: center;
+    font-family: Impact;
+    text-transform: uppercase;
+    color: #5e5b5d;
+    font-size: 3.5rem !important;
+}
+.logo.pointer{
+    content: url(../assets/images/logo-animado2.gif);
+    width: 240px;
+}
+.carousel-control-prev-icon ,.carousel-control-next-icon{
+    background-color: #000000 !important;
+    height: 25px !important;
+    width: 25px !important;
+    background-size: 70% 70% !important;
+    border-radius: 50% !important;
+    
+}
+.carousel-control-prev-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+.carousel-control-next-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+.ngx-gallery-icon-content{
+    color: black;
 }
 @media only screen and (max-width: 1000px){
+    .logo.pointer{
+        width: 50%;
+    }
+    .titulo-General{
+        font-size: 2.5rem;
+    }
     .first_slider .owl-carousel .owl-item img{
         height: 100vh !important;
         width: auto !important;

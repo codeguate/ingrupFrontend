@@ -22,6 +22,7 @@ input , select, textarea{
     border: 2px solid #44D62C !important;
     margin-bottom: 1% !important;
     font-size: 1.5em !important;
+    opacity: .5;
 }
 #send{
     background-color: #44D62C !important;
@@ -153,6 +154,23 @@ select{
     }
 }
 @media only screen and (max-width: 1000px){
+    .container_mapas{
+        margin: 0;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .logo_contacto{
+        position: absolute;
+        top: 0;
+    }
+    #row_1{
+        flex-direction: column-reverse;
+        padding-top: 10vh;
+    }
+    #send{
+        width: 50%;
+        margin: auto;
+    }
     select{
         padding: 6px 12px;
         height: fit-content !important;
