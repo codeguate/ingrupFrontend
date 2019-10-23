@@ -515,7 +515,7 @@ canvas{
     width: 40px !important;
     left: 1%;
     z-index: 9999;
-    top: calc(-50% - 40px);
+    top: 50%;
 }
 .de-middle{
     position: absolute;
@@ -523,7 +523,7 @@ canvas{
     width: 40px !important;
     right: 1%;
     z-index: 9999;
-    top: calc(-50% - 40px);
+    top: 50%;
 }
 .content_all_videos{
     background-color: #f3f3f3 !important;
@@ -531,7 +531,7 @@ canvas{
         .owl-nav{
             // margin-left: 100% !important;
             width: 100% !important;
-            top: auto;
+            top: 0;
             height: 100%;
             position: absolute;
             .owl-prev{
