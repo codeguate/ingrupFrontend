@@ -105,18 +105,18 @@ export class DashboardComponent implements OnInit {
         100:{
             items:1,
             rewindNav : true,
-            navText: ["<img class='flechaIz' src='assets/images/FlechaIz.png'>","<img class='flechaDer' src='assets/images/FlechaDer.png'>"],
+            navText: ["<img class='flechaIz iz-middle w-100' src='assets/images/FlechaIz.png'>","<img class='flechaDer de-middle w-100' src='assets/images/FlechaDer.png'>"],
             nav: true
         },
         600:{
             items: 1,
             rewindNav : true,
-            navText: ["<img class='flechaIz' src='assets/images/FlechaIz.png'>","<img class='flechaDer' src='assets/images/FlechaDer.png'>"],
+            navText: ["<img class='flechaIz iz-middle w-100' src='assets/images/FlechaIz.png'>","<img class='flechaDer de-middle w-100' src='assets/images/FlechaDer.png'>"],
             nav: true
         },
         1000:{
             items: 1,
-            navText: ["<img class='flechaIz' src='assets/images/FlechaIz.png'>","<img class='flechaDer' src='assets/images/FlechaDer.png'>"],
+            navText: ["<img class='flechaIz iz-middle w-100' src='assets/images/FlechaIz.png'>","<img class='flechaDer de-middle w-100' src='assets/images/FlechaDer.png'>"],
             nav: true
         },
     }

@@ -746,7 +746,25 @@ body{
     padding-right: 0;
   }
 }
+.pt-15{
 
+}
+.cards_mercados:nth-child(1){
+  margin-top: 15% !important;
+}
+.cards_mercados:nth-child(1) .CategoriaCard,.cards_mercados:nth-child(4) .CategoriaCard,.cards_mercados:nth-child(7) .CategoriaCard{
+  margin-left: auto;
+}
+.cards_mercados:nth-child(3) .CategoriaCard,.cards_mercados:nth-child(6) .CategoriaCard,.cards_mercados:nth-child(8) .CategoriaCard{
+  margin-right: auto !important;
+}
+.cards_mercados:nth-child(2) .CategoriaCard,.cards_mercados:nth-child(5) .CategoriaCard{
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+.cards_mercados:nth-child(3){
+  margin-top: 15% !important;
+}
 .mb{
   display: none;
 }
