@@ -16,10 +16,11 @@ import { FormRoutingModule } from './form-routing.module';
 import { FormComponent } from './form.component';
 import { PageHeaderModule } from './../../shared';
 import { MenuComponent } from './../components/menu/menu.component';
+import { TablesProdsComponent } from "./../components/tables-prods/tables-prods.component";
 
 @NgModule({
     imports: [CommonModule, FormRoutingModule, NgbModule, PageHeaderModule,AtftModule,CarouselModule,DataTableModule,FormsModule,NgxGalleryModule],
-    declarations: [FormComponent,MenuComponent],
+    declarations: [FormComponent,MenuComponent,TablesProdsComponent],
     providers: [ProductosService,ImagenesService,PresentacionesService]
 })
 export class FormModule {}

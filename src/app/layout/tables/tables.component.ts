@@ -68,7 +68,7 @@ export class TablesComponent implements OnInit {
     customOptions2: any = {
         loop: false,
         autoplay: false,
-        center: true,
+        center: false,
         animateOut: 'slideOutUp',
         animateIn: 'slideInUp',
         dots:false,
@@ -887,12 +887,14 @@ export class TablesComponent implements OnInit {
             if(size<(5*(1024*1024))){
               if(type=="image/png" || type=="image/jpeg" || type=="image/jpg"){
             $("#"+id).upload(url,
-                {
+                {//upload started
                   avatar: archivos[i],
                   carpeta: "ProductosIngrup"
               },
               function(respuesta)
-              {
+              {//Upload Successfull
+                console.log(respuesta);
+
                 $('#imagenComentario').attr("src",'')
                 $('#imagenComentario').attr("src",respuesta)
                 $("#"+id).val('')
@@ -901,9 +903,13 @@ export class TablesComponent implements OnInit {
                 $("#stopLoader").click();
               },
               function(progreso, valor)
-              {
+              {//Received progress
 
                 $("#barra_de_progreso").val(valor);
+              },
+              function (error){
+                  console.log(error);
+
               }
             );
               }else{

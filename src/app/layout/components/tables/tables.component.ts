@@ -14,6 +14,7 @@ export class TablesDataComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
   }
 
 }

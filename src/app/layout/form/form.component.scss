@@ -6,8 +6,8 @@
 }
 .container_productos{
     height: auto;
-    max-height: 90vh;
-    overflow-y: scroll;
+    // max-height: 90vh;
+    // overflow-y: scroll;
 }
 .header-ingrup{
     display: flex;
@@ -74,9 +74,9 @@
     // background-color: rgba(255,255,255,0.9);
 }
 .ingrup-content{
-    margin-top: 1.5rem;
+    // margin-top: 1.5rem;
     margin-bottom: auto;
-    width: 80%;
+    // width: 80%;
 }
 .panel-body-ingrup{
     display: flex;
@@ -84,7 +84,7 @@
 }
 .panel-title-ingrup{
     text-align: left;
-    width: 50%;
+    // width: 50%;
     padding-left: -1rem;
     display: block;
     margin-top: 1rem;
@@ -107,6 +107,9 @@
 }
 .owl-item{
     display: contents;
+}
+#tabla1{
+    overflow-x: scroll;
 }
 /*style antony*/
 .title_sub_produc{
@@ -162,10 +165,11 @@
     width:90%;
     display: flex;
     .uniqueImage{
-        width: 100%;
+        width: auto;
         height: auto;
         margin: auto;
         max-height: 100%;
+        max-width: 100%;
     }
 }
 @media only screen and (max-width: 900px){
@@ -191,7 +195,7 @@
     }
 
     .panel-ingrup{
-        height: 30vh;
+        // height: 30vh;
         padding-left: 0px;
     }
 }

@@ -44,22 +44,22 @@
                     </td>
                     <td>
                     <div>
-                        {{ data.cuello }}
+                        {{ data.cuello?((data.cuello!="" && data.cuello>0)?data.cuello:"NA"):"NA" }}
                     </div>
                     </td>
                     <td>
                     <div>
-                        {{ data.peso?data.peso.toFixed(2):data.peso }}
+                        {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"NA"):"NA" }}
                     </div>
                     </td>
                     <td>
                     <div>
-                        {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"NA"):"NA" }}
                     </div>
                     </td>
                     <td>
                     <div>
-                        {{ data.material }}
+                        {{ data.material?((data.material!="" && data.material.length>0)?data.material:"NA"):"NA" }}
                     </div>
                     </td>
                     <td>
@@ -189,27 +189,27 @@
                 </td>
                 <td>
                 <div>
-                    {{ data.cuello }}
+                        {{ data.cuello?((data.cuello!="" && data.cuello>0)?data.cuello:"NA"):"NA" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                        {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"NA"):"NA" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.altura?data.altura.toFixed(2):data.altura }}
+                        {{ data.altura?((data.altura!="" && data.altura>0)?data.altura.toFixed(2):"NA"):"NA" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"NA"):"NA" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.material }}
+                        {{ data.material?((data.material!="" && data.material.length>0)?data.material:"NA"):"NA" }}
                 </div>
                 </td>
                 <td *ngIf="session">
@@ -267,27 +267,27 @@
                 </td>
                 <td>
                 <div>
-                    {{ data.cuello }}
+                        {{ data.cuello?((data.cuello!="" && data.cuello>0)?data.cuello:"NA"):"NA" }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                        {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"NA"):"NA" }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.separador?data.separador:(data.separador!=""?"-":data.separador) }}
+                        {{ data.separador?((data.separador!="" && data.separador.length>0)?data.separador:"NA"):"NA" }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"NA"):"NA" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.material }}
+                        {{ data.material?((data.material!="" && data.material.length>0)?data.material:"NA"):"NA" }}
                 </div>
                 </td>
                 <td *ngIf="session">
@@ -336,12 +336,12 @@
                 </td>
                 <td>
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"NA"):"NA" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.material }}
+                        {{ data.material?((data.material!="" && data.material.length>0)?data.material:"NA"):"NA" }}
                 </div>
                 </td>
                 <td *ngIf="session">
@@ -390,12 +390,12 @@
                 </td>
                 <td>
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"NA"):"NA" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.material }}
+                        {{ data.material?((data.material!="" && data.material.length>0)?data.material:"NA"):"NA" }}
                 </div>
                 </td>
                 <td *ngIf="session">
@@ -418,19 +418,83 @@
 </div>
 <!-- si son cajillas -->
 <div *ngIf="selectedData.categoria==6">
-        <!-- <div class="card">
-            <div class="card-header">
-                Featured
+        <!-- <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
+            <div class="card-header header-ingrup-table">
+                Ficha Técnica
             </div>
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Descripción
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Descripción
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Descripción
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Descripción
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Descripción
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Descripción
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Descripción
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
+                        </div>
+                      </div>
+                  </li>
                 </ul>
-                <a href="#" class="btn btn-primary mt-5">Go somewhere</a>
             </div>
         </div> -->
 
@@ -472,32 +536,33 @@
                     </td>
                     <td>
                     <div>
-                        {{ data.peso?data.peso.toFixed(2):data.peso }}
+                        {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"NA"):"NA" }}
                     </div>
                     </td>
                     <td>
                     <div>
-                        {{ data.largo?data.largo.toFixed(2):data.largo }}
+                        {{ data.largo?((data.largo!="" && data.largo>0)?data.largo.toFixed(2):"NA"):"NA" }}
                     </div>
                     </td>
                     <td>
                     <div>
-                        {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                        {{ data.cuello?((data.cuello!="" && data.cuello>0)?data.cuello:"NA"):"NA" }}
                     </div>
                     </td>
                     <td>
                     <div>
-                        {{ data.altura?data.altura.toFixed(2):data.altura }}
+                        {{ data.altura?((data.altura!="" && data.altura>0)?data.altura.toFixed(2):"NA"):"NA" }}
                     </div>
                     </td>
                     <td>
                     <div>
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"NA"):"NA" }}
                         {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
                     </div>
                     </td>
                     <td>
                     <div>
-                        {{ data.separador }}
+                        {{ data.separador?((data.separador!="" && data.separador.length>0)?data.separador:"NA"):"NA" }}
                     </div>
                     </td>
                     <td *ngIf="session">
@@ -558,32 +623,33 @@
                         </td>
                         <td class="text-center">
                         <div>
+                            {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"NA"):"NA" }}
                             {{ data.peso?data.peso.toFixed(2):data.peso }}
                         </div>
                         </td>
                         <td class="text-center">
                         <div>
-                            {{ data.largo?data.largo.toFixed(2):data.largo }}
+                            {{ data.largo?((data.largo!="" && data.largo>0)?data.largo.toFixed(2):"NA"):"NA" }}
                         </div>
                         </td>
                         <td class="text-center">
                         <div>
-                            {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                            {{ data.cuello?((data.cuello!="" && data.cuello>0)?data.cuello:"NA"):"NA" }}
                         </div>
                         </td>
                         <td class="text-center">
                         <div>
-                            {{ data.altura?data.altura.toFixed(2):data.altura }}
+                            {{ data.altura?((data.altura!="" && data.altura>0)?data.altura.toFixed(2):"NA"):"NA" }}
                         </div>
                         </td>
                         <td class="text-center">
                         <div>
-                            {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                            {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"NA"):"NA" }}
                         </div>
                         </td>
                         <td>
                         <div>
-                            {{ data.material }}
+                            {{ data.material?((data.material!="" && data.material.length>0)?data.material:"NA"):"NA" }}
                         </div>
                         </td>
                         <td *ngIf="session">
@@ -1338,84 +1404,92 @@
         </div>
 
 
-<!-- si son Linea Vial -->
-<div *ngIf="selectedData.categoria==25">
-        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-            <thead>
-                <tr>
-                    <th style="width:20%;">
-                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                    </th>
-                    <th style="width:20%;text-align: center;">
-                    <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
-                    </th>
-                    <th style="width:20%;text-align: center;">
-                    <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
-                    </th>
-                    <th style="width:20%;text-align: center;">
-                    <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
-                    </th>
-                    <th style="width:20%;text-align: center;">
-                    <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
-                    </th>
-                    <th style="width:20%;">
-                    <mfDefaultSorter by="material">Material</mfDefaultSorter>
-                    </th>
-                    <th style="width:20%;" *ngIf="session">
-                    <mfDefaultSorter>Editar</mfDefaultSorter>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let data of mf.data">
-                    <td>
-                    <div>
-                        {{ data.nombre }}
-                    </div>
-                    </td>
-                    <td class="text-center">
-                    <div>
-                        {{ data.peso?data.peso.toFixed(2):data.peso }}
-                    </div>
-                    </td>
-                    <td class="text-center">
-                    <div>
-                        {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
-                    </div>
-                    </td>
-                    <td class="text-center">
-                    <div>
-                        {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                    </div>
-                    </td>
-                    <td class="text-center">
-                    <div>
-                        {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-                    </div>
-                    </td>
-                    <td>
-                    <div>
-                        {{ data.material }}
-                    </div>
-                    </td>
-                    <td *ngIf="session">
-                    <div>
-                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                    </div>
-                    </td>
-
-                </tr>
-            </tbody>
-            <tfoot>
+<!-- si son Cajillas de pan -->
+<div *ngIf="selectedData.categoria==27">
+    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+        <thead>
             <tr>
-                <td colspan="3">
-                    <mfBootstrapPaginator></mfBootstrapPaginator>
-                </td>
+                <th style="width:20%;">
+                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                </th>
+                <th style="width:20%;text-align: center;">
+                <mfDefaultSorter by="largo">Largo(mm)</mfDefaultSorter>
+                </th>
+                <th style="width:20%;text-align: center;">
+                <mfDefaultSorter by="cuello">Ancho(mm)</mfDefaultSorter>
+                </th>
+                <th style="width:20%;text-align: center;">
+                <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                </th>
+                <th style="width:20%;text-align: center;">
+                <mfDefaultSorter by="unidades">Peso (g)</mfDefaultSorter>
+                </th>
+                <th style="width:20%;">
+                <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                </th>
+                <th style="width:20%;">
+                <mfDefaultSorter by="unidades">Pedido Minimo</mfDefaultSorter>
+                </th>
+                <th style="width:20%;" *ngIf="session">
+                <mfDefaultSorter>Editar</mfDefaultSorter>
+                </th>
             </tr>
-            </tfoot>
-        </table>
-    </div>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of mf.data">
+                <td>
+                <div>
+                    {{ data.nombre }}
+                </div>
+                </td>
+                <td class="text-center">
+                <div>
+                    {{ (+data.largo)?data.largo.toFixed(2):data.largo }}
+                </div>
+                </td>
+                <td class="text-center">
+                <div>
+                    {{ data.cuello?data.cuello.toFixed(2):(data.cuello!="" && data.cuello!=null?data.cuello:"-") }}
+                </div>
+                </td>
+                <td class="text-center">
+                <div>
+                    {{ data.altura?data.altura.toFixed(2):data.altura }}
+                </div>
+                </td>
+                <td class="text-center">
+                <div>
+                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                </div>
+                </td>
+                <td>
+                <div>
+                    {{ data.material }}
+                </div>
+                </td>
+                <td class="text-center">
+                <div>
+                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                </div>
+                </td>
+                <td *ngIf="session">
+                <div>
+                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                </div>
+                </td>
+
+            </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3">
+                <mfBootstrapPaginator></mfBootstrapPaginator>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
 
     <ng-template #deletePresentacionModal let-c="dismiss" let-d="dismiss">
             <div class="modal-header" *ngIf="TablesComponent.edition">
