@@ -4,14 +4,15 @@ import {MarcasService } from "./../../shared/services/marcas.service";
 import {CategoriasService } from "./../../shared/services/categorias.service";
 import {ProductosService } from "./../../shared/services/productos.service";
 import {ImagenesService } from "./../../shared/services/imagenes.service";
-import {PresentacionesService } from "./../../shared/services/presentaciones.service";
 import {SlidesService } from "./../../shared/services/slides.service";
+import {PresentacionesService } from "./../../shared/services/presentaciones.service";
 import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { source } from "./../../../environments/config";
+import { Lightbox } from 'ngx-lightbox';
 
 declare var $: any
 
@@ -59,26 +60,36 @@ export class FormComponent implements OnInit {
 
     customOptions2: any = {
         loop: false,
-        // autoWidth: true,
-        // autoHeight: false,
-        nav: false,
-        autoplay: true,
-        center: true,
-        dots:true,
+        autoplay: false,
+        center: false,
+        animateOut: 'slideOutUp',
+        animateIn: 'slideInUp',
+        dots:false,
         margin:0,
         responsiveClass:true,
         items:7,
         responsive:{
             300:{
+                nav: true,
+                rewindNav : true,
+                navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
                 items:3
             },
             600:{
+                nav: true,
+                rewindNav : true,
+                navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
                 items: 5
             },
             1000:{
+                nav: true,
+                rewindNav : true,
+                navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
                 items: 7
             }
-        }
+        },
+        nav: true,
+
             // URLhashListener:true,
         // startPosition: 'URLHash',
 
@@ -97,6 +108,8 @@ export class FormComponent implements OnInit {
         // { text: 'Slide 9', dotContent: 'text5'},
         // { text: 'Slide 10', dotContent: 'text5'},
       ];
+  win = Window
+
     public edition:any
     public id:number = null
     public idF:number = null
@@ -197,9 +210,10 @@ export class FormComponent implements OnInit {
         private modalService: NgbModal,
         private ProductosService:ProductosService,
         private MarcasService:MarcasService,
+        private _lightbox: Lightbox,
         private route: ActivatedRoute,
-        private SlidesService:SlidesService,
         private ImagenesService:ImagenesService,
+        private SlidesService:SlidesService,
         private PresentacionesService:PresentacionesService,
         private CategoriasService:CategoriasService
     ) {
@@ -210,12 +224,45 @@ export class FormComponent implements OnInit {
     galleryOptions: NgxGalleryOptions[];
     galleryOptions2: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
+    galleryImages2:any = [];
     scrollMyDiv(item) {
         let section = item;
-        window.scroll(0, 0);  // reset window to top
+        // window.scrollTo(0, 0);  // reset window to top
         const elem = document.querySelector('#' + section);
-        let offsetTop = elem.getBoundingClientRect().top;
-        window.scroll(0, offsetTop);
+        // console.log(parseInt(elem.scrollHeight+''));
+
+        let offsetTop = parseInt(elem.scrollHeight+'');
+        if(window.innerWidth < 992){
+            if(offsetTop>500){
+                window.scrollTo(0, 1500);
+
+            }else{
+                setTimeout(() => {
+                    window.scrollTo(0, 500);
+                }, 300);
+            }
+        }else{
+            if(offsetTop>200){
+                if(section=="Galeria"){
+                    window.scrollTo(0, 1500);
+                }else{
+                    window.scrollTo(0, 800);
+
+                }
+
+            }else{
+                if(offsetTop<100){
+                        window.scrollTo(0, 1500);
+                }else{
+                    setTimeout(() => {
+                        window.scrollTo(0, offsetTop);
+                    }, 300);
+                }
+
+            }
+        }
+
+
       }
     ngOnInit() {
 
@@ -268,6 +315,12 @@ export class FormComponent implements OnInit {
         ];
 
         this.resetCarousel();
+        $(document).ready(function () {
+            if($('.slides-ingrup .owl-nav').hasClass('disabled'))
+            {
+                $('.slides-ingrup .owl-nav').removeClass('disabled');
+            }
+        });
     }
     resetCarousel(){
         this.galleryImages = [
@@ -289,7 +342,6 @@ export class FormComponent implements OnInit {
         ];
     }
     getParams() {
-        $(".galeria").focus();
         let data = this.route.snapshot.paramMap.get('id');
         if(data) {
             {
@@ -308,18 +360,20 @@ export class FormComponent implements OnInit {
     }
     cargarSingle(id:number){
     this.blockUI.start();
-      let data = {
+      const data = {
         id:1,
         state:'0',
         filter:'evento'
-      }
+      };
     //   console.log('antes:'+this.selectedData.id+' Ahora'+id);
-
-      let datas = this.selectedData
-        this.selectedData=null
+    this.scrollMyDiv('Galeria');
+    //   console.log(this.idF)
+      const datas = this.selectedData;
+        this.selectedData=null;
       this.ProductosService.getSingle(id)
                           .then(response => {
-                            // console.log(response);
+                            this.customOptions2.nav = true
+                            // console.log(response.id);
                             response.pX = +response.pX;
                             response.pY = +response.pY;
                             response.pZ = +response.pZ;
@@ -351,15 +405,26 @@ export class FormComponent implements OnInit {
                             this.selectedData=response;
                             if(response.imagenes && response.imagenes.length>0){
                                 let data = []
+                                let data2 = []
                                 response.imagenes.forEach(element => {
                                     let obj = {
                                         small: element.src,
                                         medium: element.src,
                                         big: element.src
                                     }
+                                    let obj2 = {
+                                        src: element.src,
+                                        caption: element.src,
+                                        thumb: element.src
+                                    }
                                     data.push(obj)
+                                    data2.push(obj2)
                                 });
-
+                                this.galleryImages = data
+                                this.galleryImages2 = data2
+                            }else{
+                                this.resetCarousel();
+                            }
                             if(response.slides && response.slides.length>0){
                                 let data = []
                                 response.slides.forEach(element => {
@@ -371,37 +436,35 @@ export class FormComponent implements OnInit {
                                     data.push(obj)
                                 });
                                 this.carouselData = data
+
+                                setTimeout(() => {
+                                    $('.owl-nav').removeClass('disabled');
+                                    this.scrollMyDiv('Galeria');
+                                }, 500);
+                                // console.log(this.customOptions2);
+
                             }
-                            this.galleryImages = data
-                            this.scrollMyDiv("galeria")
-                            this.ScrollDiv("container_productos","list-group-item.active");
-                        }else{
-                            this.resetCarousel();
-                        }
+
                             this.blockUI.stop();
                         }).catch(error => {
-                            console.clear
+                            console.clear;
                             this.blockUI.stop();
-                          })
+                          });
     }
-    ScrollDiv(classe:string,classe2:string){
-        var posicion = $("."+classe2).offset().top;
-        console.log($("."+classe2));
-
-        $("."+classe).animate({
-            scrollTop: posicion
-        }, 2000);
-     }
-    cargarAll(){
+    openGallery(index: number): void {
+        // open lightbox
+        this._lightbox.open(this.galleryImages2, index,{ fitImageInViewPort: true, showImageNumberLabel: false,centerVertically:true, albumLabel:"" });
+    }
+    cargarAll() {
         this.blockUI.start();
-        let data = {
+          const data = {
             id:1,
             state:'0',
             filter:'categoria'
-          }
+          };
           this.ProductosService.getAll()
                               .then(response => {
-                                this.Table=response
+                                this.Table=response;
                                 // console.log(response);
                                 this.blockUI.stop();
                             }).catch(error => {
@@ -415,21 +478,21 @@ export class FormComponent implements OnInit {
             this.id=id
         }
         this.blockUI.start();
-          let data = {
+          const data = {
             id:this.id,
             state:'0',
             filter:'marca'
-          }
+          };
           this.ProductosService.getAllFilter(data)
                               .then(response => {
-                                this.Table=response
-                                // console.log(response);
-                                this.scrollMyDiv("inicio")
+                                this.Table = response;
+
                                 this.blockUI.stop();
+                                this.scrollMyDiv('stinkyEnd');
                             }).catch(error => {
-                                console.clear
+                                console.clear;
                                 this.blockUI.stop();
-                              })
+                              });
     }
 
     cargarOfMarca(id: number, changeUrl: boolean= false) {
@@ -450,8 +513,20 @@ export class FormComponent implements OnInit {
                                 if(response.submarca.length<1){
                                     this.cargarOfCate(id,true)
                                 }else{
+
+                                    let first = response.submarca?response.submarca[0].id:1;
                                     let index = response.submarca?((response.submarca.findIndex(element => {return element.id==this.idF}))>0?response.submarca.findIndex(element => {return element.id==this.idF})-1:1):1;
                                     this.customOptions.startPosition = index
+                                    if(this.route.snapshot.paramMap.get('mercado')){
+                                        this.cargarOfCate(first,false)
+
+
+                                    }else{
+                                        this.cargarOfCate(first,true)
+
+                                    }
+                                    this.scrollMyDiv('Galeria');
+
                                 }
                                 // console.log(response);
                                 this.blockUI.stop();
@@ -485,17 +560,34 @@ export class FormComponent implements OnInit {
 
         switch(tipo){
             case "categorias":{
-        this.abierto=true;
+            this.abierto=true;
                 this.CategoriasService.getSingle(id)
                       .then(response => {
                         // console.log(response);
                         this.edition=response;
-                        this.edition.tipo = tipo
+                        this.edition.tipos = tipo
                         this.blockUI.stop();
                     }).catch(error => {
                         console.clear;
                         this.blockUI.stop();
                       });
+                break;
+            }
+            case "categoriasC":{
+            this.abierto=true;
+            this.ProductosService.getSingle(id)
+                      .then(response => {
+                        // console.log(response);
+                        response.nombre=""
+                        this.edition=response;
+                        this.edition.tipos = tipo
+                        this.edition.id = null;
+                        this.blockUI.stop();
+                    }).catch(error => {
+                        console.clear;
+                        this.blockUI.stop();
+                      });
+
                 break;
             }
             case "productos":{
@@ -512,11 +604,27 @@ export class FormComponent implements OnInit {
                       });
                 break;
             }
+            case "productosC":{
+                this.abierto=true;
+
+                this.ProductosService.getSingle(id)
+                      .then(response => {
+                        // console.log(response);
+                        this.edition=response;
+                        this.edition.tipos = tipo
+                        this.edition.id = null;
+                        this.blockUI.stop();
+                    }).catch(error => {
+                        console.clear;
+                        this.blockUI.stop();
+                      });
+                break;
+            }
             case "presentacion":{
         this.abierto=true;
                 this.PresentacionesService.getSingle(id)
                       .then(response => {
-                        // console.log(response);
+                        console.log(response);
                         this.edition=response;
                         this.edition.tipos = tipo
                         this.blockUI.stop();
@@ -707,12 +815,13 @@ export class FormComponent implements OnInit {
             if(size<(5*(1024*1024))){
               if(type=="image/png" || type=="image/jpeg" || type=="image/jpg"){
             $("#"+id).upload(url,
-                {
+                {//upload started
                   avatar: archivos[i],
                   carpeta: "ProductosIngrup"
               },
               function(respuesta)
-              {
+              {//Upload Successfull
+
                 $('#imagenComentario').attr("src",'')
                 $('#imagenComentario').attr("src",respuesta)
                 $("#"+id).val('')
@@ -721,7 +830,7 @@ export class FormComponent implements OnInit {
                 $("#stopLoader").click();
               },
               function(progreso, valor)
-              {
+              {//Received progress
 
                 $("#barra_de_progreso").val(valor);
               }
@@ -826,12 +935,15 @@ export class FormComponent implements OnInit {
       formValue = this.edition
         this.blockUI.start();
     switch (formValue.tipos) {
-        case "categorias":{
-            this.CategoriasService.update(formValue)
+        case "categoriasC":{
+            formValue.descripcion = formValue.nombre
+            formValue.tipo = formValue.categoria
+            formValue.codigo = btoa(formValue.nombre).substr(0,10);
+            this.ProductosService.create(formValue)
                                     .then(response => {
-                                    // console.log(response);
-                                    this.getParams();
-                                    console.clear
+                                        // console.log(response);
+                                        this.getParams();
+                                        console.clear
                                     this.blockUI.stop();
                                     }).catch(error => {
                                     console.clear
@@ -840,7 +952,9 @@ export class FormComponent implements OnInit {
                                     })
                                     break;
         }
-        case "productos":{
+        case "productosC":{
+            formValue.descripcion = formValue.nombre
+            formValue.codigo = btoa(formValue.nombre).substr(0,10);
             this.ProductosService.create(formValue)
                                     .then(response => {
                                     // console.log(response);
@@ -922,14 +1036,19 @@ export class FormComponent implements OnInit {
 
         }
         delete(data:any){
+            console.log("eliminando: ",data.tipos);
+
             this.blockUI.start();
             switch (data.tipos) {
                 case "categorias":{
-                    this.CategoriasService.update(data)
+            console.log("eliminando2");
+
+                    this.CategoriasService.delete(data.id)
                                             .then(response => {
-                                            // console.log(response);
+                                            console.log(response);
                                             this.abierto=false
-                                            this.getParams();
+            console.log("eliminado");
+            this.getParams();
                                             console.clear
                                             this.blockUI.stop();
                                             }).catch(error => {

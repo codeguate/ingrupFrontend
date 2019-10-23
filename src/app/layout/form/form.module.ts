@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableModule } from 'angular-6-datatable';
+import { LightboxModule } from 'ngx-lightbox';
 
 import { AtftModule } from 'atft';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -19,7 +20,7 @@ import { MenuComponent } from './../components/menu/menu.component';
 import { TablesProdsComponent } from "./../components/tables-prods/tables-prods.component";
 
 @NgModule({
-    imports: [CommonModule, FormRoutingModule, NgbModule, PageHeaderModule,AtftModule,CarouselModule,DataTableModule,FormsModule,NgxGalleryModule],
+    imports: [CommonModule, FormRoutingModule, NgbModule,LightboxModule, PageHeaderModule,AtftModule,CarouselModule,DataTableModule,FormsModule,NgxGalleryModule],
     declarations: [FormComponent,MenuComponent,TablesProdsComponent],
     providers: [ProductosService,ImagenesService,PresentacionesService]
 })
