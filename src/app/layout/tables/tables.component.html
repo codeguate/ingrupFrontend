@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-    <app-header></app-header>
+    <app-header [idF]="idF" *ngIf="idF"></app-header>
     <div class="row back-gris" *ngIf="Marcas">
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 menu-ingrup m-auto" [class.menu-ingrup-2]="Marcas.submarca.length>2" >
             <owl-carousel-o [options]="customOptions">

@@ -197,22 +197,22 @@ export class DashboardComponent implements OnInit {
             { id: 1, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/NQ8hHxjv0RI?controls=1&autoplay=0&loop=1")},
             // { id: 2, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/e19T_RO8qa8?controls=1&autoplay=0&loop=1")},
 
-            {
-                id: 1,
-                type: 'assets/images/Home/Modulo-1/Imagen-video-1.png',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
-            {
-                id: 2,
-                type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
+            // {
+            //     id: 1,
+            //     type: 'assets/images/Home/Modulo-1/Imagen-video-1.png',
+            //     message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            //     Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+            //     consectetur velit culpa molestias dignissimos
+            //     voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            // },
+            // {
+            //     id: 2,
+            //     type: 'assets/images/Home/Modulo-1/imagen-video-2.png',
+            //     message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            //     Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+            //     consectetur velit culpa molestias dignissimos
+            //     voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            // },
             // {
             //     id: 2,
             //     type: 'assets/images/Home/Modulo-1/imagen-video-2.png',

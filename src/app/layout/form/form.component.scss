@@ -117,6 +117,12 @@
     margin-left: 0px;
     margin-right: auto;
 }
+.sub_menu_content{
+    // width: fit-content;
+}
+.sub_menu_panel.active{
+    // height: 27vh!important;
+}
 
 .downRow{
     margin-right: auto;
@@ -161,7 +167,7 @@
 
 
 .uniqueImageContainer{
-    height: 820px;
+    height: 700px;
     width:90%;
     display: flex;
     .uniqueImage{
@@ -183,6 +189,7 @@
     padding-left: -1rem;
 
 }
+
 .title_sub_produc{
     margin-left: 0.3rem!important;
 }
@@ -197,34 +204,5 @@
     .panel-ingrup{
         // height: 30vh;
         padding-left: 0px;
-    }
-}
-.filtrosUL{
-    width: 100%;
-    height: auto;
-    margin-top: 1rem;
-    margin-bottom: auto;
-}
-.filtrosUL li{
-    background-color: #ffffff;
-    border: none;
-    cursor: pointer;
-}
-
-.filtrosUL li h3{
-    color: #999;
-    background-color: #ffffff;
-    text-decoration: none;
-}
-.filtrosUL li.active{
-    h3{
-        background-color: #44D62C!important;
-        color:#ffffff!important;
-    }
-}
-.filtrosUL li:hover{
-    h3{
-        background-color: #44D62C!important;
-        color:#ffffff!important;
     }
 }

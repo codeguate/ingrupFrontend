@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { BlockTemplateComponent } from "./../block-template-component/block-template-component.component";
 @Component({
     selector: 'app-layout',
     templateUrl: './layout.component.html',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class LayoutComponent implements OnInit {
 
     collapedSideBar: boolean = false;
+    blockTemplate:any
 
-    constructor() {}
+    constructor(
+        // public blockTemplate:BlockTemplateComponent
+    ) {}
 
     ngOnInit() {}
 
