@@ -15,15 +15,15 @@
 
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 offset-xs-1 offset-sm-1 offset-md-1 offset-lg-1 menu-ingrup">
             <owl-carousel-o [options]="customOptions">
-                <ng-container *ngFor="let slide of Table" >
+                <ng-container *ngFor="let slide of Table; let i = index" >
                   <ng-template carouselSlide>
 
-                    <a style="list-style: none;text-decoration: none;" (click)="TablesComponent.cargarOfCate(slide.id,true)" [routerLink]="['/mercados',slide.id]" >
+                    <a style="list-style: none;text-decoration: none;" (mouseenter)="cambiarIMG(i,'01.svg',4)" (mouseleave)="cambiarIMG(i,'.svg',6)" (click)="TablesComponent.cargarOfCate(slide.id,true)" [routerLink]="['/mercados',slide.id]" >
                         <div class="panel-ingrup" [routerLinkActive]="['active']">
                             <img [src]="slide.foto" class="menu-item-ingrup" >
                             <!-- <div class="ingrup-content">
                                 <div class="panel-body-ingrup">
-                                    <img [src]="slide.foto" class="menu-item-ingrup" >
+                                    <img [src]="slide.icono" class="menu-item-ingrup" >
                                 </div>
                                 <div class="panel-title-ingrup">
                                     <h3 [class.largo]="slide.nombre.length>20">{{slide.nombre}}</h3>

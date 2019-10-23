@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MarcasService } from "./../../../shared/services/marcas.service";
 import { TranslateService } from '@ngx-translate/core';
@@ -20,6 +20,7 @@ export class CarouselData {
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
     public pushRightClass: string;
     Table:any = null
     carouselData: CarouselData[] = [
@@ -110,7 +111,11 @@ export class HeaderComponent implements OnInit {
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
     }
+    cambiarIMG(index,text,cant){
+        this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text
+        console.log(this.Table[index].foto);
 
+    }
     changeLang(language: string) {
         this.translate.use(language);
     }

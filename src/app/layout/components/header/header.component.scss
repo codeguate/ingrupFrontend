@@ -53,9 +53,6 @@ $topnav-background-color: #222;
     border: solid 1px #ffffff;
     cursor:pointer;
 }
-.panel-ingrup:hover .menu-item-ingrup{
-    filter:brightness(1);
-}
 .panel-ingrup:hover .panel-title-ingrup h3{
     color: #ffffff;
     padding-left: -0.8rem;
@@ -65,7 +62,7 @@ $topnav-background-color: #222;
 .panel-ingrup.active {
     background-color: #44D62C;
     list-style: none;
-    width: 80%;
+    width: 100%;
     box-shadow: #44D62C 0px 0px 10px 5px;
     border: solid 1px #ffffff;
     cursor: pointer;
@@ -98,7 +95,7 @@ $topnav-background-color: #222;
 .panel-ingrup{
     // padding: 2rem;
     // height: 30vh;
-    width: 80%;
+    width: 100%;
     list-style: none;
     text-decoration: none;
     border-radius: 10px;

@@ -430,15 +430,14 @@
                             Descripción
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <ng-select [items]="complete.presentaciones"
+                            <ng-select [items]="complete.descripcion"
                                         bindLabel="nombre"
-                                        groupBy="selected.descripcion"
                                         placeholder="Select item"
                                         [searchable]="true"
-                                        [clearable]="true"
                                         [closeOnSelect]="true"
                                         appendTo="body"
                                         multiple="false"
+                                        maxSelectedItems="1"
                                         [(ngModel)]="selected.descripcion">
                             </ng-select>
                             <!-- <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion"> -->
@@ -451,15 +450,14 @@
                             Peso (Gr)
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <ng-select [items]="selectedData.presentaciones"
+                            <ng-select [items]="complete.peso"
                                 bindLabel="peso"
                                 placeholder="Select item"
                                 [searchable]="true"
-                                [clearable]="true"
                                 [closeOnSelect]="true"
-                                groupBy="selected.peso"
                                 appendTo="body"
                                 multiple="false"
+                                maxSelectedItems="1"
                                 [(ngModel)]="selected.peso">
                             </ng-select>
                             <!-- <input type="text" name="Filtro2" id="Filtro2" class="form-control" [(ngModel)]="selectedData.presentaciones[0].peso"> -->
@@ -472,15 +470,14 @@
                             Largo (mm)
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <ng-select [items]="selectedData.presentaciones"
+                                <ng-select [items]="complete.largo"
                                     bindLabel="largo"
                                     placeholder="Select item"
                                     [searchable]="true"
-                                    [clearable]="true"
                                     [closeOnSelect]="true"
                                     appendTo="body"
-                                    groupBy="selected.largo"
                                     multiple="false"
+                                    maxSelectedItems="1"
                                     [(ngModel)]="selected.largo">
                                 </ng-select>
                             <!-- <input type="text" name="Filtro3" id="Filtro3" class="form-control" [(ngModel)]="selectedData.presentaciones[0].largo"> -->
@@ -493,15 +490,14 @@
                             Ancho (mm)
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <ng-select [items]="selectedData.presentaciones"
+                                <ng-select [items]="complete.cuello"
                                     bindLabel="cuello"
                                     placeholder="Select item"
                                     [searchable]="true"
-                                    [clearable]="true"
                                     [closeOnSelect]="true"
-                                    groupBy="selected.cuello"
                                     appendTo="body"
                                     multiple="false"
+                                    maxSelectedItems="1"
                                     [(ngModel)]="selected.cuello">
                                 </ng-select>
                             <!-- <input type="text" name="Filtro4" id="Filtro4" class="form-control" [(ngModel)]="selectedData.presentaciones[0].cuello"> -->
@@ -514,15 +510,14 @@
                             Altura (mm)
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <ng-select [items]="selectedData.presentaciones"
+                                <ng-select [items]="complete.altura"
                                     bindLabel="altura"
                                     placeholder="Select item"
                                     [searchable]="true"
-                                    [clearable]="true"
                                     [closeOnSelect]="true"
-                                    groupBy="selected.altura"
                                     appendTo="body"
                                     multiple="false"
+                                    maxSelectedItems="1"
                                     [(ngModel)]="selected.altura">
                                 </ng-select>
                             <!-- <input type="text" name="Filtro5" id="Filtro5" class="form-control" [(ngModel)]="selectedData.presentaciones[0].altura"> -->
@@ -535,15 +530,14 @@
                             Minimo de Produccion
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <ng-select [items]="selectedData.presentaciones"
+                                <ng-select [items]="complete.unidades"
                                     bindLabel="unidades"
                                     placeholder="Select item"
                                     [searchable]="true"
-                                    [clearable]="true"
                                     [closeOnSelect]="true"
-                                    groupBy="selected.unidades"
                                     appendTo="body"
                                     multiple="false"
+                                    maxSelectedItems="1"
                                     [(ngModel)]="selected.unidades">
                                 </ng-select>
                             <!-- <input type="text" name="Filtro6" id="Filtro6" class="form-control" [(ngModel)]="selectedData.presentaciones[0].unidades"> -->
@@ -556,15 +550,14 @@
                             Separador
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <ng-select [items]="selectedData.presentaciones"
+                                <ng-select [items]="complete.separador"
                                     bindLabel="separador"
                                     placeholder="Select item"
                                     [searchable]="true"
-                                    [clearable]="true"
                                     [closeOnSelect]="true"
-                                    groupBy="selected.separador"
                                     appendTo="body"
                                     multiple="false"
+                                    maxSelectedItems="1"
                                     [(ngModel)]="selected.separador">
                                 </ng-select>
                             <!-- <input type="text" name="Filtro7" id="Filtro7" class="form-control" [(ngModel)]="selectedData.presentaciones[0].separador"> -->
@@ -575,7 +568,7 @@
             </div>
         </div>
 
-        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+        <!-- <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
             <thead>
                 <tr>
                     <th style="width:20%;">
@@ -657,7 +650,7 @@
                 </td>
             </tr>
             </tfoot>
-        </table>
+        </table> -->
     </div>
 <!-- si son cajillas agricolas -->
     <div *ngIf="selectedData.categoria==7">
