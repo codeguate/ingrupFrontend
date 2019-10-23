@@ -492,6 +492,14 @@ canvas{
 .ngx-gallery-icon-content{
     color: black;
 }
+.downRow img{
+    width: 22px !important;
+    max-width: 22px !important;
+}
+.lightbox{
+    position: fixed;
+    top: 10% !important;
+}
 @media only screen and (max-width: 1000px){
     .logo.pointer{
         width: 50%;

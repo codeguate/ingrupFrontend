@@ -80,6 +80,7 @@ $topnav-background-color: #222;
 .downRow.show{
     display: flex;
 }
+
 .panel-ingrup.active .menu-item-ingrup{
     filter:brightness(1);
 }
@@ -139,6 +140,10 @@ $topnav-background-color: #222;
 .menu-ingrup{
     height: 70%;
     margin-top: auto;
+}
+.downRow img{
+    width: 22px !important;
+    max-width: 22px !important;
 }
 @media only screen and (max-width: 900px){
     .panel-ingrup.active {
