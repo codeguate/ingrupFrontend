@@ -1,11 +1,159 @@
-<div class="w-100 text-left mt-3" *ngIf="selectedData && selectedData.id>0">
-    <a [routerLink]="['/contactenos',selectedData.marca]">
-    <img src="./../../../assets/images/Mercados/Modulo-2/boton cotizar con texto.png" alt=""></a>
+<div class="w-60 mx-auto text-left mt-3" *ngIf="selectedData && selectedData.id>0">
+        <a [routerLink]="['/contactenos',selectedData.marca]">
+        <img src="./../../../assets/images/Mercados/Modulo-2/boton cotizar con texto.png" alt=""></a>
 </div>
 <!-- cuando son tapas -->
 <div *ngIf="selectedData.categoria==3 && selectedData.marca!=4">
-<!-- cuando No son tapas profyt -->
-<div *ngIf="!selectedData.calibress">
+    <!-- cuando No son tapas profyt -->
+    <div *ngIf="!selectedData.calibress">
+        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="cuello">Cuello</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="unidades">Unidades Por Caja</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="liner">Liner</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="hotfill">Hot Fill </mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.cuello?((data.cuello!="" && data.cuello>0)?data.cuello:"N/A"):"N/A" }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"N/A"):"N/A" }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.material?((data.material!="" && data.material.length>0)?data.material:"N/A"):"N/A" }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.liner?"S/A":"N/A" }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.hotfill?"S/A":"N/A" }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- cuando Son tapas profyt -->
+    <div *ngIf="selectedData.calibress">
+        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                    </th>
+                    <th style="width:60%;">
+                    <mfDefaultSorter by="calibres">Calibres</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="material">Botella</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td>
+                    <div style="width: 100%;text-align:center;">
+                        {{ data.calibres }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.separador }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.material }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<!-- Cuando son proformas -->
+<div *ngIf="selectedData.categoria==1">
     <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
         <thead>
             <tr>
@@ -19,16 +167,13 @@
                 <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
                 </th>
                 <th style="width:20%;">
-                <mfDefaultSorter by="unidades">Unidades Por Caja</mfDefaultSorter>
+                <mfDefaultSorter by="altura">Altura(mm)</mfDefaultSorter>
+                </th>
+                <th style="width:20%;">
+                <mfDefaultSorter by="unidades">Unidades por Caja</mfDefaultSorter>
                 </th>
                 <th style="width:20%;">
                 <mfDefaultSorter by="material">Material</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="liner">Liner</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="hotfill">Hot Fill </mfDefaultSorter>
                 </th>
                 <th style="width:20%;" *ngIf="session">
                 <mfDefaultSorter>Editar</mfDefaultSorter>
@@ -44,32 +189,27 @@
                 </td>
                 <td>
                 <div>
-                    {{ data.cuello }}
+                        {{ data.cuello?((data.cuello!="" && data.cuello>0)?data.cuello:"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                        {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                        {{ data.altura?((data.altura!="" && data.altura>0)?data.altura.toFixed(2):"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.material }}
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.liner?"Si Aplica":"No Aplica" }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.hotfill?"Si Aplica":"No Aplica" }}
+                        {{ data.material?((data.material!="" && data.material.length>0)?data.material:"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td *ngIf="session">
@@ -89,440 +229,31 @@
         </tr>
         </tfoot>
     </table>
-</div>
-<!-- cuando Son tapas profyt -->
-<div *ngIf="selectedData.calibress">
-    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                </th>
-                <th style="width:60%;">
-                <mfDefaultSorter by="calibres">Calibres</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="material">Botella</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="material">Material</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td>
-                <div style="width: 100%;text-align:center;">
-                    {{ data.calibres }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.separador }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.material }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-</div>
-<!-- Cuando son proformas -->
-<div *ngIf="selectedData.categoria==1">
-<table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-    <thead>
-        <tr>
-            <th style="width:20%;">
-            <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-            </th>
-            <th style="width:20%;">
-            <mfDefaultSorter by="cuello">Cuello</mfDefaultSorter>
-            </th>
-            <th style="width:20%;">
-            <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
-            </th>
-            <th style="width:20%;">
-            <mfDefaultSorter by="altura">Altura(mm)</mfDefaultSorter>
-            </th>
-            <th style="width:20%;">
-            <mfDefaultSorter by="unidades">Unidades por Caja</mfDefaultSorter>
-            </th>
-            <th style="width:20%;">
-            <mfDefaultSorter by="material">Material</mfDefaultSorter>
-            </th>
-            <th style="width:20%;" *ngIf="session">
-            <mfDefaultSorter>Editar</mfDefaultSorter>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let data of mf.data">
-            <td>
-            <div>
-                {{ data.nombre }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.cuello }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.peso?data.peso.toFixed(2):data.peso }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.altura?data.altura.toFixed(2):data.altura }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.material }}
-            </div>
-            </td>
-            <td *ngIf="session">
-            <div>
-                <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-            </div>
-            </td>
-
-        </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="3">
-            <mfBootstrapPaginator></mfBootstrapPaginator>
-        </td>
-    </tr>
-    </tfoot>
-</table>
 </div>
 <!-- cuando son envases -->
 <div *ngIf="selectedData.categoria==2">
-<table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-    <thead>
-        <tr>
-            <th style="width:20%;">
-            <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-            </th>
-            <th style="width:20%;">
-            <mfDefaultSorter by="cuello">Cuello</mfDefaultSorter>
-            </th>
-            <th style="width:20%;text-align:center;">
-            <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
-            </th>
-            <th style="width:20%;text-align:center;">
-            <mfDefaultSorter by="altura">Volumen</mfDefaultSorter>
-            </th>
-            <th style="width:20%;text-align:center;">
-            <mfDefaultSorter by="unidades">Unidades por Tarima</mfDefaultSorter>
-            </th>
-            <th style="width:20%;text-align:center;">
-            <mfDefaultSorter by="material">Material</mfDefaultSorter>
-            </th>
-            <th style="width:20%;text-align:center;" *ngIf="session">
-            <mfDefaultSorter>Editar</mfDefaultSorter>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let data of mf.data">
-            <td>
-            <div>
-                {{ data.nombre }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.cuello }}
-            </div>
-            </td>
-            <td class="text-center">
-            <div>
-                {{ data.peso?data.peso.toFixed(2):data.peso }}
-            </div>
-            </td>
-            <td class="text-center">
-            <div>
-                {{ data.separador?data.separador:(data.separador!=""?"-":data.separador) }}
-            </div>
-            </td>
-            <td class="text-center">
-            <div>
-                {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.material }}
-            </div>
-            </td>
-            <td *ngIf="session">
-            <div>
-                <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-            </div>
-            </td>
-
-        </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="3">
-            <mfBootstrapPaginator></mfBootstrapPaginator>
-        </td>
-    </tr>
-    </tfoot>
-</table>
-</div>
-<!-- cuando son tapas de for service -->
-<div *ngIf="selectedData.categoria==3 && selectedData.marca==4">
-<table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-    <thead>
-        <tr>
-            <th style="width:20%;">
-            <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-            </th>
-            <th style="width:20%;">
-            <mfDefaultSorter by="unidades">Unidades por Caja</mfDefaultSorter>
-            </th>
-            <th style="width:20%;">
-            <mfDefaultSorter by="material">Material</mfDefaultSorter>
-            </th>
-            <th style="width:20%;" *ngIf="session">
-            <mfDefaultSorter>Editar</mfDefaultSorter>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let data of mf.data">
-            <td>
-            <div>
-                {{ data.nombre }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.material }}
-            </div>
-            </td>
-            <td *ngIf="session">
-            <div>
-                <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-            </div>
-            </td>
-
-        </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="3">
-            <mfBootstrapPaginator></mfBootstrapPaginator>
-        </td>
-    </tr>
-    </tfoot>
-</table>
-</div>
-<!-- si son vasos -->
-<div *ngIf="selectedData.categoria==8 || selectedData.categoria==26">
-<table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-    <thead>
-        <tr>
-            <th style="width:20%;">
-            <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-            </th>
-            <th style="width:20%;">
-            <mfDefaultSorter by="unidades">Unidades por Caja</mfDefaultSorter>
-            </th>
-            <th style="width:20%;">
-            <mfDefaultSorter by="material">Material</mfDefaultSorter>
-            </th>
-            <th style="width:20%;" *ngIf="session">
-            <mfDefaultSorter>Editar</mfDefaultSorter>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let data of mf.data">
-            <td>
-            <div>
-                {{ data.nombre }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-            </div>
-            </td>
-            <td>
-            <div>
-                {{ data.material }}
-            </div>
-            </td>
-            <td *ngIf="session">
-            <div>
-                <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-            </div>
-            </td>
-
-        </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="3">
-            <mfBootstrapPaginator></mfBootstrapPaginator>
-        </td>
-    </tr>
-    </tfoot>
-</table>
-</div>
-<!-- si son cajillas -->
-<div *ngIf="selectedData.categoria==6">
-    <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
-        <div class="card-header header-ingrup-table">
-            Ficha Técnica
-        </div>
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                  <div class="row w-100">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        Descripción
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
-                    </div>
-                  </div>
-              </li>
-              <li class="list-group-item">
-                  <div class="row w-100">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        Descripción
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
-                    </div>
-                  </div>
-              </li>
-              <li class="list-group-item">
-                  <div class="row w-100">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        Descripción
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
-                    </div>
-                  </div>
-              </li>
-              <li class="list-group-item">
-                  <div class="row w-100">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        Descripción
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
-                    </div>
-                  </div>
-              </li>
-              <li class="list-group-item">
-                  <div class="row w-100">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        Descripción
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
-                    </div>
-                  </div>
-              </li>
-              <li class="list-group-item">
-                  <div class="row w-100">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        Descripción
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
-                    </div>
-                  </div>
-              </li>
-              <li class="list-group-item">
-                  <div class="row w-100">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        Descripción
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion">
-                    </div>
-                  </div>
-              </li>
-            </ul>
-        </div>
-    </div>
-
     <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
         <thead>
             <tr>
                 <th style="width:20%;">
                 <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
                 </th>
-                <th style="width:10%;">
+                <th style="width:20%;">
+                <mfDefaultSorter by="cuello">Cuello</mfDefaultSorter>
+                </th>
+                <th style="width:20%;text-align:center;">
                 <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
                 </th>
-                <th style="width:10%;">
-                <mfDefaultSorter by="largo">Largo (mm)</mfDefaultSorter>
+                <th style="width:20%;text-align:center;">
+                <mfDefaultSorter by="altura">Volumen</mfDefaultSorter>
                 </th>
-                <th style="width:10%;">
-                <mfDefaultSorter by="ancho">Ancho (mm)</mfDefaultSorter>
+                <th style="width:20%;text-align:center;">
+                <mfDefaultSorter by="unidades">Unidades por Tarima</mfDefaultSorter>
                 </th>
-                <th style="width:10%;">
-                <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                <th style="width:20%;text-align:center;">
+                <mfDefaultSorter by="material">Material</mfDefaultSorter>
                 </th>
-                <th style="width:10%;">
-                <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="separador">Separador</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
+                <th style="width:20%;text-align:center;" *ngIf="session">
                 <mfDefaultSorter>Editar</mfDefaultSorter>
                 </th>
             </tr>
@@ -536,32 +267,27 @@
                 </td>
                 <td>
                 <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                        {{ data.cuello?((data.cuello!="" && data.cuello>0)?data.cuello:"N/A"):"N/A" }}
+                </div>
+                </td>
+                <td class="text-center">
+                <div>
+                        {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"N/A"):"N/A" }}
+                </div>
+                </td>
+                <td class="text-center">
+                <div>
+                        {{ data.separador?((data.separador!="" && data.separador.length>0)?data.separador:"N/A"):"N/A" }}
+                </div>
+                </td>
+                <td class="text-center">
+                <div>
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.largo?data.largo.toFixed(2):data.largo }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.altura?data.altura.toFixed(2):data.altura }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.separador }}
+                        {{ data.material?((data.material!="" && data.material.length>0)?data.material:"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td *ngIf="session">
@@ -582,24 +308,855 @@
         </tfoot>
     </table>
 </div>
+<!-- cuando son tapas de for service -->
+<div *ngIf="selectedData.categoria==3 && selectedData.marca==4">
+    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+        <thead>
+            <tr>
+                <th style="width:20%;">
+                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                </th>
+                <th style="width:20%;">
+                <mfDefaultSorter by="unidades">Unidades por Caja</mfDefaultSorter>
+                </th>
+                <th style="width:20%;">
+                <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                </th>
+                <th style="width:20%;" *ngIf="session">
+                <mfDefaultSorter>Editar</mfDefaultSorter>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of mf.data">
+                <td>
+                <div>
+                    {{ data.nombre }}
+                </div>
+                </td>
+                <td>
+                <div>
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                </div>
+                </td>
+                <td>
+                <div>
+                        {{ data.material?((data.material!="" && data.material.length>0)?data.material:"N/A"):"N/A" }}
+                </div>
+                </td>
+                <td *ngIf="session">
+                <div>
+                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                </div>
+                </td>
+
+            </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3">
+                <mfBootstrapPaginator></mfBootstrapPaginator>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<!-- si son vasos -->
+<div *ngIf="selectedData.categoria==8 || selectedData.categoria==26">
+    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+        <thead>
+            <tr>
+                <th style="width:20%;">
+                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                </th>
+                <th style="width:20%;">
+                <mfDefaultSorter by="unidades">Unidades por Caja</mfDefaultSorter>
+                </th>
+                <th style="width:20%;">
+                <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                </th>
+                <th style="width:20%;" *ngIf="session">
+                <mfDefaultSorter>Editar</mfDefaultSorter>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of mf.data">
+                <td>
+                <div>
+                    {{ data.nombre }}
+                </div>
+                </td>
+                <td>
+                <div>
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                </div>
+                </td>
+                <td>
+                <div>
+                        {{ data.material?((data.material!="" && data.material.length>0)?data.material:"N/A"):"N/A" }}
+                </div>
+                </td>
+                <td *ngIf="session">
+                <div>
+                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                </div>
+                </td>
+
+            </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3">
+                <mfBootstrapPaginator></mfBootstrapPaginator>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<!-- si son cajillas -->
+<div *ngIf="selectedData.categoria==6">
+        <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
+            <div class="card-header header-ingrup-table">
+                Ficha Técnica
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Descripción
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <ng-select [items]="complete.descripcion"
+                                        bindLabel="nombre"
+                                        placeholder="Select item"
+                                        [searchable]="true"
+                                        [closeOnSelect]="true"
+                                        appendTo="body"
+                                        multiple="false"
+                                        maxSelectedItems="1"
+                                        [(ngModel)]="selected.descripcion">
+                            </ng-select>
+                            <!-- <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion"> -->
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Peso (Gr)
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <ng-select [items]="complete.peso"
+                                bindLabel="peso"
+                                placeholder="Select item"
+                                [searchable]="true"
+                                [closeOnSelect]="true"
+                                appendTo="body"
+                                multiple="false"
+                                maxSelectedItems="1"
+                                [(ngModel)]="selected.peso">
+                            </ng-select>
+                            <!-- <input type="text" name="Filtro2" id="Filtro2" class="form-control" [(ngModel)]="selectedData.presentaciones[0].peso"> -->
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Largo (mm)
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <ng-select [items]="complete.largo"
+                                    bindLabel="largo"
+                                    placeholder="Select item"
+                                    [searchable]="true"
+                                    [closeOnSelect]="true"
+                                    appendTo="body"
+                                    multiple="false"
+                                    maxSelectedItems="1"
+                                    [(ngModel)]="selected.largo">
+                                </ng-select>
+                            <!-- <input type="text" name="Filtro3" id="Filtro3" class="form-control" [(ngModel)]="selectedData.presentaciones[0].largo"> -->
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Ancho (mm)
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <ng-select [items]="complete.cuello"
+                                    bindLabel="cuello"
+                                    placeholder="Select item"
+                                    [searchable]="true"
+                                    [closeOnSelect]="true"
+                                    appendTo="body"
+                                    multiple="false"
+                                    maxSelectedItems="1"
+                                    [(ngModel)]="selected.cuello">
+                                </ng-select>
+                            <!-- <input type="text" name="Filtro4" id="Filtro4" class="form-control" [(ngModel)]="selectedData.presentaciones[0].cuello"> -->
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Altura (mm)
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <ng-select [items]="complete.altura"
+                                    bindLabel="altura"
+                                    placeholder="Select item"
+                                    [searchable]="true"
+                                    [closeOnSelect]="true"
+                                    appendTo="body"
+                                    multiple="false"
+                                    maxSelectedItems="1"
+                                    [(ngModel)]="selected.altura">
+                                </ng-select>
+                            <!-- <input type="text" name="Filtro5" id="Filtro5" class="form-control" [(ngModel)]="selectedData.presentaciones[0].altura"> -->
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Minimo de Produccion
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <ng-select [items]="complete.unidades"
+                                    bindLabel="unidades"
+                                    placeholder="Select item"
+                                    [searchable]="true"
+                                    [closeOnSelect]="true"
+                                    appendTo="body"
+                                    multiple="false"
+                                    maxSelectedItems="1"
+                                    [(ngModel)]="selected.unidades">
+                                </ng-select>
+                            <!-- <input type="text" name="Filtro6" id="Filtro6" class="form-control" [(ngModel)]="selectedData.presentaciones[0].unidades"> -->
+                        </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            Separador
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <ng-select [items]="complete.separador"
+                                    bindLabel="separador"
+                                    placeholder="Select item"
+                                    [searchable]="true"
+                                    [closeOnSelect]="true"
+                                    appendTo="body"
+                                    multiple="false"
+                                    maxSelectedItems="1"
+                                    [(ngModel)]="selected.separador">
+                                </ng-select>
+                            <!-- <input type="text" name="Filtro7" id="Filtro7" class="form-control" [(ngModel)]="selectedData.presentaciones[0].separador"> -->
+                        </div>
+                      </div>
+                  </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                    </th>
+                    <th style="width:10%;">
+                    <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
+                    </th>
+                    <th style="width:10%;">
+                    <mfDefaultSorter by="largo">Largo (mm)</mfDefaultSorter>
+                    </th>
+                    <th style="width:10%;">
+                    <mfDefaultSorter by="ancho">Ancho (mm)</mfDefaultSorter>
+                    </th>
+                    <th style="width:10%;">
+                    <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                    </th>
+                    <th style="width:10%;">
+                    <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="separador">Separador</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"N/A"):"N/A" }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.largo?((data.largo!="" && data.largo>0)?data.largo.toFixed(2):"N/A"):"N/A" }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.cuello?((data.cuello!="" && data.cuello>0)?data.cuello:"N/A"):"N/A" }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.altura?((data.altura!="" && data.altura>0)?data.altura.toFixed(2):"N/A"):"N/A" }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.separador?((data.separador!="" && data.separador.length>0)?data.separador:"N/A"):"N/A" }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table> -->
+    </div>
 <!-- si son cajillas agricolas -->
-<div *ngIf="selectedData.categoria==7">
+    <div *ngIf="selectedData.categoria==7">
+            <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+                <thead>
+                    <tr>
+                        <th style="width:20%;">
+                        <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                        </th>
+                        <th style="width:10%;text-align: center;">
+                        <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
+                        </th>
+                        <th style="width:10%;text-align: center;">
+                        <mfDefaultSorter by="largo">Largo (mm)</mfDefaultSorter>
+                        </th>
+                        <th style="width:10%;text-align: center;">
+                        <mfDefaultSorter by="ancho">Ancho (mm)</mfDefaultSorter>
+                        </th>
+                        <th style="width:10%;text-align: center;">
+                        <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                        </th>
+                        <th style="width:20%;text-align: center;">
+                        <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
+                        </th>
+                        <th style="width:20%;">
+                        <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                        </th>
+                        <th style="width:20%;" *ngIf="session">
+                        <mfDefaultSorter>Editar</mfDefaultSorter>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of mf.data">
+                        <td>
+                        <div>
+                            {{ data.nombre }}
+                        </div>
+                        </td>
+                        <td class="text-center">
+                        <div>
+                            {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"N/A"):"N/A" }}
+                        </div>
+                        </td>
+                        <td class="text-center">
+                        <div>
+                            {{ data.largo?((data.largo!="" && data.largo>0)?data.largo.toFixed(2):"N/A"):"N/A" }}
+                        </div>
+                        </td>
+                        <td class="text-center">
+                        <div>
+                            {{ data.cuello?((data.cuello!="" && data.cuello>0)?data.cuello:"N/A"):"N/A" }}
+                        </div>
+                        </td>
+                        <td class="text-center">
+                        <div>
+                            {{ data.altura?((data.altura!="" && data.altura>0)?data.altura.toFixed(2):"N/A"):"N/A" }}
+                        </div>
+                        </td>
+                        <td class="text-center">
+                        <div>
+                            {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                        </div>
+                        </td>
+                        <td>
+                        <div>
+                            {{ data.material?((data.material!="" && data.material.length>0)?data.material:"N/A"):"N/A" }}
+                        </div>
+                        </td>
+                        <td *ngIf="session">
+                        <div>
+                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                        </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <mfBootstrapPaginator></mfBootstrapPaginator>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- si son Canastos y cubetas -->
+        <div *ngIf="selectedData.categoria==23 || selectedData.categoria==24">
+                <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+                    <thead>
+                        <tr>
+                            <th style="width:20%;">
+                            <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                            </th>
+                            <th style="width:20%;text-align: center;">
+                            <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
+                            </th>
+                            <th style="width:20%;text-align: center;">
+                            <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
+                            </th>
+                            <th style="width:20%;text-align: center;">
+                            <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                            </th>
+                            <th style="width:20%;text-align: center;">
+                            <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
+                            </th>
+                            <th style="width:20%;">
+                            <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                            </th>
+                            <th style="width:20%;" *ngIf="session">
+                            <mfDefaultSorter>Editar</mfDefaultSorter>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of mf.data">
+                            <td>
+                            <div>
+                                {{ data.nombre }}
+                            </div>
+                            </td>
+                            <td class="text-center">
+                            <div>
+                                {{ data.peso?data.peso.toFixed(2):data.peso }}
+                            </div>
+                            </td>
+                            <td class="text-center">
+                            <div>
+                                {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                            </div>
+                            </td>
+                            <td class="text-center">
+                            <div>
+                                {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                            </div>
+                            </td>
+                            <td class="text-center">
+                            <div>
+                                {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                            </div>
+                            </td>
+                            <td>
+                            <div>
+                                {{ data.material }}
+                            </div>
+                            </td>
+                            <td *ngIf="session">
+                            <div>
+                                <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                                <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                            </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <mfBootstrapPaginator></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+<!-- si son Depositos de Aguas -->
+<div *ngIf="selectedData.categoria==11">
+        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="capacidad">Capacidad</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="peso">Color</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="cuello">Toneles</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="altura">Altura (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="unidades">Diámetro (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="cuello">Largo (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="cuello">Conector de salida</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.material }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.peso?data.peso.toFixed(2):data.peso }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.descripcion }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+<!-- si son Cisternas -->
+<div *ngIf="selectedData.categoria==12">
+        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Capacidad</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="peso">Color</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="cuello">Toneles</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="unidades">Diámetro</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="material">Largo (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="material">Conector de Salida</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.peso?data.peso.toFixed(2):data.peso }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.material }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.descripcion }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- si son Fosas Septicas -->
+    <div *ngIf="selectedData.categoria==13">
+            <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+                <thead>
+                    <tr>
+                        <th style="width:20%;">
+                        <mfDefaultSorter by="descripcion">Dimensiones</mfDefaultSorter>
+                        </th>
+                        <th style="width:20%;" *ngIf="session">
+                        <mfDefaultSorter>Editar</mfDefaultSorter>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of mf.data">
+                        <td>
+                        <div>
+                            {{ data.nombre }}
+                        </div>
+                        </td>
+                        <td *ngIf="session">
+                        <div>
+                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                        </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <mfBootstrapPaginator></mfBootstrapPaginator>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+<!-- si son Pilas -->
+<div *ngIf="selectedData.categoria==14">
         <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
             <thead>
                 <tr>
                     <th style="width:20%;">
                     <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
                     </th>
-                    <th style="width:10%;text-align: center;">
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="largo">Largo</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="ancho">Ancho</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+<!-- si son Lavaderos -->
+<div *ngIf="selectedData.categoria==15">
+        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="altura">Alto (mm)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="unidades">Largo</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="ancho">Ancho</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td class="text-center">
+                    <div>
+                        {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.largo?data.largo.toFixed(2):data.largo }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+<!-- si son Tarimas -->
+<div *ngIf="selectedData.categoria==20">
+        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
                     <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
                     </th>
-                    <th style="width:10%;text-align: center;">
-                    <mfDefaultSorter by="largo">Largo (mm)</mfDefaultSorter>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
                     </th>
-                    <th style="width:10%;text-align: center;">
-                    <mfDefaultSorter by="ancho">Ancho (mm)</mfDefaultSorter>
-                    </th>
-                    <th style="width:10%;text-align: center;">
+                    <th style="width:20%;text-align: center;">
                     <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
                     </th>
                     <th style="width:20%;text-align: center;">
@@ -627,17 +1184,12 @@
                     </td>
                     <td class="text-center">
                     <div>
-                        {{ data.largo?data.largo.toFixed(2):data.largo }}
-                    </div>
-                    </td>
-                    <td class="text-center">
-                    <div>
                         {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
                     </div>
                     </td>
                     <td class="text-center">
                     <div>
-                        {{ data.altura?data.altura.toFixed(2):data.altura }}
+                        {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
                     </div>
                     </td>
                     <td class="text-center">
@@ -668,28 +1220,225 @@
             </tfoot>
         </table>
     </div>
-    <!-- si son Canastos y cubetas -->
-    <div *ngIf="selectedData.categoria==23 || selectedData.categoria==24">
+<!-- si son Letrinas -->
+<div *ngIf="selectedData.categoria==19">
+        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="altura">Altura (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="ancho">Ancho (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="largo">Largo (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="peso">Peso (kg)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.altura?data.altura.toFixed(2):data.altura }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ (+data.unidades)?data.unidades.toFixed(2):data.unidades }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.largo?data.largo.toFixed(2):(data.largo!="" && data.largo!=null?data.largo:"-") }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.peso?data.peso.toFixed(2):data.peso }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+<!-- si son Hielera -->
+<div *ngIf="selectedData.categoria==17">
+        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.peso?data.peso.toFixed(2):data.peso }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.material }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+<!-- si son Casilleros -->
+<div *ngIf="selectedData.categoria==18">
+        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="altura">Alto (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="unidades">Ancho (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="largo">Fondo (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.largo?data.largo.toFixed(2):data.largo }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <!-- si son Contenedores -->
+    <div *ngIf="selectedData.categoria==16">
             <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
                 <thead>
                     <tr>
-                        <th style="width:20%;">
-                        <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                        </th>
-                        <th style="width:20%;text-align: center;">
-                        <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
-                        </th>
-                        <th style="width:20%;text-align: center;">
-                        <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
-                        </th>
-                        <th style="width:20%;text-align: center;">
-                        <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
-                        </th>
-                        <th style="width:20%;text-align: center;">
-                        <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
-                        </th>
-                        <th style="width:20%;">
-                        <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                        <th style="width:80%;">
+                        <mfDefaultSorter by="descripcion">Accesorios Incluidos</mfDefaultSorter>
                         </th>
                         <th style="width:20%;" *ngIf="session">
                         <mfDefaultSorter>Editar</mfDefaultSorter>
@@ -701,31 +1450,6 @@
                         <td>
                         <div>
                             {{ data.nombre }}
-                        </div>
-                        </td>
-                        <td class="text-center">
-                        <div>
-                            {{ data.peso?data.peso.toFixed(2):data.peso }}
-                        </div>
-                        </td>
-                        <td class="text-center">
-                        <div>
-                            {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
-                        </div>
-                        </td>
-                        <td class="text-center">
-                        <div>
-                            {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                        </div>
-                        </td>
-                        <td class="text-center">
-                        <div>
-                            {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-                        </div>
-                        </td>
-                        <td>
-                        <div>
-                            {{ data.material }}
                         </div>
                         </td>
                         <td *ngIf="session">
@@ -746,218 +1470,10 @@
                 </tfoot>
             </table>
         </div>
-<!-- si son Depositos de Aguas -->
-<div *ngIf="selectedData.categoria==11">
-    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="capacidad">Capacidad</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="peso">Color</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="cuello">Toneles</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Altura (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="unidades">Diámetro (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="cuello">Largo (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="cuello">Conector de salida</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.material }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.descripcion }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
 
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-<!-- si son Cisternas -->
-<div *ngIf="selectedData.categoria==12">
-    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Capacidad</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="peso">Color</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="cuello">Toneles</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="unidades">Diámetro</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="material">Largo (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="material">Conector de Salida</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.material }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.descripcion }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
 
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-<!-- si son Fosas Septicas -->
-<div *ngIf="selectedData.categoria==13">
-        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-            <thead>
-                <tr>
-                    <th style="width:20%;">
-                    <mfDefaultSorter by="descripcion">Dimensiones</mfDefaultSorter>
-                    </th>
-                    <th style="width:20%;" *ngIf="session">
-                    <mfDefaultSorter>Editar</mfDefaultSorter>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let data of mf.data">
-                    <td>
-                    <div>
-                        {{ data.nombre }}
-                    </div>
-                    </td>
-                    <td *ngIf="session">
-                    <div>
-                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                    </div>
-                    </td>
-
-                </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="3">
-                    <mfBootstrapPaginator></mfBootstrapPaginator>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
-    </div>
-<!-- si son Pilas -->
-<div *ngIf="selectedData.categoria==14">
+<!-- si son Cajillas de pan -->
+<div *ngIf="selectedData.categoria==27">
     <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
         <thead>
             <tr>
@@ -965,136 +1481,23 @@
                 <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
                 </th>
                 <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                <mfDefaultSorter by="largo">Largo(mm)</mfDefaultSorter>
                 </th>
                 <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="largo">Largo</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="ancho">Ancho</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
-
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-<!-- si son Lavaderos -->
-<div *ngIf="selectedData.categoria==15">
-    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Alto (mm)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="unidades">Largo</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="ancho">Ancho</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.largo?data.largo.toFixed(2):data.largo }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
-
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-<!-- si son Tarimas -->
-<div *ngIf="selectedData.categoria==20">
-    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
+                <mfDefaultSorter by="cuello">Ancho(mm)</mfDefaultSorter>
                 </th>
                 <th style="width:20%;text-align: center;">
                 <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
                 </th>
                 <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
+                <mfDefaultSorter by="unidades">Peso (g)</mfDefaultSorter>
                 </th>
                 <th style="width:20%;">
                 <mfDefaultSorter by="material">Material</mfDefaultSorter>
                 </th>
+                <th style="width:20%;">
+                <mfDefaultSorter by="unidades">Pedido Minimo</mfDefaultSorter>
+                </th>
                 <th style="width:20%;" *ngIf="session">
                 <mfDefaultSorter>Editar</mfDefaultSorter>
                 </th>
@@ -1109,77 +1512,12 @@
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                    {{ (+data.largo)?data.largo.toFixed(2):data.largo }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.material }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
-
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-<!-- si son Letrinas -->
-<div *ngIf="selectedData.categoria==19">
-    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Altura (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="ancho">Ancho (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="largo">Largo (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="peso">Peso (kg)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
+                    {{ data.cuello?data.cuello.toFixed(2):(data.cuello!="" && data.cuello!=null?data.cuello:"-") }}
                 </div>
                 </td>
                 <td class="text-center">
@@ -1189,90 +1527,7 @@
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ (+data.unidades)?data.unidades.toFixed(2):data.unidades }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.largo?data.largo.toFixed(2):(data.largo!="" && data.largo!=null?data.largo:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
                     {{ data.peso?data.peso.toFixed(2):data.peso }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
-
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-<!-- si son Hielera -->
-<div *ngIf="selectedData.categoria==17">
-    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="material">Material</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
                 </div>
                 </td>
                 <td>
@@ -1280,68 +1535,11 @@
                     {{ data.material }}
                 </div>
                 </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
-
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-<!-- si son Casilleros -->
-<div *ngIf="selectedData.categoria==18">
-    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Alto (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="unidades">Ancho (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="largo">Fondo (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
                 <td class="text-center">
                 <div>
                     {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
                 </div>
                 </td>
-                <td>
-                <div>
-                    {{ data.largo?data.largo.toFixed(2):data.largo }}
-                </div>
-                </td>
                 <td *ngIf="session">
                 <div>
                     <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
@@ -1361,234 +1559,114 @@
     </table>
 </div>
 
+    <ng-template #deletePresentacionModal let-c="dismiss" let-d="dismiss">
+            <div class="modal-header" *ngIf="TablesComponent.edition">
+                    <h4 class="modal-title">En verdad Desea eliminar este {{TablesComponent.edition.tipos}}?</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                    <form class="form-signin" *ngIf="TablesComponent.edition" >
+                        <div class="input-group mb-2">
+                            <input type="text" class="form-control shadow-input" name="editarVal" required
+                            ngModel #editarVal="ngModel" [(ngModel)]="TablesComponent.edition.nombre">
+                        </div>
+                    </form>
+            </div>
+            <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary btn-block" type="button" (click)="TablesComponent.delete(TablesComponent.edition);c('Close click');" >Deseo Eliminar</button>
 
-<!-- si son Contenedores -->
-<div *ngIf="selectedData.categoria==16">
-        <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-            <thead>
-                <tr>
-                    <th style="width:80%;">
-                    <mfDefaultSorter by="descripcion">Accesorios Incluidos</mfDefaultSorter>
-                    </th>
-                    <th style="width:20%;" *ngIf="session">
-                    <mfDefaultSorter>Editar</mfDefaultSorter>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let data of mf.data">
-                    <td>
-                    <div>
-                        {{ data.nombre }}
-                    </div>
-                    </td>
-                    <td *ngIf="session">
-                    <div>
-                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                    </div>
-                    </td>
+            </div>
 
-                </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="3">
-                    <mfBootstrapPaginator></mfBootstrapPaginator>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
-    </div>
+        </ng-template>
 
+        <ng-template #editPresentacionModal let-c="dismiss" let-d="dismiss">
+            <div class="modal-header">
+                    <h4 class="modal-title">Editar Presentacion</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                    <form class="form-signin" *ngIf="TablesComponent.edition" >
+                        <div class="form-group mb-2">
+                            <label class="w-100">Nombre
+                            <input type="text" class="form-control shadow-input" name="editarVal" required
+                            ngModel #editarVal="ngModel" [(ngModel)]="TablesComponent.edition.nombre">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Cuello
+                            <input type="text" class="form-control shadow-input" name="editarVal2" required
+                            ngModel #editarVal2="ngModel" [(ngModel)]="TablesComponent.edition.cuello">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Peso
+                            <input type="text" class="form-control shadow-input" name="editarVal3" required
+                            ngModel #editarVal3="ngModel" [(ngModel)]="TablesComponent.edition.peso">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Altura
+                            <input type="text" class="form-control shadow-input" name="editarVal4" required
+                            ngModel #editarVal4="ngModel" [(ngModel)]="TablesComponent.edition.altura">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Descripcion
+                            <input type="text" class="form-control shadow-input" name="editarVal5" required
+                            ngModel #editarVal5="ngModel" [(ngModel)]="TablesComponent.edition.descripcion">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Calibres
+                            <input type="text" class="form-control shadow-input" name="editarVal6" required
+                            ngModel #editarVal6="ngModel" [(ngModel)]="TablesComponent.edition.calibres">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Separador
+                            <input type="text" class="form-control shadow-input" name="editarVal7" required
+                            ngModel #editarVal7="ngModel" [(ngModel)]="TablesComponent.edition.separador">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Material
+                            <input type="text" class="form-control shadow-input" name="editarVal8" required
+                            ngModel #editarVal8="ngModel" [(ngModel)]="TablesComponent.edition.material">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Unidades
+                            <input type="text" class="form-control shadow-input" name="editarVal9" required
+                            ngModel #editarVal9="ngModel" [(ngModel)]="TablesComponent.edition.unidades">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Largo
+                            <input type="text" class="form-control shadow-input" name="editarVal10" required
+                            ngModel #editarVal10="ngModel" [(ngModel)]="TablesComponent.edition.largo">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Liner
+                            <input type="checkbox" class="form-control shadow-input" name="editarVal11" required
+                            ngModel #editarVal11="ngModel" [(ngModel)]="TablesComponent.edition.liner">
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="w-100">Hot Fill
+                            <input type="checkbox" class="form-control shadow-input" name="editarVal12" required
+                            ngModel #editarVal12="ngModel" [(ngModel)]="TablesComponent.edition.hotfill">
+                            </label>
+                        </div>
+                    </form>
+            </div>
+            <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary btn-block" type="button" (click)="TablesComponent.update(TablesComponent.edition);c('Close click');" >Guardar Cambios</button>
 
-<!-- si son Linea Vial -->
-<div *ngIf="selectedData.categoria==25">
-    <table class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="material">Material</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.material }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
+            </div>
 
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-
-<ng-template #deletePresentacionModal let-c="dismiss" let-d="dismiss">
-        <div class="modal-header" *ngIf="TablesComponent.edition">
-                <h4 class="modal-title">En verdad Desea eliminar este {{TablesComponent.edition.tipos}}?</h4>
-                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-        <div class="modal-body">
-                <form class="form-signin" *ngIf="TablesComponent.edition" >
-                    <div class="input-group mb-2">
-                        <input type="text" class="form-control shadow-input" name="editarVal" required
-                        ngModel #editarVal="ngModel" [(ngModel)]="TablesComponent.edition.nombre">
-                    </div>
-                </form>
-        </div>
-        <div class="modal-footer">
-                <button class="btn btn-lg btn-primary btn-block" type="button" (click)="TablesComponent.delete(TablesComponent.edition);c('Close click');" >Deseo Eliminar</button>
-
-        </div>
-
-    </ng-template>
-
-    <ng-template #editPresentacionModal let-c="dismiss" let-d="dismiss">
-        <div class="modal-header">
-                <h4 class="modal-title">Editar Presentacion</h4>
-                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-        <div class="modal-body">
-                <form class="form-signin" *ngIf="TablesComponent.edition" >
-                    <div class="form-group mb-2">
-                        <label class="w-100">Nombre
-                        <input type="text" class="form-control shadow-input" name="editarVal" required
-                        ngModel #editarVal="ngModel" [(ngModel)]="TablesComponent.edition.nombre">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Cuello
-                        <input type="text" class="form-control shadow-input" name="editarVal2" required
-                        ngModel #editarVal2="ngModel" [(ngModel)]="TablesComponent.edition.cuello">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Peso
-                        <input type="text" class="form-control shadow-input" name="editarVal3" required
-                        ngModel #editarVal3="ngModel" [(ngModel)]="TablesComponent.edition.peso">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Altura
-                        <input type="text" class="form-control shadow-input" name="editarVal4" required
-                        ngModel #editarVal4="ngModel" [(ngModel)]="TablesComponent.edition.altura">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Descripcion
-                        <input type="text" class="form-control shadow-input" name="editarVal5" required
-                        ngModel #editarVal5="ngModel" [(ngModel)]="TablesComponent.edition.descripcion">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Calibres
-                        <input type="text" class="form-control shadow-input" name="editarVal6" required
-                        ngModel #editarVal6="ngModel" [(ngModel)]="TablesComponent.edition.calibres">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Separador
-                        <input type="text" class="form-control shadow-input" name="editarVal7" required
-                        ngModel #editarVal7="ngModel" [(ngModel)]="TablesComponent.edition.separador">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Material
-                        <input type="text" class="form-control shadow-input" name="editarVal8" required
-                        ngModel #editarVal8="ngModel" [(ngModel)]="TablesComponent.edition.material">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Unidades
-                        <input type="text" class="form-control shadow-input" name="editarVal9" required
-                        ngModel #editarVal9="ngModel" [(ngModel)]="TablesComponent.edition.unidades">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Largo
-                        <input type="text" class="form-control shadow-input" name="editarVal10" required
-                        ngModel #editarVal10="ngModel" [(ngModel)]="TablesComponent.edition.largo">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Liner
-                        <input type="checkbox" class="form-control shadow-input" name="editarVal11" required
-                        ngModel #editarVal11="ngModel" [(ngModel)]="TablesComponent.edition.liner">
-                        </label>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="w-100">Hot Fill
-                        <input type="checkbox" class="form-control shadow-input" name="editarVal12" required
-                        ngModel #editarVal12="ngModel" [(ngModel)]="TablesComponent.edition.hotfill">
-                        </label>
-                    </div>
-                </form>
-        </div>
-        <div class="modal-footer">
-                <button class="btn btn-lg btn-primary btn-block" type="button" (click)="TablesComponent.update(TablesComponent.edition);c('Close click');" >Guardar Cambios</button>
-
-        </div>
-
-    </ng-template>
+        </ng-template>

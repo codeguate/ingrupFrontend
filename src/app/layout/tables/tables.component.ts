@@ -371,6 +371,8 @@ export class TablesComponent implements OnInit {
         }
     }
     cargarSingle(id:number) {
+        this.resetCarousel();
+
     this.blockUI.start();
       const data = {
         id:1,
@@ -492,6 +494,8 @@ export class TablesComponent implements OnInit {
 
     cargarOfCate(id:number,changeUrl:boolean=false) {
         // this.datoPEnviar2.mercados.pop()
+        this.resetCarousel();
+
         if(changeUrl) {
             this.idF = id;
         }

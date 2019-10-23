@@ -359,6 +359,8 @@ export class FormComponent implements OnInit {
         }
     }
     cargarSingle(id:number){
+        this.resetCarousel();
+
     this.blockUI.start();
       const data = {
         id:1,
@@ -474,6 +476,8 @@ export class FormComponent implements OnInit {
     }
 
     cargarOfCate(id:number,changeUrl:boolean=false){
+        this.resetCarousel();
+
         if(changeUrl){
             this.id=id
         }
@@ -496,6 +500,8 @@ export class FormComponent implements OnInit {
     }
 
     cargarOfMarca(id: number, changeUrl: boolean= false) {
+        this.resetCarousel();
+
         if (changeUrl) {
             this.id = id;
         }

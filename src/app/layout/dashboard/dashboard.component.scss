@@ -105,7 +105,6 @@ body{
         span{
             width: 100%;
             text-align: center;
-            font-size: 1.5em;
             font-weight: bold;
             color: #5E5B5C;
             font-family: RobotoBold;
@@ -624,7 +623,9 @@ body{
             height: 260px;
         }
         .text{
-            font-size: 0.6rem;
+            // font-size: 0.6rem;
+            font-size: 1.5em;
+
         }
     }
     .pt-5{

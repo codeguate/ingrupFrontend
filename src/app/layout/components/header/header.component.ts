@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MarcasService } from "./../../../shared/services/marcas.service";
 import { TranslateService } from '@ngx-translate/core';
@@ -20,6 +20,8 @@ export class CarouselData {
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+    @Input() idF
+    id = this.route.snapshot.paramMap.get("id")
 
     public pushRightClass: string;
     Table:any = null
@@ -111,9 +113,15 @@ export class HeaderComponent implements OnInit {
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
     }
-    cambiarIMG(index,text,cant){
+    cambiarIMG(index,text,cant,url:string=""){
+        if(url.indexOf("01")<0){
+            cant=4;
+        }else{
+            cant=6
+        }
         this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text
-        console.log(this.Table[index].foto);
+
+        // console.log(this.Table[index].foto);
 
     }
     changeLang(language: string) {
@@ -127,8 +135,18 @@ export class HeaderComponent implements OnInit {
           }
           this.mainService.getAll()
                               .then(response => {
+                                  let id = this.route.snapshot.paramMap.get("id")
+                                  response.forEach(element => {
+                                      if(element.id==id){
+                                        element.foto = element.foto.substring(0,element.foto.length-4)+"01.svg"
+                                        element.fotoActiva = element.foto
+                                      }
+                                  });
+                                //   let foto = response[response.findIndex(element => { element.id ==id })].foto
+                                // response[response.findIndex(element => { element.id ==id })].foto = foto.substring(0,foto.length-4)+"01.svg"
                                 this.Table=response
-                                // console.log(response);
+
+                                console.log(this.idF);
                             }).catch(error => {
                                 console.clear
                               })
