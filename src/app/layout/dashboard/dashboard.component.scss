@@ -57,7 +57,6 @@ body{
     border-radius: 50px;
     cursor: pointer;
     .fondo_cuadros:hover{
-        box-shadow: rgba(68, 214, 44, 0.2) 0px 0px 15px 5px;
         border: solid rgb(255,255,255) 2px;
         background-color: #44D62C;
         .circleIcon{
@@ -77,7 +76,7 @@ body{
         width: 70%;
         margin: auto;
         min-height: 360px;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 15px 5px !important;
         border-radius: 52px;
         display: flex;
     }
@@ -460,6 +459,7 @@ body{
     padding-top: 1em;
     padding-bottom: 1em;
     margin: 0;
+    font-family: Roboto-condense;
 }
 
 .description_card{
@@ -477,7 +477,7 @@ body{
 .description_card ul li{
     font-family: RobotoLight;
     width: 80%;
-    text-align: center;
+    text-align: left;
     font-size: 1.2rem;
     span{
         color: $gris;
@@ -490,7 +490,7 @@ body{
     border-radius: 35px;
     width: 100%;
     height: auto;
-    margin-top: auto;
+    margin-top: 10%;
     margin-bottom: auto;
     text-align: center;
     /* padding-bottom: 15%; */
@@ -504,6 +504,7 @@ body{
 }
 .description_card{
     margin: auto;
+    text-align: left;
 }
 .padding-h-5{
     padding-top: 5%;
@@ -528,12 +529,13 @@ body{
     background-size: auto 100%;
     background-repeat: no-repeat;
     width:100%;
-    min-height:90%;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
+    min-height:80%;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 0px 15px 5px;
     border-radius: 52px;
     // min-height: 482px;
     // max-height: 482px;
     display: flex;
+    border: 2px solid #43d62c;
 }
 .button_mas{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 5px;
@@ -600,7 +602,6 @@ body{
 }
 @media only screen and (max-width: 500px){
     .description_card.largo{
-        font-size: 1rem!important;
 
     }
 }
