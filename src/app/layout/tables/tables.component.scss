@@ -34,7 +34,7 @@
 
 }
 .panel-ingrup{
-    background-color: white;
+    background-color: transparent;
 }
 .sub_menu_panel{
     padding: 0;
@@ -42,6 +42,16 @@
 .lightbox{
     display: flex !important;
     flex-direction: column-reverse !important;
+}
+.panel-ingrup{
+    padding: 0 !important;
+    border: none !important;
+}
+.menu-ingrup{
+    .menu-item-ingrup{
+        width: 300px !important;
+        height: 180px;
+    }
 }
 .panel-ingrup.active {
     background-color: #44D62C;
@@ -104,7 +114,7 @@
     color: #44D62C;
 }
 .menu-item-ingrup{
-    filter:brightness(0.3);
+    filter: brightness(1);
     height: 7vh;
     width: auto!important;
     margin-left: 0px;
