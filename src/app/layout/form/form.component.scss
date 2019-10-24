@@ -18,15 +18,15 @@
     background-size: 100%;
 }
 .panel-ingrup:hover{
-    background-color: #44D62C;
+    // background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
-    box-shadow: #44D62C 0px 0px 10px 5px ;
+    // box-shadow: #44D62C 0px 0px 10px 5px ;
 
     cursor:pointer;
 }
 .panel-ingrup:hover .menu-item-ingrup{
-    filter:brightness(1);
+    // filter:brightness(1);
 }
 .panel-ingrup:hover .panel-title-ingrup h3{
     color: #ffffff;
@@ -34,18 +34,31 @@
 
 }
 .panel-ingrup{
-    background-color: white;
+    background-color: transparent;
+}
+.sub_menu_panel{
+    padding: 0;
 }
 .lightbox{
     display: flex !important;
     flex-direction: column-reverse !important;
 }
+.panel-ingrup{
+    padding: 0 !important;
+    border: none !important;
+}
+.menu-ingrup{
+    .menu-item-ingrup{
+        width: 300px !important;
+        height: 180px;
+    }
+}
 .panel-ingrup.active {
-    background-color: white;
+    // background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
     // width: 100%;
-    box-shadow: #44D62C 0px 0px 10px 5px ;
+    // box-shadow: #44D62C 0px 0px 10px 5px ;
         border: solid 1px #ffffff;
     cursor:pointer;
     padding-left: 1rem;
@@ -61,7 +74,7 @@
     display: flex;
 }
 .panel-ingrup.active .menu-item-ingrup{
-    filter:brightness(1);
+    // filter:brightness(1);
 }
 .panel-ingrup.active .panel-title-ingrup h3{
     color: #ffffff;
@@ -101,7 +114,7 @@
     color: #44D62C;
 }
 .menu-item-ingrup{
-    filter:brightness(0.3);
+    filter: brightness(1);
     height: 7vh;
     width: auto!important;
     margin-left: 0px;
@@ -173,7 +186,7 @@
 
 
 .uniqueImageContainer{
-    height: 700px;
+    // height: 700px;
     width:90%;
     display: flex;
     .uniqueImage{

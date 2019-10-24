@@ -611,10 +611,15 @@ export class TablesComponent implements OnInit {
         //   console.log(id)
           this.MarcasService.getSingle(id)
                               .then(response => {
+                                response.submarca.forEach(element => {
+                                    element.foto = element.foto.replace(".png",".svg")
+                                    element.fotoActiva = element.foto
+                                });
                                 this.Marcas = response;
                                 this.datoPEnviar.mercados.pop();
                                 this.agregarMercado(response)
                                 this.titulo_texto=response.nombre;
+
                                 if(response.submarca.length<1){
                                     this.cargarOfCate(id,true)
                                 }else{
