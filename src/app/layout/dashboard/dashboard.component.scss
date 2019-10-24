@@ -863,4 +863,15 @@ body{
     .description_card{
         width: 95%;
     }
+    .img_apps{
+      width: 100%;
+    }
+    #tabla1{
+      a{
+        img{
+          width: 80% !important;
+          margin: auto !important;
+        }
+      }
+    }
 }

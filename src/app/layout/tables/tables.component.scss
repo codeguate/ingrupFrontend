@@ -254,4 +254,56 @@
         // height: 30vh;
         padding-left: 0px;
     }
+    .pantallaCompleta{
+        left: inherit;
+        right: 5%;
+    }
+    .lb-dataContainer{
+        z-index: 99999 !important;
+    }
+    .uniqueImageContainer{
+        width: 100%;
+    }
+    .content_select_row{
+        padding-left: 0 !important;
+    }
+    .menu-ingrup{
+        .menu-item-ingrup{
+            width: 300px !important;
+            height: 130px;
+        }
+    }
+    .uniqueImageContainer,.content_single_img{
+        height: 300px;
+    }
+    .card.ficha-tecnica{
+        width: 100% !important;
+    }
+    .ficha-tecnica{
+        width: 100% !important;
+    }
+    #table1{
+        width: 100% !important;
+        display: flex !important;
+        a{
+            width: 100% !important;
+            display: flex !important;
+            img{
+                width: 100% !important;
+                display: flex !important;
+            }
+        }
+    }
+    .content_cotizar{
+        display: flex !important;
+        width: 100% !important;
+    }
+    .click_cotizar{
+        display: flex !important;
+        width: 100% !important;
+    }
+    .img_cotizar{
+        display: flex !important;
+        width: 100% !important;
+    }
 }

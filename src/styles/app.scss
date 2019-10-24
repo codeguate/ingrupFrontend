@@ -578,6 +578,18 @@ canvas{
         }
     }
 }
+@media only screen and (max-width: 1200px){
+    .filtrosAccordeon button.collapsed h3{
+        .filtrosAccordeon .card .card-header {
+            background-color: rgb(242,242,242)!important;
+        }
+        font-size: 1.5rem!important;
+        color: #44D62C!important;
+        background-color: rgb(242,242,242)!important;
+        text-decoration: none;
+    }
+}
+
 @media only screen and (max-width: 1000px){
     .content_all_videos{
         background-color: #f3f3f3 !important;
@@ -737,4 +749,32 @@ canvas{
     .container_data{
         padding-bottom: 10%;
     }
+    .lb-dataContainer{
+        margin-bottom: 5px;
+    }
+    .content_cotizar{
+        display: flex !important;
+        width: 100% !important;
+    }
+    .content_cotizar a{
+        display: flex !important;
+        width: 100% !important;
+    }
+    .content_cotizar img{
+        display: flex !important;
+        width: 0% !important;
+        margin: auto;
+    }
+    .ficha-tecnica{
+        width: 100% !important;
+    }
+    .collapsed h3{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .card-header h3{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    } 
 }
+
