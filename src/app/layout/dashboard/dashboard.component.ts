@@ -3,6 +3,7 @@ import { routerTransition } from '../../router.animations';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MarcasService } from "./../../shared/services/marcas.service";
 declare var $: any
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 export class CarouselData {
     id?: string;
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
     public slider_cards = [];
+    @BlockUI() blockUI: NgBlockUI;
     isDragging: boolean;
   carouselData: CarouselData[] = [
     { text: 'Slide 1', src: 'assets/images/Home/slides/slide1.jpg', dataHash: 'one'},
@@ -275,13 +277,18 @@ export class DashboardComponent implements OnInit {
     }
 
     cargarCategorias(){
+    this.blockUI.start();
+
         this.MarcasService.getAll()
                                 .then( response => {
                                     // console.log(response);
 
                                     this.categoriasBox = response
+                                    this.blockUI.stop();
+
                                 })
                                 .catch(error => {
+                                    this.blockUI.stop();
                                     console.log(error);
 
                                 })
