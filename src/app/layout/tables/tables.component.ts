@@ -510,9 +510,15 @@ export class TablesComponent implements OnInit {
           };
           this.ProductosService.getAll()
                               .then(response => {
-                                this.Table=response;
-                                // console.log(response);
-                                this.blockUI.stop();
+                                // this.Table=response;
+                                // // console.log(response);
+                                // this.blockUI.stop();
+                                
+                                //   let foto = response[response.findIndex(element => { element.id ==id })].foto
+                                // response[response.findIndex(element => { element.id ==id })].foto = foto.substring(0,foto.length-4)+"01.svg"
+                                this.Table=response
+
+                                console.log(this.idF);
                             }).catch(error => {
                                 console.clear;
                                 this.blockUI.stop();
@@ -540,7 +546,13 @@ export class TablesComponent implements OnInit {
                                         this.agregarMercado(element)
                                     }
                                 });
-
+                                let id = this.route.snapshot.paramMap.get("mercado")? this.route.snapshot.paramMap.get("mercado"):this.route.snapshot.paramMap.get("id") 
+                                  this.Marcas.submarca.forEach(element => {
+                                      if(element.id==this.idF){
+                                        element.foto = element.foto.substring(0,element.foto.length-4)+"01.svg"
+                                        element.fotoActiva = element.foto
+                                      }
+                                });
                                 this.datoPEnviar2 = this.datoPEnviar
                                 // console.log(this.datoPEnviar2);
 
@@ -1197,15 +1209,18 @@ export class TablesComponent implements OnInit {
             }
 
           }
-        cambiarIMG(index,text,cant,url:string=""){
+          cambiarIMG(index,text,cant,url:string=""){
             if(url.indexOf("01")<0){
                 cant=4;
             }else{
                 cant=6
             }
-            this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text
+            if(this.Marcas.submarca){
+                this.Marcas.submarca[index].foto = this.Marcas.submarca[index].foto.substring(0,this.Marcas.submarca[index].foto.length-cant)+text
     
-            // console.log(this.Table[index].foto);
+                console.log(this.Marcas.submarca[index].foto);
+            }
+            
     
         }
 }

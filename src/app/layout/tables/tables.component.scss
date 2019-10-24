@@ -36,12 +36,15 @@
 .panel-ingrup{
     background-color: white;
 }
+.sub_menu_panel{
+    padding: 0;
+}
 .lightbox{
     display: flex !important;
     flex-direction: column-reverse !important;
 }
 .panel-ingrup.active {
-    background-color: white;
+    background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
     // width: 100%;

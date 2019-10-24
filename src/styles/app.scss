@@ -455,6 +455,10 @@ canvas{
         background-size: cover;
     }
 }
+.lb-close:hover{
+    text-decoration: inherit;
+    cursor: pointer;
+}
 .fa-times-circle{
     color: #4CAF50;
     background-color: #f9f9f9;
