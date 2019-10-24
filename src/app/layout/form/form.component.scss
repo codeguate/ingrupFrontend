@@ -33,9 +33,15 @@
     padding-left: -0.8rem;
 
 }
-
+.panel-ingrup{
+    background-color: white;
+}
+.lightbox{
+    display: flex !important;
+    flex-direction: column-reverse !important;
+}
 .panel-ingrup.active {
-    background-color: #44D62C;
+    background-color: white;
     // border: solid #ffffff 0.5rem;
     list-style: none;
     // width: 100%;
@@ -178,6 +184,36 @@
         max-width: 100%;
     }
 }
+/****Codigo Antony*****/
+.galeria{
+    display: flex;
+    flex-direction: column;
+
+    ngx-gallery{
+        margin-left: 0 !important;
+    }
+    ngx-gallery-image{
+        width: 100%;
+        max-height: 50px;
+    }
+}
+.contains_single_img{
+    .ngx-gallery-image{
+        background-size: contain !important;
+    }
+}
+.content_single_img{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    img{
+        margin: auto;
+    }
+}
+.pantallaCompleta{
+    left: 90%;
+}
+
 @media only screen and (max-width: 900px){
 
     .panel-title-ingrup h3{
