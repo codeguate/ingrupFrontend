@@ -546,10 +546,10 @@ export class TablesComponent implements OnInit {
                                         this.agregarMercado(element)
                                     }
                                 });
-                                let id = this.route.snapshot.paramMap.get("mercado")? this.route.snapshot.paramMap.get("mercado"):this.route.snapshot.paramMap.get("id") 
                                   this.Marcas.submarca.forEach(element => {
-                                      if(element.id==this.idF){
-                                        element.foto = element.foto.substring(0,element.foto.length-4)+"01.svg"
+                                      let foto = element.foto.substring(0,element.foto.length-4)
+                                      if(element.id==id){
+                                        element.foto = foto+"01.svg"
                                         element.fotoActiva = element.foto
                                       }
                                 });
@@ -620,7 +620,7 @@ export class TablesComponent implements OnInit {
                                     let index = response.submarca?((response.submarca.findIndex(element => {return element.id==this.idF}))>0?response.submarca.findIndex(element => {return element.id==this.idF})-1:1):1;
                                     this.customOptions.startPosition = index
                                     if(this.route.snapshot.paramMap.get('mercado')){
-                                        this.cargarOfCate(first,false)
+                                        this.cargarOfCate(+this.route.snapshot.paramMap.get('mercado'),false)
 
 
                                     }else{
