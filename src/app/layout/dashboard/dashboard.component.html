@@ -203,7 +203,7 @@
             <h1 class="title2"> <span style="color: #44D62C">Soluciones</span> para sus empaques</h1>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row px-3 dato_only_pc" style="margin:0px;padding:0px;" *ngIf="categoriasBox">
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 m-auto cards_mercados" [class.pt-5]="i!=1 && i!=4 && i!=7 && i!=10 && i!=13 && i!=16 && i!=19 && i!=22 && i!=25 && i!=28" *ngFor="let data of categoriasBox; let i = index">
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 m-auto cards_mercados" [class.pt-5]="i!=1 && i!=4" *ngFor="let data of categoriasBox; let i = index">
                         <div class="CategoriaCard">
                             <div class="fondo_cuadros my-3" [routerLink]="['/mercados/',data.id]">
                                 <div class="row w-100">

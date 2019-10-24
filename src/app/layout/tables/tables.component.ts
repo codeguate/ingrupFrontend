@@ -69,30 +69,28 @@ export class TablesComponent implements OnInit {
         loop: false,
         autoplay: false,
         center: false,
-        animateOut: 'slideOutUp',
-        animateIn: 'slideInUp',
         dots:false,
         margin:0,
         responsiveClass:true,
-        items:7,
+        items:4,
         responsive:{
             300:{
                 nav: true,
                 rewindNav : true,
                 navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
-                items:3
+                items:2
             },
             600:{
                 nav: true,
                 rewindNav : true,
                 navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
-                items: 5
+                items: 3
             },
             1000:{
                 nav: true,
                 rewindNav : true,
                 navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
-                items: 7
+                items: 4
             }
         },
         nav: true,

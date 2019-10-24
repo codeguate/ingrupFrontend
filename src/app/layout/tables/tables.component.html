@@ -94,11 +94,11 @@
                     </atft-scene>
                 </atft-webgl-renderer>
             </atft-orbit-controls>
-            <div class="galeria mt-3" id="Galeria" *ngIf="selectedData && !selectedData.hasModel">
+            <div class="galeria mt-3 d-flex" id="Galeria" *ngIf="selectedData && !selectedData.hasModel">
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
                     <img *ngIf="galleryImages.length>1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
-                    <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages" style="margin:auto;"></ngx-gallery>
+                    <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages" style="margin:auto;background-color: black;"></ngx-gallery>
                     <!-- <ngx-gallery  [options]="galleryOptions2" [images]="galleryImages" style="margin:auto;"></ngx-gallery> -->
                     <!-- <div *ngIf="galleryImages.length==1" class="uniqueImageContainer">
                         <img src="{{galleryImages[0].medium}}" class="uniqueImage">

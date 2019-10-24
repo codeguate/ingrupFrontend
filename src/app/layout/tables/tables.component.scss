@@ -178,6 +178,15 @@
         max-width: 100%;
     }
 }
+/****Codigo Antony*****/
+.galeria{
+    display: flex;
+    flex-direction: column;
+    
+    .ngx-gallery{
+        margin-left: 0;
+    }
+}
 @media only screen and (max-width: 900px){
 
     .panel-title-ingrup h3{

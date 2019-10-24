@@ -96,7 +96,7 @@ export class TablesDataComponent implements OnInit {
     //   this.complete=$event
     let data = $event
     this.selected =data
-    //   console.log(data);
+      console.log(data);
 
   }
   removeDuplicates(originalArray, prop) {
