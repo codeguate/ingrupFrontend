@@ -29,6 +29,8 @@ export class TablesComponent implements OnInit {
     abierto:boolean = false;
     @BlockUI() blockUI: NgBlockUI;
     titulo_texto:any="";
+    static Cover = 'cover';
+    static Contain = 'contain';
     imagen:any = ""
     customOptions: any = {
         loop: false,
@@ -302,6 +304,7 @@ export class TablesComponent implements OnInit {
                 height: '600px',
                 imagePercent: 100,
                 thumbnails: false,
+                imageSize: "Cover" 
             },
             // max-width 800
             {
@@ -310,6 +313,7 @@ export class TablesComponent implements OnInit {
                 height: '600px',
                 imagePercent: 100,
                 thumbnails: false,
+                imageSize: "Cover" 
             },
             // max-width 400
             {
@@ -317,6 +321,7 @@ export class TablesComponent implements OnInit {
                 imagePercent: 100,
                 preview: false,
                 thumbnails: false,
+                imageSize: "Cover" 
             }
         ];
 
