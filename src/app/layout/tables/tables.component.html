@@ -9,11 +9,9 @@
                     <a style="list-style: none;text-decoration: none;" (click)="cargarOfCate(slide.id,true);"  [routerLink]="['/mercados/'+id+'/',slide.id]" >
                         <div class="panel-ingrup sub_menu_panel" [class.active]="idF==slide.id" >
                             <div class="ingrup-content sub_menu_content">
-                                <div class="panel-body-ingrup">
-                                    <img [src]="slide.icono" class="menu-item-ingrup" >
-                                </div>
+
                                 <div class="panel-title-ingrup title_sub_produc">
-                                    <h3 class="">{{slide.nombre}}</h3>
+                                        <img [src]="slide.foto">
                                 </div>
                             </div>
                         </div>
@@ -98,7 +96,7 @@
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
                     <img *ngIf="galleryImages.length>1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
-                    <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages" style="margin:auto;background-color: black;"></ngx-gallery>
+                    <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
                     <!-- <ngx-gallery class="contains_single_img" *ngIf="galleryImages.length<=1" [options]="galleryOptions2" [images]="galleryImages" style="margin:auto;"></ngx-gallery> -->
                     <!-- <div *ngIf="galleryImages.length==1" class="uniqueImageContainer">
                         <div class="contain_single_img">

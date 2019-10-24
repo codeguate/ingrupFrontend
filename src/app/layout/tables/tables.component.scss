@@ -33,9 +33,15 @@
     padding-left: -0.8rem;
 
 }
-
+.panel-ingrup{
+    background-color: white;
+}
+.lightbox{
+    display: flex !important;
+    flex-direction: column-reverse !important;
+}
 .panel-ingrup.active {
-    background-color: #44D62C;
+    background-color: white;
     // border: solid #ffffff 0.5rem;
     list-style: none;
     // width: 100%;

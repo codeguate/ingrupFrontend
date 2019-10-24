@@ -279,7 +279,15 @@ export class TablesComponent implements OnInit {
             {
                 width: '90%',
                 height: '600px',
+                imagePercent: 60,
+                imageSwipe:true,
+                imageInfinityMove:true,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
                 thumbnailsColumns: 4,
+                thumbnailsMargin: 10,
+                thumbnailMargin: 10,
                 imageAnimation: NgxGalleryAnimation.Slide
             },
             // max-width 800
@@ -287,10 +295,16 @@ export class TablesComponent implements OnInit {
                 breakpoint: 800,
                 width: '100%',
                 height: '600px',
-                imagePercent: 80,
-                thumbnailsPercent: 20,
-                thumbnailsMargin: 20,
-                thumbnailMargin: 20
+                imagePercent: 60,
+                imageSwipe:true,
+                imageInfinityMove:true,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
+                thumbnailsColumns: 4,
+                thumbnailsMargin: 10,
+                thumbnailMargin: 10,
+                imageAnimation: NgxGalleryAnimation.Slide
             },
             // max-width 400
             {
@@ -302,7 +316,12 @@ export class TablesComponent implements OnInit {
             {
                 width: '90%',
                 height: '600px',
-                imagePercent: 100,
+                imagePercent: 60,
+                imageSwipe:true,
+                imageInfinityMove:true,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
                 thumbnails: false,
                 imageSize: "Cover" 
             },
@@ -311,14 +330,24 @@ export class TablesComponent implements OnInit {
                 breakpoint: 800,
                 width: '100%',
                 height: '600px',
-                imagePercent: 100,
+                imagePercent: 60,
+                imageSwipe:true,
+                imageInfinityMove:true,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
                 thumbnails: false,
                 imageSize: "Cover" 
             },
             // max-width 400
             {
                 breakpoint: 400,
-                imagePercent: 100,
+                imagePercent: 60,
+                imageSwipe:true,
+                imageInfinityMove:true,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
                 preview: false,
                 thumbnails: false,
                 imageSize: "Cover" 
@@ -335,11 +364,6 @@ export class TablesComponent implements OnInit {
     }
     resetCarousel(){
         this.galleryImages = [
-            {
-                small: 'http://placehold.it/1000X500?text=X',
-                medium: 'http://placehold.it/1000X500?text=X',
-                big: 'http://placehold.it/1000X500?text=X'
-            },
             {
                 small: 'http://placehold.it/1000X500?text=X',
                 medium: 'http://placehold.it/1000X500?text=X',
@@ -1173,5 +1197,15 @@ export class TablesComponent implements OnInit {
             }
 
           }
-
+        cambiarIMG(index,text,cant,url:string=""){
+            if(url.indexOf("01")<0){
+                cant=4;
+            }else{
+                cant=6
+            }
+            this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text
+    
+            // console.log(this.Table[index].foto);
+    
+        }
 }
