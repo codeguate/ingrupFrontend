@@ -97,16 +97,17 @@ export class SidebarComponent implements OnInit {
                               .then(response => {
                                 this.Table=response
                                 // console.log(response);
+                                this.CategoriasService.getAll()
+                                                        .then(response => {
+                                                            this.TableProds=response
+                                                            // console.log(response);
+                                                        }).catch(error => {
+                                                            console.clear
+                                                        })
                             }).catch(error => {
                                 console.clear
                               })
-        this.CategoriasService.getAll()
-                              .then(response => {
-                                this.TableProds=response
-                                // console.log(response);
-                            }).catch(error => {
-                                console.clear
-                              })
+
     }
     openMenu(){
         var width_device = window.screen.width;
