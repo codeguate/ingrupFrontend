@@ -436,8 +436,7 @@
                                         [searchable]="true"
                                         [closeOnSelect]="true"
                                         appendTo="body"
-                                        multiple="false"
-                                        maxSelectedItems="1"
+           (change)="onChange($event)"
                                         [(ngModel)]="selected.descripcion">
                             </ng-select>
                             <!-- <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion"> -->
@@ -456,8 +455,7 @@
                                 [searchable]="true"
                                 [closeOnSelect]="true"
                                 appendTo="body"
-                                multiple="false"
-                                maxSelectedItems="1"
+           (change)="onChange($event)"
                                 [(ngModel)]="selected.peso">
                             </ng-select>
                             <!-- <input type="text" name="Filtro2" id="Filtro2" class="form-control" [(ngModel)]="selectedData.presentaciones[0].peso"> -->
@@ -476,8 +474,7 @@
                                     [searchable]="true"
                                     [closeOnSelect]="true"
                                     appendTo="body"
-                                    multiple="false"
-                                    maxSelectedItems="1"
+           (change)="onChange($event)"
                                     [(ngModel)]="selected.largo">
                                 </ng-select>
                             <!-- <input type="text" name="Filtro3" id="Filtro3" class="form-control" [(ngModel)]="selectedData.presentaciones[0].largo"> -->
@@ -496,8 +493,7 @@
                                     [searchable]="true"
                                     [closeOnSelect]="true"
                                     appendTo="body"
-                                    multiple="false"
-                                    maxSelectedItems="1"
+           (change)="onChange($event)"
                                     [(ngModel)]="selected.cuello">
                                 </ng-select>
                             <!-- <input type="text" name="Filtro4" id="Filtro4" class="form-control" [(ngModel)]="selectedData.presentaciones[0].cuello"> -->
@@ -516,8 +512,7 @@
                                     [searchable]="true"
                                     [closeOnSelect]="true"
                                     appendTo="body"
-                                    multiple="false"
-                                    maxSelectedItems="1"
+           (change)="onChange($event)"
                                     [(ngModel)]="selected.altura">
                                 </ng-select>
                             <!-- <input type="text" name="Filtro5" id="Filtro5" class="form-control" [(ngModel)]="selectedData.presentaciones[0].altura"> -->
@@ -536,8 +531,7 @@
                                     [searchable]="true"
                                     [closeOnSelect]="true"
                                     appendTo="body"
-                                    multiple="false"
-                                    maxSelectedItems="1"
+           (change)="onChange($event)"
                                     [(ngModel)]="selected.unidades">
                                 </ng-select>
                             <!-- <input type="text" name="Filtro6" id="Filtro6" class="form-control" [(ngModel)]="selectedData.presentaciones[0].unidades"> -->
@@ -556,8 +550,7 @@
                                     [searchable]="true"
                                     [closeOnSelect]="true"
                                     appendTo="body"
-                                    multiple="false"
-                                    maxSelectedItems="1"
+           (change)="onChange($event)"
                                     [(ngModel)]="selected.separador">
                                 </ng-select>
                             <!-- <input type="text" name="Filtro7" id="Filtro7" class="form-control" [(ngModel)]="selectedData.presentaciones[0].separador"> -->

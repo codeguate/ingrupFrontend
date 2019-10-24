@@ -93,7 +93,13 @@ export class TablesProdsComponent implements OnInit {
         this.complete.separador = sinRepetidos
       }
   }
+  onChange($event){
+    //   this.complete=$event
+    let data = $event
+    this.selected =data
+    //   console.log(data);
 
+  }
   removeDuplicates(originalArray, prop) {
 
 

@@ -46,11 +46,11 @@ $topnav-background-color: #222;
     background-color: rgb(242,242,242);
 }
 .panel-ingrup:hover{
-    background-color: #44D62C;
+    // background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
-    box-shadow:  #44D62C 0px 0px 10px 5px ;
-    border: solid 1px #ffffff;
+    // box-shadow:  #44D62C 0px 0px 10px 5px ;
+    // border: solid 1px #ffffff;
     cursor:pointer;
 }
 .panel-ingrup:hover .panel-title-ingrup h3{
@@ -58,13 +58,16 @@ $topnav-background-color: #222;
     padding-left: -0.8rem;
 
 }
+.panel-ingrup.active img{
+    // box-shadow: #44D62C 0px 0px 10px 5px;
 
+}
 .panel-ingrup.active {
-    background-color: #44D62C;
+    // background-color: #44D62C;
     list-style: none;
     width: 100%;
-    box-shadow: #44D62C 0px 0px 10px 5px;
-    border: solid 1px #ffffff;
+    // box-shadow: #44D62C 0px 0px 10px 5px;
+    // border: solid 1px #ffffff;
     cursor: pointer;
     // padding-left: 0.5rem;
     margin-top: 1rem;
@@ -100,7 +103,7 @@ $topnav-background-color: #222;
     text-decoration: none;
     border-radius: 10px;
     display: flex;
-    background-color: rgba(255,255,255,0.9);
+    // background-color: rgba(255,255,255,0.9);
 }
 .ingrup-content{
     // margin-top: 1.5rem;
