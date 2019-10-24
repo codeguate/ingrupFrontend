@@ -444,6 +444,16 @@ canvas{
 .ngx-gallery-icon-content{
     color: #44D62C;
 }
+.lightbox{
+    display: flex !important;
+    flex-direction: column-reverse !important;
+}
+.lb-dataContainer{
+    margin-bottom: -35px;
+    .lb-close{
+        background-image: url(../assets/images/Cerrar.png);
+    }
+}
 .fa-times-circle{
     color: #4CAF50;
     background-color: #f9f9f9;
