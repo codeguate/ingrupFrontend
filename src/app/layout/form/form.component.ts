@@ -30,6 +30,8 @@ export class FormComponent implements OnInit {
     abierto:boolean = false;
     @BlockUI() blockUI: NgBlockUI;
     titulo_texto:any="";
+    static Cover = 'cover';
+    static Contain = 'contain';
     imagen:any = ""
     customOptions: any = {
         loop: false,
@@ -62,8 +64,6 @@ export class FormComponent implements OnInit {
         loop: false,
         autoplay: false,
         center: false,
-        animateOut: 'slideOutUp',
-        animateIn: 'slideInUp',
         dots:false,
         margin:0,
         responsiveClass:true,
@@ -111,6 +111,7 @@ export class FormComponent implements OnInit {
   win = Window
 
     public edition:any
+    public categoriasCombo:any
     public id:number = null
     public idF:number = null
     myColor:string="#ffffff";
@@ -265,13 +266,22 @@ export class FormComponent implements OnInit {
 
       }
     ngOnInit() {
+        this.cargarCombosMarcas();
 
         this.getParams();
         this.galleryOptions = [
             {
                 width: '90%',
                 height: '600px',
+                imagePercent: 60,
+                imageSwipe:true,
+                imageInfinityMove:true,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
                 thumbnailsColumns: 4,
+                thumbnailsMargin: 10,
+                thumbnailMargin: 10,
                 imageAnimation: NgxGalleryAnimation.Slide
             },
             // max-width 800
@@ -279,10 +289,16 @@ export class FormComponent implements OnInit {
                 breakpoint: 800,
                 width: '100%',
                 height: '600px',
-                imagePercent: 80,
-                thumbnailsPercent: 20,
-                thumbnailsMargin: 20,
-                thumbnailMargin: 20
+                imagePercent: 60,
+                imageSwipe:true,
+                imageInfinityMove:true,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
+                thumbnailsColumns: 4,
+                thumbnailsMargin: 10,
+                thumbnailMargin: 10,
+                imageAnimation: NgxGalleryAnimation.Slide
             },
             // max-width 400
             {
@@ -294,23 +310,41 @@ export class FormComponent implements OnInit {
             {
                 width: '90%',
                 height: '600px',
-                imagePercent: 100,
+                imagePercent: 60,
+                imageSwipe:true,
+                imageInfinityMove:true,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
                 thumbnails: false,
+                imageSize: "Cover"
             },
             // max-width 800
             {
                 breakpoint: 800,
                 width: '100%',
                 height: '600px',
-                imagePercent: 100,
+                imagePercent: 60,
+                imageSwipe:true,
+                imageInfinityMove:true,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
                 thumbnails: false,
+                imageSize: "Cover"
             },
             // max-width 400
             {
                 breakpoint: 400,
-                imagePercent: 100,
+                imagePercent: 60,
+                imageSwipe:true,
+                imageInfinityMove:true,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
                 preview: false,
                 thumbnails: false,
+                imageSize: "Cover"
             }
         ];
 
@@ -324,6 +358,11 @@ export class FormComponent implements OnInit {
     }
     resetCarousel(){
         this.galleryImages = [
+            {
+                small: 'http://placehold.it/1000X500?text=X',
+                medium: 'http://placehold.it/1000X500?text=X',
+                big: 'http://placehold.it/1000X500?text=X'
+            },
             {
                 small: 'http://placehold.it/1000X500?text=X',
                 medium: 'http://placehold.it/1000X500?text=X',
@@ -457,6 +496,9 @@ export class FormComponent implements OnInit {
         // open lightbox
         this._lightbox.open(this.galleryImages2, index,{ fitImageInViewPort: true, showImageNumberLabel: false,centerVertically:true, albumLabel:"" });
     }
+    openGallery2(){
+        $('.ngx-gallery-clickable').click();
+    }
     cargarAll() {
         this.blockUI.start();
           const data = {
@@ -475,7 +517,7 @@ export class FormComponent implements OnInit {
                               });
     }
 
-    cargarOfCate(id:number,changeUrl:boolean=false){
+    cargarOfCate(id:number,changeUrl:boolean=false) {
         this.resetCarousel();
 
         if(changeUrl){
@@ -554,6 +596,22 @@ export class FormComponent implements OnInit {
                                 this.Marcas = response;
                                 // console.log(response);
                                 this.blockUI.stop();
+                            }).catch(error => {
+                                console.clear;
+                                this.blockUI.stop();
+                              });
+
+    }
+
+
+    cargarCombosMarcas(){
+
+        //   console.log(id)
+          this.CategoriasService.getAll()
+                              .then(response => {
+                                this.categoriasCombo = response;
+                                // console.log(response);
+                                // this.blockUI.stop();
                             }).catch(error => {
                                 console.clear;
                                 this.blockUI.stop();
@@ -827,6 +885,7 @@ export class FormComponent implements OnInit {
               },
               function(respuesta)
               {//Upload Successfull
+                // console.log(respuesta);
 
                 $('#imagenComentario').attr("src",'')
                 $('#imagenComentario').attr("src",respuesta)
@@ -839,6 +898,10 @@ export class FormComponent implements OnInit {
               {//Received progress
 
                 $("#barra_de_progreso").val(valor);
+              },
+              function (error){
+                  console.log(error);
+
               }
             );
               }else{
@@ -1093,5 +1156,15 @@ export class FormComponent implements OnInit {
             }
 
           }
+        cambiarIMG(index,text,cant,url:string=""){
+            if(url.indexOf("01")<0){
+                cant=4;
+            }else{
+                cant=6
+            }
+            this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text
 
+            // console.log(this.Table[index].foto);
+
+        }
 }

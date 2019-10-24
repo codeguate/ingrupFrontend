@@ -282,7 +282,9 @@ export class DashboardComponent implements OnInit {
         this.MarcasService.getAll()
                                 .then( response => {
                                     // console.log(response);
-
+                                    response.forEach(element => {
+                                        element.nombre = element.nombre.replace(" "," \n ")
+                                    });
                                     this.categoriasBox = response
                                     this.blockUI.stop();
 

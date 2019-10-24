@@ -272,9 +272,8 @@ export class TablesComponent implements OnInit {
 
       }
     ngOnInit() {
-
-        this.getParams();
         this.cargarCombosMarcas();
+        this.getParams();
         this.galleryOptions = [
             {
                 width: '90%',
@@ -323,7 +322,7 @@ export class TablesComponent implements OnInit {
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
                 thumbnails: false,
-                imageSize: "Cover" 
+                imageSize: "Cover"
             },
             // max-width 800
             {
@@ -337,7 +336,7 @@ export class TablesComponent implements OnInit {
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
                 thumbnails: false,
-                imageSize: "Cover" 
+                imageSize: "Cover"
             },
             // max-width 400
             {
@@ -350,7 +349,7 @@ export class TablesComponent implements OnInit {
                 previewCloseOnClick:true,
                 preview: false,
                 thumbnails: false,
-                imageSize: "Cover" 
+                imageSize: "Cover"
             }
         ];
 
@@ -364,6 +363,16 @@ export class TablesComponent implements OnInit {
     }
     resetCarousel(){
         this.galleryImages = [
+            {
+                small: 'http://placehold.it/1000X500?text=X',
+                medium: 'http://placehold.it/1000X500?text=X',
+                big: 'http://placehold.it/1000X500?text=X'
+            },
+            {
+                small: 'http://placehold.it/1000X500?text=X',
+                medium: 'http://placehold.it/1000X500?text=X',
+                big: 'http://placehold.it/1000X500?text=X'
+            },
             {
                 small: 'http://placehold.it/1000X500?text=X',
                 medium: 'http://placehold.it/1000X500?text=X',
@@ -665,7 +674,7 @@ export class TablesComponent implements OnInit {
                               .then(response => {
                                 this.categoriasCombo = response;
                                 // console.log(response);
-                                this.blockUI.stop();
+                                // this.blockUI.stop();
                             }).catch(error => {
                                 console.clear;
                                 this.blockUI.stop();
