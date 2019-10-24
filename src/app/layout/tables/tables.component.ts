@@ -423,7 +423,7 @@ export class TablesComponent implements OnInit {
       this.ProductosService.getSingle(id)
                           .then(response => {
                             this.customOptions2.nav = true
-                            // console.log(response.id);
+                            console.log(response);
                             response.pX = +response.pX;
                             response.pY = +response.pY;
                             response.pZ = +response.pZ;

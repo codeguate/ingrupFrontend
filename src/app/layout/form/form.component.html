@@ -9,13 +9,13 @@
                         <img src="./../../../../assets/images/Mercados/Modulo-1/flechaDer.png" alt="">
                         {{data.nombre}}
                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createModal,data.productos2[0].id,'productosC')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createModal,data.productos[0].id,'productosC')"></i>
                         <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,data.id,'categorias')"></i>
                     </h3>
                     </ng-template>
                     <ng-template ngbPanelContent>
                     <ul *ngIf="selectedData">
-                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);" [class.active]="+selectedData.id==prod.id">
+                        <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id);" [class.active]="+selectedData.id==prod.id">
                             {{prod.nombre}}
 
                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
@@ -24,7 +24,7 @@
                         </li>
                     </ul>
                     <ul *ngIf="!selectedData">
-                        <li *ngFor="let prod of data.productos2" (click)="cargarSingle(prod.id);">
+                        <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id);">
                             {{prod.nombre}}
                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
                         <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
