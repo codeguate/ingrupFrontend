@@ -575,7 +575,28 @@ canvas{
         }
     }
 }
+@media only screen and (max-width: 1200px){
+    .filtrosAccordeon button.collapsed h3{
+        .filtrosAccordeon .card .card-header {
+            background-color: rgb(242,242,242)!important;
+        }
+        font-size: 1.5rem!important;
+        color: #44D62C!important;
+        background-color: rgb(242,242,242)!important;
+        text-decoration: none;
+    }
+}
+
 @media only screen and (max-width: 1000px){
+    .filtrosAccordeon button.collapsed h3{
+        .filtrosAccordeon .card .card-header {
+            background-color: rgb(242,242,242)!important;
+        }
+        font-size: 1.2rem!important;
+        color: #44D62C!important;
+        background-color: rgb(242,242,242)!important;
+        text-decoration: none;
+    }
     .logo.pointer{
         width: 50%;
     }

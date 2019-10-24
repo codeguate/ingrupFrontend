@@ -150,7 +150,7 @@ export class TablesComponent implements OnInit {
             3:"0"
         }
     }
-    Table:any= [];
+    Table:any= null;
     selectedData:any =
         {
             hasModel:false,
@@ -278,7 +278,7 @@ export class TablesComponent implements OnInit {
             {
                 width: '90%',
                 height: '600px',
-                imagePercent: 60,
+                imagePercent: 100,
                 imageSwipe:true,
                 imageInfinityMove:true,
                 thumbnailsSwipe:true,
@@ -294,7 +294,7 @@ export class TablesComponent implements OnInit {
                 breakpoint: 800,
                 width: '100%',
                 height: '600px',
-                imagePercent: 60,
+                imagePercent: 100,
                 imageSwipe:true,
                 imageInfinityMove:true,
                 thumbnailsSwipe:true,
@@ -315,7 +315,7 @@ export class TablesComponent implements OnInit {
             {
                 width: '90%',
                 height: '600px',
-                imagePercent: 60,
+                imagePercent: 100,
                 imageSwipe:true,
                 imageInfinityMove:true,
                 thumbnailsSwipe:true,
@@ -329,7 +329,7 @@ export class TablesComponent implements OnInit {
                 breakpoint: 800,
                 width: '100%',
                 height: '600px',
-                imagePercent: 60,
+                imagePercent: 100,
                 imageSwipe:true,
                 imageInfinityMove:true,
                 thumbnailsSwipe:true,
@@ -341,7 +341,7 @@ export class TablesComponent implements OnInit {
             // max-width 400
             {
                 breakpoint: 400,
-                imagePercent: 60,
+                imagePercent: 100,
                 imageSwipe:true,
                 imageInfinityMove:true,
                 thumbnailsSwipe:true,
@@ -519,12 +519,6 @@ export class TablesComponent implements OnInit {
           };
           this.ProductosService.getAll()
                               .then(response => {
-                                // this.Table=response;
-                                // // console.log(response);
-                                // this.blockUI.stop();
-                                
-                                //   let foto = response[response.findIndex(element => { element.id ==id })].foto
-                                // response[response.findIndex(element => { element.id ==id })].foto = foto.substring(0,foto.length-4)+"01.svg"
                                 this.Table=response
 
                                 console.log(this.idF);
@@ -1226,10 +1220,10 @@ export class TablesComponent implements OnInit {
             }
             if(this.Marcas.submarca){
                 this.Marcas.submarca[index].foto = this.Marcas.submarca[index].foto.substring(0,this.Marcas.submarca[index].foto.length-cant)+text
-    
+
                 console.log(this.Marcas.submarca[index].foto);
             }
-            
-    
+
+
         }
 }
