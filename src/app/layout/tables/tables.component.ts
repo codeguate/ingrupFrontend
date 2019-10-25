@@ -286,13 +286,13 @@ export class TablesComponent implements OnInit {
                 thumbnailsColumns: 4,
                 thumbnailsMargin: 10,
                 thumbnailMargin: 10,
-                imageSize: "Cover"
+                imageSize: "contain"
             },
             // max-width 800
             {
-                breakpoint: 800,
+                breakpoint: 900,
                 width: '100%',
-                height: '600px',
+                height: '400px',
                 imagePercent: 100,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
@@ -300,7 +300,7 @@ export class TablesComponent implements OnInit {
                 thumbnailsColumns: 4,
                 thumbnailsMargin: 10,
                 thumbnailMargin: 10,
-                imageSize: "Cover"
+                imageSize: "contain"
             },
             // max-width 400
             {
@@ -547,16 +547,29 @@ export class TablesComponent implements OnInit {
                               .then(response => {
                                 this.Table = response;
                                 this.Marcas.submarca.forEach(element => {
-                                    if(element.id==data.id){
-                                        this.agregarMercado(element)
+                                    if(element.id==id){
+                                        if(element.foto.indexOf("01.svg")<0){
+                                            let foto = element.foto.replace(".svg","01.svg")
+                                            element.foto = foto
+                                            element.fotoActiva = foto
+                                        }else{
+                                            element.fotoActiva = element.foto
+
+                                        }
+
+                                      this.agregarMercado(element)
+                                    }else{
+                                        if(element.foto.indexOf("01.svg")>=0){
+                                            let foto = element.foto.replace("01.svg",".svg")
+                                            element.foto = foto
+                                            element.fotoActiva = foto
+                                        }else{
+                                            element.fotoActiva = element.foto
+
+                                        }
+
+                                    //   element.fotoActiva = element.foto
                                     }
-                                });
-                                  this.Marcas.submarca.forEach(element => {
-                                      let foto = element.foto.substring(0,element.foto.length-4)
-                                      if(element.id==id){
-                                        element.foto = foto+"01.svg"
-                                        element.fotoActiva = element.foto
-                                      }
                                 });
                                 this.datoPEnviar2 = this.datoPEnviar
                                 // console.log(this.datoPEnviar2);
@@ -627,10 +640,10 @@ export class TablesComponent implements OnInit {
                                 }else{
 
                                     let first = response.submarca?response.submarca[0].id:1;
-                                    let index = response.submarca?((response.submarca.findIndex(element => {return element.id==this.idF}))>0?response.submarca.findIndex(element => {return element.id==this.idF})-1:1):1;
+                                    let index = response.submarca?((response.submarca.findIndex(element => {return element.id==this.id}))>0?response.submarca.findIndex(element => {return element.id==this.id})-1:1):1;
                                     this.customOptions.startPosition = index
                                     if(this.route.snapshot.paramMap.get('mercado')){
-                                        this.cargarOfCate(+this.route.snapshot.paramMap.get('mercado'),false)
+                                        this.cargarOfCate(+this.route.snapshot.paramMap.get('mercado'),true)
 
 
                                     }else{

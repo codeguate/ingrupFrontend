@@ -206,6 +206,9 @@
     flex-direction: column;
 
     ngx-gallery{
+        .ngx-gallery-arrow{
+            top: 35%!important;
+        }
         margin-left: 0 !important;
     }
     ngx-gallery-image{
@@ -232,6 +235,10 @@
 }
 
 @media only screen and (max-width: 900px){
+
+    .galeria{
+        // height: 80vh!important;
+    }
     .pr-5{
         padding-right: 0px!important;
     }
@@ -263,6 +270,7 @@
     .pantallaCompleta{
         left: inherit;
         right: 5%;
+        margin-top: 10%!important;
     }
     .lb-dataContainer{
         z-index: 99999 !important;

@@ -473,7 +473,10 @@ canvas{
 .ngx-gallery-animation-slide .ngx-gallery-image.ngx-gallery-active{
     background-size: auto 100%!important;
 }
-.oscurece{
+.oscurece .ngx-gallery-layout .ngx-gallery-image-wrapper.ngx-gallery-animation-fade{
+    mix-blend-mode: multiply!important;
+}
+.oscurece .ngx-gallery-layout .ngx-gallery-thumbnails-wrapper.ngx-gallery-thumbnail-size-cover{
     mix-blend-mode: multiply!important;
 }
 .hashtag{
@@ -633,6 +636,23 @@ canvas{
 }
 
 @media only screen and (max-width: 1000px){
+    .galeria{
+        ngx-gallery{
+            .ngx-gallery-active{
+                .ngx-gallery-arrow{
+                    top: 50%!important;
+                }
+            }
+            .ngx-gallery-arrow{
+                top: 35%!important;
+            }
+        }
+
+    }
+    .galeria .ngx-gallery-animation-fade .ngx-gallery-image.ngx-gallery-active{
+        background-size: contain!important;
+        background-position: center top 70px;
+    }
     .content_all_videos{
         background-color: #f3f3f3 !important;
         .owl-theme {
@@ -684,9 +704,10 @@ canvas{
     }
     .mainCarousell .owl-carousel .owl-item img{
         height: 100vh !important;
+        width: 100vw;
     }
     .mainCarousell .owl-item.ng-tns-c6-1.ng-trigger.ng-trigger-autoHeight.ng-star-inserted.active.cloned {
-        width: auto !important;
+        // width: auto !important;
     }
     .mainControls{
         height: 100%!important;
@@ -819,7 +840,7 @@ canvas{
         padding-right: 0 !important;
     }
     .owl-stage{
-        width: 2570px !important;
+        // width: 2570px !important;
     }
 }
 

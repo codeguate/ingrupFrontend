@@ -281,13 +281,13 @@ export class FormComponent implements OnInit {
                 thumbnailsColumns: 4,
                 thumbnailsMargin: 10,
                 thumbnailMargin: 10,
-                imageSize: "Cover"
+                imageSize: "contain"
             },
             // max-width 800
             {
-                breakpoint: 800,
+                breakpoint: 900,
                 width: '100%',
-                height: '600px',
+                height: '400px',
                 imagePercent: 100,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
@@ -295,7 +295,7 @@ export class FormComponent implements OnInit {
                 thumbnailsColumns: 4,
                 thumbnailsMargin: 10,
                 thumbnailMargin: 10,
-                imageSize: "Cover"
+                imageSize: "contain"
             },
             // max-width 400
             {

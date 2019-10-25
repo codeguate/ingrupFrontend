@@ -47,12 +47,13 @@ export class DashboardComponent implements OnInit {
   win = Window
   customOptions: any = {
     loop: true,
-    // autoWidth: true,
-    // autoHeight: false,
     nav: false,
+    autoWidth: true,
+    margin:5,
     autoplay: true,
     center: true,
     dots:false,
+    autoplayTimeout:2000,
     responsiveClass:true,
     items: 1,
     responsive:{
@@ -79,7 +80,7 @@ export class DashboardComponent implements OnInit {
     dots:true,
     items:4,
     autoplayTimeout:3000,
-    margin:20,
+    margin:5,
     responsiveClass:true,
     responsive:{
         300:{

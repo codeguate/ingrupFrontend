@@ -210,7 +210,7 @@
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row px-3 w-100 mb" style="margin:0px;padding:0px;" *ngIf="categoriasBox">
                 <ngb-carousel class="w-100">
-                        <ng-template ngbSlide *ngFor="let data of categoriasBox; let i = index">
+                        <ng-template ngbSlide  *ngFor="let data of categoriasBox; let i = index">
                                 <div class="CategoriaCard">
                                         <div class="fondo_cuadros my-3" [routerLink]="['/mercados/',data.id]">
                                             <div class="row w-100">
