@@ -309,7 +309,7 @@ export class TablesComponent implements OnInit {
             // max-width 400
             {
                 breakpoint: 400,
-                preview: false
+                preview: true
             }
         ];
         this.galleryOptions2 = [
@@ -348,7 +348,7 @@ export class TablesComponent implements OnInit {
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
-                preview: false,
+                preview: true,
                 thumbnails: false,
                 imageSize: "Cover"
             }
