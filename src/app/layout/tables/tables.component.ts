@@ -52,9 +52,15 @@ export class TablesComponent implements OnInit {
         responsiveClass:true,
         responsive:{
             600:{
+                rewindNav : true,
+                navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
+                nav: true,
                 items:3
             },
             1000:{
+                rewindNav : true,
+                navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
+                nav: true,
                 items:5
             }
         },

@@ -636,6 +636,12 @@ canvas{
 }
 
 @media only screen and (max-width: 1000px){
+    .menu-ingrup2 .owl-theme .owl-nav .owl-prev{
+        left: 0%;
+    }
+    .menu-ingrup2 .owl-theme .owl-nav .owl-next{
+        right: 0%;
+    }
     .galeria{
         ngx-gallery{
             .ngx-gallery-active{
@@ -702,6 +708,8 @@ canvas{
     .menu-ingrup .owl-theme .owl-nav .owl-next{
         right: -15%;
     }
+
+
     .mainCarousell .owl-carousel .owl-item img{
         height: 100vh !important;
         width: 100vw;

@@ -55,7 +55,6 @@ export class HeaderComponent implements OnInit {
         animateIn: 'slideInUp',
         responsiveClass:true,
         startPosition:this.route.snapshot.paramMap.get("id"),
-        items:7,
         responsive:{
             300:{
                 items:3
