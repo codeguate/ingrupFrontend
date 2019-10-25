@@ -20,9 +20,11 @@ import { PageHeaderModule } from './../../shared';
 import { MenuComponent } from './../components/menu/menu.component';
 import { TablesProdsComponent } from "./../components/tables-prods/tables-prods.component";
 
+import { onlyMyGallery } from "./../../shared/directives/galeria-prod.directive";
+
 @NgModule({
     imports: [CommonModule, FormRoutingModule, NgbModule,LightboxModule, PageHeaderModule,NgSelectModule,AtftModule,CarouselModule,DataTableModule,FormsModule,NgxGalleryModule],
-    declarations: [FormComponent,MenuComponent,TablesProdsComponent],
+    declarations: [FormComponent,MenuComponent,TablesProdsComponent,onlyMyGallery],
     providers: [ProductosService,ImagenesService,PresentacionesService]
 })
 export class FormModule {}

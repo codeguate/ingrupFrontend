@@ -232,7 +232,9 @@
 }
 
 @media only screen and (max-width: 900px){
-
+    .pr-5{
+        padding-right: 0px!important;
+    }
     .panel-title-ingrup h3{
         font-size: 1rem!important;
     }

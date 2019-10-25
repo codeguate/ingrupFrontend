@@ -280,15 +280,13 @@ export class TablesComponent implements OnInit {
                 width: '100%',
                 height: '600px',
                 imagePercent: 100,
-                imageSwipe:true,
-                imageInfinityMove:true,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
                 thumbnailsColumns: 4,
                 thumbnailsMargin: 10,
                 thumbnailMargin: 10,
-                imageAnimation: NgxGalleryAnimation.Slide
+                imageSize: "Cover"
             },
             // max-width 800
             {
@@ -296,15 +294,13 @@ export class TablesComponent implements OnInit {
                 width: '100%',
                 height: '600px',
                 imagePercent: 100,
-                imageSwipe:true,
-                imageInfinityMove:true,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
                 thumbnailsColumns: 4,
                 thumbnailsMargin: 10,
                 thumbnailMargin: 10,
-                imageAnimation: NgxGalleryAnimation.Slide
+                imageSize: "Cover"
             },
             // max-width 400
             {
@@ -317,8 +313,6 @@ export class TablesComponent implements OnInit {
                 width: '100%',
                 height: '600px',
                 imagePercent: 100,
-                imageSwipe:true,
-                imageInfinityMove:true,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
@@ -331,8 +325,6 @@ export class TablesComponent implements OnInit {
                 width: '100%',
                 height: '600px',
                 imagePercent: 100,
-                imageSwipe:true,
-                imageInfinityMove:true,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
@@ -343,8 +335,6 @@ export class TablesComponent implements OnInit {
             {
                 breakpoint: 400,
                 imagePercent: 100,
-                imageSwipe:true,
-                imageInfinityMove:true,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
@@ -512,7 +502,7 @@ export class TablesComponent implements OnInit {
         this._lightbox.open(this.galleryImages2, index,{ fitImageInViewPort: true, showImageNumberLabel: false,centerVertically:true, albumLabel:"" });
     }
     openGallery2(){
-        $('.ngx-gallery-clickable').click();
+        $('.ngx-gallery-active.ngx-gallery-clickable').click();
         $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
     }
     cargarAll() {

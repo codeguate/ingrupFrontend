@@ -21,9 +21,10 @@ import { PageHeaderModule } from './../../shared';
 import { HeaderComponent } from './../components/header/header.component';
 import { TablesDataComponent } from './../components/tables/tables.component';
 
+import { onlyMyGallery } from "./../../shared/directives/galeria.directive";
 @NgModule({
     imports: [CommonModule, TablesRoutingModule,LightboxModule,FormsModule, NgSelectModule,NgbModule,DataTableModule,PageHeaderModule,AtftModule,CarouselModule, NgxGalleryModule],
-    declarations: [TablesComponent,HeaderComponent,TablesDataComponent],
+    declarations: [TablesComponent,HeaderComponent,TablesDataComponent,onlyMyGallery],
     providers: [ProductosService,ImagenesService,PresentacionesService,SlidesService]
 })
 export class TablesModule {}

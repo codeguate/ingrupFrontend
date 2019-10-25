@@ -62,11 +62,13 @@
                     </atft-scene>
                 </atft-webgl-renderer>
             </atft-orbit-controls>
-            <div class="galeria mt-3 d-flex" id="Galeria" *ngIf="selectedData && !selectedData.hasModel">
+            <div class="galeria mt-3 d-flex" id="Galeria" *ngIf="selectedData && !selectedData.hasModel" onlyMyGallery>
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
                     <img *ngIf="galleryImages.length>1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
-                    <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages"  (click)="openGallery2()"  [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery>
+                    <div *ngIf="galleryImages.length>1">
+                        <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages"  [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery>
+                    </div>
                     <!-- <ngx-gallery class="contains_single_img" *ngIf="galleryImages.length<=1" [options]="galleryOptions2" [images]="galleryImages" style="margin:auto;"></ngx-gallery> -->
                     <!-- <div *ngIf="galleryImages.length==1" class="uniqueImageContainer">
                         <div class="contain_single_img">
@@ -74,20 +76,21 @@
                         </div>
 
                     </div> -->
+                    <img *ngIf="galleryImages.length==1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
                     <div *ngIf="galleryImages.length==1" class="uniqueImageContainer ">
-                        <div class="content_single_img">
+                        <ngx-gallery class="contains_single_img" [options]="galleryOptions2" [images]="galleryImages" [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery>
+                        <!-- <div class="content_single_img">
                             <img *ngFor="let image of galleryImages2; let i=index" class="uniqueImage" [class.ImagenesCant1]="selectedData.fotosCant==1" [class.oscurece]="selectedData.categoria==2"  [src]="image.thumb" (click)="openGallery(i)" />
-                        </div>
-                        <img src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery(i)">
+                        </div> -->
                     </div>
 
 
             </div>
 
-            <div class="w-100 d-block" id="tabla1" *ngIf="selectedData">
+            <div class="w-90 d-block" id="tabla1" *ngIf="selectedData">
 
                 <app-tables-prods [selectedData]="selectedData"></app-tables-prods>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sliderss" *ngIf="selectedData">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-5 sliderss" *ngIf="selectedData">
                         <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,selectedData.id,'slides')"></i>
                         <!-- <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,null,'sliders')"></i> -->
                         <div  id="slidesingrup" *ngIf="selectedData && selectedData.slides">

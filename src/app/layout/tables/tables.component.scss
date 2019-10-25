@@ -233,7 +233,7 @@
 
 @media only screen and (max-width: 900px){
     .pr-5{
-        padding-right: 0px;
+        padding-right: 0px!important;
     }
     .panel-title-ingrup h3{
         font-size: 1rem!important;
@@ -311,5 +311,8 @@
     .img_cotizar{
         display: flex !important;
         width: 100% !important;
+    }
+    .content_single_img{
+        height: fit-content;
     }
 }

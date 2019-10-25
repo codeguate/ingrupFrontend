@@ -49,6 +49,7 @@ export class FormComponent implements OnInit {
         dots:false,
         animateOut: 'slideOutUp',
         animateIn: 'slideInUp',
+        // startPosition:this.Marcas?this.Marcas.submarca.findIndex(element => { element.id==this.route.snapshot.paramMap.get('mercado') }):this.route.snapshot.paramMap.get('mercado'),
         responsiveClass:true,
         responsive:{
             600:{
@@ -267,52 +268,46 @@ export class FormComponent implements OnInit {
       }
     ngOnInit() {
         this.cargarCombosMarcas();
-
+        $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
         this.getParams();
         this.galleryOptions = [
             {
-                width: '90%',
+                width: '100%',
                 height: '600px',
-                imagePercent: 60,
-                imageSwipe:true,
-                imageInfinityMove:true,
+                imagePercent: 100,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
                 thumbnailsColumns: 4,
                 thumbnailsMargin: 10,
                 thumbnailMargin: 10,
-                imageAnimation: NgxGalleryAnimation.Slide
+                imageSize: "Cover"
             },
             // max-width 800
             {
                 breakpoint: 800,
                 width: '100%',
                 height: '600px',
-                imagePercent: 60,
-                imageSwipe:true,
-                imageInfinityMove:true,
+                imagePercent: 100,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
                 thumbnailsColumns: 4,
                 thumbnailsMargin: 10,
                 thumbnailMargin: 10,
-                imageAnimation: NgxGalleryAnimation.Slide
+                imageSize: "Cover"
             },
             // max-width 400
             {
                 breakpoint: 400,
-                preview: false
+                preview: true
             }
         ];
         this.galleryOptions2 = [
             {
-                width: '90%',
+                width: '100%',
                 height: '600px',
-                imagePercent: 60,
-                imageSwipe:true,
-                imageInfinityMove:true,
+                imagePercent: 100,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
@@ -324,9 +319,7 @@ export class FormComponent implements OnInit {
                 breakpoint: 800,
                 width: '100%',
                 height: '600px',
-                imagePercent: 60,
-                imageSwipe:true,
-                imageInfinityMove:true,
+                imagePercent: 100,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
@@ -336,13 +329,11 @@ export class FormComponent implements OnInit {
             // max-width 400
             {
                 breakpoint: 400,
-                imagePercent: 60,
-                imageSwipe:true,
-                imageInfinityMove:true,
+                imagePercent: 100,
                 thumbnailsSwipe:true,
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
-                preview: false,
+                preview: true,
                 thumbnails: false,
                 imageSize: "Cover"
             }
@@ -381,6 +372,7 @@ export class FormComponent implements OnInit {
         ];
     }
     getParams() {
+        $(".galeria").focus();
         let data = this.route.snapshot.paramMap.get('id');
         if(data) {
             {
@@ -414,7 +406,7 @@ export class FormComponent implements OnInit {
       this.ProductosService.getSingle(id)
                           .then(response => {
                             this.customOptions2.nav = true
-                            // console.log(response.id);
+                            // console.log(response);
                             response.pX = +response.pX;
                             response.pY = +response.pY;
                             response.pZ = +response.pZ;
@@ -443,7 +435,7 @@ export class FormComponent implements OnInit {
                             }
                             response.hasModel = +response.hasModel;
                             response.material = response.model.replace('.obj','.mtl');
-                            this.selectedData=response;
+
                             if(response.imagenes && response.imagenes.length>0){
                                 let data = []
                                 let data2 = []
@@ -463,9 +455,12 @@ export class FormComponent implements OnInit {
                                 });
                                 this.galleryImages = data
                                 this.galleryImages2 = data2
+                                response.fotosCant = data2.length
                             }else{
                                 this.resetCarousel();
                             }
+                            this.selectedData=response;
+                            $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
                             if(response.slides && response.slides.length>0){
                                 let data = []
                                 response.slides.forEach(element => {
@@ -497,7 +492,8 @@ export class FormComponent implements OnInit {
         this._lightbox.open(this.galleryImages2, index,{ fitImageInViewPort: true, showImageNumberLabel: false,centerVertically:true, albumLabel:"" });
     }
     openGallery2(){
-        $('.ngx-gallery-clickable').click();
+        $('.ngx-gallery-active.ngx-gallery-clickable').click();
+        $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
     }
     cargarAll() {
         this.blockUI.start();
@@ -508,8 +504,8 @@ export class FormComponent implements OnInit {
           };
           this.ProductosService.getAll()
                               .then(response => {
-                                this.Table=response;
-                                // console.log(response);
+                                this.Table=response
+                                // console.log(this.idF);
                                 this.blockUI.stop();
                             }).catch(error => {
                                 console.clear;
@@ -518,6 +514,14 @@ export class FormComponent implements OnInit {
     }
 
     cargarOfCate(id:number,changeUrl:boolean=false) {
+        // this.datoPEnviar2.mercados.pop()
+        this.carouselData = null
+        if(this.selectedData.slides){
+            this.selectedData.slides.length = 0
+        }
+        if(this.selectedData.presentaciones){
+            this.selectedData.presentaciones.length = 0
+        }
         this.resetCarousel();
 
         if(changeUrl){
@@ -541,6 +545,7 @@ export class FormComponent implements OnInit {
                               });
     }
 
+
     cargarOfMarca(id: number, changeUrl: boolean= false) {
         this.resetCarousel();
 
@@ -556,6 +561,10 @@ export class FormComponent implements OnInit {
         //   console.log(id)
           this.MarcasService.getSingle(id)
                               .then(response => {
+                                response.submarca.forEach(element => {
+                                    element.foto = element.foto.replace(".png",".svg")
+                                    element.fotoActiva = element.foto
+                                });
                                 this.Marcas = response;
                                 this.titulo_texto=response.nombre;
                                 if(response.submarca.length<1){
@@ -565,8 +574,8 @@ export class FormComponent implements OnInit {
                                     let first = response.submarca?response.submarca[0].id:1;
                                     let index = response.submarca?((response.submarca.findIndex(element => {return element.id==this.idF}))>0?response.submarca.findIndex(element => {return element.id==this.idF})-1:1):1;
                                     this.customOptions.startPosition = index
-                                    if(this.route.snapshot.paramMap.get('mercado')){
-                                        this.cargarOfCate(first,false)
+                                    if(this.route.snapshot.paramMap.get('id')){
+                                        this.cargarOfCate(+this.route.snapshot.paramMap.get('id'),false)
 
 
                                     }else{
@@ -688,7 +697,7 @@ export class FormComponent implements OnInit {
         this.abierto=true;
                 this.PresentacionesService.getSingle(id)
                       .then(response => {
-                        console.log(response);
+                        // console.log(response);
                         this.edition=response;
                         this.edition.tipos = tipo
                         this.blockUI.stop();
@@ -885,7 +894,7 @@ export class FormComponent implements OnInit {
               },
               function(respuesta)
               {//Upload Successfull
-                // console.log(respuesta);
+                console.log(respuesta);
 
                 $('#imagenComentario').attr("src",'')
                 $('#imagenComentario').attr("src",respuesta)
@@ -1105,18 +1114,18 @@ export class FormComponent implements OnInit {
 
         }
         delete(data:any){
-            console.log("eliminando: ",data.tipos);
+            // console.log("eliminando: ",data.tipos);
 
             this.blockUI.start();
             switch (data.tipos) {
                 case "categorias":{
-            console.log("eliminando2");
+            // console.log("eliminando2");
 
                     this.CategoriasService.delete(data.id)
                                             .then(response => {
-                                            console.log(response);
+                                            // console.log(response);
                                             this.abierto=false
-            console.log("eliminado");
+            // console.log("eliminado");
             this.getParams();
                                             console.clear
                                             this.blockUI.stop();
@@ -1156,15 +1165,18 @@ export class FormComponent implements OnInit {
             }
 
           }
-        cambiarIMG(index,text,cant,url:string=""){
+          cambiarIMG(index,text,cant,url:string=""){
             if(url.indexOf("01")<0){
                 cant=4;
             }else{
                 cant=6
             }
-            this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text
+            if(this.Marcas.submarca){
+                this.Marcas.submarca[index].foto = this.Marcas.submarca[index].foto.substring(0,this.Marcas.submarca[index].foto.length-cant)+text
 
-            // console.log(this.Table[index].foto);
+                // console.log(this.Marcas.submarca[index].foto);
+            }
+
 
         }
 }
