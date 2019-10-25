@@ -525,6 +525,11 @@ $rosado: #E06B70;
     height: 100vh !important;
     width: 100%;
 }
+.content-proposito h1{
+    font-family: Impact !important;
+    font-size: 5em;
+}
+
 @media only screen and (max-width: 1000px){
     .politicas-mejora{
         min-height: 100vh;
@@ -556,8 +561,9 @@ $rosado: #E06B70;
         font-size: 1.5em;
     }
     .content-proposito h1{
-        font-size: 4.5em !important;
+        font-size: 4em !important;
     }
+
     .content-icons div{
         margin: 10%;
     }
@@ -569,6 +575,11 @@ $rosado: #E06B70;
     }
     .historia-texto{
         padding: 0 !important;
+        margin-top: 5%;
+    }
+    .politica-mejora{
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
     .img-middle{
         height: 50vh !important;
@@ -629,8 +640,4 @@ $rosado: #E06B70;
     .description_card{
         width: 95%;
     }
-}
-.content-proposito h1{
-    font-family: Impact !important;
-    font-size: 5em;
 }

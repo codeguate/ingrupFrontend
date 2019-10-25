@@ -1,6 +1,6 @@
-<div class="w-100 mx-auto text-left mt-3" *ngIf="selectedData && selectedData.id>0">
+<div class="w-100 mx-auto text-left mt-3 content_cotizar" *ngIf="selectedData && selectedData.id>0">
         <a [routerLink]="['/contactenos',selectedData.marca]">
-        <img src="./../../../assets/images/Mercados/Modulo-2/boton cotizar con texto.png" alt=""></a>
+        <img  src="./../../../assets/images/Mercados/Modulo-2/boton cotizar con texto.png" alt=""></a>
 </div>
 <!-- cuando son tapas -->
 <div *ngIf="selectedData.categoria==3 && selectedData.marca!=4">

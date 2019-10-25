@@ -584,7 +584,7 @@ canvas{
     position: absolute;
     height: 40px;
     width: 40px !important;
-    right: 1%;
+    right: 5%;
     z-index: 9999;
     top: 50%;
 }
@@ -594,9 +594,12 @@ canvas{
         .owl-nav{
             // margin-left: 100% !important;
             width: 100% !important;
-            top: 0;
-            height: 100%;
+            padding-left: 5% !important;
+            top: 45%;
+            height: 20%;
+            left: 0;
             position: absolute;
+            padding-right: 5% !important;
             .owl-prev{
                 margin-bottom: 0%;
                 width:5%;
@@ -629,14 +632,36 @@ canvas{
 }
 
 @media only screen and (max-width: 1000px){
-    .filtrosAccordeon button.collapsed h3{
-        .filtrosAccordeon .card .card-header {
-            background-color: rgb(242,242,242)!important;
+    .content_all_videos{
+        background-color: #f3f3f3 !important;
+        .owl-theme {
+            .owl-nav{
+                // margin-left: 100% !important;
+                width: 100% !important;
+                padding-left: 0% !important;
+                bottom: 20%;
+                height: fit-content;
+                left: 0;
+                position: absolute;
+                padding-right: 5% !important;
+                top: 60%;
+                .owl-prev{
+                    margin-bottom: 0%;
+                    width: fit-content;
+                }
+                .owl-next{
+                    margin-top: 0%;
+                    background-color: transparent;
+                    width: fit-content;
+                }
+                .flechaIz{
+                    width:auto;
+                }
+                .flechaDer{
+                    width:auto;
+                }
+            }
         }
-        font-size: 1.2rem!important;
-        color: #44D62C!important;
-        background-color: rgb(242,242,242)!important;
-        text-decoration: none;
     }
     .logo.pointer{
         width: 50%;
@@ -765,4 +790,35 @@ canvas{
     .container_data{
         padding-bottom: 10%;
     }
+    .lb-dataContainer{
+        margin-bottom: 5px;
+    }
+    .content_cotizar{
+        display: flex !important;
+        width: 100% !important;
+    }
+    .content_cotizar a{
+        display: flex !important;
+        width: 100% !important;
+    }
+    .content_cotizar img{
+        display: flex !important;
+        width: 0% !important;
+        margin: auto;
+    }
+    .ficha-tecnica{
+        width: 100% !important;
+    }
+    .collapsed h3{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .card-header h3{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    } 
+    .owl-stage{
+        width: 2570px !important;
+    }
 }
+

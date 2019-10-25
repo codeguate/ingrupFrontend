@@ -35,7 +35,7 @@
             <ngb-accordion  class="p-20 filtrosAccordeon container_productos mt-5" #filtros="ngbAccordion" >
                 <ngb-panel *ngFor="let data of Table">
                     <ng-template ngbPanelTitle class="w-100" >
-                    <h3>
+                    <h3 class="content_select_row">
                         <img src="./../../../../assets/images/Mercados/Modulo-1/flechaDer.png" alt="">
                         {{data.nombre}}
                         <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
@@ -95,8 +95,13 @@
             <div class="galeria mt-3 d-flex" id="Galeria" *ngIf="selectedData && !selectedData.hasModel">
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
+<<<<<<< HEAD
                     <img *ngIf="galleryImages.length>1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
                     <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages"  (click)="openGallery2()"  [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery>
+=======
+                    <img *ngIf="galleryImages.length>1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery(i)">
+                    <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+>>>>>>> 0658ff48424c72c320d622586ae59afc817d97d5
                     <!-- <ngx-gallery class="contains_single_img" *ngIf="galleryImages.length<=1" [options]="galleryOptions2" [images]="galleryImages" style="margin:auto;"></ngx-gallery> -->
                     <!-- <div *ngIf="galleryImages.length==1" class="uniqueImageContainer">
                         <div class="contain_single_img">

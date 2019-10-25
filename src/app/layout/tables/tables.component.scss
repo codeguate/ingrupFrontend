@@ -18,15 +18,15 @@
     background-size: 100%;
 }
 .panel-ingrup:hover{
-    // background-color: #44D62C;
+    background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
-    // box-shadow: #44D62C 0px 0px 10px 5px ;
+    box-shadow: #44D62C 0px 0px 10px 5px ;
 
     cursor:pointer;
 }
 .panel-ingrup:hover .menu-item-ingrup{
-    // filter:brightness(1);
+    filter:brightness(1);
 }
 .panel-ingrup:hover .panel-title-ingrup h3{
     color: #ffffff;
@@ -54,11 +54,11 @@
     }
 }
 .panel-ingrup.active {
-    // background-color: #44D62C;
+    background-color: #44D62C;
     // border: solid #ffffff 0.5rem;
     list-style: none;
     // width: 100%;
-    // box-shadow: #44D62C 0px 0px 10px 5px ;
+    box-shadow: #44D62C 0px 0px 10px 5px ;
         border: solid 1px #ffffff;
     cursor:pointer;
     padding-left: 1rem;
@@ -74,7 +74,7 @@
     display: flex;
 }
 .panel-ingrup.active .menu-item-ingrup{
-    // filter:brightness(1);
+    filter:brightness(1);
 }
 .panel-ingrup.active .panel-title-ingrup h3{
     color: #ffffff;
@@ -186,7 +186,7 @@
 
 
 .uniqueImageContainer{
-    // height: 700px;
+    height: 700px;
     width:90%;
     display: flex;
     .uniqueImage{
@@ -201,7 +201,7 @@
 .galeria{
     display: flex;
     flex-direction: column;
-
+    
     ngx-gallery{
         margin-left: 0 !important;
     }
@@ -253,5 +253,57 @@
     .panel-ingrup{
         // height: 30vh;
         padding-left: 0px;
+    }
+    .pantallaCompleta{
+        left: inherit;
+        right: 5%;
+    }
+    .lb-dataContainer{
+        z-index: 99999 !important;
+    }
+    .uniqueImageContainer{
+        width: 100%;
+    }
+    .content_select_row{
+        padding-left: 0 !important;
+    }
+    .menu-ingrup{
+        .menu-item-ingrup{
+            width: 300px !important;
+            height: 130px;
+        }
+    }
+    .uniqueImageContainer,.content_single_img{
+        height: 300px;
+    }
+    .card.ficha-tecnica{
+        width: 100% !important;
+    }
+    .ficha-tecnica{
+        width: 100% !important;
+    }
+    #table1{
+        width: 100% !important;
+        display: flex !important;
+        a{
+            width: 100% !important;
+            display: flex !important;
+            img{
+                width: 100% !important;
+                display: flex !important;
+            }
+        }
+    }
+    .content_cotizar{
+        display: flex !important;
+        width: 100% !important;
+    }
+    .click_cotizar{
+        display: flex !important;
+        width: 100% !important;
+    }
+    .img_cotizar{
+        display: flex !important;
+        width: 100% !important;
     }
 }
