@@ -273,6 +273,7 @@ export class TablesComponent implements OnInit {
       }
     ngOnInit() {
         this.cargarCombosMarcas();
+        $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
         this.getParams();
         this.galleryOptions = [
             {
@@ -423,7 +424,7 @@ export class TablesComponent implements OnInit {
       this.ProductosService.getSingle(id)
                           .then(response => {
                             this.customOptions2.nav = true
-                            console.log(response);
+                            // console.log(response);
                             response.pX = +response.pX;
                             response.pY = +response.pY;
                             response.pZ = +response.pZ;
@@ -453,7 +454,6 @@ export class TablesComponent implements OnInit {
 
                             response.hasModel = +response.hasModel;
                             response.material = response.model.replace('.obj','.mtl');
-                            this.selectedData=response;
 
                             if(response.imagenes && response.imagenes.length>0){
                                 let data = []
@@ -474,9 +474,13 @@ export class TablesComponent implements OnInit {
                                 });
                                 this.galleryImages = data
                                 this.galleryImages2 = data2
+                                response.fotosCant = data2.length
                             }else{
                                 this.resetCarousel();
                             }
+                            this.selectedData=response;
+                            $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
+
                             if(response.slides && response.slides.length>0){
                                 let data = []
                                 response.slides.forEach(element => {
@@ -509,6 +513,7 @@ export class TablesComponent implements OnInit {
     }
     openGallery2(){
         $('.ngx-gallery-clickable').click();
+        $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
     }
     cargarAll() {
         this.blockUI.start();
@@ -521,7 +526,7 @@ export class TablesComponent implements OnInit {
                               .then(response => {
                                 this.Table=response
 
-                                console.log(this.idF);
+                                // console.log(this.idF);
                             }).catch(error => {
                                 console.clear;
                                 this.blockUI.stop();
@@ -638,7 +643,6 @@ export class TablesComponent implements OnInit {
                                     this.scrollMyDiv('Galeria');
 
                                 }
-                                // console.log(response);
                                 this.blockUI.stop();
                             }).catch(error => {
                                 console.clear;
@@ -750,7 +754,7 @@ export class TablesComponent implements OnInit {
         this.abierto=true;
                 this.PresentacionesService.getSingle(id)
                       .then(response => {
-                        console.log(response);
+                        // console.log(response);
                         this.edition=response;
                         this.edition.tipos = tipo
                         this.blockUI.stop();
@@ -1166,18 +1170,18 @@ export class TablesComponent implements OnInit {
 
         }
         delete(data:any){
-            console.log("eliminando: ",data.tipos);
+            // console.log("eliminando: ",data.tipos);
 
             this.blockUI.start();
             switch (data.tipos) {
                 case "categorias":{
-            console.log("eliminando2");
+            // console.log("eliminando2");
 
                     this.CategoriasService.delete(data.id)
                                             .then(response => {
-                                            console.log(response);
+                                            // console.log(response);
                                             this.abierto=false
-            console.log("eliminado");
+            // console.log("eliminado");
             this.getParams();
                                             console.clear
                                             this.blockUI.stop();
@@ -1226,7 +1230,7 @@ export class TablesComponent implements OnInit {
             if(this.Marcas.submarca){
                 this.Marcas.submarca[index].foto = this.Marcas.submarca[index].foto.substring(0,this.Marcas.submarca[index].foto.length-cant)+text
 
-                console.log(this.Marcas.submarca[index].foto);
+                // console.log(this.Marcas.submarca[index].foto);
             }
 
 

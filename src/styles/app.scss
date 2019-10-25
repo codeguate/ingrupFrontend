@@ -432,8 +432,49 @@ canvas{
     font-size:3.5rem;
 
 }
+.ngx-gallery-preview-top{
+    .ngx-gallery-preview-icons{
+        .ngx-gallery-icon{
+            content:"X"
+        }
+        .ngx-gallery-close{
+            color: #44D62C!important;
+        }
+    }
+}
+.ngx-gallery-thumbnail{
+    margin-left: auto;
+}
+.ImagenesCant2{
+    .ngx-gallery-thumbnail{
+        margin-left: 25%;
+    }
+}
+.ImagenesCant1{
+    .ngx-gallery-thumbnail{
+        margin-left: 37.5%;
+    }
+}
+
+.ImagenesCant3{
+    .ngx-gallery-thumbnail{
+        margin-left: 12.5%;
+    }
+}
+
+
+.ImagenesCant4{
+    .ngx-gallery-thumbnail{
+        margin-left: 0%;
+    }
+}
+
+
 .ngx-gallery-animation-slide .ngx-gallery-image.ngx-gallery-active{
     background-size: auto 100%!important;
+}
+.oscurece{
+    mix-blend-mode: multiply!important;
 }
 .hashtag{
     font-family: ManoMegra!important;
