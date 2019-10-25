@@ -535,6 +535,13 @@ export class TablesComponent implements OnInit {
 
     cargarOfCate(id:number,changeUrl:boolean=false) {
         // this.datoPEnviar2.mercados.pop()
+        this.carouselData = null
+        if(this.selectedData.slides){
+            this.selectedData.slides.length = 0
+        }
+        if(this.selectedData.presentaciones){
+            this.selectedData.presentaciones.length = 0
+        }
         this.resetCarousel();
 
         if(changeUrl) {
