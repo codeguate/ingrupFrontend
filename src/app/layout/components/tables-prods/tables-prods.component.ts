@@ -15,6 +15,7 @@ export class TablesProdsComponent implements OnInit {
   ) { }
   selected:any = {
       id: 0,
+      nombre: "",
       descripcion: [],
       peso: [],
       largo: [],
@@ -36,6 +37,8 @@ export class TablesProdsComponent implements OnInit {
   ngOnInit() {
     if(this.selectedData.presentaciones){
         this.selected = this.selectedData.presentaciones[0]
+      }else{
+        this.selected = null
       }
   }
   onChange($event){
