@@ -277,7 +277,7 @@ export class TablesComponent implements OnInit {
         this.getParams();
         this.galleryOptions = [
             {
-                width: '90%',
+                width: '100%',
                 height: '600px',
                 imagePercent: 100,
                 imageSwipe:true,
@@ -314,7 +314,7 @@ export class TablesComponent implements OnInit {
         ];
         this.galleryOptions2 = [
             {
-                width: '90%',
+                width: '100%',
                 height: '600px',
                 imagePercent: 100,
                 imageSwipe:true,

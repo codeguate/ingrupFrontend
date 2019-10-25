@@ -65,7 +65,7 @@
                 </ngb-panel>
             </ngb-accordion>
         </div>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" *ngIf="selectedData">
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 pr-5"  *ngIf="selectedData">
             <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0 *ngIf="selectedData.hasModel"
                 (render)="mainRenderer.render()" id="mainControls">
                 <atft-webgl-renderer #mainRenderer style="height: 100vh;">
@@ -114,7 +114,7 @@
 
             </div>
 
-            <div class="w-100 d-block" id="tabla1" *ngIf="selectedData">
+            <div class="w-90 d-block" id="tabla1" *ngIf="selectedData">
 
                 <tables-data [selectedData]="selectedData"></tables-data>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sliderss" *ngIf="selectedData">
