@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MenuComponent implements OnInit {
     public pushRightClass: string;
     Table:any=null
+    id = this.route.snapshot.paramMap.get("id")
     customOptions: any = {
     responsiveClass:true,
     responsive:{
@@ -68,7 +69,20 @@ export class MenuComponent implements OnInit {
         this.pushRightClass = 'push-right';
         this.cargarAll();
     }
+    cargar(id){
+        this.id = id;
+        this.Table.forEach(element => {
+            element.foto=element.foto.replace(".png",".svg");
+            element.foto=element.foto.replace("01.svg",".svg");
+            if(element.id==id){
+              element.foto = element.foto.substring(0,element.foto.length-4)+"01.svg"
+            }
+            element.fotoActiva = element.foto
+            // console.log(element);
 
+            // this.Table.push(element)
+        });
+    }
     isToggled(): boolean {
         const dom: Element = document.querySelector('body');
         return dom.classList.contains(this.pushRightClass);
@@ -87,11 +101,22 @@ export class MenuComponent implements OnInit {
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
     }
+    cambiarIMG(index,text,cant,url:string=""){
+        if(url.indexOf("01")<0){
+            cant=4;
+        }else{
+            cant=6
+        }
+        this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text
 
+        // console.log(this.Table[index].foto);
+
+    }
     changeLang(language: string) {
         this.translate.use(language);
     }
     cargarAll(){
+        this.Table=[]
           let data = {
             id:1,
             state:'0',
@@ -99,8 +124,18 @@ export class MenuComponent implements OnInit {
           }
           this.TiposService.getAll()
                               .then(response => {
+                                let id = this.route.snapshot.paramMap.get("id")
+                                response.forEach(element => {
+                                    element.foto=element.foto.replace(".png",".svg");
+                                    if(element.id==id){
+                                      element.foto = element.foto.substring(0,element.foto.length-4)+"01.svg"
+                                    }
+                                    element.fotoActiva = element.foto
+                                    // console.log(element);
+
+                                    // this.Table.push(element)
+                                });
                                 this.Table=response
-                                // console.log(response);
                             }).catch(error => {
                                 console.clear
                               })
