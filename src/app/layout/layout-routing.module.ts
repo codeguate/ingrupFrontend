@@ -19,6 +19,7 @@ const routes: Routes = [
             { path: 'medio-ambiente', loadChildren: () => import('./bs-element/bs-element.module').then(m => m.BsElementModule) },
             { path: 'sostenibilidad', loadChildren: () => import('./grid/grid.module').then(m => m.GridModule) },
             { path: 'social', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) },
+            { path: 'integrate', loadChildren: () => import('./integrate/integrate.module').then(m => m.IntegrateModule) },
             { path: 'contactenos', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
             { path: 'contactenos/:marca', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) }
         ]

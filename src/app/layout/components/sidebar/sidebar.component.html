@@ -100,6 +100,10 @@
                 </ul>
             </li>
         </div>
+        <a [routerLink]="['/integrate']" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
+            <span>{{ 'Integrate' | translate }}</span>
+        </a>
         <a [routerLink]="['/contactenos']" (click)="toggleSidebar();toggleCollapsed()" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
             <span>{{ 'Contáctenos' | translate }}</span>
