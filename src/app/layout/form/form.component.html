@@ -3,37 +3,37 @@
         <div class="row" *ngIf="Table" style="background-color: #f2f2f2;">
                 <div class="col-xs-4 col-sm-4 col-md-6 col-lg-4  d-flex colum_select" *ngIf="Table">
             <ngb-accordion  class="p-20 filtrosAccordeon container_productos mt-5" #filtros="ngbAccordion" >
-                <ngb-panel *ngFor="let data of Table">
-                    <ng-template ngbPanelTitle class="w-100" >
-                    <h3 class="content_select_row">
-                        <img src="./../../../../assets/images/Mercados/Modulo-1/flechaDer.png" alt="">
-                        {{data.nombre}}
-                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createModal,data.productos[0].id,'productosC')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,data.id,'categorias')"></i>
-                    </h3>
-                    </ng-template>
-                    <ng-template ngbPanelContent>
-                    <ul *ngIf="selectedData">
-                        <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id);" [class.active]="+selectedData.id==prod.id">
-                            {{prod.nombre}}
+                    <ngb-panel *ngFor="let data of Table">
+                        <ng-template ngbPanelTitle class="w-100" >
+                        <h3 class="content_select_row">
+                            <img [src]="data.icono" alt="">
+                            {{data.nombre}}
+                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createModal,data.productos[0].id,'productosC')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,data.id,'categorias')"></i>
+                        </h3>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                        <ul *ngIf="selectedData">
+                            <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id);" [class.active]="+selectedData.id==prod.id">
+                                {{prod.nombre}}
 
-                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,prod.id,'productos')"></i>
-                        </li>
-                    </ul>
-                    <ul *ngIf="!selectedData">
-                        <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id);">
-                            {{prod.nombre}}
-                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,prod.id,'productos')"></i>
-                        </li>
-                    </ul>
-                    </ng-template>
-                </ngb-panel>
-            </ngb-accordion>
+                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,prod.id,'productos')"></i>
+                            </li>
+                        </ul>
+                        <ul *ngIf="!selectedData">
+                            <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id);">
+                                {{prod.nombre}}
+                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,prod.id,'productos')"></i>
+                            </li>
+                        </ul>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 pr-5"  *ngIf="selectedData">
             <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0 *ngIf="selectedData.hasModel"

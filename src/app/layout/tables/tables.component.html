@@ -31,117 +31,191 @@
             <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createModal,Table[0].productos[0].id,'categoriasC')"></i>
         </div>
 
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4  d-flex colum_select" *ngIf="Table">
-            <ngb-accordion  class="p-20 filtrosAccordeon container_productos mt-5" #filtros="ngbAccordion" >
-                <ngb-panel *ngFor="let data of Table">
-                    <ng-template ngbPanelTitle class="w-100" >
-                    <h3 class="content_select_row">
-                        <img src="./../../../../assets/images/Mercados/Modulo-1/flechaDer.png" alt="">
-                        {{data.nombre}}
-                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createModal,data.productos[0].id,'productosC')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,data.id,'categorias')"></i>
-                    </h3>
-                    </ng-template>
-                    <ng-template ngbPanelContent>
-                    <ul *ngIf="selectedData">
-                        <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id);" [class.active]="+selectedData.id==prod.id">
-                            {{prod.nombre}}
+        <div class="row w-100" id="firstRow">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  d-flex colum_select" *ngIf="Table">
+                <ngb-accordion  class="p-20 filtrosAccordeon pl-3 container_productos mt-5" #filtros="ngbAccordion" >
+                    <ngb-panel *ngFor="let data of Table">
+                        <ng-template ngbPanelTitle class="w-100" >
+                        <h3 class="content_select_row">
+                            <img [src]="data.foto" alt="">
+                            {{data.nombre}}
+                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createModal,data.productos[0].id,'productosC')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,data.id,'categorias')"></i>
+                        </h3>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                        <ul *ngIf="selectedData">
+                            <li *ngFor="let prod of data.productos"  (click)="cargarSingle(prod.id,viewModal);" [class.active]="+selectedData.id==prod.id">
+                                {{prod.nombre}}
 
-                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,prod.id,'productos')"></i>
-                        </li>
-                    </ul>
-                    <ul *ngIf="!selectedData">
-                        <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id);">
-                            {{prod.nombre}}
-                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
-                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,prod.id,'productos')"></i>
-                        </li>
-                    </ul>
-                    </ng-template>
-                </ngb-panel>
-            </ngb-accordion>
-        </div>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 pr-5"  *ngIf="selectedData">
-            <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0 *ngIf="selectedData.hasModel"
-                (render)="mainRenderer.render()" id="mainControls">
-                <atft-webgl-renderer #mainRenderer style="height: 100vh;">
-                    <atft-perspective-camera [fov]="selectedData.fov" [near]="selectedData.near" [far]="selectedData.far"
-                        positionX={{selectedData.pX}} positionY={{selectedData.pY}} positionZ={{selectedData.pZ}}>
-                    </atft-perspective-camera>
-                    <atft-scene>
-                        <atft-point-light [color]="configModel.color" intensity="0.9" distance="100" translateX=50 translateY=50 translateZ=50></atft-point-light>
-                        <atft-point-light [color]="configModel.color" intensity="0.5" distance="100" translateX=-50 translateY=20 translateZ=-50></atft-point-light>
-                        <atft-point-light [color]="configModel.color" intensity="0.8" distance="200" translateX=0 translateY=-20 translateZ=0></atft-point-light>
-                        <!-- <atft-axes-helper size=300></atft-axes-helper> -->
-                        <!-- <atft-grid-helper size=200 divisions=20></atft-grid-helper> -->
-                        <atft-obj-loader
-                        (render)="mainRenderer.render()"
-                        model="{{selectedData.model}}"
-                        material="{{selectedData.material}}"
-                        rotateX={{selectedData.rX}}
-                        rotateY={{selectedData.rX}}
-                        rotateZ={{selectedData.rX}}
-                        translateX={{selectedData.tX}}
-                        translateZ={{selectedData.tZ}}
-                        translateY={{selectedData.tY}}>
-                        </atft-obj-loader>
-                    </atft-scene>
-                </atft-webgl-renderer>
-            </atft-orbit-controls>
-            <div class="galeria mt-3 d-flex" id="Galeria" *ngIf="selectedData && !selectedData.hasModel" onlyMyGallery>
+                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,prod.id,'productos')"></i>
+                            </li>
+                        </ul>
+                        <ul *ngIf="!selectedData">
+                            <li *ngFor="let prod of data.productos" (click)="cargarSingle(prod.id);">
+                                {{prod.nombre}}
+                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,prod.id,'productos')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createPresentacionModal,prod.id,'presentacionC')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-times]="!abierto" (click)="open(deleteModal,prod.id,'productos')"></i>
+                            </li>
+                        </ul>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pr-5 mainPic maxi"  *ngIf="selectedData">
+                <div class="galeria mt-3 d-flex" id="Galeria2" *ngIf="selectedData && !selectedData.hasModel" >
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
-                    <img *ngIf="galleryImages.length>1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
-                    <div *ngIf="galleryImages.length>1">
-                        <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages"  [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery>
-                    </div>
-                    <!-- <ngx-gallery class="contains_single_img" *ngIf="galleryImages.length<=1" [options]="galleryOptions2" [images]="galleryImages" style="margin:auto;"></ngx-gallery> -->
-                    <!-- <div *ngIf="galleryImages.length==1" class="uniqueImageContainer">
-                        <div class="contain_single_img">
-                            <img src="{{galleryImages[0].medium}}" class="uniqueImage">
-                        </div>
-
-                    </div> -->
-                    <img *ngIf="galleryImages.length==1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
-                    <div *ngIf="galleryImages.length==1" class="uniqueImageContainer ">
-                        <ngx-gallery class="contains_single_img" [options]="galleryOptions2" [images]="galleryImages" [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery>
-                        <!-- <div class="content_single_img">
+                    <img *ngIf="muestra==0" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
+                    <div *ngIf="muestra==0" class="uniqueImageContainer ">
+                        <!-- <ngx-gallery class="contains_single_img" [options]="galleryOptions2" [images]="galleryImages2" [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery> -->
+                        <div class="content_single_img">
                             <img *ngFor="let image of galleryImages2; let i=index" class="uniqueImage" [class.ImagenesCant1]="selectedData.fotosCant==1" [class.oscurece]="selectedData.categoria==2"  [src]="image.thumb" (click)="openGallery(i)" />
-                        </div> -->
-                    </div>
-
-
-            </div>
-
-            <div class="w-90 d-block" id="tabla1" *ngIf="selectedData">
-
-                <tables-data [selectedData]="selectedData"></tables-data>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-5 sliderss" *ngIf="selectedData">
-                        <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,selectedData.id,'slides')"></i>
-                        <!-- <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,null,'sliders')"></i> -->
-                        <div  id="slidesingrup" *ngIf="selectedData && selectedData.slides">
-                            <owl-carousel-o [options]="customOptions2" *ngIf="selectedData.slides.length>0" class="banners">
-                                    <ng-container *ngFor="let slide of carouselData; let i = index" style="margin:auto;">
-                                        <ng-template carouselSlide>
-                                        <img [src]="slide.src" class="imagen1">
-                                        </ng-template>
-                                    </ng-container>
-
-                            </owl-carousel-o>
                         </div>
                     </div>
+                </div>
             </div>
+            <div class="d-none col-xs-12 col-sm-12 col-md-12 col-lg-12 row back-gris" id="finalPic"  *ngIf="selectedData">
+                <button (click)="ocultarModal()" style="
+                position: absolute;
+                margin-top: auto;
+                z-index: 9999999;
+            ">
+                    regresar
+                </button>
+                <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0 *ngIf="selectedData.hasModel"
+                    (render)="mainRenderer.render()" id="mainControls">
+                    <atft-webgl-renderer #mainRenderer style="height: 100vh;">
+                        <atft-perspective-camera [fov]="selectedData.fov" [near]="selectedData.near" [far]="selectedData.far"
+                            positionX={{selectedData.pX}} positionY={{selectedData.pY}} positionZ={{selectedData.pZ}}>
+                        </atft-perspective-camera>
+                        <atft-scene>
+                            <atft-point-light [color]="configModel.color" intensity="0.9" distance="100" translateX=50 translateY=50 translateZ=50></atft-point-light>
+                            <atft-point-light [color]="configModel.color" intensity="0.5" distance="100" translateX=-50 translateY=20 translateZ=-50></atft-point-light>
+                            <atft-point-light [color]="configModel.color" intensity="0.8" distance="200" translateX=0 translateY=-20 translateZ=0></atft-point-light>
+                            <!-- <atft-axes-helper size=300></atft-axes-helper> -->
+                            <!-- <atft-grid-helper size=200 divisions=20></atft-grid-helper> -->
+                            <atft-obj-loader
+                            (render)="mainRenderer.render()"
+                            model="{{selectedData.model}}"
+                            material="{{selectedData.material}}"
+                            rotateX={{selectedData.rX}}
+                            rotateY={{selectedData.rX}}
+                            rotateZ={{selectedData.rX}}
+                            translateX={{selectedData.tX}}
+                            translateZ={{selectedData.tZ}}
+                            translateY={{selectedData.tY}}>
+                            </atft-obj-loader>
+                        </atft-scene>
+                    </atft-webgl-renderer>
+                </atft-orbit-controls>
 
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 w-90 maxi" id="tabla1" *ngIf="selectedData">
+
+                    <tables-data [selectedData]="selectedData"></tables-data>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-5 sliderss" *ngIf="selectedData">
+                            <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,selectedData.id,'slides')"></i>
+                            <!-- <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,null,'sliders')"></i> -->
+                            <div  id="slidesingrup" *ngIf="selectedData && selectedData.slides">
+                                <owl-carousel-o [options]="customOptions2" *ngIf="selectedData.slides.length>0" class="banners">
+                                        <ng-container *ngFor="let slide of carouselData; let i = index" style="margin:auto;">
+                                            <ng-template carouselSlide>
+                                            <img [src]="slide.src" class="imagen1">
+                                            </ng-template>
+                                        </ng-container>
+
+                                </owl-carousel-o>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 galeria mt-3 d-flex" id="Galeria" *ngIf="selectedData && !selectedData.hasModel" onlyMyGallery>
+                        <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
+                        <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
+                        <img *ngIf="galleryImages.length>1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
+                        <div *ngIf="galleryImages.length>1">
+                            <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages"  [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery>
+                        </div>
+                        <!-- <ngx-gallery class="contains_single_img" *ngIf="galleryImages.length<=1" [options]="galleryOptions2" [images]="galleryImages" style="margin:auto;"></ngx-gallery> -->
+                        <!-- <div *ngIf="galleryImages.length==1" class="uniqueImageContainer">
+                            <div class="contain_single_img">
+                                <img src="{{galleryImages[0].medium}}" class="uniqueImage">
+                            </div>
+
+                        </div> -->
+                        <img *ngIf="galleryImages.length==1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
+                        <div *ngIf="galleryImages.length==1" class="uniqueImageContainer ">
+                            <ngx-gallery class="contains_single_img" [options]="galleryOptions2" [images]="galleryImages" [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery>
+                            <!-- <div class="content_single_img">
+                                <img *ngFor="let image of galleryImages2; let i=index" class="uniqueImage" [class.ImagenesCant1]="selectedData.fotosCant==1" [class.oscurece]="selectedData.categoria==2"  [src]="image.thumb" (click)="openGallery(i)" />
+                            </div> -->
+                        </div>
+
+
+                </div>
+
+
+            </div>
         </div>
     </div>
     <div id="stinkyEnd"></div>
 </div>
 
 
+<ng-template #viewModal let-c="dismiss" let-d="dismiss">
+        <div class="modal-header"  *ngIf="selectedData">
+                <h4 class="modal-title">{{selectedData.nombre}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="modal-body">
+                <form class="row w-100" *ngIf="selectedData" >
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 galeria mt-3 d-flex" id="Galeria" *ngIf="selectedData && !selectedData.hasModel" onlyMyGallery>
+                        <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
+                        <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
+                        <img *ngIf="galleryImages.length>1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
+                        <div *ngIf="galleryImages.length>1">
+                            <ngx-gallery *ngIf="galleryImages.length>1" [options]="galleryOptions" [images]="galleryImages"  [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery>
+                        </div>
+                        <!-- <ngx-gallery class="contains_single_img" *ngIf="galleryImages.length<=1" [options]="galleryOptions2" [images]="galleryImages" style="margin:auto;"></ngx-gallery> -->
+                        <!-- <div *ngIf="galleryImages.length==1" class="uniqueImageContainer">
+                            <div class="contain_single_img">
+                                <img src="{{galleryImages[0].medium}}" class="uniqueImage">
+                            </div>
+
+                        </div> -->
+                        <img *ngIf="galleryImages.length==1" src="./../../../assets/images/PantallaCompleta.png" class="pantallaCompleta" (click)="openGallery2()">
+                        <div *ngIf="galleryImages.length==1" class="uniqueImageContainer ">
+                            <ngx-gallery class="contains_single_img" [options]="galleryOptions2" [images]="galleryImages" [class.ImagenesCant2]="selectedData.fotosCant==2" [class.ImagenesCant3]="selectedData.fotosCant==3" [class.ImagenesCant4]="selectedData.fotosCant>=4" [class.oscurece]="selectedData.categoria==2"></ngx-gallery>
+                            <!-- <div class="content_single_img">
+                                <img *ngFor="let image of galleryImages2; let i=index" class="uniqueImage" [class.ImagenesCant1]="selectedData.fotosCant==1" [class.oscurece]="selectedData.categoria==2"  [src]="image.thumb" (click)="openGallery(i)" />
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 w-90 mini" id="tabla1" *ngIf="selectedData">
+                        <tables-data [selectedData]="selectedData"></tables-data>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-5 sliderss" *ngIf="selectedData">
+                            <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,selectedData.id,'slides')"></i>
+                            <!-- <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,null,'sliders')"></i> -->
+                            <div  id="slidesingrup" *ngIf="selectedData && selectedData.slides">
+                                <owl-carousel-o [options]="customOptions2" *ngIf="selectedData.slides.length>0" class="banners">
+                                        <ng-container *ngFor="let slide of carouselData; let i = index" style="margin:auto;">
+                                            <ng-template carouselSlide>
+                                            <img [src]="slide.src" class="imagen1">
+                                            </ng-template>
+                                        </ng-container>
+                                </owl-carousel-o>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </div>
+</ng-template>
 <ng-template #editModal let-c="dismiss" let-d="dismiss">
     <div class="modal-header">
             <h4 class="modal-title">Editar</h4>

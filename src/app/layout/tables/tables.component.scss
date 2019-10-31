@@ -4,6 +4,51 @@
     margin-top: auto;
     margin-bottom: auto;
 }
+.modalGAlerya{
+    position: absolute;
+    z-index: 999;
+    padding: 0px;
+    height: 100%;
+    // background-color: #ffffff;
+    //   transform: translateX(100%);
+    margin-left: 2rem;
+    animation: modalGAlerya 0.5s ease-in 1 forwards;
+    -webkit-animation: modalGAlerya 0.5s ease-in 1 forwards;
+}
+
+.modalGAleryaOut{
+    position: absolute;
+    z-index: 999;
+    padding: 0px;
+    height: 100%;
+    // background-color: #ffffff;
+    //   transform: translateX(100%);
+    margin-left: 2rem;
+    animation: modalGAleryaOut 0.5s ease-in 1 forwards;
+  -webkit-animation: modalGAleryaOut 0.5s ease-in 1 forwards;
+}
+@keyframes modalGAlerya{
+  0%{
+      transform: translateX(100%);
+  }
+//   50%{
+//       transform: translateX(-40px);
+//   }
+  100%{
+      transform: translateX(0px);
+  }
+}
+@keyframes modalGAleryaOut{
+    0%{
+        transform: translateX(0px);
+    }
+  //   50%{
+  //       transform: translateX(-40px);
+  //   }
+    100%{
+        transform: translateX(100%);
+    }
+  }
 .container_productos{
     height: auto;
     // max-height: 90vh;
@@ -233,11 +278,60 @@
 .pantallaCompleta{
     left: 90%;
 }
-
+@media only screen and (min-width: 901px){
+    .mini{
+        display: none;
+    }
+    .maxi{
+        display: block;
+    }
+}
 @media only screen and (max-width: 900px){
+    .mini{
+        display: block;
+    }
+    .modalGAlerya{
+        position: absolute;
+        // top: 10%;
+        right: 0;
+        // bottom: 0;
+        left: 0;
+        height: auto;
+        overflow: hidden;
+        outline: 0;
+        z-index: 999;
+        padding: 0px;
+        // background-color: #ffffff;
+        //   transform: translateX(100%);
+        margin-left: 0rem;
+        animation: modalGAlerya 0.5s ease-in 1 forwards;
+        -webkit-animation: modalGAlerya 0.5s ease-in 1 forwards;
+    }
+    .modalGAleryaOut{
+        position: absolute;
+        // top: 10%;
+        right: 0;
+        // bottom: 0;
+        left: 0;
+        height: auto;
+        overflow: hidden;
+        outline: 0;
+        z-index: 999;
+        padding: 0px;
+        // background-color: #ffffff;
+        //   transform: translateX(100%);
+        margin-left: 0rem;
+    }
+    .maxi{
+        display: none;
+    }
+    #tabla2{
+        // height: 100vh;
+    }
 
     .galeria{
-        // height: 80vh!important;
+        height: 10%!important;
+        margin-bottom: 5%;
     }
     .pr-5{
         padding-right: 0px!important;

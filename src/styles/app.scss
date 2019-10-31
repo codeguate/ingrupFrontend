@@ -47,7 +47,15 @@
 .menu-ingrup-2 .panel-ingrup{
     width: 100% !important;
 }
-
+.hv-100{
+    height: 90vh!important;
+}
+.ng-dropdown-panel.ng-star-inserted.ng-select-bottom{
+    z-index: 9999999999!important;
+}
+.ngx-gallery-preview-img{
+    max-height: 50%!important;
+}
 .menu-ingrup .sub_menu_panel{
     width: 100%;
     margin-left: auto;
@@ -119,6 +127,9 @@
     color: #44D62C!important;
     background-color: rgb(242,242,242)!important;
     text-decoration: none;
+    img{
+        filter: brightness(0.2)!important;
+    }
 }
 .filtrosAccordeon .btn-link h3{
     color:rgb(242,242,242);
@@ -130,6 +141,14 @@
    }
 .filtrosAccordeon .card .card-header {
     background-color: rgb(242,242,242);
+    // background-color: #44D62C;
+    // color: #f9f9f9;
+
+    img{
+        height: 40px;
+        width: 50px;
+        filter: brightness(1);
+    }
 
 }
 .ngx-gallery-thumbnail{
@@ -567,6 +586,15 @@ canvas{
     position: fixed;
     top: 10% !important;
 }
+.ngx-gallery-center{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-top: 5%!important;
+}
+.ngx-gallery-arrow{
+    top:30%!important;
+}
 .pantallaCompleta{
     cursor: pointer;
     position: absolute !important;
@@ -636,8 +664,15 @@ canvas{
 }
 
 @media only screen and (max-width: 1000px){
+    .hv-100{
+        height: 100vh!important;
+    }
     .menu-ingrup2 .owl-theme .owl-nav .owl-prev{
         left: 0%;
+    }
+    .filtrosAccordeon{
+        margin-left: 5%!important;
+        margin-right: 5%!important;
     }
     .menu-ingrup2 .owl-theme .owl-nav .owl-next{
         right: 0%;
@@ -832,8 +867,9 @@ canvas{
         width: 100% !important;
     }
     .content_cotizar img{
+        margin-top: 2%;
         display: flex !important;
-        width: 0% !important;
+        width: 50% !important;
         margin: auto;
     }
     .ficha-tecnica{

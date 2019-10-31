@@ -30,7 +30,9 @@ export class TablesComponent implements OnInit {
     @BlockUI() blockUI: NgBlockUI;
     titulo_texto:any="";
     static Cover = 'cover';
-    static Contain = 'contain';
+    win = Window
+      static Contain = 'contain';
+    muestra=0
     imagen:any = ""
     customOptions: any = {
         loop: false,
@@ -121,8 +123,6 @@ export class TablesComponent implements OnInit {
         // { text: 'Slide 9', dotContent: 'text5'},
         // { text: 'Slide 10', dotContent: 'text5'},
       ];
-  win = Window
-
     public edition:any
     public categoriasCombo:any
     public id:number = null
@@ -237,7 +237,7 @@ export class TablesComponent implements OnInit {
     galleryOptions: NgxGalleryOptions[];
     galleryOptions2: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
-    galleryImages2:any = [];
+    galleryImages2:any=[];
     scrollMyDiv(item) {
         let section = item;
         // window.scrollTo(0, 0);  // reset window to top
@@ -365,21 +365,21 @@ export class TablesComponent implements OnInit {
                 medium: 'http://placehold.it/1000X500?text=X',
                 big: 'http://placehold.it/1000X500?text=X'
             },
-            {
-                small: 'http://placehold.it/1000X500?text=X',
-                medium: 'http://placehold.it/1000X500?text=X',
-                big: 'http://placehold.it/1000X500?text=X'
-            },
-            {
-                small: 'http://placehold.it/1000X500?text=X',
-                medium: 'http://placehold.it/1000X500?text=X',
-                big: 'http://placehold.it/1000X500?text=X'
-            },
-            {
-                small: 'http://placehold.it/1000X500?text=X',
-                medium: 'http://placehold.it/1000X500?text=X',
-                big: 'http://placehold.it/1000X500?text=X'
-            }
+            // {
+            //     small: 'http://placehold.it/1000X500?text=X',
+            //     medium: 'http://placehold.it/1000X500?text=X',
+            //     big: 'http://placehold.it/1000X500?text=X'
+            // },
+            // {
+            //     small: 'http://placehold.it/1000X500?text=X',
+            //     medium: 'http://placehold.it/1000X500?text=X',
+            //     big: 'http://placehold.it/1000X500?text=X'
+            // },
+            // {
+            //     small: 'http://placehold.it/1000X500?text=X',
+            //     medium: 'http://placehold.it/1000X500?text=X',
+            //     big: 'http://placehold.it/1000X500?text=X'
+            // }
         ];
     }
     getParams() {
@@ -403,10 +403,22 @@ export class TablesComponent implements OnInit {
             }
         }
     }
-    cargarSingle(id:number) {
-        this.resetCarousel();
+    ocultarModal(){
 
-    this.blockUI.start();
+        setTimeout(() => {
+            // $("#finalPic").removeClass("modalGAlerya");
+            $("#finalPic").addClass("modalGAleryaOut");
+        }, 500);
+        setTimeout(() => {
+            // $("#finalPic").removeClass("modalGAlerya");
+            $("#firstRow").removeClass("hv-100");
+
+            this.muestra=0
+        }, 1300);
+    }
+    cargarSingle(id:number,ventana?) {
+        this.resetCarousel();
+        this.blockUI.start();
       const data = {
         id:1,
         state:'0',
@@ -414,6 +426,9 @@ export class TablesComponent implements OnInit {
       };
     //   console.log('antes:'+this.selectedData.id+' Ahora'+id);
     this.scrollMyDiv('Galeria');
+
+
+    // $(".finalPic").addClass("d-none");
     //   console.log(this.idF)
       const datas = this.selectedData;
         this.selectedData=null;
@@ -443,7 +458,7 @@ export class TablesComponent implements OnInit {
                                         response.calibress=true;
                                     }
                                 });
-                                this.galleryImages = data
+                                // this.galleryImages = data
                             }else{
                                 this.resetCarousel();
                             }
@@ -469,7 +484,7 @@ export class TablesComponent implements OnInit {
                                     data2.push(obj2)
                                 });
                                 this.galleryImages = data
-                                this.galleryImages2 = data2
+                                // this.galleryImages2 = data
                                 response.fotosCant = data2.length
                             }else{
                                 this.resetCarousel();
@@ -496,6 +511,8 @@ export class TablesComponent implements OnInit {
                                 // console.log(this.customOptions2);
 
                             }
+                            this.open(ventana,response.id,'mobile');
+
 
                             this.blockUI.stop();
                         }).catch(error => {
@@ -505,7 +522,7 @@ export class TablesComponent implements OnInit {
     }
     openGallery(index: number): void {
         // open lightbox
-        this._lightbox.open(this.galleryImages2, index,{ fitImageInViewPort: true, showImageNumberLabel: false,centerVertically:true, albumLabel:"" });
+        // this._lightbox.open(this.galleryImages2, index,{ fitImageInViewPort: true, showImageNumberLabel: false,centerVertically:true, albumLabel:"" });
     }
     openGallery2(){
         $('.ngx-gallery-active.ngx-gallery-clickable').click();
@@ -531,6 +548,7 @@ export class TablesComponent implements OnInit {
 
     cargarOfCate(id:number,changeUrl:boolean=false) {
         // this.datoPEnviar2.mercados.pop()
+        // this.datoPEnviar.mercados.pop()
         this.carouselData = null
         if(this.selectedData.slides){
             this.selectedData.slides.length = 0
@@ -591,11 +609,15 @@ export class TablesComponent implements OnInit {
     agregarMercado(dat){
         let data = {
             icon:"fa-bar-chart-o",
+            icono:dat.icono,
+            foto:dat.foto,
+            activa:dat.fotoActiva,
             nombre:dat.nombre
         }
         // console.log(dat);
-        if(dat.padre){
-            this.datoPEnviar2.mercados.pop();
+        if(dat.padre>=1 && this.datoPEnviar.mercados.length>=2){
+            // this.datoPEnviar2.mercados.pop();
+            this.datoPEnviar.mercados.pop();
         }
         if(dat.fotoDefault){
             let data2 = []
@@ -614,9 +636,27 @@ export class TablesComponent implements OnInit {
             data3.push(obj2)
             this.galleryImages = data2
             this.galleryImages2 = data3
+        }else{
+            let data2 = []
+            let data3 = []
+            let obj = {
+                small: "http://placehold.it/1000X500?text="+dat.nombre,
+                medium: "http://placehold.it/1000X500?text="+dat.nombre,
+                big: "http://placehold.it/1000X500?text="+dat.nombre
+            }
+            let obj2 = {
+                src: "http://placehold.it/1000X500?text="+dat.nombre,
+                caption: "http://placehold.it/1000X500?text="+dat.nombre,
+                thumb: "http://placehold.it/1000X500?text="+dat.nombre
+            }
+            data2.push(obj)
+            data3.push(obj2)
+            this.galleryImages = data2
+            this.galleryImages2 = data3
         }
 
         this.datoPEnviar.mercados.push(data)
+        // this.datoPEnviar2.mercados.push(data)
     }
     cargarOfMarca(id: number, changeUrl: boolean= false) {
         this.datoPEnviar.mercados.length = 0;
@@ -637,7 +677,7 @@ export class TablesComponent implements OnInit {
                                     element.fotoActiva = element.foto
                                 });
                                 this.Marcas = response;
-                                this.datoPEnviar.mercados.pop();
+                                // this.datoPEnviar.mercados.pop();
                                 this.agregarMercado(response)
                                 this.titulo_texto=response.nombre;
 
@@ -717,6 +757,33 @@ export class TablesComponent implements OnInit {
                         console.clear;
                         this.blockUI.stop();
                       });
+                break;
+            }
+            case "mobile":{
+                // console.log(window.innerWidth);
+
+                if(+window.innerWidth<=922){
+                    this.abierto=true;
+                    this.edition=this.selectedData;
+                    setTimeout(() => {
+                        $("#firstRow").addClass("hv-100");
+                    }, 500);
+                }else{
+                    content=null
+                    this.muestra=1
+                    if(this.selectedData){
+                        // console.log($("#finalPic"));
+                        setTimeout(() => {
+                            $("#firstRow").addClass("hv-100");
+                            $("#finalPic").removeClass("d-none");
+                            $("#finalPic").addClass("modalGAlerya");
+                        }, 500);
+                        // console.log($("#finalPic"));
+
+                    }
+
+                }
+
                 break;
             }
             case "categoriasC":{
@@ -850,14 +917,13 @@ export class TablesComponent implements OnInit {
             }
         }
         if(content){
-            this.modalService.open(content).result.then((result) => {
-                this.closeResult = `Closed with: ${result}`;
-            }, (reason) => {
-                this.abierto=false;
-                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-            });
+                this.modalService.open(content).result.then((result) => {
+                    this.closeResult = `Closed with: ${result}`;
+                }, (reason) => {
+                    this.abierto=false;
+                    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                });
         }
-
     }
 
     guardarImg(){

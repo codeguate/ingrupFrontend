@@ -1,0 +1,21 @@
+.miniCard{
+    // background-color: #44D62C;
+    display: inline;
+    img{
+        width: 50px;
+        height: 40px;
+        filter: brightness(0.2);
+    }
+    i{
+        font-size: 2rem;
+        // padding-top: 0.5rem;
+    }
+}
+
+.breadcrumb-item + .breadcrumb-item::before{
+    display: inline-block;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    color: #868e96;
+    content: "|"!important;
+}

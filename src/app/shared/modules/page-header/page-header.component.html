@@ -7,9 +7,17 @@
         </h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <i class="fa fa-home"></i> <a href="Javascript:void(0)" [routerLink]="['/mercados']">{{data.titulo}}</a>
+                    <a href="Javascript:void(0)" [routerLink]="['/mercados']">     <div class="miniCard">
+                            <i class="fa fa-home"></i>
+                        </div>
+                 {{data.titulo}}</a>
             </li>
-            <li *ngFor="let dato of data.mercados" class="breadcrumb-item active"><i class="fa {{dato.icon}}"></i>{{dato.nombre}} </li>
+            <li *ngFor="let dato of data.mercados" class="breadcrumb-item active">
+                <div class="miniCard">
+                    <img [src]="dato.icono">
+                </div>
+                {{dato.nombre}}
+            </li>
         </ol>
     </div>
 </div>
