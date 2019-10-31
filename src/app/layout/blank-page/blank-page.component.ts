@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MarcasService } from "./../../shared/services/marcas.service";
+import { UsersService } from "./../../shared/services/users.service";
 import { ActivatedRoute } from '@angular/router';
 declare var $: any
 @Component({
@@ -17,7 +18,8 @@ export class BlankPageComponent implements OnInit {
         config: NgbAccordionConfig,
         private route: ActivatedRoute,
         public router: Router,
-        private mainService:MarcasService
+        private mainService:MarcasService,
+        private UsersService:UsersService
     ) {
         // customize default values of accordions used by this component tree
         config.closeOthers = true;
@@ -25,6 +27,16 @@ export class BlankPageComponent implements OnInit {
       }
     id = this.route.snapshot.paramMap.get("marca")
     Table=[]
+    selectedData= {
+        nombre:"",
+        telefono:"",
+        asunto:"",
+        pais:"",
+        marca:this.route.snapshot.paramMap.get("marca"),
+        mensaje:"",
+        emailSend:"",
+        emailResp:"daniel.rodriguez@code.com.gt"
+    }
     ngOnInit() {
         // this.blockUI.start();
 
@@ -70,6 +82,27 @@ export class BlankPageComponent implements OnInit {
                                 this.Table=response
                                 this.blockUI.stop();
 
+                            }).catch(error => {
+                                this.blockUI.stop();
+                                console.clear
+                              })
+    }
+
+    contact(formValue){
+
+        this.blockUI.start();
+        formValue.emailResp = this.selectedData.emailResp
+          this.UsersService.send(formValue)
+                              .then(response => {
+                                  if(response.enviado){
+                                      console.log(response);
+
+                                  }else{
+                                    console.log(response);
+
+                                  }
+                                //   console.log(this.id);
+                                this.blockUI.stop();
                             }).catch(error => {
                                 this.blockUI.stop();
                                 console.clear

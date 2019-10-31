@@ -7,29 +7,29 @@
 
             <div class="row paddingr-10">
 
-                <form id="contact">
+                <form id="contact" #contactForm="ngForm">
                     <legend>Contáctanos</legend>
 
                     <div class="input-group">
-                        <input type="text" class="form-control" id="name" placeholder="Nombre">
+                        <input type="text" class="form-control" [(ngModel)]="selectedData.nombre" id="nombre" #nombre="ngModel" name="nombre" placeholder="Nombre">
                     </div>
 
                     <div class="input-group">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input type="email" class="form-control" [(ngModel)]="selectedData.emailSend" id="emailSend" #emailSend="ngModel" name="emailSend" placeholder="Email">
                     </div>
 
                     <div class="input-group">
-                        <input type="phone" class="form-control" id="phone" placeholder="Teléfono">
+                        <input type="phone" class="form-control" [(ngModel)]="selectedData.telefono" id="telefono" #telefono="ngModel" name="telefono" placeholder="Teléfono">
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="asunto" placeholder="Asunto">
+                        <input type="text" class="form-control" [(ngModel)]="selectedData.asunto" id="asunto" #asunto="ngModel" name="asunto" placeholder="Asunto">
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="pais" placeholder="País">
+                        <input type="text" class="form-control" [(ngModel)]="selectedData.pais" id="pais" #pais="ngModel" name="pais" placeholder="País">
                     </div>
                     <div class="input-group">
 
-                    <select name="mercado" id="inputmercado" class="form-control" required="required" [(ngModel)]="id">
+                    <select name="marca" id="marca" class="form-control" required="required" [(ngModel)]="selectedData.marca">
                         <option value="Seleccione un mercado" disabled hidden>Seleccione un mercado</option>
                         <option *ngFor="let data of Table" [value]="data.id">
                             <img [src]="data.icono" style="width: 10xp;height: 10px;">
@@ -41,12 +41,12 @@
 
                     <div class="input-group">
 
-                        <textarea name="mensaje" id="inputmensaje" class="form-control" rows="3" required="required" placeholder="Escribir mensaje..."></textarea>
+                        <textarea name="mensaje" id="mensaje" class="form-control" rows="3" required="required" [(ngModel)]="selectedData.mensaje" placeholder="Escribir mensaje..."></textarea>
 
                     </div>
 
                     <div class="input-group">
-                        <button type="submit" class="btn btn-primary" id="send">Enviar</button>
+                        <button type="button" class="btn btn-primary ingrup-btn" (click)="contact(selectedData)">Enviar</button>
                         <label class="descriptino_mail">O escríbenos al correo: <span class="my-mail">info@ingruplatam.com</span></label>
                     </div>
 

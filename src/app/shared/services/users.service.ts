@@ -74,4 +74,16 @@ export class UsersService {
                             .catch(this.handleError)
         }
 
+    send(form):Promise<any> {
+        let url = `${this.basePath}/api/send`
+
+        return this.http.post(url,form)
+                        .toPromise()
+                            .then(response => {
+                            //console.log(response.json())
+                            return response
+                            })
+                            .catch(this.handleError)
+        }
+
   }
