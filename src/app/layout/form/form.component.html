@@ -36,32 +36,7 @@
                 </ngb-accordion>
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 pr-5"  *ngIf="selectedData">
-            <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=0 *ngIf="selectedData.hasModel"
-                (render)="mainRenderer.render()" id="mainControls">
-                <atft-webgl-renderer #mainRenderer style="height: 100vh;">
-                    <atft-perspective-camera [fov]="selectedData.fov" [near]="selectedData.near" [far]="selectedData.far"
-                        positionX={{selectedData.pX}} positionY={{selectedData.pY}} positionZ={{selectedData.pZ}}>
-                    </atft-perspective-camera>
-                    <atft-scene>
-                        <atft-point-light [color]="configModel.color" intensity="0.9" distance="100" translateX=50 translateY=50 translateZ=50></atft-point-light>
-                        <atft-point-light [color]="configModel.color" intensity="0.5" distance="100" translateX=-50 translateY=20 translateZ=-50></atft-point-light>
-                        <atft-point-light [color]="configModel.color" intensity="0.8" distance="200" translateX=0 translateY=-20 translateZ=0></atft-point-light>
-                        <!-- <atft-axes-helper size=300></atft-axes-helper> -->
-                        <!-- <atft-grid-helper size=200 divisions=20></atft-grid-helper> -->
-                        <atft-obj-loader
-                        (render)="mainRenderer.render()"
-                        model="{{selectedData.model}}"
-                        material="{{selectedData.material}}"
-                        rotateX={{selectedData.rX}}
-                        rotateY={{selectedData.rX}}
-                        rotateZ={{selectedData.rX}}
-                        translateX={{selectedData.tX}}
-                        translateZ={{selectedData.tZ}}
-                        translateY={{selectedData.tY}}>
-                        </atft-obj-loader>
-                    </atft-scene>
-                </atft-webgl-renderer>
-            </atft-orbit-controls>
+            
             <div class="galeria mt-3 d-flex" id="Galeria" *ngIf="selectedData && !selectedData.hasModel" onlyMyGallery>
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
                     <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,null,'galeria')"></i>
