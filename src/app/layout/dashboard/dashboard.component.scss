@@ -650,7 +650,12 @@ body{
         }
     }
 }
-
+.menu-ingrup .owl-theme .owl-nav .owl-prev {
+  position: absolute;
+  background: none !important;
+  left: -5%;
+  top: 30%;
+}
 .button_mas:hover{
     box-shadow: rgba(60,210,34, 0.5) 0px 0px 15px 5px;
 }
@@ -666,6 +671,7 @@ body{
     max-height: 410px;
     display: flex;
 }
+
 .w-50d{
     width: 50%;
 }

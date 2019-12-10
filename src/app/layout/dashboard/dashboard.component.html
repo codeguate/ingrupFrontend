@@ -207,20 +207,33 @@
 <div class="row nn-header">
 
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 mx-auto pt-400 pb-400">
-                <h1 class="h1 text-ingrup my-auto text-center" style="padding-bottom: 10%;">
-                    <span class="titulo-General">
-                        Soluciones de empaques para
-                    </span>
-                </h1>
-            </div>
+            <h1 class="h1 text-ingrup my-auto text-center" style="padding-bottom: 10%;">
+                <span class="titulo-General">
+                    Soluciones de empaques para
+                </span>
+            </h1>
+        </div>
+        
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 m-auto menu-ingrup">
+            <owl-carousel-o [options]="customOptions0">
+                <ng-container *ngFor="let slide of Table;let i = index">
+                    <ng-template carouselSlide>
+                            <a style="list-style: none;text-decoration: none;" (mouseenter)="cambiarIMG(i,'01.svg',4,slide.foto)" (mouseleave)="cambiarIMG(i,'.svg',6,slide.foto)" (click)="TablesComponent.cargarOfCate(slide.id,true)" [routerLink]="['/mercados',slide.id]" >
+                                <div class="panel-ingrup" [routerLinkActive]="['active']">
+                                    <img [src]="slide.foto" *ngIf="slide.id!=id" class="menu-item-ingrup" >
+                                    <img [src]="slide.fotoActiva" *ngIf="slide.id==id" class="menu-item-ingrup" >
+                                </div>
+                                
+                            </a>
+        
+                    </ng-template>
+                </ng-container>
+            </owl-carousel-o>
 
-
-
-
-
-
-    </div>
-            
+        </div>
+        
+</div>
+          
 
 
 
@@ -244,8 +257,6 @@
                 Ahora cuentas con acceso directo a  nuestros productos<br>
                 Descarga la aplicación y mantente informado.
           </p>
-
-
         </div>
         <div class="phone">
           <img src="./assets/images/Home/Modulo-1/celular2.png" alt="" />

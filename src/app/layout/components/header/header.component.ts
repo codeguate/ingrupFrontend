@@ -123,9 +123,6 @@ export class HeaderComponent implements OnInit {
             cant=6
         }
         this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text
-
-        // console.log(this.Table[index].foto);
-
     }
     changeLang(language: string) {
         this.translate.use(language);
