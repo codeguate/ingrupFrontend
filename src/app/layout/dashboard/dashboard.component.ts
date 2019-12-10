@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MarcasService } from "./../../shared/services/marcas.service";
+
 declare var $: any
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
@@ -20,6 +21,8 @@ export class CarouselData {
     styleUrls: ['./dashboard.component.scss'],
     animations: [routerTransition()]
 })
+
+
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
@@ -77,7 +80,7 @@ export class DashboardComponent implements OnInit {
     nav: false,
     autoplay: true,
     center: true,
-    dots:true,
+    dots:false,
     items:4,
     autoplayTimeout:3000,
     margin:5,
@@ -90,13 +93,14 @@ export class DashboardComponent implements OnInit {
             items: 2
         },
         1000:{
-            items: 4
+            items: 3
         }
     }
         // URLhashListener:true,
     // startPosition: 'URLHash',
 
   }
+
 
   customOptions3: any = {
     center: true,

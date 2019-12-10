@@ -391,7 +391,8 @@ body{
   }
   .DescargaApp p{
     font-family: "RobotoMedium";
-    margin-bottom: 10%;
+    margin-bottom: 5%;
+    font-size: 22px;
   }
   .appStore{
     margin: 0 3% 0 0;
@@ -402,6 +403,69 @@ body{
     display: inline-block;
     float: left;
   }
+
+  /* NEW CODE CHANGES */
+
+
+.nn-header {
+    display: flex;
+    padding: 10% 0;
+    background: url('./../../../assets/images/Mercados/Modulo-1/Fondo.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+  .nn-type {
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    height: auto;
+    padding: 10%;
+    margin: 0;
+    background: green;
+  }
+
+  .nn-height {
+    height: auto;
+  }
+
+  .yy-video {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 800px;
+    min-height: 800px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nn-container {
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nn-container img {
+    max-width: 100%;
+    vertical-align: middle;
+    background-attachment: scroll !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+
+  .nn-img-mobile {
+    display: none;
+  }
+
+  /* NEW CODE CHANGES */
 
   /*
   Verde
@@ -505,8 +569,7 @@ body{
     border-radius: 35px;
     width: 100%;
     height: auto;
-    margin-top: 10%;
-    margin-bottom: auto;
+    margin: 2% 0;
     text-align: center;
     /* padding-bottom: 15%; */
     /* min-height: 48vh; */
@@ -620,7 +683,17 @@ body{
 
     }
 }
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 1000px) {
+
+  .nn-img-desktop {
+    display: none;
+  }
+
+  .nn-img-mobile {
+    display: block;
+    width: 100vh;
+  }  
+
   .new_row{
     flex-direction: column-reverse;
   }
@@ -728,10 +801,12 @@ body{
     display: flex;
     margin-bottom: 8%;
   }
-//   .contain_img img{
+/*   .contain_img img{
 //     width: 45%;
 //     margin: auto;
-//   }
+//  }
+
+*/
   .contain_img a{
     width: 45%;
     margin: auto;

@@ -1,7 +1,14 @@
-<div class="w-90 mx-auto text-left mt-3 content_cotizar" *ngIf="selectedData && selectedData.id>0">
-        <a [routerLink]="['/contactenos',selectedData.marca]">
-        <img  src="./../../../assets/images/Mercados/Modulo-2/boton cotizar con texto.png" alt=""></a>
-</div>
+<label style="
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    padding: 0;
+    margin: 0;
+">Nombre</label>
+
 <!-- cuando son tapas -->
 <div *ngIf="selectedData.categoria==3 && selectedData.marca!=4">
     <!-- cuando No son tapas profyt -->
@@ -3403,6 +3410,36 @@
             </tfoot>
         </table>
     </div>
+
+
+<div style="
+    position: relative;
+    display: block;
+    float: left;
+    width: auto !important;
+    margin: 1rem 0 0 8% !important;
+"class="w-90 mx-auto text-left mt-3 content_cotizar" *ngIf="selectedData && selectedData.id>0">
+        <a [routerLink]="['/contactenos',selectedData.marca]">
+        <img  src="./../../../assets/images/Mercados/Modulo-2/boton cotizar con texto.png" alt=""></a>
+</div>
+
+<div class="nn-descarga" style="
+    position: relative;
+    display: block;
+    float: left;
+    width: auto;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 40px;
+    margin: 33px 0;
+    color: #fff;
+    font-size: 25px;
+    font-weight: bolder;
+    background: #44D62C;
+    border-radius: 30px;
+    cursor: pointer;
+    border: 1px solid #fff;
+">Descargar Ficha</div>
 
     <ng-template #deletePresentacionModal let-c="dismiss" let-d="dismiss">
             <div class="modal-header" *ngIf="TablesComponent.edition">
