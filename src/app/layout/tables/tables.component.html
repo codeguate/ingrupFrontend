@@ -102,6 +102,7 @@
                 text-transform: uppercase;
             ">
                     regresar
+<<<<<<< HEAD
                     <span style="
                         position: relative;
                         display: flex;
@@ -118,6 +119,27 @@
                         font-size: 15px;
                         transform: rotate(180deg);
                     ">v</span>
+=======
+                </button>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 w-90 maxi" id="tabla1" *ngIf="selectedData">
+
+                    <tables-data [selectedData]="selectedData"></tables-data>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-5 sliderss" *ngIf="selectedData">
+                            <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,selectedData.id,'slides')"></i>
+                            <!-- <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,null,'sliders')"></i> -->
+                            <div  id="slidesingrup" *ngIf="selectedData && selectedData.slides">
+                                <owl-carousel-o [options]="customOptions2" *ngIf="selectedData.slides.length>0" class="banners">
+                                        <ng-container *ngFor="let slide of carouselData; let i = index" style="margin:auto;">
+                                            <ng-template carouselSlide>
+                                            <img [src]="slide.src" class="imagen1">
+                                            </ng-template>
+                                        </ng-container>
+
+                                </owl-carousel-o>
+                            </div>
+                        </div>
+>>>>>>> 24fb692271f3dfbf322e2dbfa6886b76a515d8ca
                 </div>
                
 
