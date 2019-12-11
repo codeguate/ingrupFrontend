@@ -80,65 +80,9 @@
                 </div>
             </div>
             <div class="d-none col-xs-12 col-sm-12 col-md-12 col-lg-12 row back-gris" id="finalPic"  *ngIf="selectedData">
-                <div (click)="ocultarModal()" style="
-                position: absolute;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                top: 0;
-                left: -2px;
-                width: 70px;
-                height: 250px;
-                padding: 0;
-                margin: 0;
-                z-index: 666;
-                color: #fff;
-                cursor: pointer;
-                background: #44D62C;
-                transform: rotate(180deg);
-                writing-mode: vertical-rl;
-                text-orientation: mixed;
-                border-radius: 20px 0 0 20px;
-                text-transform: uppercase;
-            ">
-                    regresar </div>
-                    <span style="
-                        position: relative;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        float: left;
-                        width: 30px;
-                        height: 30px;
-                        padding: 0;
-                        margin: 10px;
-                        background: transparent;
-                        border-radius: 50%;
-                        border: 2px solid #fff;
-                        font-size: 15px;
-                        transform: rotate(180deg);
-                    ">v</span>
-               
-
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 w-90 maxi" id="tabla1" *ngIf="selectedData">
-
-                    <tables-data [selectedData]="selectedData"></tables-data>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-5 sliderss" *ngIf="selectedData">
-                            <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,selectedData.id,'slides')"></i>
-                            <!-- <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,null,'sliders')"></i> -->
-                            <div  id="slidesingrup" *ngIf="selectedData && selectedData.slides">
-                                <owl-carousel-o [options]="customOptions2" *ngIf="selectedData.slides.length>0" class="banners">
-                                        <ng-container *ngFor="let slide of carouselData; let i = index" style="margin:auto;">
-                                            <ng-template carouselSlide>
-                                            <img [src]="slide.src" class="imagen1">
-                                            </ng-template>
-                                        </ng-container>
-
-                                </owl-carousel-o>
-                            </div>
-                        </div>
+                <div class="return_in_modal" (click)="ocultarModal()">
+                    regresar <span ><i class="fa fa-angle-left" style="font-size:36px"></i></span>
                 </div>
-               
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 galeria mt-3 d-flex" style="padding: 70px 0 0 70px; margin: 0 !important;" id="Galeria" *ngIf="selectedData && !selectedData.hasModel" onlyMyGallery>
                         <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editGaleriaModal,selectedData.id,'galeria')"></i>
@@ -161,11 +105,26 @@
                                 <img *ngFor="let image of galleryImages2; let i=index" class="uniqueImage" [class.ImagenesCant1]="selectedData.fotosCant==1" [class.oscurece]="selectedData.categoria==2"  [src]="image.thumb" (click)="openGallery(i)" />
                             </div> -->
                         </div>
-
-
                 </div>
 
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 w-90 maxi" id="tabla1" *ngIf="selectedData">
+                    
+                    <tables-data [selectedData]="selectedData"></tables-data>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-5 sliderss" *ngIf="selectedData">
+                            <i class="fa unlockable abstolute-unlockable" *ngIf="session && selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,selectedData.id,'slides')"></i>
+                            <!-- <i class="fa unlockable abstolute-unlockable" *ngIf="session && !selectedData.id" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editSlidesModal,null,'sliders')"></i> -->
+                            <div  id="slidesingrup" *ngIf="selectedData && selectedData.slides">
+                                <owl-carousel-o [options]="customOptions2" *ngIf="selectedData.slides.length>0" class="banners">
+                                        <ng-container *ngFor="let slide of carouselData; let i = index" style="margin:auto;">
+                                            <ng-template carouselSlide>
+                                            <img [src]="slide.src" class="imagen1">
+                                            </ng-template>
+                                        </ng-container>
 
+                                </owl-carousel-o>
+                            </div>
+                        </div>
+                </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 w-90 maxi" id="tabla1" *ngIf="selectedData">
 
                     <tables-data [selectedData]="selectedData"></tables-data>

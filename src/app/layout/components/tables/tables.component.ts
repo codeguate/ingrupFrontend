@@ -14,7 +14,7 @@ export class TablesDataComponent implements OnInit {
   ) { }
   selected:any = {
       id: 0,
-      nombre: "",
+      nombre: [],
       descripcion: [],
       peso: [],
       largo: [],

@@ -1,14 +1,5 @@
-<label style="
-    position: relative;
-    display: block;
-    float: left;
-    width: 100%;
-    height: 70px;
-    line-height: 70px;
-    padding: 0;
-    margin: 0;
-">Nombre</label>
 
+<input class="show_name " type="text" disabled [(ngModel)]="selected.nombre">
 <!-- cuando son tapas -->
 <div *ngIf="selectedData.categoria==3 && selectedData.marca!=4">
     <!-- cuando No son tapas profyt -->
