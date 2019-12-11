@@ -37,7 +37,7 @@
                     <ngb-panel *ngFor="let data of Table">
                         <ng-template ngbPanelTitle class="w-100" >
                         <h3 class="content_select_row">
-                            <img [src]="data.foto" alt="">
+                            <!-- <img [src]="data.foto" alt=""> -->
                             {{data.nombre}}
                             <i class="fa unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-edit]="!abierto" (click)="open(editModal,data.id,'categorias')"></i>
                             <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="abierto" [class.fa-plus]="!abierto" (click)="open(createModal,data.productos[0].id,'productosC')"></i>

@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
                 items:5
             },
             1000:{
-                items:7
+                items:5
             }
         }
 
@@ -110,7 +110,33 @@ export class DashboardComponent implements OnInit {
     }
 
   }
+  customOptionsn: any = {
+    loop: true,
+    autoWidth: true,
+    // autoHeight: false,
+    nav: false,
+    autoplay: true,
+    center: true,
+    dots:true,
+    items:4,
+    autoplayTimeout:3000,
+    margin:20,
+    responsiveClass:true,
+    responsive:{
+        300:{
+            items:1
+        },
+        600:{
+            items: 2
+        },
+        1000:{
+            items: 3
+        }
+    }
+        // URLhashListener:true,
+    // startPosition: 'URLHash',
 
+  }
   customOptions2: any = {
     loop: true,
     autoWidth: true,

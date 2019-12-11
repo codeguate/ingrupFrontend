@@ -359,7 +359,17 @@ $rosado: #E06B70;
     height: auto;
 
 }
-
+.nn-img-mobile{
+    display: none;
+}
+@media only screen and (max-width: 1000px){
+    .nn-img-desktop{
+        display: none;
+    }
+    .nn-img-mobile{
+        display: block;
+    }
+}
 .historia-texto{
     display: block;
     margin: auto;
