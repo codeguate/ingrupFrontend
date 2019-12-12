@@ -27,6 +27,7 @@ $rosado: #E06B70;
 h1,h2,h3,h4{
   font-family: RobotoBold;
 }
+
 .no-padding{
   padding: 0 !important;
 }
@@ -880,6 +881,9 @@ body{
     padding: 0px!important;
 }
 @media only screen and (max-width: 1000px){
+    .general_text_mb{
+      font-size: 1em !important;
+    }
     .contenedor1{
       background-color: white;
     }

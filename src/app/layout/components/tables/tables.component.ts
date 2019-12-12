@@ -14,7 +14,7 @@ export class TablesDataComponent implements OnInit {
   ) { }
   selected:any = {
       id: 0,
-      nombre: [],
+      nombre: "",
       descripcion: [],
       peso: [],
       largo: [],
@@ -34,16 +34,25 @@ export class TablesDataComponent implements OnInit {
   }
 
   ngOnInit() {
+    var number = 0;
+    for (let entry of this.selectedData.presentaciones) {
+        this.selectedData.presentaciones[number].peso = this.selectedData.presentaciones[number].peso.toFixed(2);
+        number = number + 1;
+    }
     if(this.selectedData.presentaciones){
-        this.selected = this.selectedData.presentaciones[0]
-      }else{
-        this.selected = null
-      }
+      this.selected = this.selectedData.presentaciones[0];
+      this.selected.altura = this.selected.altura.toFixed(2);
+    }else{
+      this.selected = null
+    }
+
   }
   onChange($event){
     //   this.complete=$event
     let data = $event
     this.selected = data
+    //this.selected.peso = this.selected.peso.toFixed(2);
+    //console.log(this.selected);
     //   console.log(data);
     //   console.log(this.selectedData.presentaciones[0]);
 

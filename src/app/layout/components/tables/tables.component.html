@@ -15,7 +15,7 @@
                         Descripción
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <ng-select [items]="selectedData.presentaciones"
+                        <ng-select class="select_cover" [items]="selectedData.presentaciones"
                                     bindLabel="nombre"
                                     bindId="id"
                                     placeholder="Seleccione una opcion"
@@ -56,7 +56,7 @@
               <li class="list-group-item">
                   <div class="row w-100">
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        Peso (Gr)1
+                        Peso (Gr)
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <!-- <ng-select [items]="selectedData.presentaciones"
@@ -73,6 +73,7 @@
                         </ng-select> -->
                         <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.peso<=0" class="form-control" disabled value="N/A">
                         <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.peso>0" class="form-control" disabled [(ngModel)]="selected.peso">
+                        
                     </div>
                   </div>
               </li>
@@ -630,7 +631,7 @@
                 </td>
                 <td>
                 <div>
-                        {{ data.altura?((data.altura!="" && data.altura>0)?data.altura.toFixed(2):"N/A"):"N/A" }}
+                        {{ data.altura?((data.altura!="" && data.altura>0)?data.altura:"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
