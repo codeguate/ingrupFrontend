@@ -48,8 +48,10 @@
                                 (change)="onChange($event)"
                                 [(ngModel)]="selected.cuello">
                             </ng-select> -->
-                        <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello=='' || (selected.cuello<=0)" class="form-control" disabled value="N/A">
-                        <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello!='' && (selected.cuello>0)" class="form-control" disabled [(ngModel)]="selected.cuello">
+                        <!-- <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello=='' || (selected.cuello<=0)" class="form-control" disabled value="N/A">
+                        <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello!='' && (selected.cuello>0)" class="form-control" disabled [(ngModel)]="selected.cuello"> -->
+                        <!-- selected.cuello=='' || (+selected.cuello && selected.cuello<=0) -->
+                        <input type="text" name="Filtro4" id="Filtro4"  class="form-control" disabled [(ngModel)]="selected.cuello">
                     </div>
                   </div>
               </li>
@@ -510,8 +512,9 @@
                                 (change)="onChange($event)"
                                 [(ngModel)]="selected.cuello">
                             </ng-select> -->
-                    <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello=='' || (+selected.cuello && selected.cuello<=0)" class="form-control" disabled value="N/A">
-                        <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello!='' && (+selected.cuello && selected.cuello>0)" class="form-control" disabled [(ngModel)]="selected.cuello">
+                    <!-- <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello=='' || (+selected.cuello && selected.cuello<=0)" class="form-control" disabled value="N/A">
+                        <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello!='' && (+selected.cuello && selected.cuello>0)" class="form-control" disabled [(ngModel)]="selected.cuello"> -->
+                        <input type="text" name="Filtro4" id="Filtro4"  class="form-control" disabled [(ngModel)]="selected.cuello">
                     </div>
                   </div>
               </li>
@@ -555,8 +558,9 @@
                                 (change)="onChange($event)"
                                 [(ngModel)]="selected.unidades">
                             </ng-select> -->
-                        <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                        <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                        <!-- <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
+                        <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades"> -->
+                        <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                     </div>
                   </div>
               </li>
@@ -709,8 +713,9 @@
                                 (change)="onChange($event)"
                                 [(ngModel)]="selected.cuello">
                             </ng-select> -->
-                    <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello=='' || (+selected.cuello && selected.cuello<=0)" class="form-control" disabled value="N/A">
-                        <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello!='' && (+selected.cuello && selected.cuello>0)" class="form-control" disabled [(ngModel)]="selected.cuello">
+                    <!-- <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.cuello=='' || (+selected.cuello && selected.cuello<=0)" class="form-control" disabled value="N/A"> -->
+                    <!-- selected.cuello=='' || (+selected.cuello && selected.cuello<=0) -->
+                        <input type="text" name="Filtro4" id="Filtro4"  class="form-control" disabled [(ngModel)]="selected.cuello">
                     </div>
                   </div>
               </li>

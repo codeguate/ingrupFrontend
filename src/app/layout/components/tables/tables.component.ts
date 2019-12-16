@@ -35,12 +35,25 @@ export class TablesDataComponent implements OnInit {
 
   ngOnInit() {
     var number = 0;
+
     for (let entry of this.selectedData.presentaciones) {
-        this.selectedData.presentaciones[number].peso = this.selectedData.presentaciones[number].peso.toFixed(2);
-        number = number + 1;
+      this.selectedData.presentaciones[number].peso = this.selectedData.presentaciones[number].peso.toFixed(2);
+      number = number + 1;
     }
     if(this.selectedData.presentaciones){
       this.selected = this.selectedData.presentaciones[0];
+      if(this.selected.cuello=='' || this.selected.cuello<=0){
+        this.selected.peso = "N/A";
+      }else{
+        this.selected.cuello = this.selected.cuello.toLocaleString();
+        this.selected.cuello = (formatearNumero(this.selected.cuello)).toLocaleString();
+      }
+      if(this.selected.unidades>0){
+        this.selected.unidades = this.selected.unidades.toLocaleString();
+        this.selected.unidades = (formatearNumero(this.selected.unidades)).toLocaleString();
+      }
+      
+      
       this.selected.altura = this.selected.altura.toFixed(2);
     }else{
       this.selected = null
@@ -64,5 +77,19 @@ export class TablesDataComponent implements OnInit {
 
 
 
-    }
+  }
+  
+}
+function formatearNumero(nStr) {
+  nStr += '';
+  var x = nStr.split(',');
+  var x1 = x[0];
+  var x2 = x.length > 1 ? ',' + x[1] : '';
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) {
+    console.log(x1);
+    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    console.log(x1);
+  }
+  return x1 + x2;
 }
