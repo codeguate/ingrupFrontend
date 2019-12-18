@@ -122,7 +122,7 @@ export class HeaderComponent implements OnInit {
         }else{
             cant=6
         }
-        this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text
+        this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text;
     }
     changeLang(language: string) {
         this.translate.use(language);

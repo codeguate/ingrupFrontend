@@ -438,7 +438,7 @@ export class DashboardComponent implements OnInit {
         }
         this.Table[index].foto = this.Table[index].foto.substring(0,this.Table[index].foto.length-cant)+text
 
-        console.log(this.Table[index].foto);
+        //console.log(this.Table[index].foto);
 
     }
     

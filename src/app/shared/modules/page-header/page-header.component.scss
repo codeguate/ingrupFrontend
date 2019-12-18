@@ -19,3 +19,18 @@
     color: #868e96;
     content: "|"!important;
 }
+@media only screen and (max-width: 1000px){
+    .miniCard{
+        // background-color: #44D62C;
+        display: inline;
+        img{
+            width: 30px;
+            height: 20px;
+            filter: brightness(0.2);
+        }
+        i{
+            font-size: 20px;
+            // padding-top: 0.5rem;
+        }
+    }
+}
