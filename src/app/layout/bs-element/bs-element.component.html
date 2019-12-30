@@ -1,9 +1,12 @@
 <div [@routerTransition]>
     <section>
-        <div class="row row1 v100">
+        <div class="row row1 inrow v100">
 
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-1-row1">
-                <img src="./../../../../assets/images/logo-animado.gif" [routerLink]="['./../home']" class="logo fondo mt-3 ml-3">
+                <div class="logo">
+                    <img [routerLink]="['./../home']" class="logo_header" alt="" src="./../../../assets/images/logo-animado2.gif">
+                </div>
+                
 
                 <div class="row h-100">
                     <div class="container_text">
@@ -14,7 +17,7 @@
 
             </div>
 
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-2-row2 d-flex">
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-2-row2 d-flex" style="background-image: url('../../../assets/images/Sostenibilidad/fondo2.png');">
                 <div class="contain_img w-100">
                 <img class="img_2" src="../../../assets/images/Sostenibilidad/RSE.png" >
                 <img class="img_1" src="../../../assets/images/Sostenibilidad/4rs.png" >

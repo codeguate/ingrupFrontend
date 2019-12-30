@@ -580,7 +580,8 @@ export class TablesComponent implements OnInit {
                                             element.fotoActiva = element.foto
 
                                         }
-
+                                        console.log("response 2: ");
+                                        console.log(response);
                                       this.agregarMercado(element)
                                     }else{
                                         if(element.foto.indexOf("01.svg")>=0){
@@ -634,6 +635,10 @@ export class TablesComponent implements OnInit {
             }
             data2.push(obj)
             data3.push(obj2)
+            console.log("OBJ");
+            console.log(obj);
+            console.log("OBJ2");
+            console.log(obj2);
             this.galleryImages = data2
             this.galleryImages2 = data3
         }else{
@@ -678,6 +683,8 @@ export class TablesComponent implements OnInit {
                                 });
                                 this.Marcas = response;
                                 // this.datoPEnviar.mercados.pop();
+                                console.log("response 1: ");
+                                console.log(response);
                                 this.agregarMercado(response)
                                 this.titulo_texto=response.nombre;
 

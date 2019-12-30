@@ -362,6 +362,15 @@ $rosado: #E06B70;
 .nn-img-mobile{
     display: none;
 }
+@media only screen and (min-width: 1000px){
+    .padding-10{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    .padding-all-15{
+        padding: 10%;
+    }
+}
 @media only screen and (max-width: 1000px){
     .nn-img-desktop{
         display: none;
@@ -519,7 +528,7 @@ $rosado: #E06B70;
     background-size: cover;
     background-repeat: none;
     height: 30vh;
-    margin-top: 10%;
+    margin-top: 0%;
 
 }
 .img-data{

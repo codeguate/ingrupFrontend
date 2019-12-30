@@ -1,5 +1,7 @@
 
-<input class="show_name " type="text" disabled [(ngModel)]="selected.nombre">
+<!-- <input class="show_name " type="text" disabled [(ngModel)]="selected.nombre"> -->
+
+<p class="show_name" >{{nombre}}</p>
 <!-- cuando son tapas -->
 <div *ngIf="selectedData.categoria==3 && selectedData.marca!=4">
     <!-- cuando No son tapas profyt -->
@@ -589,6 +591,7 @@
               </li>
             </ul>
         </div>
+        <!-- Descargar ficha button -->
     </div>
     <table [class.d-none]="!session" class="table table-hover d-none" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
         <thead>
@@ -1161,7 +1164,7 @@
                     <li class="list-group-item">
                         <div class="row w-100">
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                Peso (Gr)2
+                                Peso (Gr)
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                 <ng-select [items]="selectedData.presentaciones"
@@ -3415,7 +3418,7 @@
         </a>
     </div> -->
     <a class="container_boton1" href="/contactenos/"><div class="nn-descarga boton1">Cotizar</div></a>
-    <div class="nn-descarga boton2">Descargar Ficha</div>
+    <a *ngIf="secondModel.categoria==1" class="container_boton1" [href]="fichapdf" [download]="fichapdfname"><div class="nn-descarga boton2">Descargar Ficha</div></a>
 </div>
 
 

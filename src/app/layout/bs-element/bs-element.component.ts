@@ -23,4 +23,5 @@ export class BsElementComponent implements OnInit {
         }, 2000);
         //this.blockUI.stop();
     }
+    
 }

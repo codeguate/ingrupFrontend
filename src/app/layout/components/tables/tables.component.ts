@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, ɵConsole } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TablesComponent } from "./../../tables/tables.component";
-import { NUMBER_TYPE } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'tables-data',
   templateUrl: './tables.component.html',
@@ -50,43 +49,10 @@ export class TablesDataComponent implements OnInit {
   };
   convert_num = true;
   secondModel: any;
-  
-  // ngOnInit() {
-  //   var number = 0;
-
-  //   for (let entry of this.selectedData.presentaciones) {
-  //     try {
-  //       this.selectedData.presentaciones[number].peso = (formatearNumero2(this.selectedData.presentaciones[number].peso));
-  //       throw new Error('Something bad happened');
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //     number = number + 1;
-  //   }
-  //   if(this.selectedData.presentaciones){
-  //     this.selected = this.selectedData.presentaciones[0];
-  //     if(this.selected.cuello=='' || this.selected.cuello<=0){
-  //       this.selected.peso = "N/A";
-  //     }else{
-  //       this.selected.cuello = this.selected.cuello.toLocaleString();
-  //       this.selected.cuello = (formatearNumero(this.selected.cuello)).toLocaleString();
-  //     }
-  //     if(this.selected.unidades>0){
-  //       this.selected.unidades = this.selected.unidades.toLocaleString();
-  //       this.selected.unidades = (formatearNumero(this.selected.unidades)).toLocaleString();
-  //     }
-  //     try {
-  //       this.selected.altura = this.selected.altura.toFixed(2);
-  //       throw new Error('Something bad happened');
-  //     } catch (e) {
-  //       console.log(e)
-  //     }
-      
-  //   }else{
-  //     this.selected = null
-  //   }
-
-  // }
+  nombre = "";
+  fichapdf = "";
+  fichapdfname = "";
+  pathpdf = "../../../../assets/pdf/";
   ngOnInit() {
     this.secondModel = this.selectedData;
     
@@ -96,40 +62,26 @@ export class TablesDataComponent implements OnInit {
         /*********/
         if(this.convert_num){
           this.convert_num = false;
-          console.log(this.peso.data.length);
           var numero = 0;
           this.selectedData.presentaciones.forEach(element => {
-            this.selectedData.presentaciones[numero].peso = (formatearNumero2(element.peso));
-            console.log(this.selectedData.presentaciones[numero].peso);
-            console.log("vueltas: " + numero);
+            this.selectedData.presentaciones[numero].peso = add_string(element.peso);
             numero +=1;
           });
         }
         /*********/
         this.selected = this.selectedData.presentaciones[0];
-        console.log(this.selected);
-        console.log(this.selectedData);
-        this.selected.peso = this.selectedData.presentaciones[0].peso;
+        this.nombre = this.selected.nombre;
+
+        this.selected.altura = formatearNumero2(this.selected.altura);
         this.unidades = formatearNumero(this.selected.unidades);
+        // alert(this.selected.peso);
+        console.log(this.selected.peso);
+        this.fichapdfname = linkpdf(this.nombre , this.selected.peso , this.selected.altura);
+        this.fichapdf = this.pathpdf + this.fichapdfname;
     }else{
       this.selected = null
     }
-    // if(this.secondModel.presentaciones){
-    //   this.selected2 = this.secondModel.presentaciones[0];
-    //   var num = 0;
-    //   this.secondModel.presentaciones.forEach(element => {
-    //     try {
-    //       this.secondModel.presentaciones[num].peso = element.peso.toFixed(2);
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //     num +=1;
-    //   });
-    //   console.log(this.secondModel);
-    //   console.log(this.selectedData);
-    // }else{
-    //   this.selected2 = null
-    // }
+
   }
   onChange($event){
 
@@ -138,6 +90,11 @@ export class TablesDataComponent implements OnInit {
     this.selected = data
 
     this.unidades = formatearNumero(this.selected.unidades);
+    this.selected.altura = formatearNumero2(this.selected.altura);
+    this.nombre = this.selected.nombre;
+
+    this.fichapdfname = linkpdf(this.nombre , this.selected.peso , this.selected.altura);
+    this.fichapdf = this.pathpdf + this.fichapdfname;
     /*********/
     console.log($event);
     /*********/
@@ -148,6 +105,63 @@ export class TablesDataComponent implements OnInit {
   removeDuplicates(originalArray, prop) {
   }
   
+}
+function add_string(string_val){
+  string_val = string_val + "";
+  var convert = true;
+  for (let index = 0; index < string_val.length; index++) {
+    const element = string_val[index];
+    if(element === ","){
+      convert = false;
+    }
+  }
+  if(convert){
+    string_val = string_val + "";
+  var string_data = string_val.split(".",2);
+  // console.log("array string: " + string_data[1]);
+  var data_decimal = string_data[1];
+  string_data = string_data[0];
+  var array_nums = [];
+  var string_numero = "";
+  for (let index = 0; index < string_data.length; index++) {
+    const element = string_data[index];
+    // console.log(element);
+    if(string_data.length > 3){
+      if(string_data.length - 3 === index){
+        array_nums.push(",");
+        string_numero += ",";
+      }
+    }
+    array_nums.push(element);
+    string_numero += element;
+  }
+  // console.log("decimales: " + data_decimal);
+  if(!data_decimal){
+    // console.log(".00");
+    string_numero =  string_numero + ".00";
+  }else{
+    // console.log("data decimal true");
+    if(data_decimal.length === 1){
+      // console.log("length: " + data_decimal.length);
+      string_numero = string_numero + "." +data_decimal + "0";
+    }else if( data_decimal.length === 2){
+      string_numero = string_numero + "." + data_decimal;
+    }
+
+  }
+  return string_numero.toString();
+  }else{
+    return string_val;
+  }
+  
+}
+function formatearNumero3(val){
+  var numeron = formatearNumero2(val);
+  alert(numeron);
+  numeron = formatearNumero(numeron);
+  console.log("new:" + numeron);
+  return numeron;
+
 }
 function formatearNumero(nStr) {
   nStr += '';
@@ -176,6 +190,50 @@ function formatearNumero2(nStr) {
   } catch (e) {
     console.log(e)
   }
+  console.log("-----------------");
   console.log(converted);
+  console.log("-----------------");
   return converted;
+}
+
+function formatearNumero4(nStr) {
+  nStr += '';
+  var x = nStr.split(',');
+  var x1 = x[0];
+  x[1] = formatearNumero2(x[1]) + "";
+  console.log(x[1]);
+  if(x[1].length === 4){
+    x[1] = "0" + x[1];
+  }
+  if(x[1].length === 3){
+    x[1] = "00" + x[1];
+  }
+  console.log("data 22: " + x[1]);
+  var x2 = x.length > 1 ? ',' + x[1] : '';
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) {
+    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+  }
+  console.log("step 1:" + x1);
+  console.log("step 2:" + x2);
+  console.log("step 3:" + x1 + x2);
+  return x1 + x2;
+}
+function linkpdf(name , peso , altura){
+  if(name === "Preforma 33mm"){
+    if(peso === "21.50"){
+      return "21_5_GRAMOS_33_MM.pdf"
+    }
+  }
+  if(name === "Preforma 1881"){
+    if(peso === "18.50"){
+      if(altura === "92.87"){
+        return "92_87_altura_18_5_GRAMOS_CORTA_1881.pdf"
+      }
+      if(altura === "92.35"){
+        return "92_35_altura_18_5_G-N_CORTA_1881.pdf"
+      }
+    }
+  }
+  return "ingrup.pdf"
 }

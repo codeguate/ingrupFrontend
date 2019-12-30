@@ -12,6 +12,13 @@
     max-height: 90vh;
     overflow-y: scroll;
 }
+.content_title{
+    width: 80%;
+    margin-left: 10%;
+    border: none;
+    background: none;
+    font-size: 2em;
+}
 .header-ingrup{
     display: flex;
     height: 360px!important;
@@ -35,7 +42,10 @@
     padding-left: -0.8rem;
 
 }
-
+ngx-gallery-preview.ngx-gallery-active{
+    max-height: 100% !important;
+    height: 100% !important;
+}
 .panel-ingrup.active {
     background-color: #44D62C;
     // border: solid #ffffff 0.5rem;

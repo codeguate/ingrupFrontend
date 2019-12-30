@@ -54,7 +54,7 @@
     z-index: 9999999999!important;
 }
 .ngx-gallery-preview-img{
-    max-height: 50%!important;
+    max-height: 100%!important;
 }
 .menu-ingrup .sub_menu_panel{
     width: 100%;
@@ -506,6 +506,19 @@ canvas{
 .ImagenesCant4{
     .ngx-gallery-thumbnail{
         margin-left: 0%;
+    }
+}
+
+ngx-gallery-preview.ngx-gallery-active{
+    height: 100vh !important;
+    max-height: 100vh !important;
+    img{
+        height: 95% !important;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+    }
+    i{
+        color: #44D62C !important;
     }
 }
 

@@ -2,6 +2,15 @@
     <a [routerLink]="['/contactenos',selectedData.marca]">
     <img  src="./../../../assets/images/Mercados/Modulo-2/boton cotizar con texto.png" alt=""></a>
 </div>
+
+<div class="row">
+    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p class="content_title">{{nombre}}</p>
+    </div>
+    
+</div>
+
 <!-- cuando son tapas -->
 <div *ngIf="selectedData.categoria==3 && selectedData.marca!=4">
 <!-- cuando No son tapas profyt -->
@@ -96,8 +105,8 @@
                             (change)="onChange($event)"
                             [(ngModel)]="selected.unidades">
                         </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                 </div>
               </div>
           </li>
@@ -240,12 +249,12 @@
                 </td>
                 <td>
                 <div>
-                    {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.peso?((data.peso!="" && data.peso>0)?data.peso:"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades:"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
@@ -556,8 +565,8 @@
                             (change)="onChange($event)"
                             [(ngModel)]="selected.unidades">
                         </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                 </div>
               </div>
           </li>
@@ -627,17 +636,17 @@
             </td>
             <td>
             <div>
-                    {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.peso?((data.peso!="" && data.peso>0)?data.peso:"N/A"):"N/A" }}
             </div>
             </td>
             <td>
             <div>
-                    {{ data.altura?((data.altura!="" && data.altura>0)?data.altura.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.altura?((data.altura!="" && data.altura>0)?data.altura:"N/A"):"N/A" }}
             </div>
             </td>
             <td>
             <div>
-                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades:"N/A"):"N/A" }}
             </div>
             </td>
             <td>
@@ -778,8 +787,8 @@
                             (change)="onChange($event)"
                             [(ngModel)]="selected.unidades">
                         </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                 </div>
               </div>
           </li>
@@ -849,7 +858,7 @@
             </td>
             <td class="text-center">
             <div>
-                    {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.peso?((data.peso!="" && data.peso>0)?data.peso:"N/A"):"N/A" }}
             </div>
             </td>
             <td class="text-center">
@@ -859,7 +868,7 @@
             </td>
             <td class="text-center">
             <div>
-                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades:"N/A"):"N/A" }}
             </div>
             </td>
             <td>
@@ -933,8 +942,8 @@
                             (change)="onChange($event)"
                             [(ngModel)]="selected.unidades">
                         </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                 </div>
               </div>
           </li>
@@ -990,7 +999,7 @@
             </td>
             <td>
             <div>
-                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades:"N/A"):"N/A" }}
             </div>
             </td>
             <td>
@@ -1063,8 +1072,8 @@
                             (change)="onChange($event)"
                             [(ngModel)]="selected.unidades">
                         </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                 </div>
               </div>
           </li>
@@ -1120,7 +1129,7 @@
             </td>
             <td>
             <div>
-                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades:"N/A"):"N/A" }}
             </div>
             </td>
             <td>
@@ -1283,8 +1292,8 @@
                                 (change)="onChange($event)"
                                 [(ngModel)]="selected.unidades">
                             </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                     </div>
                   </div>
               </li>
@@ -1352,12 +1361,12 @@
                 </td>
                 <td>
                 <div>
-                    {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.peso?((data.peso!="" && data.peso>0)?data.peso:"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.largo?((data.largo!="" && data.largo>0)?data.largo.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.largo?((data.largo!="" && data.largo>0)?data.largo:"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
@@ -1367,12 +1376,12 @@
                 </td>
                 <td>
                 <div>
-                    {{ data.altura?((data.altura!="" && data.altura>0)?data.altura.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.altura?((data.altura!="" && data.altura>0)?data.altura:"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                    {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades:"N/A"):"N/A" }}
                 </div>
                 </td>
                 <td>
@@ -1535,8 +1544,8 @@
                                     (change)="onChange($event)"
                                     [(ngModel)]="selected.unidades">
                                 </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                         </div>
                       </div>
                   </li>
@@ -1604,12 +1613,12 @@
                     </td>
                     <td class="text-center">
                     <div>
-                        {{ data.peso?((data.peso!="" && data.peso>0)?data.peso.toFixed(2):"N/A"):"N/A" }}
+                        {{ data.peso?((data.peso!="" && data.peso>0)?data.peso:"N/A"):"N/A" }}
                     </div>
                     </td>
                     <td class="text-center">
                     <div>
-                        {{ data.largo?((data.largo!="" && data.largo>0)?data.largo.toFixed(2):"N/A"):"N/A" }}
+                        {{ data.largo?((data.largo!="" && data.largo>0)?data.largo:"N/A"):"N/A" }}
                     </div>
                     </td>
                     <td class="text-center">
@@ -1619,12 +1628,12 @@
                     </td>
                     <td class="text-center">
                     <div>
-                        {{ data.altura?((data.altura!="" && data.altura>0)?data.altura.toFixed(2):"N/A"):"N/A" }}
+                        {{ data.altura?((data.altura!="" && data.altura>0)?data.altura:"N/A"):"N/A" }}
                     </div>
                     </td>
                     <td class="text-center">
                     <div>
-                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades.toFixed(2):"N/A"):"N/A" }}
+                        {{ data.unidades?((data.unidades!="" && data.unidades>0)?data.unidades:"N/A"):"N/A" }}
                     </div>
                     </td>
                     <td>
@@ -1765,8 +1774,8 @@
                                         (change)="onChange($event)"
                                         [(ngModel)]="selected.unidades">
                                     </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                             </div>
                           </div>
                       </li>
@@ -1831,22 +1840,22 @@
                         </td>
                         <td class="text-center">
                         <div>
-                            {{ data.peso?data.peso.toFixed(2):data.peso }}
+                            {{ data.peso?data.peso:data.peso }}
                         </div>
                         </td>
                         <td class="text-center">
                         <div>
-                            {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                            {{ (+data.cuello)?data.cuello:data.cuello }}
                         </div>
                         </td>
                         <td class="text-center">
                         <div>
-                            {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                            {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
                         </div>
                         </td>
                         <td class="text-center">
                         <div>
-                            {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                            {{ data.unidades?data.unidades:data.unidades }}
                         </div>
                         </td>
                         <td>
@@ -1987,8 +1996,8 @@
                                 (change)="onChange($event)"
                                 [(ngModel)]="selected.unidades">
                             </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                     </div>
                   </div>
               </li>
@@ -2083,22 +2092,22 @@
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                    {{ (+data.cuello)?data.cuello:data.cuello }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    {{ data.unidades?data.unidades:data.unidades }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                    {{ data.peso?data.peso:data.peso }}
                 </div>
                 </td>
                 <td>
@@ -2239,8 +2248,8 @@
                                 (change)="onChange($event)"
                                 [(ngModel)]="selected.unidades">
                             </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                     </div>
                   </div>
               </li>
@@ -2330,22 +2339,22 @@
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                    {{ data.peso?data.peso:data.peso }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                    {{ (+data.cuello)?data.cuello:data.cuello }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    {{ data.unidades?data.unidades:data.unidades }}
                 </div>
                 </td>
                 <td>
@@ -2536,8 +2545,8 @@
                                 (change)="onChange($event)"
                                 [(ngModel)]="selected.unidades">
                             </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                     </div>
                   </div>
               </li>
@@ -2573,17 +2582,17 @@
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                    {{ (+data.cuello)?data.cuello:data.cuello }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    {{ data.unidades?data.unidades:data.unidades }}
                 </div>
                 </td>
                 <td *ngIf="session">
@@ -2741,8 +2750,8 @@
                                 (change)="onChange($event)"
                                 [(ngModel)]="selected.unidades">
                             </ng-select> -->
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades<=0" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.unidades>0" class="form-control" disabled [(ngModel)]="selected.unidades">
+                    
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
                     </div>
                   </div>
               </li>
@@ -2792,17 +2801,17 @@
             <tr *ngFor="let data of mf.data">
                 <td class="text-center">
                 <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.largo?data.largo.toFixed(2):data.largo }}
+                    {{ data.largo?data.largo:data.largo }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    {{ data.unidades?data.unidades:data.unidades }}
                 </div>
                 </td>
                 <td *ngIf="session">
@@ -2860,22 +2869,22 @@
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                    {{ data.peso?data.peso:data.peso }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                    {{ (+data.cuello)?data.cuello:data.cuello }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    {{ data.unidades?data.unidades:data.unidades }}
                 </div>
                 </td>
                 <td>
@@ -2935,22 +2944,22 @@
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.altura?data.altura.toFixed(2):data.altura }}
+                    {{ data.altura?data.altura:data.altura }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ (+data.unidades)?data.unidades.toFixed(2):data.unidades }}
+                    {{ (+data.unidades)?data.unidades:data.unidades }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.largo?data.largo.toFixed(2):(data.largo!="" && data.largo!=null?data.largo:"-") }}
+                    {{ data.largo?data.largo:(data.largo!="" && data.largo!=null?data.largo:"-") }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                    {{ data.peso?data.peso:data.peso }}
                 </div>
                 </td>
                 <td *ngIf="session">
@@ -3008,22 +3017,22 @@
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.peso?data.peso.toFixed(2):data.peso }}
+                    {{ data.peso?data.peso:data.peso }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ (+data.cuello)?data.cuello.toFixed(2):data.cuello }}
+                    {{ (+data.cuello)?data.cuello:data.cuello }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    {{ data.unidades?data.unidades:data.unidades }}
                 </div>
                 </td>
                 <td>
@@ -3080,17 +3089,17 @@
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.altura?data.altura.toFixed(2):(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
                 </div>
                 </td>
                 <td class="text-center">
                 <div>
-                    {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                    {{ data.unidades?data.unidades:data.unidades }}
                 </div>
                 </td>
                 <td>
                 <div>
-                    {{ data.largo?data.largo.toFixed(2):data.largo }}
+                    {{ data.largo?data.largo:data.largo }}
                 </div>
                 </td>
                 <td *ngIf="session">
@@ -3193,22 +3202,22 @@
             </td>
             <td class="text-center">
             <div>
-                {{ (+data.largo)?data.largo.toFixed(2):data.largo }}
+                {{ (+data.largo)?data.largo:data.largo }}
             </div>
             </td>
             <td class="text-center">
             <div>
-                {{ data.cuello?data.cuello.toFixed(2):(data.cuello!="" && data.cuello!=null?data.cuello:"-") }}
+                {{ data.cuello?data.cuello:(data.cuello!="" && data.cuello!=null?data.cuello:"-") }}
             </div>
             </td>
             <td class="text-center">
             <div>
-                {{ data.altura?data.altura.toFixed(2):data.altura }}
+                {{ data.altura?data.altura:data.altura }}
             </div>
             </td>
             <td class="text-center">
             <div>
-                {{ data.peso?data.peso.toFixed(2):data.peso }}
+                {{ data.peso?data.peso:data.peso }}
             </div>
             </td>
             <td>
@@ -3218,7 +3227,7 @@
             </td>
             <td class="text-center">
             <div>
-                {{ data.unidades?data.unidades.toFixed(2):data.unidades }}
+                {{ data.unidades?data.unidades:data.unidades }}
             </div>
             </td>
             <td *ngIf="session">

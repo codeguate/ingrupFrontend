@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MarcasService } from "./../../shared/services/marcas.service";

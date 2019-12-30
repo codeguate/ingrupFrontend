@@ -21,6 +21,15 @@
 .col-1-row1{
     background-color: #ffffffd4;
 }
+.logo_header{
+    height: 100% !important;
+}
+.logo {
+    height: 5rem;
+    width: 100%;
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
 .col-2-row2{
     box-shadow: inset 0 0 101px 38px #10401b;
     box-shadow: 
@@ -199,4 +208,8 @@
     .last_row{
         background-color: white;
     }
+}
+.col-2-row2{
+    background-size: cover;
+    background-position: center;
 }
