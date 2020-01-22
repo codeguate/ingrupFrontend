@@ -463,6 +463,7 @@ export class TablesComponent implements OnInit {
         }, 1300);
     }
     cargarSingle(id:number,ventana?) {
+        this.imagen_selected = this.setImg(this.route.snapshot.paramMap.get('id'));
         this.resetCarousel();
         this.blockUI.start();
       const data = {
@@ -575,6 +576,7 @@ export class TablesComponent implements OnInit {
         $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
     }
     cargarAll() {
+        this.imagen_selected = this.setImg(this.route.snapshot.paramMap.get('id'));
         this.blockUI.start();
           const data = {
             id:1,
@@ -593,13 +595,69 @@ export class TablesComponent implements OnInit {
     }
     setImg(producto){
         producto = parseInt(producto);
+        var url = $(location).attr('href');
+        var parts = url.split("/");
+        var last_part = parts[parts.length-1];
+        var sub_cat = last_part;
         var src = ""
         switch (producto) {
             case 1:
-                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/m7CaIk5r5bQ7GYyv2uEjMJDufvztX9ZTJwbbEzZw.jpeg";
+                if(last_part){
+                    last_part = parseInt(last_part);
+                    switch (last_part) {
+                        case 11:
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/namupMkeG0IUwynOw6MsSfohUDWJz0ZgBn57ebap.jpeg"
+                            break;
+                        case 10:
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/lGxmpZFGzRsWrhgBdyRNj6nIHtNiSdM5WIBRaquS.jpeg"
+                            break;
+                        case 9:
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/m7CaIk5r5bQ7GYyv2uEjMJDufvztX9ZTJwbbEzZw.jpeg"
+                            break; 
+                        default:
+                            src = "./../../../../assets/images/logo-animado2.gif"
+                            break;
+                    }
+                }else{
+                    src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/m7CaIk5r5bQ7GYyv2uEjMJDufvztX9ZTJwbbEzZw.jpeg";
+                }
+                
                 break;
             case 2:
-                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/ORQM84XmZz0QXDC745stF2i2mncFYDvnL8kYdKJp.png";
+                if(last_part){
+                    last_part = parseInt(last_part);
+                    switch (last_part) {
+                        case 12:
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/7t3TfdLHTjwmSw6DLNhUCwSP3nbYlqbmw8ON2gTV.jpeg"
+                            break;
+                        case 13:
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/hR687cuWZUZ0k9SizyzuyVyLMSGQ6xbjtBVWeHZN.jpeg"
+                            break;
+                        case 14:
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/fREHpab5FmqYc1dZanxoYNPikOzN8yeeOJO9L33O.jpeg"
+                            break;
+                        case 15:
+                            src = "./../../../../assets/images/logo-animado2.gif"
+                            break;
+                        case 16:
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/OkZqAfJxF2PPHsVQw02hbS4Bm6I8guYCq3FGvpe1.jpeg"
+                            break;
+                        case 17:
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/R46XgHZsdef7cl25i8usnT45kTMjefTFrbPuQVTZ.jpeg"
+                            break;
+                        case 18:
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/VxRO56reEMdELSgIniPxRGAA2zMaVqWDUD3R5ZTx.jpeg"
+                            break;
+                        case 20:
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/Jksym11MENV2tST0CZxywNdZcedsMsdxnJCNQqVZ.jpeg"
+                            break;
+                        default:
+                            src = "./../../../../assets/images/logo-animado2.gif"
+                            break;
+                    }
+                }else{
+                    src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/ORQM84XmZz0QXDC745stF2i2mncFYDvnL8kYdKJp.png";
+                }
                 break;
             case 3:
                 src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/tpD4TCAEEI4VxLHssAZn8fHA1OPo2hiaNMXLv6jd.jpeg";
@@ -628,6 +686,7 @@ export class TablesComponent implements OnInit {
     cargarOfCate(id:number,changeUrl:boolean=false) {
         // this.datoPEnviar2.mercados.pop()
         // this.datoPEnviar.mercados.pop()
+        
         this.carouselData = null
         if(this.selectedData.slides){
             this.selectedData.slides.length = 0
@@ -662,6 +721,7 @@ export class TablesComponent implements OnInit {
                                         }
                                         console.log("response 2: ");
                                         console.log(response);
+                                        this.imagen_selected = this.setImg(this.route.snapshot.paramMap.get('id'));
                                       this.agregarMercado(element)
                                     }else{
                                         if(element.foto.indexOf("01.svg")>=0){
