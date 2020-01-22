@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Attribute } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import {MarcasService } from "./../../shared/services/marcas.service";
 import {CategoriasService } from "./../../shared/services/categorias.service";
@@ -32,7 +32,8 @@ export class TablesComponent implements OnInit {
     static Cover = 'cover';
     win = Window
       static Contain = 'contain';
-    muestra=0
+    muestra=0;
+    imagen_selected = "";
     imagen:any = ""
     customOptions: any = {
         loop: false,
@@ -75,7 +76,7 @@ export class TablesComponent implements OnInit {
         titulo:"",
         mercados:[]
     }
-    customOptions2: any = {
+    custom: any = {
         loop: false,
         autoplay: false,
         center: false,
@@ -236,6 +237,7 @@ export class TablesComponent implements OnInit {
       }
     galleryOptions: NgxGalleryOptions[];
     galleryOptions2: NgxGalleryOptions[];
+    gallery: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
     galleryImages2:any=[];
     scrollMyDiv(item) {
@@ -245,43 +247,83 @@ export class TablesComponent implements OnInit {
         // console.log(parseInt(elem.scrollHeight+''));
 
         let offsetTop = parseInt(elem.scrollHeight+'');
-        if(window.innerWidth < 992){
-            if(offsetTop>500){
-                window.scrollTo(0, 1500);
+        // if(window.innerWidth < 992){
+        //     if(offsetTop>500){
+        //         window.scrollTo(0, 1500);
 
-            }else{
-                setTimeout(() => {
-                    window.scrollTo(0, 500);
-                }, 300);
-            }
-        }else{
-            if(offsetTop>200){
-                if(section=="Galeria"){
-                    window.scrollTo(0, 1500);
-                }else{
-                    window.scrollTo(0, 800);
+        //     }else{
+        //         setTimeout(() => {
+        //             window.scrollTo(0, 500);
+        //         }, 300);
+        //     }
+        // }else{
+        //     if(offsetTop>200){
+        //         if(section=="Galeria"){
+        //             window.scrollTo(0, 1500);
+        //         }else{
+        //             window.scrollTo(0, 800);
 
-                }
+        //         }
 
-            }else{
-                if(offsetTop<100){
-                        window.scrollTo(0, 1500);
-                }else{
-                    setTimeout(() => {
-                        window.scrollTo(0, offsetTop);
-                    }, 300);
-                }
+        //     }else{
+        //         if(offsetTop<100){
+        //                 window.scrollTo(0, 1500);
+        //         }else{
+        //             setTimeout(() => {
+        //                 window.scrollTo(0, offsetTop);
+        //             }, 300);
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
 
       }
     ngOnInit() {
         this.cargarCombosMarcas();
-        $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
+        this.imagen_selected = this.setImg(this.route.snapshot.paramMap.get('id'));
+        $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>');
         this.getParams();
         this.galleryOptions = [
+            {
+                width: '100%',
+                height: '600px',
+                imagePercent: 100,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
+                thumbnailsColumns: 4,
+                thumbnailsMargin: 10,
+                thumbnailMargin: 10,
+                imageSize: "contain",
+                imageInfinityMove: true,
+                imageAutoPlay: true
+            },
+            // max-width 800
+            {
+                breakpoint: 900,
+                width: '100%',
+                height: '400px',
+                imagePercent: 100,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
+                thumbnailsColumns: 4,
+                thumbnailsMargin: 10,
+                thumbnailMargin: 10,
+                imageSize: "contain",
+                imageInfinityMove: true,
+                imageAutoPlay: true
+            },
+            // max-width 400
+            {
+                breakpoint: 400,
+                preview: true,
+                imageInfinityMove: true,
+                imageAutoPlay: true
+            }
+        ];
+        this.galleryOptions2 = [
             {
                 width: '100%',
                 height: '600px',
@@ -311,10 +353,12 @@ export class TablesComponent implements OnInit {
             // max-width 400
             {
                 breakpoint: 400,
-                preview: true
+                preview: true,
+                imageInfinityMove: true,
+                imageAutoPlay: true
             }
         ];
-        this.galleryOptions2 = [
+        this.gallery = [
             {
                 width: '100%',
                 height: '600px',
@@ -323,7 +367,8 @@ export class TablesComponent implements OnInit {
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
                 thumbnails: false,
-                imageSize: "Cover"
+                imageSize: "contain"
+                
             },
             // max-width 800
             {
@@ -335,7 +380,7 @@ export class TablesComponent implements OnInit {
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
                 thumbnails: false,
-                imageSize: "Cover"
+                imageSize: "contain"
             },
             // max-width 400
             {
@@ -346,7 +391,7 @@ export class TablesComponent implements OnInit {
                 previewCloseOnClick:true,
                 preview: true,
                 thumbnails: false,
-                imageSize: "Cover"
+                imageSize: "contain"
             }
         ];
 
@@ -358,6 +403,7 @@ export class TablesComponent implements OnInit {
             }
         });
     }
+    
     resetCarousel(){
         this.galleryImages = [
             {
@@ -434,7 +480,7 @@ export class TablesComponent implements OnInit {
         this.selectedData=null;
       this.ProductosService.getSingle(id)
                           .then(response => {
-                            this.customOptions2.nav = true
+                            this.custom.nav = true
                             // console.log(response);
                             response.pX = +response.pX;
                             response.pY = +response.pY;
@@ -508,7 +554,7 @@ export class TablesComponent implements OnInit {
                                     $('.owl-nav').removeClass('disabled');
                                     this.scrollMyDiv('Galeria');
                                 }, 500);
-                                // console.log(this.customOptions2);
+                                // console.log(this.custom);
 
                             }
                             this.open(ventana,response.id,'mobile');
@@ -545,7 +591,40 @@ export class TablesComponent implements OnInit {
                                 this.blockUI.stop();
                               });
     }
-
+    setImg(producto){
+        producto = parseInt(producto);
+        var src = ""
+        switch (producto) {
+            case 1:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/m7CaIk5r5bQ7GYyv2uEjMJDufvztX9ZTJwbbEzZw.jpeg";
+                break;
+            case 2:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/ORQM84XmZz0QXDC745stF2i2mncFYDvnL8kYdKJp.png";
+                break;
+            case 3:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/tpD4TCAEEI4VxLHssAZn8fHA1OPo2hiaNMXLv6jd.jpeg";
+                break;
+            case 4:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/hT08bDx04nj4MvjBAlV2dYKvslvWzdSn3q0ouxim.jpeg";
+                break;
+            case 5:
+                src = "../../../assets/fotos/resinas-recicladas1.jpg";
+                break;
+            case 6:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/85Jme7jbTIGCW1LbDS4yP0tdRRMCuLve0LSSG7YX.jpeg";
+                break;
+            case 7:
+                src = "../../../assets/fotos/caja-agricola1.jpg";
+                break;
+            case 8:
+                src = "../../../assets/images/linea.jpg";
+                break;
+            default:
+                src = "../../../assets/images/logo-animado2.gif";
+                break;
+        }
+        return src
+    }
     cargarOfCate(id:number,changeUrl:boolean=false) {
         // this.datoPEnviar2.mercados.pop()
         // this.datoPEnviar.mercados.pop()
@@ -570,6 +649,7 @@ export class TablesComponent implements OnInit {
           this.ProductosService.getAllFilter(data)
                               .then(response => {
                                 this.Table = response;
+                                this.ocultarModal();
                                 this.Marcas.submarca.forEach(element => {
                                     if(element.id==id){
                                         if(element.foto.indexOf("01.svg")<0){

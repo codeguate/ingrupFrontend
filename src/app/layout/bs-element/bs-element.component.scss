@@ -18,6 +18,21 @@
     padding: 14%;
     line-height: 1;
 }
+.no-padding,
+.content_slides_full{
+    padding: 0 !important;
+    
+}
+.de-middle2 {
+    top: 50% !important;
+    right: 1% !important;
+    height: 40px !important;
+    width: 40px !important;
+    position: absolute !important;
+}
+.row_image{
+    background-color: white;
+}
 .col-1-row1{
     background-color: #ffffffd4;
 }
@@ -113,13 +128,17 @@
     height: 115px;
     margin-top: auto;
     margin-bottom: auto;
-    padding-left: 3%;
-    padding-right: 3%;
+    padding-left: 0%;
+    padding-right: 2%;
 }
 .last_row{
     padding-top: 5%;
     padding-bottom: 5%;
     
+}
+.img_numbers{
+    margin-top: 10% !important;
+    margin-bottom: 10% !important; 
 }
 .last_section{
     background-image: url(../../../assets/images/Sostenibilidad/fondo_comprometidos.png);

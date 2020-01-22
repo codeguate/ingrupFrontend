@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ɵConsole } from '@angular/core';
 import { TablesComponent } from "./../../tables/tables.component";
+
+declare var $: any
 @Component({
   selector: 'tables-data',
   templateUrl: './tables.component.html',
@@ -51,56 +53,82 @@ export class TablesDataComponent implements OnInit {
   secondModel: any;
   nombre = "";
   fichapdf = "";
+  fichapdf2 = "";
   fichapdfname = "";
+  id_vial = "";
+  fichapdfname2 = "";
   pathpdf = "../../../../assets/pdf/";
   ngOnInit() {
+    console.log(this.selectedData);
     this.secondModel = this.selectedData;
-    
     if(this.selectedData.presentaciones){
-        
-
         /*********/
         if(this.convert_num){
           this.convert_num = false;
           var numero = 0;
           this.selectedData.presentaciones.forEach(element => {
             this.selectedData.presentaciones[numero].peso = add_string(element.peso);
+            this.selectedData.presentaciones[numero].largo = add_string(element.largo);
+            // this.selectedData.presentaciones[numero].cuello = add_string(element.cuello);
+            this.selectedData.presentaciones[numero].unidades = add_string(element.unidades);
             numero +=1;
           });
         }
         /*********/
         this.selected = this.selectedData.presentaciones[0];
+        this.id_vial = this.selectedData.presentaciones[0].id;
         this.nombre = this.selected.nombre;
 
         this.selected.altura = formatearNumero2(this.selected.altura);
         this.unidades = formatearNumero(this.selected.unidades);
         // alert(this.selected.peso);
-        console.log(this.selected.peso);
-        this.fichapdfname = linkpdf(this.nombre , this.selected.peso , this.selected.altura);
+        this.fichapdfname = linkpdf(this.nombre , this.selected.peso , this.selected.altura );
         this.fichapdf = this.pathpdf + this.fichapdfname;
+        this.fichapdf2 = linkpdf(this.nombre , this.selected.peso , this.selected.altura);
     }else{
       this.selected = null
     }
-
+    // $("#empaque_flexible").click(function(){
+    //   console.log(this.fichapdfname);
+    // });
+    if(this.id_vial == "101037" || this.id_vial == "101036"){
+      $(".description_data").text("Altura (m)");
+      $(".description_data2").text("Ancho (m)");
+      $(".description_data3").text("Fondo (m)");
+    }
   }
   onChange($event){
-
+    this.id_vial = this.selectedData.presentaciones[0].id;
+    if(this.id_vial == "101037" || this.id_vial == "101036"){
+      $(".description_data").text("Altura (m)");
+      $(".description_data2").text("Ancho (m)");
+      $(".description_data3").text("Fondo (m)");
+    }
     let data = $event
 
-    this.selected = data
+    this.selected = data;
 
     this.unidades = formatearNumero(this.selected.unidades);
     this.selected.altura = formatearNumero2(this.selected.altura);
     this.nombre = this.selected.nombre;
 
+    // this.fichapdfname = linkpdf(this.nombre , this.selected.peso , this.selected.altura);
+    // this.fichapdfname2 = this.nombre;
+    // this.fichapdf = this.pathpdf + this.fichapdfname;
+    
     this.fichapdfname = linkpdf(this.nombre , this.selected.peso , this.selected.altura);
     this.fichapdf = this.pathpdf + this.fichapdfname;
+    console.log("Fichapdfname:");
+    console.log(this.fichapdfname);
+    console.log("fichapdf:");
+    console.log(this.fichapdf);
+    this.fichapdf2 = linkpdf(this.nombre , this.selected.peso , this.selected.altura);
     /*********/
     console.log($event);
     /*********/
   }
   onClear(){
-    this.selected = this.selectedData.presentaciones[0]
+    this.selected = this.selectedData.presentaciones[0];
   }
   removeDuplicates(originalArray, prop) {
   }
@@ -233,7 +261,139 @@ function linkpdf(name , peso , altura){
       if(altura === "92.35"){
         return "92_35_altura_18_5_G-N_CORTA_1881.pdf"
       }
+      if(altura === "92.80"){
+        return "000_PREFORMA_PET_18_5_GRAMOS_LARGA_1881  95.80.pdf"
+      }
     }
+    if(peso === "21.50"){
+      if(altura === "92.87"){
+        return "000_PREFORMA_PET_21_5_GRAMOS_CORTA_1881 92.87.pdf"
+      }
+      if(altura === "92.35"){
+        return "000_PREFORMA_PET_21_5_G-N_CORTA_1881 92.35.pdf"
+      }
+      if(altura === "100.30"){
+        return "000_PREFORMA_PET_21_5_GRAMOS_LARGA_1881 100.30.pdf"
+      }
+
+    }
+    if(peso === "23.50"){
+      return "000_PREFORMA_PET_23.5_GRAMOS_1881  100.30.pdf"
+    }
+    if(peso === "25.50"){
+      return "000_PREFORMA_PET_25.5_GRAMOS_1881 100.30.pdf"
+    }
+    if(peso === "26.50"){
+      return "000_PREFORMA_PET_26_5_GRAMOS_1881 96.50.pdf"
+    }
+    if(peso === "31.00"){
+      return "000_PREFORMA_PET_31_GRAMOS_1881  116.50.pdf"
+    }
+    if(peso === "42.50"){
+      return "000_PREFORMA_PET_42_5_GRAMOS_1881.pdf"
+    }
+    if(peso === "46.50"){
+      return "000_PREFORMA_PET_46_5_GRAMOS_1881.pdf"
+    }
+    if(peso === "50.00"){
+      return "000_PREFORMA_PET_50_GRAMOS_1881.pdf"
+    }
+    if(peso === "52.50"){
+      return "000_PREFORMA_PET_52_5_GRAMOS_1881 .pdf"
+    }
+    if(peso === "54.00"){
+      return "000_PREFORMA_PET_54_GRAMOS_1881.pdf"
+    }
+    if(peso === "56.50"){
+      return "000_PREFORMA_PET_56_5_GRAMOS_1881.pdf"
+    }
+    if(peso === "58.50"){
+      return "000_PREFORMA_PET_58_5_GRAMOS_1881.pdf"
+    }
+    if(peso === "62.00"){
+      return "000_PREFORMA_PET_62_GRAMOS_1881.pdf"
+    }
+  }
+  if(name === "Preforma 48 mm"){
+    if(peso === "90.00"){
+      if(altura === "307.50"){
+        return "PREFORMA_PET_90_GRAMOS_48_MM.pdf"
+      }
+    }
+  }
+  if(name === "Preforma 38 mm"){
+    if(peso === "23.00"){
+      if(altura === "95.17"){
+        return "000_PREFORMA_PET_23_GRAMOS_38_MM ILC.pdf"
+      }
+    }if(peso === "27.70"){
+      if(altura === "95.17"){
+        return "000_PREFORMA_PET_27_70_GRAMOS_38_MM.pdf"
+      }
+    }
+  }
+  if(name === "Preforma 1816"){
+    if(peso === "18.00"){
+      return "000_PREFORMA_PET_18_GRAMOS_1816.pdf"
+    }
+    if(peso === "20.00"){
+      if(altura === "97.07"){
+        return "000_PREFORMA_PET_20_GRAMOS_CORTA_1816.pdf"
+      }
+      if(altura === "100.00"){
+        return "000_PREFORMA_PET_20_GRAMOS_LARGA_1816.pdf"
+      }
+    }
+    if(peso === "23.00"){
+      if(altura === "97.07"){
+        return "000_PREFORMA_PET_23_GRAMOS_CORTA_1816.pdf"
+      }
+      if(altura === "104.50"){
+        return "000_PREFORMA_PET_23_GRAMOS_LARGA_1816.pdf"
+      }
+    }
+    if(peso === "27.00"){
+      return "000_PREFORMA_PET_27_GRAMOS_1816.pdf"
+    }
+    if(peso === "28.00"){
+      return "000_PREFORMA_PET_28_GRAMOS_1816.pdf"
+    }
+    if(peso === "33.00"){
+      return "000_PREFORMA_PET_33_GRAMOS_1816.pdf"
+    }
+    if(peso === "37.00"){
+      return "000_PREFORMA_PET_37_GRAMOS_1816.pdf"
+    }
+    if(peso === "44.00"){
+      return "000_PREFORMA_PET_44_GRAMOS_1816.pdf"
+    }
+    if(peso === "48.00"){
+      return "000_PREFORMA_PET_48_GRAMOS_1816.pdf"
+    }
+    if(peso === "52.00"){
+      return "000_PREFORMA_PET_52_GRAMOS_1816.pdf"
+    }
+    if(peso === "54.00"){
+      return "000_PREFORMA_PET_54_GRAMOS_1816.pdf"
+    }
+    if(peso === "56.00"){
+      return "000_PREFORMA_PET_56_GRAMOS_1816.pdf"
+    }
+    if(peso === "64.00"){
+      return "000_PREFORMA_PET_64_GRAMOS_1816.pdf"
+    }
+  }
+  if(name === "50 mm"){
+    var link_return = $(".uniqueImageContainer div div div").css("background-image");
+    var url_final = "";
+    for (let index = 0; index < link_return.length; index++) {
+      const element = link_return[index];
+      if(index > 4 && (link_return.length - index) > 2){
+        url_final += element;
+      }
+      
+    }
+    return url_final
   }
   return "ingrup.pdf"
 }

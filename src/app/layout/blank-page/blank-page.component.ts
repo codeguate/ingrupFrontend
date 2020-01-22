@@ -35,7 +35,7 @@ export class BlankPageComponent implements OnInit {
         marca:this.route.snapshot.paramMap.get("marca"),
         mensaje:"",
         emailSend:"",
-        emailResp:"daniel.rodriguez@code.com.gt"
+        emailResp:"suministros@ingrup.com"
     }
     ngOnInit() {
         // this.blockUI.start();

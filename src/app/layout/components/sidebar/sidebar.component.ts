@@ -24,8 +24,10 @@ export class SidebarComponent implements OnInit {
     TableProds:any = []
     TableProdsFind:any = []
     private _success = new Subject<string>();
-
+    mercados_active = false;
+    productos_active = false;
     staticAlertClosed = false;
+    Sostenibilidad_active = false;
     successMessage: string;
     @BlockUI() blockUI: NgBlockUI;
     @Output() collapsedEvent = new EventEmitter<boolean>();
@@ -163,11 +165,29 @@ export class SidebarComponent implements OnInit {
     }
 
     addExpandClass(element: any) {
+        console.log(element);
+        if(element === "markets"){
+            this.productos_active = false;
+            this.Sostenibilidad_active = false;
+            this.mercados_active = true;
+        }
+        
+        if(element === "products"){
+            this.mercados_active = false;
+            this.Sostenibilidad_active = false;
+            this.productos_active = true;
+        }
+        if(element === "pages"){
+            this.mercados_active = false;
+            this.productos_active = false;
+            this.Sostenibilidad_active = true;
+        }
         if (element === this.showMenu) {
             this.showMenu = '0';
         } else {
             this.showMenu = element;
         }
+
     }
 
     toggleCollapsed() {

@@ -51,21 +51,33 @@
                         SOLICITUD DE EMPLEO
                     </h1>
                 </div>
-
                 <div class="container_form">
+                    <form id="contact" #contactForm="ngForm">
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 content_form m d-flex">
+                        
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <input class="input_d" type="text" name="nombre" id="nombre" placeholder="Nombre">
-                            <input class="input_d" type="number" name="phone" id="phone" placeholder="Teléfono">
-                            <input class="input_d" type="text" name="address" id="address" placeholder="Dirección">
-                            <input class="input_d" type="text" name="puesto" id="puesto" placeholder="Puesto">
+                            <input [(ngModel)]="selectedData.nombre" class="input_d" type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            <input [(ngModel)]="selectedData.emailSend" class="input_d" type="email" name="mail" id="mail" placeholder="Correo Electrónico">
+                            <select name="Pais" id="input" class="form-control" required="required" [(ngModel)]="selectedData.pais">
+                                <option value="null" disabled="true" [selected]="true">País de Residencia</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="El Salvador">El Salvador</option>
+                                <option value="Honduras">Honduras</option>
+                                <option value="Nicaragua">Nicaragua</option>
+                                <option value="Costa Rica">Costa Rica</option>
+                                <option value="Panamá">Panamá</option>
+                            </select>
+                            
+                            <input [(ngModel)]="selectedData.telefono" class="input_d" type="text" name="phone" id="phone" placeholder="Teléfono">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 flex-column">
                             <img class="upload" id="upload-img" src="../../../assets/images/integrate/cv.png">
-                            <input class="input_d" type="submit" name="send" id="send" placeholder="Enviar">
+                            <br>
+                            <button (click)="contact(selectedData)" >Enviar</button>
                         </div>
                         
                     </div>
+                    </form>
                 </div>
                 
                 

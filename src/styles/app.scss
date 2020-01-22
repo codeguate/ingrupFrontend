@@ -662,7 +662,7 @@ ngx-gallery-preview.ngx-gallery-active{
             width: 100% !important;
             padding-left: 5% !important;
             top: 45%;
-            height: 20%;
+            height: 0%;
             left: 0;
             position: absolute;
             padding-right: 5% !important;
@@ -685,6 +685,32 @@ ngx-gallery-preview.ngx-gallery-active{
         }
     }
 }
+.de-middle2 {
+    top: 50% !important;
+    right: 1% !important;
+    position: absolute !important;
+    padding: 5px;
+    height: 50px !important;
+    width: 50px !important;
+    text-align: right;
+}
+.content_slides_full{
+    .owl-prev,.owl-next{
+        background-color: transparent !important;
+    }
+    .owl-item{
+        margin-right: 0 !important;
+    }
+    .owl-nav{
+        height: 0 !important;
+        margin: 0 !important;
+    }
+}
+.content_all_videos{
+    .owl-item{
+        margin-left: 0 !important;
+    }
+}
 @media only screen and (max-width: 1200px){
     .filtrosAccordeon button.collapsed h3{
         .filtrosAccordeon .card .card-header {
@@ -698,6 +724,9 @@ ngx-gallery-preview.ngx-gallery-active{
 }
 
 @media only screen and (max-width: 1000px){
+    ngx-gallery-preview.ngx-gallery-active img{
+        height: inherit !important;
+    }
     .modal-body form{
         margin: 0 !important;
     }
@@ -739,11 +768,11 @@ ngx-gallery-preview.ngx-gallery-active{
                 width: 100% !important;
                 padding-left: 0% !important;
                 bottom: 20%;
-                height: fit-content;
+                height: 0;
                 left: 0;
                 position: absolute;
                 padding-right: 5% !important;
-                top: 60%;
+                top: 50%;
                 .owl-prev{
                     margin-bottom: 0%;
                     width: fit-content;

@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
     { text: 'Home Care', src: 'assets/images/Mercados/Modulo-1/menu-principal/Home-care.png', dataHash: 'three'},
     { text: 'Food Service', src: 'assets/images/Mercados/Modulo-1/menu-principal/Food-service.png', dataHash: 'four'},
     { text: 'Resinas Recicladas', src: 'assets/images/Mercados/Modulo-1/menu-principal/Resinas-recicladas.png', dataHash: 'five'}
-];
+    ];
   categoriasBox:any = []
   win = Window
   customOptions0: any = {
@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
     // autoWidth: true,
     // autoHeight: false,
     nav: false,
-    autoplay: false,
+    autoplay: true,
     center: true,
     dots:false,
     margin: true,
@@ -111,26 +111,27 @@ export class DashboardComponent implements OnInit {
 
   }
   customOptionsn: any = {
-    loop: true,
-    autoWidth: true,
-    // autoHeight: false,
-    nav: false,
-    autoplay: true,
-    center: true,
-    dots:true,
-    items:4,
-    autoplayTimeout:3000,
-    margin:20,
-    responsiveClass:true,
-    responsive:{
-        300:{
-            items:1
-        },
-        600:{
-            items: 2
-        },
-        1000:{
-            items: 3
+        loop: true,
+        autoWidth: true,
+        // autoHeight: false,
+        nav: false,
+        autoplay: true,
+        center: true,
+        dots:true,
+        items:4,
+        autoplayTimeout:3000,
+        autoHeight: true,
+        margin:20,
+        responsiveClass:true,
+        responsive:{
+            300:{
+                items:1
+            },
+            600:{
+                items: 2
+            },
+            1000:{
+                items: 3
         }
     }
         // URLhashListener:true,
@@ -260,21 +261,21 @@ export class DashboardComponent implements OnInit {
                 //     label: 'Third slide label',
                 // },
                 {
-                    imagePath: 'assets/images/Home/slides/mobile/slider2.png',
+                    imagePath: 'assets/images/Home/slides/home/BannerHome1m.jpg',
                     label: 'Third slide label',
                 },
                 {
-                    imagePath: 'assets/images/Home/slides/mobile/slider3.png',
+                    imagePath: 'assets/images/Home/slides/home/BannerHome2m.jpg',
                     label: 'Third slide label',
                 },
                 {
-                    imagePath: 'assets/images/Home/slides/mobile/slider4.png',
+                    imagePath: 'assets/images/Home/slides/home/BannerBodegonM.png',
                     label: 'Third slide label',
                 },
                 {
-                    imagePath: 'assets/images/Home/slides/mobile/slider5.png',
-                    label: 'Third slide label',
-                },
+                    imagePath: '/assets/images/Home/slides/mobile/one-informe.png',
+                    label: ''
+                }
                 // {
                 //     imagePath: 'assets/images/Home/slides/mobile/slider6.png',
                 //     label: 'Third slide label',
@@ -291,21 +292,29 @@ export class DashboardComponent implements OnInit {
                 //     label: 'Third slide label',
                 // },
                 {
-                    imagePath: 'assets/images/Home/slides/home/slider2.png',
+                    imagePath: 'assets/images/Home/slides/home/BannerHome1.jpg',
                     label: 'Third slide label',
                 },
                 {
-                    imagePath: 'assets/images/Home/slides/home/slider3.png',
+                    imagePath: 'assets/images/Home/slides/home/BannerHome2.jpg',
                     label: 'Third slide label',
                 },
                 {
-                    imagePath: 'assets/images/Home/slides/home/slider4.png',
+                    imagePath: 'assets/images/Home/slides/home/bannerbodegon.png',
                     label: 'Third slide label',
                 },
                 {
-                    imagePath: 'assets/images/Home/slides/home/slider5.png',
+                    imagePath: 'assets/images/Home/slides/home/caratula-min.png',
                     label: 'Third slide label',
                 },
+                // {
+                //     imagePath: 'assets/images/Home/slides/home/slider4.png',
+                //     label: 'Third slide label',
+                // },
+                // {
+                //     imagePath: 'assets/images/Home/slides/home/slider5.png',
+                //     label: 'Third slide label',
+                // },
                 // {
                 //     imagePath: 'assets/images/Home/slides/home/slider6.png',
                 //     label: 'Third slide label',
@@ -325,8 +334,10 @@ export class DashboardComponent implements OnInit {
         )
         
         this.alerts.push(
-            { id: 0, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/f-MN8-0Idew?controls=1&autoplay=0&loop=1&showinfo=1")},
-            { id: 1, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/NQ8hHxjv0RI?controls=1&autoplay=0&loop=1")},
+            { id: 0, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/e0VYQTuQMVA")},
+            { id: 1, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/dgqhM6H-vyo")},
+            { id: 2, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/R3pe8_1r3Z4")},
+            
             // { id: 2, type: this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/e19T_RO8qa8?controls=1&autoplay=0&loop=1")},
 
             // {

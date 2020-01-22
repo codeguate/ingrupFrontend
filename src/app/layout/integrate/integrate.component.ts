@@ -1,14 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-
+import { Router, NavigationEnd } from '@angular/router';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
+import { MarcasService } from "./../../shared/services/marcas.service";
+import { UsersService } from "./../../shared/services/users.service";
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-integrate',
   templateUrl: './integrate.component.html',
   styleUrls: ['./integrate.component.scss'],
-  animations: [routerTransition()]
+  animations: [routerTransition()],
+  providers: [NgbAccordionConfig]
 })
 export class IntegrateComponent implements OnInit {
-
+    @BlockUI() blockUI: NgBlockUI;
+    constructor(
+        config: NgbAccordionConfig,
+        private route: ActivatedRoute,
+        public router: Router,
+        private mainService:MarcasService,
+        private UsersService:UsersService
+    ) {
+        // customize default values of accordions used by this component tree
+        config.closeOthers = true;
+        config.type = 'success';
+    }
     customOptions2: any = {
         loop: true,
         // autoWidth: true,
@@ -34,6 +51,17 @@ export class IntegrateComponent implements OnInit {
             // URLhashListener:true,
         // startPosition: 'URLHash',
 
+      }
+      id = this.route.snapshot.paramMap.get("marca")
+      selectedData= {
+        nombre:"",
+        telefono:"",
+        asunto:"Solicitud de empleo",
+        pais:"",
+        marca: "Solicitud de empleo",
+        mensaje:"[INTEGRATE]",
+        emailSend:"",
+        emailResp:"suministros@ingrup.com"
       }
       carouselData:any = [
         { text: 'Slide 1', src: 'assets/images/Nosotros/titulo1.png', dataHash: 'one'},
@@ -199,7 +227,7 @@ export class IntegrateComponent implements OnInit {
          */
     }
 
-    constructor() {}
+   
 
     ngOnInit() {
         this.barChartType = 'bar';
@@ -211,5 +239,25 @@ export class IntegrateComponent implements OnInit {
         this.polarAreaChartType = 'polarArea';
         this.lineChartLegend = true;
         this.lineChartType = 'line';
+    }
+    contact(formValue){
+        console.log(formValue);
+        this.blockUI.start();
+        formValue.emailResp = this.selectedData.emailResp
+          this.UsersService.send(formValue)
+                              .then(response => {
+                                  if(response.enviado){
+                                      console.log(response);
+
+                                  }else{
+                                    console.log(response);
+
+                                  }
+                                //   console.log(this.id);
+                                this.blockUI.stop();
+                            }).catch(error => {
+                                this.blockUI.stop();
+                                console.clear
+                              })
     }
 }

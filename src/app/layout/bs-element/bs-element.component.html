@@ -11,7 +11,7 @@
                 <div class="row h-100">
                     <div class="container_text">
                         <span class="text_strong">Comprometidos</span>
-                        con el medio ambiente.
+                        con el planeta.
                     </div>
                 </div>
 
@@ -60,8 +60,45 @@
     <section>
         <div class="row">
 
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 v100">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                <div style="background-color:#f3f3f3"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content_slides_full last_section">
+                    <owl-carousel-o [options]="customOptions3">
+                        <ng-container *ngFor="let slide of alerts">
+                            <ng-template carouselSlide>
+                                <div class="row w-100 ">
+                                    <div class="w-100 no-padding">
+                                        <img [src]="slide.src"  class="slider_img_sos w-100">
+                                    </div>
+                                    
+                                <!-- <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 v100 no-padding description_data">
+                                        <div class="contain_data">
+                                            <p class="title_slide">
+                                                {{slide.title}}
+                                            </p>
+                                            <p class="description_slide">
+                                                {{slide.description}}
+                                              
+                                            </p>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
+                </div>
+                <!-- <div style="background-color:#f3f3f3"  class="col-xs-8 col-sm-8 col-md-8 col-lg-8 content_all_videos">
+                    <owl-carousel-o [options]="customOptions3">
+                        <ng-container *ngFor="let slide of alerts">
+                            <ng-template carouselSlide>
+                                <iframe class="yy-video"  *ngIf="!slide.message"  [src]="slide.type" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                            </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
+                </div> -->
+                    <!-- SLIDER -->
+                <!-- Slider anterior no funcional -->
+                    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -110,7 +147,9 @@
                               <span class="carousel-control-next-icon" aria-hidden="true"></span>
                               <span class="sr-only">Next</span>
                             </a>
-                          </div>
+                          </div> -->
+                          <!-- SLIDER -->
+                
             </div>
 
         </div>
@@ -121,7 +160,7 @@
                 <div class="row m-auto d-flex">
                     <img class="comprometidos_img" src="../../../assets/images/Sostenibilidad/comprometidos.png">
                     <p class="last_title">
-                        Comprometido con el medio ambiente
+                        Comprometido con el planeta
                     </p>
                 </div>
             </div>
@@ -137,4 +176,14 @@
                 </div>
             </div>
         </section>
+    <section class="last_section">
+        
+        <div class="row w-100">
+            <img class="w-100" src="../../../assets/images/Sostenibilidad/medio_ambiente/Grupo 1779.png">
+            <img class="w-100" src="../../../assets/images/Sostenibilidad/medio_ambiente/Grupo 1754.svg">
+            <img class="w-80 m-auto img_numbers" src="../../../assets/images/Sostenibilidad/medio_ambiente/Grupo 1759.svg">
+            
+        </div>
+        
+    </section>
 </div>

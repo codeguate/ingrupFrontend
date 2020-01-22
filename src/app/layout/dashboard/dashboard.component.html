@@ -1,5 +1,6 @@
 <div [@routerTransition]>
     <div class="row">
+        <img src="./../../../../assets/images/logo-animado2.gif" [routerLink]="['./../home']" class="logo pointer fondo mb_logo">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mainCarousell first_slider"  *ngIf="sliders">
             <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let slide of sliders">
@@ -16,15 +17,19 @@
                         <img src="./../../../assets/images/logo-animado2.gif" class="pointer"  alt="">
                     </div>
 
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 d-grid" style="height: 60%;">
+                    <!-- <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 d-grid" style="height: 60%;">
                         <div class="w-100 my-auto d-block">
-                            <img src="./../../../assets/images/Home/Modulo-1/Instagram.png" style="cursor:pointer;">
+                            <a href="https://www.instagram.com/ingruplatam/" target="_blank">
+                                <img src="./../../../assets/images/Home/Modulo-1/Instagram.png" style="cursor:pointer;">
+                            </a>
                         </div>
                         <div class="w-100 my-auto d-block">
-                            <img src="./../../../assets/images/Home/Modulo-1/Facebook.png" style="cursor:pointer;">
+                            <a href="https://www.facebook.com/pg/Ingrup-103428294520345/about/?ref=page_internal" target="_blank">
+                                <img src="./../../../assets/images/Home/Modulo-1/Facebook.png" style="cursor:pointer;">
+                            </a>
                         </div>
 
-                    </div>
+                    </div> -->
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 d-flex">
                         <!-- <h1 class="title my-auto"> <div style="font-family: 'robotoCon'!important; color: #44D62C;font-size: 2em;text-shadow: #ffffff 4px 2px 5px;">IN<span style="color: #383838">GRUP </span></div> <span style="font-size: 0.5em;"> Primera empresa en la región en firmar el <h3>Compromiso Global para una Nueva Economia Circular.</h3> </span></h1> -->
 
@@ -35,7 +40,7 @@
                 <div class="preview">
                     <div class="row h-100">
 
-                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 h-100 d-flex">
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 h-100 d-flex" style="padding-right: 0;">
                             <h3 class="m-auto hashtag">
                                 Comprometidos con el Planeta
                             </h3>
@@ -78,7 +83,7 @@
 
     <div class="row d-flex new_row nn-height">
 
-            <div style="background-color:#f3f3f3"  class="col-xs-8 col-sm-8 col-md-8 col-lg-8 content_all_videos">
+            <div style="background-color:#f3f3f3"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content_all_videos">
                 <owl-carousel-o [options]="customOptions3">
                     <ng-container *ngFor="let slide of alerts">
                         <ng-template carouselSlide>
@@ -88,11 +93,11 @@
                 </owl-carousel-o>
             </div>
 
-            <div  class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col_comprometidos">
+            <!-- <div  class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col_comprometidos">
                 <p>INGRUP</p>
                 <p>Comprometidos</p>
                 <p>con el Medio Ambiente</p>
-            </div>
+            </div> -->
     </div>
 
     <div class="nn-container">

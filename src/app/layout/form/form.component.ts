@@ -32,7 +32,9 @@ export class FormComponent implements OnInit {
     titulo_texto:any="";
     static Cover = 'cover';
     static Contain = 'contain';
-    imagen:any = ""
+    imagen:any = "";
+    muestra=0;
+    imagen_selected = "";
     customOptions: any = {
         loop: false,
         // autoHeight: false,
@@ -74,19 +76,22 @@ export class FormComponent implements OnInit {
                 nav: true,
                 rewindNav : true,
                 navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
-                items:2
+                items:2,
+                imageSize: 'contain'
             },
             600:{
                 nav: true,
                 rewindNav : true,
                 navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
-                items: 3
+                items: 3,
+                imageSize: 'contain'
             },
             1000:{
                 nav: true,
                 rewindNav : true,
                 navText: ["<img class='flechaIz' src='assets/images/Mercados/Modulo-1/flechaIz.png'>","<img class='flechaDer' src='assets/images/Mercados/Modulo-1/flechaDer.png'>"],
-                items: 4
+                items: 4,
+                imageSize: 'contain'
             }
         },
         nav: true,
@@ -225,6 +230,7 @@ export class FormComponent implements OnInit {
       }
     galleryOptions: NgxGalleryOptions[];
     galleryOptions2: NgxGalleryOptions[];
+    galleryOptions6: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
     galleryImages2:any = [];
     scrollMyDiv(item) {
@@ -234,39 +240,43 @@ export class FormComponent implements OnInit {
         // console.log(parseInt(elem.scrollHeight+''));
 
         let offsetTop = parseInt(elem.scrollHeight+'');
-        if(window.innerWidth < 992){
-            if(offsetTop>500){
-                window.scrollTo(0, 1500);
+        // if(window.innerWidth < 992){
+        //     if(offsetTop>500){
+        //         window.scrollTo(0, 1500);
 
-            }else{
-                setTimeout(() => {
-                    window.scrollTo(0, 500);
-                }, 300);
-            }
-        }else{
-            if(offsetTop>200){
-                if(section=="Galeria"){
-                    window.scrollTo(0, 1500);
-                }else{
-                    window.scrollTo(0, 800);
+        //     }else{
+        //         setTimeout(() => {
+        //             window.scrollTo(0, 500);
+        //         }, 300);
+        //     }
+        // }else{
+        //     if(offsetTop>200){
+        //         if(section=="Galeria"){
+        //             window.scrollTo(0, 1500);
+        //         }else{
+        //             window.scrollTo(0, 800);
 
-                }
+        //         }
 
-            }else{
-                if(offsetTop<100){
-                        window.scrollTo(0, 1500);
-                }else{
-                    setTimeout(() => {
-                        window.scrollTo(0, offsetTop);
-                    }, 300);
-                }
+        //     }else{
+        //         if(offsetTop<100){
+        //                 window.scrollTo(0, 1500);
+        //         }else{
+        //             setTimeout(() => {
+        //                 window.scrollTo(0, offsetTop);
+        //             }, 300);
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
 
       }
+    reset_img(){
+        this.imagen_selected = this.setImg(this.route.snapshot.paramMap.get('id'));
+    }
     ngOnInit() {
+        this.imagen_selected = this.setImg(this.route.snapshot.paramMap.get('id'));
         this.cargarCombosMarcas();
         $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
         this.getParams();
@@ -281,7 +291,9 @@ export class FormComponent implements OnInit {
                 thumbnailsColumns: 4,
                 thumbnailsMargin: 10,
                 thumbnailMargin: 10,
-                imageSize: "contain"
+                imageSize: "contain",
+                imageInfinityMove: true,
+                imageAutoPlay: true
             },
             // max-width 800
             {
@@ -295,7 +307,9 @@ export class FormComponent implements OnInit {
                 thumbnailsColumns: 4,
                 thumbnailsMargin: 10,
                 thumbnailMargin: 10,
-                imageSize: "contain"
+                imageSize: "contain",
+                imageInfinityMove: true,
+                imageAutoPlay: true
             },
             // max-width 400
             {
@@ -312,7 +326,8 @@ export class FormComponent implements OnInit {
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
                 thumbnails: false,
-                imageSize: "Cover"
+                imageSize: "contain"
+                
             },
             // max-width 800
             {
@@ -324,7 +339,7 @@ export class FormComponent implements OnInit {
                 previewCloseOnEsc:true,
                 previewCloseOnClick:true,
                 thumbnails: false,
-                imageSize: "Cover"
+                imageSize: "contain"
             },
             // max-width 400
             {
@@ -335,7 +350,40 @@ export class FormComponent implements OnInit {
                 previewCloseOnClick:true,
                 preview: true,
                 thumbnails: false,
-                imageSize: "Cover"
+                imageSize: "contain"
+            }
+        ];
+        this.galleryOptions6 = [
+            {
+                width: '100%',
+                height: '600px',
+                imagePercent: 100,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
+                thumbnails: false
+                
+            },
+            // max-width 800
+            {
+                breakpoint: 800,
+                width: '100%',
+                height: '600px',
+                imagePercent: 100,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
+                thumbnails: false
+            },
+            // max-width 400
+            {
+                breakpoint: 400,
+                imagePercent: 100,
+                thumbnailsSwipe:true,
+                previewCloseOnEsc:true,
+                previewCloseOnClick:true,
+                preview: true,
+                thumbnails: false
             }
         ];
 
@@ -371,7 +419,99 @@ export class FormComponent implements OnInit {
             }
         ];
     }
+    setImg(producto){
+        producto = parseInt(producto);
+        var src = ""
+        switch (producto) {
+            case 1:
+                src = "../../../assets/fotos/proforma1.jpg";
+                break;
+            case 2:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/m7CaIk5r5bQ7GYyv2uEjMJDufvztX9ZTJwbbEzZw.jpeg";
+                break;
+            case 3:
+                src = "../../../assets/fotos/tapas2.jpg";
+                break;
+            case 4:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/kk6fRW2NXDslbMZYDcCojEBy2v4P722XKzJUjJdv.jpeg";
+                break;
+            case 5:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/a3htYa7FhE90T5Bfss15CZBglxiiWSCQExPKIfWr.jpeg";
+                break;
+            case 6:
+                src = "../../../assets/fotos/cajilla1.jpg";
+                break;
+            case 7:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/d89pOE5lX9Jphtqq44cW5twpqCFXcQCe7R06GkjK.jpeg";
+                break;
+            case 8:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/hT08bDx04nj4MvjBAlV2dYKvslvWzdSn3q0ouxim.jpeg";
+                break;
+            case 9:
+                src = "../../../assets/images/logo-animado2.gif";
+                break;
+            case 10:
+                src = "../../../assets/images/logo-animado2.gif";
+                break;
+            case 11:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/85Jme7jbTIGCW1LbDS4yP0tdRRMCuLve0LSSG7YX.jpeg";
+                break;
+            case 12:
+                src = "../../../assets/images/logo-animado2.gif";
+                break;
+            case 13:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/ejcMaKdv9eA9ugna0BHoV91IWsRXqdb4tENux2uN.jpeg";
+                break;
+            case 14:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/ZSN3l5mhmgVyTaKJ0hoFae0Ebb4BaCys5Wk8FdP1.jpeg";
+                break;
+            case 15:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/NBQvtBFdM7q0q8Yt2dc0fb24OaVxzK9v9CGKxSaU.png";
+                break;
+            case 16:
+                src = "../../../assets/images/talishte.jpg";
+                break;
+            case 17:
+                src = "../../../assets/images/logo-animado2.gif";
+                break;
+            case 18:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/oOBdlLZHJzFBEOkQcWcR6eGU1ZDd1XcHQkMRBgCv.jpeg";
+                break;
+            case 19:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/8R4x4GjF9F3k4Sda3KVA0FCE8bSuo58G45wExVJr.jpeg";
+                break;
+            case 20:
+                src = "../../../assets/images/logo-animado2.gif";
+                break;
+            case 21:
+                src = "../../../assets/images/logo-animado2.gif";
+                break;
+            case 22:
+                src = "../../../assets/images/logo-animado2.gif";
+                break;
+            case 23:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/QpZAYJ34muQKf3MkL2Vk1ON7IaaAu4AVZwAXQDCN.jpeg";
+                break;
+            case 24:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/Pz75nOuE42UPJVL81QqSC6tbxVOpVXJ5GecJCT5y.jpeg";
+                break;
+            case 25:
+                src = "../../../assets/images/linea.jpg";
+                break;
+            case 26:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/pouvPK2BpofdHHOzwMY6MhugLZfzs2hJ9MC6Srl6.png";
+                break;
+            case 27:
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/OkZqAfJxF2PPHsVQw02hbS4Bm6I8guYCq3FGvpe1.jpeg";
+                break;
+            default:
+                break;
+        }
+        return src
+    }
     getParams() {
+
+        
         $(".galeria").focus();
         let data = this.route.snapshot.paramMap.get('id');
         if(data) {
@@ -391,7 +531,9 @@ export class FormComponent implements OnInit {
     }
     cargarSingle(id:number){
         this.resetCarousel();
-
+        console.log("Show on selectedData");
+        this.imagen_selected = this.setImg(this.route.snapshot.paramMap.get('id'));
+        console.log(this.imagen_selected);
     this.blockUI.start();
       const data = {
         id:1,
@@ -490,6 +632,8 @@ export class FormComponent implements OnInit {
     openGallery(index: number): void {
         // open lightbox
         this._lightbox.open(this.galleryImages2, index,{ fitImageInViewPort: true, showImageNumberLabel: false,centerVertically:true, albumLabel:"" });
+        
+        
     }
     openGallery2(){
         $('.ngx-gallery-active.ngx-gallery-clickable').click();
@@ -504,15 +648,31 @@ export class FormComponent implements OnInit {
           };
           this.ProductosService.getAll()
                               .then(response => {
-                                this.Table=response
+                                this.Table=response;
+
                                 // console.log(this.idF);
                                 this.blockUI.stop();
                             }).catch(error => {
                                 console.clear;
                                 this.blockUI.stop();
                               });
+        console.log(this.Table);
+                
+        
     }
+    // show_modal(){
+    //     this.muestra=1
+    //     if(this.selectedData){
+    //         // console.log($("#finalPic"));
+    //         setTimeout(() => {
+    //             $("#firstRow").addClass("hv-100");
+    //             $("#finalPic").removeClass("d-none");
+    //             $("#finalPic").addClass("modalGAlerya");
+    //         }, 500);
+    //         // console.log($("#finalPic"));
 
+    //     }
+    // }
     cargarOfCate(id:number,changeUrl:boolean=false) {
         // this.datoPEnviar2.mercados.pop()
         this.carouselData = null
@@ -523,7 +683,6 @@ export class FormComponent implements OnInit {
             this.selectedData.presentaciones.length = 0
         }
         this.resetCarousel();
-
         if(changeUrl){
             this.id=id
         }
@@ -536,19 +695,23 @@ export class FormComponent implements OnInit {
           this.ProductosService.getAllFilter(data)
                               .then(response => {
                                 this.Table = response;
-
+                                this.reset_img();
+                                this.ocultarModal();
                                 this.blockUI.stop();
                                 this.scrollMyDiv('stinkyEnd');
                             }).catch(error => {
                                 console.clear;
                                 this.blockUI.stop();
-                              });
+                            });
+        
     }
 
 
     cargarOfMarca(id: number, changeUrl: boolean= false) {
+        console.log("Show on selectedData2");
+        console.log(this.selectedData);
+        console.log(id);
         this.resetCarousel();
-
         if (changeUrl) {
             this.id = id;
         }
@@ -629,10 +792,10 @@ export class FormComponent implements OnInit {
     }
 
     open(content,id,tipo) {
-        this.edition = null
-
+        this.edition = null;
         switch(tipo){
             case "categorias":{
+                
             this.abierto=true;
                 this.CategoriasService.getSingle(id)
                       .then(response => {
@@ -742,6 +905,8 @@ export class FormComponent implements OnInit {
                                             console.clear;
                                             this.blockUI.stop();
                                             });
+                                            this.muestra=1
+                
                 }else{
                     let data = {
                         tipos:tipo
@@ -784,7 +949,8 @@ export class FormComponent implements OnInit {
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             });
         }
-
+        
+        
     }
 
     guardarImg(){
@@ -1165,7 +1331,7 @@ export class FormComponent implements OnInit {
             }
 
           }
-          cambiarIMG(index,text,cant,url:string=""){
+        cambiarIMG(index,text,cant,url:string=""){
             if(url.indexOf("01")<0){
                 cant=4;
             }else{
@@ -1179,4 +1345,17 @@ export class FormComponent implements OnInit {
 
 
         }
+    ocultarModal(){
+
+        setTimeout(() => {
+            // $("#finalPic").removeClass("modalGAlerya");
+            $("#finalPic").addClass("modalGAleryaOut");
+        }, 500);
+        setTimeout(() => {
+            // $("#finalPic").removeClass("modalGAlerya");
+            $("#content_data").removeClass("hv-100");
+
+            this.muestra=0
+        }, 1300);
+    }
 }

@@ -8,7 +8,7 @@
     position: absolute;
     z-index: 999;
     padding: 0px;
-    height: 100%;
+    height: fit-content;
     // background-color: #ffffff;
     //   transform: translateX(100%);
     margin-left: 2rem;
@@ -26,6 +26,9 @@
     margin-left: 2rem;
     animation: modalGAleryaOut 0.5s ease-in 1 forwards;
   -webkit-animation: modalGAleryaOut 0.5s ease-in 1 forwards;
+}
+.contains_single_img .ngx-gallery-image{
+    background-size: contain !important;
 }
 @keyframes modalGAlerya{
   0%{

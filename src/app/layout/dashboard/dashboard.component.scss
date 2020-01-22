@@ -138,6 +138,19 @@ body{
   .logo-completo-titulo{
 
   }
+  .mb_logo{
+    display: none;
+  }
+  @media only screen and (max-width: 1000px){
+    .mb_logo{
+      position: absolute;
+      top: 10px !important;
+      left: 10px !important;
+      z-index: 99;
+      display: block;
+    }
+  }
+
   /*-----------FABRICAMOS----------------*/
   .info1{
     margin-top: 10%;
@@ -653,6 +666,9 @@ body{
               }
         }
     }
+    .owl-item{
+      margin-left: 0 !important;
+    }
 }
 .menu-ingrup .owl-theme .owl-nav .owl-prev {
   position: absolute;
@@ -694,7 +710,14 @@ body{
     }
 }
 @media only screen and (max-width: 1000px) {
-
+  .content_all_videos{
+    width: 100% !important;
+    height: fit-content !important;
+  }
+  .yy-video{
+    min-height: 300px !important;
+    height: 300px !important;
+  }
   .nn-img-desktop {
     display: none;
   }
@@ -882,7 +905,7 @@ body{
 }
 @media only screen and (max-width: 1000px){
     .general_text_mb{
-      font-size: 1em !important;
+      font-size: 0.7em !important;
     }
     .contenedor1{
       background-color: white;
