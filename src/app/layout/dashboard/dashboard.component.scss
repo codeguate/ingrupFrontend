@@ -709,14 +709,21 @@ body{
 
     }
 }
+.owl-theme .owl-dots .owl-dot span {
+  transition: all .2s ease!important;
+}
 @media only screen and (max-width: 1000px) {
+  .owl-dot.active span{
+    background-color: #44D62C !important;
+    padding: 0.5rem;
+  }
   .content_all_videos{
     width: 100% !important;
     height: fit-content !important;
   }
   .yy-video{
-    min-height: 300px !important;
-    height: 300px !important;
+    min-height: 210px !important;
+    height: 210px !important;
   }
   .nn-img-desktop {
     display: none;

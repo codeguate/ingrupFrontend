@@ -678,9 +678,9 @@
 </div>
     <!-- Linea Vial -->
     <div *ngIf="selectedData.categoria==25">
-        <div class="card ficha-tecnica" *ngIf="selected">
+        <div class="card ficha-tecnica" *ngIf="selectedData.id != 371">
             <div class="card-header header-ingrup-table">
-                Ficha Técnica
+                Ficha Técnica 
             </div>
             <div class="card-body">
                 <ul class="list-group list-group-flush" >
@@ -736,7 +736,89 @@
                         </div>
                     </li>
                 </ul>
-                </div>
+            </div>
+        </div>
+        <div class="card ficha-tecnica" *ngIf="selectedData.id == 371">
+            <div class="card-header header-ingrup-table">
+                Ficha Técnica
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush" >
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            Descripción
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            <ng-select [items]="selectedData.presentaciones"
+                                        bindLabel="nombre"
+                                        bindId="id"
+                                        placeholder="Seleccione una opcion"
+                                        [searchable]="true"
+                                        [closeOnSelect]="true"
+                                        (clear)="onClear()"
+                                        appendTo="body"
+                                        (change)="onChange($event)"
+                                        [(ngModel)]="selected">
+                            </ng-select>
+                        </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 description_data">
+                            Altura total (m)
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.altura === '0.00'"  class="form-control" disabled placeholder="N/A">
+                            <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.altura != '0.00'"  class="form-control" disabled [(ngModel)]="selected.altura">
+                        </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 description_data2">
+                            Largo ingerior (m)
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" name="Filtro4" id="Filtro4"  class="form-control" disabled [(ngModel)]="selected.largo">
+                        </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 description_data3">
+                            Largo superior (m)
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" name="Filtro5" id="Filtro5" class="form-control" disabled [(ngModel)]="selected.peso">
+                        </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 description_data3">
+                            Ancho inferior (m)
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <!-- produccion -->
+                            <input type="text" name="Filtro5" id="Filtro5" class="form-control" disabled [(ngModel)]="selected.unidades">
+                        </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 description_data3">
+                            Ancho superior (m)
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <!-- Diametro -->
+                            <input type="text" name="Filtro5" id="Filtro5" class="form-control" disabled [(ngModel)]="selected.cuello">
+                        </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
         <table [class.d-none]="!session" class="table table-hover d-none" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
             <thead>
@@ -2963,296 +3045,838 @@
 </div>
 <!-- si son Tarimas -->
 <div *ngIf="selectedData.categoria==20">
-    <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="material">Material</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.peso?data.peso:data.peso }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ (+data.cuello)?data.cuello:data.cuello }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.unidades?data.unidades:data.unidades }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.material }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
+    <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
+        <div class="card-header header-ingrup-table">
+            Ficha Técnica
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                          Descripción
+                      </div>
+                      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                          <ng-select [items]="selectedData.presentaciones"
+                                      bindLabel="nombre"
+                                      bindId="id"
+                                      placeholder="Seleccione una opcion"
+                                      [searchable]="true"
+                                      [closeOnSelect]="true"
+                                      (clear)="onClear()"
+                                      appendTo="body"
+                                      (change)="onChange($event)"
+                                      [(ngModel)]="selected">
+                          </ng-select>
+                          <!-- <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion"> -->
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Ancho (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.cuello">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Largo (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.largo">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Alto (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.altura">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Carga máx (estática)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.peso">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Carga máx (dinámica)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.separador">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Color
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.material">
+                      </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+        <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.peso?data.peso:data.peso }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ (+data.cuello)?data.cuello:data.cuello }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.unidades?data.unidades:data.unidades }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.material }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
 
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-<!-- si son Letrinas -->
-<div *ngIf="selectedData.categoria==19">
-    <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
+                </tr>
+            </tbody>
+            <tfoot>
             <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Altura (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="ancho">Ancho (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="largo">Largo (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="peso">Peso (kg)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura:data.altura }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ (+data.unidades)?data.unidades:data.unidades }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.largo?data.largo:(data.largo!="" && data.largo!=null?data.largo:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.peso?data.peso:data.peso }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
+            </tfoot>
+        </table>
+    </div>
 
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
 <!-- si son Hielera -->
 <div *ngIf="selectedData.categoria==17">
-    <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="material">Material</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.peso?data.peso:data.peso }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ (+data.cuello)?data.cuello:data.cuello }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.unidades?data.unidades:data.unidades }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.material }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
+    <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
+        <div class="card-header header-ingrup-table">
+            Ficha Técnica
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                          Descripción
+                      </div>
+                      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                          <ng-select [items]="selectedData.presentaciones"
+                                      bindLabel="nombre"
+                                      bindId="id"
+                                      placeholder="Seleccione una opcion"
+                                      [searchable]="true"
+                                      [closeOnSelect]="true"
+                                      (clear)="onClear()"
+                                      appendTo="body"
+                                      (change)="onChange($event)"
+                                      [(ngModel)]="selected">
+                          </ng-select>
+                          <!-- <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion"> -->
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Altura total (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.cuello">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Altura del cuerpo (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.peso">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Ancho (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.altura">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Largo (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.calibres">
+                      </div>
+                    </div>
+                </li>
+                
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Capacidad (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.largo">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Colores
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.material">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Apilables (Máxima)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.unidades">
+                      </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+        <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="peso">Peso (Gr)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="cuello">Diametro Externo Superior (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="altura">Altura (mm)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="unidades">Minimo de Produccion</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="material">Material</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.peso?data.peso:data.peso }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ (+data.cuello)?data.cuello:data.cuello }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.unidades?data.unidades:data.unidades }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.material }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
 
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
             </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
+            </tfoot>
+        </table>
+    </div>
 <!-- si son Casilleros -->
 <div *ngIf="selectedData.categoria==18">
-    <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
-        <thead>
-            <tr>
-                <th style="width:20%;">
-                <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="altura">Alto (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;text-align: center;">
-                <mfDefaultSorter by="unidades">Ancho (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;">
-                <mfDefaultSorter by="largo">Fondo (m)</mfDefaultSorter>
-                </th>
-                <th style="width:20%;" *ngIf="session">
-                <mfDefaultSorter>Editar</mfDefaultSorter>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of mf.data">
-                <td>
-                <div>
-                    {{ data.nombre }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
-                </div>
-                </td>
-                <td class="text-center">
-                <div>
-                    {{ data.unidades?data.unidades:data.unidades }}
-                </div>
-                </td>
-                <td>
-                <div>
-                    {{ data.largo?data.largo:data.largo }}
-                </div>
-                </td>
-                <td *ngIf="session">
-                <div>
-                    <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
-                    <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
-                </div>
-                </td>
+    <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
+        <div class="card-header header-ingrup-table">
+            Ficha Técnica
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                          Descripción
+                      </div>
+                      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                          <ng-select [items]="selectedData.presentaciones"
+                                      bindLabel="nombre"
+                                      bindId="id"
+                                      placeholder="Seleccione una opcion"
+                                      [searchable]="true"
+                                      [closeOnSelect]="true"
+                                      (clear)="onClear()"
+                                      appendTo="body"
+                                      (change)="onChange($event)"
+                                      [(ngModel)]="selected">
+                          </ng-select>
+                          <!-- <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion"> -->
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Alto (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.altura">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Ancho (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.unidades">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Fondo (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.largo">
+                      </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+        <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="altura">Alto (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;text-align: center;">
+                    <mfDefaultSorter by="unidades">Ancho (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;">
+                    <mfDefaultSorter by="largo">Fondo (m)</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.altura?data.altura:(data.altura!="" && data.altura!=null?data.altura:"-") }}
+                    </div>
+                    </td>
+                    <td class="text-center">
+                    <div>
+                        {{ data.unidades?data.unidades:data.unidades }}
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                        {{ data.largo?data.largo:data.largo }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
 
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
             </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
+            </tfoot>
+        </table>
+    </div>
+
+    <div *ngIf="selectedData.categoria==19">
+        <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
+            <div class="card-header header-ingrup-table">
+                Ficha Técnica
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                              Descripción
+                          </div>
+                          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                              <ng-select [items]="selectedData.presentaciones"
+                                          bindLabel="nombre"
+                                          bindId="id"
+                                          placeholder="Seleccione una opcion"
+                                          [searchable]="true"
+                                          [closeOnSelect]="true"
+                                          (clear)="onClear()"
+                                          appendTo="body"
+                                          (change)="onChange($event)"
+                                          [(ngModel)]="selected">
+                              </ng-select>
+                              <!-- <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion"> -->
+                          </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              Base-Alto (m)
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.cuello">
+                          </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              Largo (m)
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.peso">
+                          </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              Tapadera (m)
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.altura">
+                          </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              Ancho (m)
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.calibres">
+                          </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row w-100">
+                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              Ancho (m)
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.largo">
+                          </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+            <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+                <thead>
+                    <tr>
+                        <th style="width:20%;">
+                        <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                        </th>
+                        <th style="width:20%;text-align: center;">
+                        <mfDefaultSorter by="altura">Altura (m)</mfDefaultSorter>
+                        </th>
+                        <th style="width:20%;text-align: center;">
+                        <mfDefaultSorter by="ancho">Ancho (m)</mfDefaultSorter>
+                        </th>
+                        <th style="width:20%;">
+                        <mfDefaultSorter by="largo">Largo (m)</mfDefaultSorter>
+                        </th>
+                        <th style="width:20%;">
+                        <mfDefaultSorter by="peso">Peso (kg)</mfDefaultSorter>
+                        </th>
+                        <th style="width:20%;" *ngIf="session">
+                        <mfDefaultSorter>Editar</mfDefaultSorter>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of mf.data">
+                        <td>
+                        <div>
+                            {{ data.nombre }}
+                        </div>
+                        </td>
+                        <td class="text-center">
+                        <div>
+                            {{ data.altura?data.altura:data.altura }}
+                        </div>
+                        </td>
+                        <td class="text-center">
+                        <div>
+                            {{ (+data.unidades)?data.unidades:data.unidades }}
+                        </div>
+                        </td>
+                        <td class="text-center">
+                        <div>
+                            {{ data.largo?data.largo:(data.largo!="" && data.largo!=null?data.largo:"-") }}
+                        </div>
+                        </td>
+                        <td class="text-center">
+                        <div>
+                            {{ data.peso?data.peso:data.peso }}
+                        </div>
+                        </td>
+                        <td *ngIf="session">
+                        <div>
+                            <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                            <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                        </div>
+                        </td>
+    
+                    </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <mfBootstrapPaginator></mfBootstrapPaginator>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+<!-- si son Contenedores -->
+<!-- <div *ngIf="selectedData.categoria==16">
+    
+        <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
+            <thead>
+                <tr>
+                    <th style="width:80%;">
+                    <mfDefaultSorter by="descripcion">Accesorios Incluidos</mfDefaultSorter>
+                    </th>
+                    <th style="width:20%;" *ngIf="session">
+                    <mfDefaultSorter>Editar</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of mf.data">
+                    <td>
+                    <div>
+                        {{ data.nombre }}
+                    </div>
+                    </td>
+                    <td *ngIf="session">
+                    <div>
+                        <i class="fa unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-edit]="!TablesComponent.abierto" (click)="TablesComponent.open(editPresentacionModal,data.id,'presentacion')"></i>
+                        <i class="fa ml-2 unlockable" *ngIf="session" [class.fa-lock]="TablesComponent.abierto" [class.fa-times]="!TablesComponent.abierto" (click)="TablesComponent.open(deletePresentacionModal,data.id,'presentacion')"></i>
+                    </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div> -->
+
+<div *ngIf="selectedData.categoria==22">
+    <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
+        <div class="card-header header-ingrup-table">
+            Ficha Técnica
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row w-100">
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        Descripción
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                        <ng-select [items]="selectedData.presentaciones"
+                                    bindLabel="nombre"
+                                    bindId="id"
+                                    placeholder="Seleccione una opcion"
+                                    [searchable]="true"
+                                    [closeOnSelect]="true"
+                                    (clear)="onClear()"
+                                    appendTo="body"
+                                    (change)="onChange($event)"
+                                    [(ngModel)]="selected">
+                        </ng-select>
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Largo (mm)
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="Filtro2" id="Filtro2"  class="form-control" disabled [(ngModel)]="selected.largo">
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Ancho (mm)
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="Filtro4" id="Filtro4"  class="form-control" disabled [(ngModel)]="selected.peso">
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Altura (mm)
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="Filtro5" id="Filtro5" class="form-control" disabled [(ngModel)]="selected.altura">
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Minimo de Producción (Colores Línea)
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Minimo de Producción (Colores especiales)
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="Filtro7" id="Filtro7" class="form-control" disabled [(ngModel)]="selected.calibres">
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Unidades / Tarima
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="Filtro7" id="Filtro7" class="form-control" disabled [(ngModel)]="selected.separador">
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Material
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="Filtro7" id="Filtro7" class="form-control" disabled [(ngModel)]="selected.material">
+                    </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
-
-<!-- si son Contenedores -->
 <div *ngIf="selectedData.categoria==16">
+    <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
+        <div class="card-header header-ingrup-table">
+            Ficha Técnica
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                          Descripción
+                      </div>
+                      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                          <ng-select [items]="selectedData.presentaciones"
+                                      bindLabel="nombre"
+                                      bindId="id"
+                                      placeholder="Seleccione una opcion"
+                                      [searchable]="true"
+                                      [closeOnSelect]="true"
+                                      (clear)="onClear()"
+                                      appendTo="body"
+                                      (change)="onChange($event)"
+                                      [(ngModel)]="selected">
+                          </ng-select>
+                          <!-- <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion"> -->
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Alto (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.altura">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Ancho (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.peso">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Largo (m)
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.largo">
+                      </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-100">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          Color
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selected.material">
+                      </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
         <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
             <thead>
                 <tr>
@@ -3289,8 +3913,6 @@
             </tfoot>
         </table>
     </div>
-
-
 <!-- si son Cajillas de pan -->
 <div *ngIf="selectedData.categoria==27">
     <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
@@ -3493,8 +4115,7 @@
                             (change)="onChange($event)"
                             [(ngModel)]="selected.peso">
                         </ng-select> -->
-                    <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.nombre=='' || (selected.nombre<=0)" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.nombre!='' || (selected.nombre>0)" class="form-control" disabled [(ngModel)]="selected.nombre">
+                    <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.nombre!='' || (selected.nombre>0)" class="form-control" disabled [(ngModel)]="selected.calibres">
                     </div>
                   </div>
               </li>
@@ -3540,7 +4161,7 @@
                                 [(ngModel)]="selected.cuello">
                             </ng-select> -->
                     <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.material=='' || (selected.material<=0)" class="form-control" disabled value="N/A">
-                    <input type="text" name="Filtro4" id="Filtro4"  class="form-control" disabled [(ngModel)]="selected.material">
+                    <input type="text" name="Filtro4" id="Filtro4" *ngIf="selected.material!='' || (selected.material>0)" class="form-control" disabled [(ngModel)]="selected.material">
                     </div>
                   </div>
               </li>
@@ -3560,7 +4181,7 @@
                                 (clear)="onClear()"
                                 appendTo="body"
                                 (change)="onChange($event)"
-                                [(ngModel)]="selected.unidades">
+                                [(ngModel)]="unidades">
                             </ng-select> -->
                     <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.separador=='' || (selected.separador<=0)" class="form-control" disabled value="N/A">
                     <input type="text" name="Filtro6" id="Filtro6" *ngIf="selected.separador!='' || (selected.separador>0)" class="form-control" disabled [(ngModel)]="selected.separador">

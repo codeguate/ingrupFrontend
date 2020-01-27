@@ -98,6 +98,7 @@ export class TablesDataComponent implements OnInit {
     }
   }
   onChange($event){
+    console.log(this.selectedData);
     this.id_vial = this.selectedData.presentaciones[0].id;
     if(this.id_vial == "101037" || this.id_vial == "101036"){
       $(".description_data").text("Altura (m)");

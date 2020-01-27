@@ -57,6 +57,8 @@
 }
 #finalPic{
     background-color:#efefef;
+    height: 100% !important;
+    min-height: fit-content !important;
 }
 .panel-ingrup:hover{
     // background-color: #44D62C;

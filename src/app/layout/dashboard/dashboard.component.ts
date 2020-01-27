@@ -120,7 +120,7 @@ export class DashboardComponent implements OnInit {
         dots:true,
         items:4,
         autoplayTimeout:3000,
-        autoHeight: true,
+        autoHeight: false,
         margin:20,
         responsiveClass:true,
         responsive:{
@@ -184,6 +184,36 @@ export class DashboardComponent implements OnInit {
             items: 1,
             rewindNav : true,
             navText: ["<img class='flechaIz iz-middle w-100' src='assets/images/FlechaIz.png'>","<img class='flechaDer de-middle w-100' src='assets/images/FlechaDer.png'>"],
+            nav: true
+        },
+        1000:{
+            items: 1,
+            navText: ["<img class='flechaIz iz-middle w-100' src='assets/images/FlechaIz.png'>","<img class='flechaDer de-middle w-100' src='assets/images/FlechaDer.png'>"],
+            nav: true
+        },
+    }
+        // URLhashListener:true,
+    // startPosition: 'URLHash',
+    
+  }
+  customOptions33: any = {
+    center: true,
+    // autoHeight: false,
+    nav: false,
+    dots: true,
+    margin:20,
+    responsiveClass:true,
+    loop: true,
+    responsive:{
+        100:{
+            items:1,
+            rewindNav : false,
+            nav: false
+        },
+        600:{
+            items: 1,
+            rewindNav : true,
+            navText: ["<img class='new_f_iz' src='assets/images/FlechaIz.png'>","<img class='new_f_de' src='assets/images/FlechaDer.png'>"],
             nav: true
         },
         1000:{

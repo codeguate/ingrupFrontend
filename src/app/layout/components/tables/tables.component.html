@@ -1184,10 +1184,10 @@
                     </li>
                   <li class="list-group-item">
                       <div class="row w-100">
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                             Descripción
                         </div>
-                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                             <!-- <ng-select [items]="selectedData.presentaciones"
                                         bindLabel="nombre"
                                         bindId="id"
@@ -1656,7 +1656,7 @@
             </table>
         </div>
         <div *ngIf="selectedData.categoria==25">
-            <div class="card ficha-tecnica" *ngIf="selected">
+            <div class="card ficha-tecnica" *ngIf="selectedData.id != 371">
                 <div class="card-header header-ingrup-table">
                     Ficha Técnica
                 </div>
@@ -1714,7 +1714,89 @@
                             </div>
                         </li>
                     </ul>
-                    </div>
+                </div>
+            </div>
+            <div class="card ficha-tecnica" *ngIf="selectedData.id == 371">
+                <div class="card-header header-ingrup-table">
+                    Ficha Técnica
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush" >
+                        <li class="list-group-item">
+                            <div class="row w-100">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                Descripción
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                <ng-select [items]="selectedData.presentaciones"
+                                            bindLabel="nombre"
+                                            bindId="id"
+                                            placeholder="Seleccione una opcion"
+                                            [searchable]="true"
+                                            [closeOnSelect]="true"
+                                            (clear)="onClear()"
+                                            appendTo="body"
+                                            (change)="onChange($event)"
+                                            [(ngModel)]="selected">
+                                </ng-select>
+                            </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row w-100">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 description_data">
+                                Altura total (m)
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.altura === '0.00'"  class="form-control" disabled placeholder="N/A">
+                                <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.altura != '0.00'"  class="form-control" disabled [(ngModel)]="selected.altura">
+                            </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row w-100">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 description_data2">
+                                Largo ingerior (m)
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <input type="text" name="Filtro4" id="Filtro4"  class="form-control" disabled [(ngModel)]="selected.largo">
+                            </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row w-100">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 description_data3">
+                                Largo superior (m)
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <input type="text" name="Filtro5" id="Filtro5" class="form-control" disabled [(ngModel)]="selected.peso">
+                            </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row w-100">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 description_data3">
+                                Ancho inferior (m)
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <!-- produccion -->
+                                <input type="text" name="Filtro5" id="Filtro5" class="form-control" disabled [(ngModel)]="selected.unidades">
+                            </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row w-100">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 description_data3">
+                                Ancho superior (m)
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <!-- Diametro -->
+                                <input type="text" name="Filtro5" id="Filtro5" class="form-control" disabled [(ngModel)]="selected.cuello">
+                            </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <table [class.d-none]="!session" class="table table-hover d-none" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
                 <thead>
@@ -4018,6 +4100,96 @@
 
 <!-- si son Cajillas de pan -->
 <div *ngIf="selectedData.categoria==27">
+    <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones">
+        <div class="card-header header-ingrup-table">
+            Ficha Técnica
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                  <div class="row w-100">
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        Descripción
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                        <ng-select [items]="selectedData.presentaciones"
+                                    bindLabel="nombre"
+                                    bindId="id"
+                                    placeholder="Seleccione una opcion"
+                                    [searchable]="true"
+                                    [closeOnSelect]="true"
+                                    (clear)="onClear()"
+                                    appendTo="body"
+                                    (change)="onChange($event)"
+                                    [(ngModel)]="selected">
+                        </ng-select>
+                        <!-- <input type="text" name="Filtro1" id="Filtro1" class="form-control" [(ngModel)]="selectedData.presentaciones[0].descripcion"> -->
+                    </div>
+                  </div>
+              </li>
+              <li class="list-group-item">
+                  <div class="row w-100">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Largo (mm)
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="Filtro4" id="Filtro4"  class="form-control" disabled [(ngModel)]="selected.calibres">
+                    </div>
+                  </div>
+              </li>
+              <li class="list-group-item">
+                  <div class="row w-100">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Ancho (mm)
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="Filtro5" id="Filtro5" class="form-control" disabled [(ngModel)]="selected.cuello">
+                    </div>
+                  </div>
+              </li>
+              <li class="list-group-item">
+                  <div class="row w-100">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        Altura (mm)
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.altura">
+                    </div>
+                  </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row w-100">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      Peso (g)
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.peso">
+                  </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row w-100">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      Material
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.material">
+                  </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row w-100">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      Pedido Minimo
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <input type="text" name="Filtro6" id="Filtro6"  class="form-control" disabled [(ngModel)]="selected.unidades">
+                  </div>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </div>
     <table [class.d-none]="!session" class="table table-hover" *ngIf="selectedData.presentaciones" [mfData]="selectedData.presentaciones" #mf="mfDataTable" [mfRowsOnPage]="4">
         <thead>
             <tr>
@@ -4128,8 +4300,7 @@
                                 (change)="onChange($event)"
                                 [(ngModel)]="selected.peso">
                             </ng-select> -->
-                        <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.nombre=='' || (selected.nombre<=0)" class="form-control" disabled value="N/A">
-                        <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.nombre!='' || (selected.nombre>0)" class="form-control" disabled [(ngModel)]="selected.nombre">
+                        <input type="text" name="Filtro2" id="Filtro2" *ngIf="selected.nombre!='' || (selected.nombre>0)" class="form-control" disabled [(ngModel)]="selected.calibres">
                         </div>
                       </div>
                   </li>

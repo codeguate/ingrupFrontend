@@ -34,6 +34,7 @@ export class FormComponent implements OnInit {
     static Contain = 'contain';
     imagen:any = "";
     muestra=0;
+    data_product = false;
     imagen_selected = "";
     customOptions: any = {
         loop: false,
@@ -274,9 +275,15 @@ export class FormComponent implements OnInit {
       }
     reset_img(){
         this.imagen_selected = this.setImg(this.route.snapshot.paramMap.get('id'));
+        if(this.route.snapshot.paramMap.get('id') === "8"){
+            this.data_product = true;
+        }else{
+            this.data_product = false;
+        }
     }
     ngOnInit() {
         this.imagen_selected = this.setImg(this.route.snapshot.paramMap.get('id'));
+        
         this.cargarCombosMarcas();
         $('.ngx-gallery-preview-top .ngx-gallery-preview-icons .ngx-gallery-icon').html('<div class="lb-dataContainer" style="animation-duration: 0.7s; width: 877px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption animation fadeIn" style="animation-duration: 0.7s;">https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/EFuuA51ZYMwKp5PF07uP2zCfYcwOrA4JDP77iA9A.png</span><span class="lb-number animation fadeIn" hidden="" style="animation-duration: 0.7s;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div>')
         this.getParams();
@@ -448,16 +455,17 @@ export class FormComponent implements OnInit {
                 src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/hT08bDx04nj4MvjBAlV2dYKvslvWzdSn3q0ouxim.jpeg";
                 break;
             case 9:
-                src = "../../../assets/images/logo-animado2.gif";
+                
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/Jksym11MENV2tST0CZxywNdZcedsMsdxnJCNQqVZ.jpeg";
                 break;
             case 10:
-                src = "../../../assets/images/logo-animado2.gif";
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/MF47avW2h4t6tNZn6xuHmqoalja9O1XfJrpVqevC.jpeg";
                 break;
             case 11:
                 src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/85Jme7jbTIGCW1LbDS4yP0tdRRMCuLve0LSSG7YX.jpeg";
                 break;
             case 12:
-                src = "../../../assets/images/logo-animado2.gif";
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/4bQu1elqkflC4svTAdawGrUofNyQ5SdoqYLCBrSc.jpeg";
                 break;
             case 13:
                 src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/ejcMaKdv9eA9ugna0BHoV91IWsRXqdb4tENux2uN.jpeg";
@@ -469,25 +477,25 @@ export class FormComponent implements OnInit {
                 src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/NBQvtBFdM7q0q8Yt2dc0fb24OaVxzK9v9CGKxSaU.png";
                 break;
             case 16:
-                src = "../../../assets/images/talishte.jpg";
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/rOg9l1Dx5XDWsX4QJcFibpyXTA7Vfhb0r9uwhg1E.jpeg";
                 break;
             case 17:
-                src = "../../../assets/images/logo-animado2.gif";
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/mFC0UIJAlFL3NJ9zR8ipNSfdFhR9A9ELVPZMVzsP.jpeg";
                 break;
             case 18:
-                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/oOBdlLZHJzFBEOkQcWcR6eGU1ZDd1XcHQkMRBgCv.jpeg";
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/7FL74L7bnu2qIP9GRoY71hOcmdCHPL688xQxs9Lm.jpeg";
                 break;
             case 19:
                 src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/8R4x4GjF9F3k4Sda3KVA0FCE8bSuo58G45wExVJr.jpeg";
                 break;
             case 20:
-                src = "../../../assets/images/logo-animado2.gif";
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/rcrp6fxiI1hO1tffneEKpwOijW4pXzT4IBzUa6P5.jpeg";
                 break;
             case 21:
                 src = "../../../assets/images/logo-animado2.gif";
                 break;
             case 22:
-                src = "../../../assets/images/logo-animado2.gif";
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/xnwZbb5PRUM3EyRc2ZBSoLPIXunzisHKgy1JLGrR.jpeg";
                 break;
             case 23:
                 src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/QpZAYJ34muQKf3MkL2Vk1ON7IaaAu4AVZwAXQDCN.jpeg";
@@ -530,16 +538,18 @@ export class FormComponent implements OnInit {
         }
     }
     cargarSingle(id:number){
+        console.log(id);
         this.resetCarousel();
         console.log("Show on selectedData");
         this.imagen_selected = this.setImg(this.route.snapshot.paramMap.get('id'));
+        
         console.log(this.imagen_selected);
-    this.blockUI.start();
-      const data = {
+        this.blockUI.start();
+        const data = {
         id:1,
         state:'0',
         filter:'evento'
-      };
+    };
     //   console.log('antes:'+this.selectedData.id+' Ahora'+id);
     this.scrollMyDiv('Galeria');
     //   console.log(this.idF)
@@ -695,7 +705,9 @@ export class FormComponent implements OnInit {
           this.ProductosService.getAllFilter(data)
                               .then(response => {
                                 this.Table = response;
+                                console.log(this.Table);
                                 this.reset_img();
+                                
                                 this.ocultarModal();
                                 this.blockUI.stop();
                                 this.scrollMyDiv('stinkyEnd');

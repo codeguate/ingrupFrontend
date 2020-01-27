@@ -297,7 +297,9 @@ export class TablesComponent implements OnInit {
                 thumbnailMargin: 10,
                 imageSize: "contain",
                 imageInfinityMove: true,
-                imageAutoPlay: true
+                imageAutoPlayPauseOnHover: true,
+                imageAutoPlay: true,
+                imageAutoPlayInterval: 3000
             },
             // max-width 800
             {
@@ -615,7 +617,7 @@ export class TablesComponent implements OnInit {
                             src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/m7CaIk5r5bQ7GYyv2uEjMJDufvztX9ZTJwbbEzZw.jpeg"
                             break; 
                         default:
-                            src = "./../../../../assets/images/logo-animado2.gif"
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/m7CaIk5r5bQ7GYyv2uEjMJDufvztX9ZTJwbbEzZw.jpeg"
                             break;
                     }
                 }else{
@@ -640,7 +642,7 @@ export class TablesComponent implements OnInit {
                             src = "./../../../../assets/images/logo-animado2.gif"
                             break;
                         case 16:
-                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/OkZqAfJxF2PPHsVQw02hbS4Bm6I8guYCq3FGvpe1.jpeg"
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/nZQyTUsYm6XPv8tG1wjLmfXKAoJn9Jm4Ek8P1eLl.png"
                             break;
                         case 17:
                             src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/R46XgHZsdef7cl25i8usnT45kTMjefTFrbPuQVTZ.jpeg"
@@ -652,7 +654,7 @@ export class TablesComponent implements OnInit {
                             src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/Jksym11MENV2tST0CZxywNdZcedsMsdxnJCNQqVZ.jpeg"
                             break;
                         default:
-                            src = "./../../../../assets/images/logo-animado2.gif"
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/7t3TfdLHTjwmSw6DLNhUCwSP3nbYlqbmw8ON2gTV.jpeg"
                             break;
                     }
                 }else{
@@ -660,7 +662,7 @@ export class TablesComponent implements OnInit {
                 }
                 break;
             case 3:
-                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/tpD4TCAEEI4VxLHssAZn8fHA1OPo2hiaNMXLv6jd.jpeg";
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/y9KrPUuUcjBVVGhgyam5Tl7Cs8uTiyP25JklCkWj.jpeg";
                 break;
             case 4:
                 src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/hT08bDx04nj4MvjBAlV2dYKvslvWzdSn3q0ouxim.jpeg";

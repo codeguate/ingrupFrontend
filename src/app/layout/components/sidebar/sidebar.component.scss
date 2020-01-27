@@ -6,7 +6,7 @@ $topnav-background-color: #ffffff;
     top: 0px;
     right: 235px;
     display: flex;
-    width: 70%;
+    width: 35%;
     border-left: solid #44D62C 1rem;
     margin-left: -235px;
     margin-bottom: 48px;
@@ -269,7 +269,14 @@ $topnav-background-color: #ffffff;
     border: none;
     font-size: 2em;
     text-align: center;
-    color: #5e5a5c;
+    color: #5d5d5d;
+    border: 1px solid;
+    width: fit-content;
+    margin: auto;
+    padding: 0px 7px;
+    border-radius: unset;
+    font-family: Impact;
+    text-transform: uppercase;
 }
 .content_size::-webkit-scrollbar-track
 {
@@ -308,7 +315,7 @@ $topnav-background-color: #ffffff;
     margin-left: auto !important;
 }
 .redes_content{
-    text-align: right;
+    text-align: left;
 }
 .float_left{
     float: left;
@@ -318,6 +325,12 @@ $topnav-background-color: #ffffff;
 }
 
 @media screen and (max-width: 992px) {
+    .logo{
+        margin-right: 0 !important;
+    }
+    .redes_content{
+        text-align: right;
+    }
     .sidebar{
         .list-group{
             margin-left: 5% !important;
@@ -391,7 +404,7 @@ $topnav-background-color: #ffffff;
 
 .toggle-button {
     position: fixed;
-    width: 70%;
+    width: 35%;
     cursor: pointer;
     padding: 12px;
     bottom: 0;
@@ -411,10 +424,40 @@ $topnav-background-color: #ffffff;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
-@media screen and (max-width: 992px) {
 
+@media only screen and (min-width: 1000px){
+    // .cerrarSide button{
+    //     position: absolute;
+    //     top: 0;
+    //     right: 0;
+    // }
+    .cerrarSide{
+        width: 20%;
+    }
+    .redes_content{
+        width: 100% !important;
+        text-align: center;
+    }
+    .menu-w100{
+        width: 100% !important;
+    }
+    .menu-w70{
+        width: 70% !important;
+    }
+    .title_list{
+        margin-bottom: 10%;
+    }
+}
+@media screen and (max-width: 992px) {
+    .input-group{
+        width: 65% !important;
+    }
     .toggle-button {
         width: 100%;
+    }
+    .owl-dot.active span{
+
+        background-color: #44D62C !important;
     }
 }
 .toggle-button.collapsed{

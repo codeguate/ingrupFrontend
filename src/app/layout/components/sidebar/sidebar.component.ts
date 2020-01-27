@@ -8,6 +8,7 @@ import { CategoriasService } from "./../../../shared/services/categorias.service
 import { TranslateService } from '@ngx-translate/core';
 import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
+declare var $: any
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -58,7 +59,9 @@ export class SidebarComponent implements OnInit {
         this.showMenu = '0';
         this.pushRightClass = 'push-right';
         this.cargarAll();
+        
     }
+    
     public changeSuccessMessage() {
         this._success.next(`<strong>No se ha encontrado nada en esta busqueda...</strong>`);
     }
@@ -170,27 +173,41 @@ export class SidebarComponent implements OnInit {
             this.productos_active = false;
             this.Sostenibilidad_active = false;
             this.mercados_active = true;
+            this.expand_menu();
         }
         
         if(element === "products"){
             this.mercados_active = false;
             this.Sostenibilidad_active = false;
             this.productos_active = true;
+            this.expand_menu();
         }
         if(element === "pages"){
             this.mercados_active = false;
             this.productos_active = false;
             this.Sostenibilidad_active = true;
+            this.expand_menu();
         }
+
         if (element === this.showMenu) {
             this.showMenu = '0';
+            this.closem();
         } else {
+            
             this.showMenu = element;
         }
 
     }
-
     toggleCollapsed() {
+        $(".sidebar").removeClass("menu-w70");
+        $(".toggle-button").removeClass("menu-w70");
+        $(".cerrarSide").removeClass("menu-w100");
+        this.mercados_active = false;
+        this.productos_active = false;
+        this.Sostenibilidad_active = false;
+        this.showMenu = '0';
+        this.closem();
+        // last code
         this.collapsed = !this.collapsed;
         this.collapsedEvent.emit(this.collapsed);
     }
@@ -220,5 +237,18 @@ export class SidebarComponent implements OnInit {
 
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
+    }
+    expand_menu(){
+        $(".sidebar").addClass("menu-w70");
+        $(".toggle-button").addClass("menu-w70");
+        $(".cerrarSide").addClass("menu-w100");
+    }
+    closem(){
+        this.mercados_active = false;
+        this.productos_active = false;
+        this.Sostenibilidad_active = false;
+        $(".sidebar").removeClass("menu-w70");
+        $(".toggle-button").removeClass("menu-w70");
+        $(".cerrarSide").removeClass("menu-w100");
     }
 }

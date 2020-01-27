@@ -38,6 +38,8 @@
 }
 #finalPic{
     background-color:#efefef;
+    height: 100% !important;
+    min-height: fit-content !important;
 }
 .return_in_modal{
     position: absolute;
