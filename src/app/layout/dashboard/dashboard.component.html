@@ -1,6 +1,5 @@
 <div [@routerTransition]>
     <div class="row">
-        <img src="./../../../../assets/images/logo-animado2.gif" [routerLink]="['./../home']" class="logo pointer fondo mb_logo">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mainCarousell first_slider"  *ngIf="sliders">
             <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let slide of sliders">
@@ -14,7 +13,7 @@
                 <div class="contanter row">
                     <div class="logo">
                         <!-- <img src="./../../../assets/images/Home/Modulo-1/logo.png"  alt=""> -->
-                        <img src="./../../../assets/images/logo-animado2.gif" class="pointer"  alt="">
+                        <!-- <img src="./../../../assets/images/logo-animado2.gif" class="pointer"  alt=""> -->
                     </div>
 
                     <!-- <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 d-grid" style="height: 60%;">
@@ -81,9 +80,9 @@
     </div>
 
 
-    <div class="row d-flex new_row nn-height">
+    <div class="row d-flex new_row nn-height content_height">
 
-            <div style="background-color:#f3f3f3"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content_all_videos">
+            <div style="background-color:#f3f3f3"  class="col-xs-8 col-sm-8 col-md-8 col-lg-8 content_all_videos m-auto ">
                 <!-- customOptions3 -->
                 <owl-carousel-o [options]="customOptions33">
                     <ng-container *ngFor="let slide of alerts">

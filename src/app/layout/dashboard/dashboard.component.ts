@@ -213,7 +213,7 @@ export class DashboardComponent implements OnInit {
         600:{
             items: 1,
             rewindNav : true,
-            navText: ["<img class='new_f_iz' src='assets/images/FlechaIz.png'>","<img class='new_f_de' src='assets/images/FlechaDer.png'>"],
+            navText: ["<img class='flechaIz iz-middle w-100' src='assets/images/FlechaIz.png'>","<img class='flechaDer de-middle w-100' src='assets/images/FlechaDer.png'>"],
             nav: true
         },
         1000:{

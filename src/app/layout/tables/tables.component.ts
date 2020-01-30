@@ -639,7 +639,7 @@ export class TablesComponent implements OnInit {
                             src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/fREHpab5FmqYc1dZanxoYNPikOzN8yeeOJO9L33O.jpeg"
                             break;
                         case 15:
-                            src = "./../../../../assets/images/logo-animado2.gif"
+                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/aG1JQ65UrVA8ytXOzoXaYy52wY5HdmSmdVGCiaSP.jpeg"
                             break;
                         case 16:
                             src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/nZQyTUsYm6XPv8tG1wjLmfXKAoJn9Jm4Ek8P1eLl.png"

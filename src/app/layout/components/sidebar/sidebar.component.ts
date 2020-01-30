@@ -24,6 +24,7 @@ export class SidebarComponent implements OnInit {
     Table:any = []
     TableProds:any = []
     TableProdsFind:any = []
+    hover_num = 0
     private _success = new Subject<string>();
     mercados_active = false;
     productos_active = false;
@@ -59,7 +60,20 @@ export class SidebarComponent implements OnInit {
         this.showMenu = '0';
         this.pushRightClass = 'push-right';
         this.cargarAll();
+        $(window).scroll(function() {
+            var windscroll = $(window).scrollTop();
+            if (windscroll >= 100) {
+                $('.menu_fixed').addClass('add_css');
+            } else {
+                $('.menu_fixed').removeClass('add_css');
+            }
         
+        }).scroll();​   
+        
+        $('.conteiner_show_more').click(function(){
+            alert(true);
+            $( ".content_size").stop().animate( { scrollTop: 1 * 200 }, 500 );
+        });
     }
     
     public changeSuccessMessage() {
@@ -79,6 +93,7 @@ export class SidebarComponent implements OnInit {
                           .then(response => {
 
                             this.TableProdsFind=response;
+                            this.expand_menu();
                             if(response.length<=0){
                                 this.buscado=true;
                             }
@@ -250,5 +265,24 @@ export class SidebarComponent implements OnInit {
         $(".sidebar").removeClass("menu-w70");
         $(".toggle-button").removeClass("menu-w70");
         $(".cerrarSide").removeClass("menu-w100");
+    }
+    showMore(){
+       
+        
+        if(this.hover_num >= 15){
+            this.hover_num = 0;
+            $( ".content_size").stop().animate( { scrollTop: this.hover_num * 44 }, 500 );
+        }else{
+            this.hover_num += 10;
+            $( ".content_size").stop().animate( { scrollTop: this.hover_num * 44 }, 500 );
+        }
+    }
+    
+    showMore2(onHover){
+        if(onHover){
+            this.hover_num += 1;
+            $( ".content_size").stop().animate( { scrollTop: this.hover_num * 44 }, 500 );
+        }
+        
     }
 }

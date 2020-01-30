@@ -141,6 +141,13 @@ body{
   .mb_logo{
     display: none;
   }
+  @media only screen and (min-width: 1000px){
+    .content_height{
+      min-height: 100vh;
+      background-image: url(./../../../assets/images/points.png);
+      background-size: repeat;
+    }
+  }
   @media only screen and (max-width: 1000px){
     .mb_logo{
       position: absolute;
@@ -453,10 +460,16 @@ body{
     position: relative;
     display: block;
     width: 100%;
-    height: 800px;
-    min-height: 800px;
+    height: 560px;
+    min-height: 560px;
     padding: 0;
     margin: 0;
+  }
+  .new_f_iz{
+    font-size: 40px !important;
+  }
+  .new_f_de{
+    font-size: 40px !important;
   }
 
   .nn-container {
@@ -640,6 +653,8 @@ body{
 }
 .content_all_videos{
   padding-right: 0;
+  padding-left: 0;
+  
 }
 .col_comprometidos p{
   color: white !important;

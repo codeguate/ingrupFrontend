@@ -492,7 +492,7 @@ export class FormComponent implements OnInit {
                 src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/rcrp6fxiI1hO1tffneEKpwOijW4pXzT4IBzUa6P5.jpeg";
                 break;
             case 21:
-                src = "../../../assets/images/logo-animado2.gif";
+                src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/ki9vBupLTpRZMVzobUf1KeyoFAIPeTQJjTiz85Ne.jpeg";
                 break;
             case 22:
                 src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/xnwZbb5PRUM3EyRc2ZBSoLPIXunzisHKgy1JLGrR.jpeg";
