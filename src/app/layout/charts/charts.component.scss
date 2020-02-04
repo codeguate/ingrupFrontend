@@ -3,7 +3,7 @@
     src: url("./../../../assets/fonts/Impacted.ttf");
 }
 @font-face {
-    font-family: "Impact";
+    font-family: "Impact"  !important;
     src: url("./../../../assets/fonts/impact.ttf");
 }
 @font-face{
@@ -223,7 +223,7 @@ $rosado: #E06B70;
     width: auto;
 }
 .politica{
-    font-family: Impact;
+    font-family: "Impact"  !important;
     background-image: url(./../../../assets/images/Nosotros/fondo-numeros.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -353,7 +353,7 @@ $rosado: #E06B70;
 
 }
 .politicas-mejora{
-    font-family: Impact !important;
+    font-family: "Impact"  !important !important;
 }
 .w-auto{
     height: auto;
@@ -383,7 +383,7 @@ $rosado: #E06B70;
     display: block;
     margin: auto;
     color: #ffffff;
-    font-family: Impact;
+    font-family: "Impact"  !important;
     .historia-titulo{
         color: #A2A2A2;
         border-color: #A2A2A2;
@@ -446,7 +446,7 @@ $rosado: #E06B70;
     padding: 1%;
     line-height: 0.95;
     margin-bottom: 5%;
-    font-family: Impact;
+    font-family: "Impact"  !important;
 }
 .contain_title_v{
     padding-left: 18%;
@@ -484,7 +484,7 @@ $rosado: #E06B70;
     font-size: 1.5em;
 }
 .title_gestion{
-    font-family: "Impact" !important;
+    font-family: "Impact"  !important !important;
 }
 .content_data{
     display: flex;
@@ -503,7 +503,7 @@ $rosado: #E06B70;
 .title_page{
     font-size: 5em;
     text-align: center;
-    font-family: Impact;
+    font-family: "Impact"  !important;
     text-transform: uppercase;
     color: #5e5b5d;
 
@@ -520,7 +520,7 @@ $rosado: #E06B70;
     margin-bottom: 5%;
     padding: 1% 3%;
     font-size: 4em;
-    font-family: Impact !important;
+    font-family: "Impact"  !important !important;
 }
 .end-page{
     width: 100%;
@@ -545,7 +545,7 @@ $rosado: #E06B70;
     width: 100%;
 }
 .content-proposito h1{
-    font-family: Impact !important;
+    font-family: "Impact"  !important !important;
     font-size: 5em;
 }
 

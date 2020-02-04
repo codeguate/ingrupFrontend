@@ -124,19 +124,7 @@
             </div>
             
     </div>
-    <div class="toggle-button new_option mb w-100" [ngClass]="{collapsed: collapsed}">
-        <div class="results w-100" *ngIf="TableProdsFind">
-            <ul *ngIf="TableProdsFind.length>0">
-                    <li *ngFor="let data of TableProdsFind" (click)="recharge()" [routerLink]="['/'+data.pagina,data.id]">
-                        {{data.nombre}}
-                    </li>
-            </ul>
-            <ngb-alert *ngIf="TableProdsFind.length<=0 && buscado" type="danger" (close)="buscado = false">
-                    <strong>No se ha encontrado nada ...</strong>
-            </ngb-alert>
-
-        </div>
-    </div>
+    
     <div class="list-group">
         <div class="input-group mb-2 w-100 search-control ">
             <div class="input-group-prepend">
@@ -250,6 +238,19 @@
             <i class="fa fa-fw" [routerLinkActive]="['fa-chevron-right']"></i>&nbsp;
             <span>{{ 'Contáctenos' | translate }}</span>
         </a>
+        <div class="toggle-button mb w-90" [ngClass]="{collapsed: collapsed}">
+            <div class="results w-100" *ngIf="TableProdsFind">
+                <ul *ngIf="TableProdsFind.length>0">
+                        <li *ngFor="let data of TableProdsFind" (click)="recharge()" [routerLink]="['/'+data.pagina,data.id]">
+                            {{data.nombre}}
+                        </li>
+                </ul>
+                <ngb-alert *ngIf="TableProdsFind.length<=0 && buscado" type="danger" (close)="buscado = false">
+                        <strong>No se ha encontrado nada ...</strong>
+                </ngb-alert>
+    
+            </div>
+        </div>
         <!-- <div class="nested-menu">
                 <a class="list-group-item" (click)="addExpandClass('languages')">
                     <span><i class="fa  fa-fw fa-language"></i>&nbsp; {{ 'Language' | translate }} <b class="caret"></b></span>

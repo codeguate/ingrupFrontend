@@ -337,7 +337,7 @@ $topnav-background-color: #ffffff;
     margin: auto;
     padding: 0px 7px;
     border-radius: unset;
-    font-family: Impact;
+    font-family: "Impact"  !important;
     text-transform: uppercase;
 }
 .content_size::-webkit-scrollbar-track
@@ -434,9 +434,15 @@ $topnav-background-color: #ffffff;
 .toggle-button{
     width: 90% !important;
 }
+.w-90{
+    width: 90% !important
+}
 @media screen and (max-width: 992px) {
     .show{
         display: block;
+    }
+    .w-90{
+        width: 90% !important
     }
     .new_option{
         display: none;
