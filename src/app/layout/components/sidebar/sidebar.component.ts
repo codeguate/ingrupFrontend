@@ -217,6 +217,7 @@ export class SidebarComponent implements OnInit {
         $(".sidebar").removeClass("menu-w70");
         $(".toggle-button").removeClass("menu-w70");
         $(".cerrarSide").removeClass("menu-w100");
+        $("new_option").removeClass("show");
         this.mercados_active = false;
         this.productos_active = false;
         this.Sostenibilidad_active = false;
@@ -257,6 +258,7 @@ export class SidebarComponent implements OnInit {
         $(".sidebar").addClass("menu-w70");
         $(".toggle-button").addClass("menu-w70");
         $(".cerrarSide").addClass("menu-w100");
+        $(".new_option").addClass("show");
     }
     closem(){
         this.mercados_active = false;
@@ -265,6 +267,7 @@ export class SidebarComponent implements OnInit {
         $(".sidebar").removeClass("menu-w70");
         $(".toggle-button").removeClass("menu-w70");
         $(".cerrarSide").removeClass("menu-w100");
+        this.buscado=true;
     }
     showMore(){
        

@@ -10,6 +10,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BlockTemplateComponent } from '../block-template-component/block-template-component.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
     imports: [
@@ -24,7 +25,7 @@ import { BlockTemplateComponent } from '../block-template-component/block-templa
         NgSelectModule,
         DataTableModule
     ],
-    declarations: [LayoutComponent, SidebarComponent,BlockTemplateComponent],
+    declarations: [LayoutComponent, SidebarComponent,BlockTemplateComponent, FooterComponent],
     entryComponents: [
         BlockTemplateComponent // Make sure to add it to the entry components
     ]

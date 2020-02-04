@@ -457,11 +457,11 @@
           <li class="list-group-item">
               <div class="row w-100">
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    Descripción
+                    Peso (Gr)
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <ng-select [items]="selectedData.presentaciones"
-                                bindLabel="nombre"
+                                bindLabel="peso"
                                 bindId="id"
                                 placeholder="Seleccione una opcion"
                                 [searchable]="true"
@@ -501,7 +501,7 @@
           <li class="list-group-item">
               <div class="row w-100">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    Peso (Gr)
+                    Descripcion
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <!-- <ng-select [items]="selectedData.presentaciones"
@@ -517,7 +517,7 @@
                         [(ngModel)]="selected.peso">
                     </ng-select> -->
                     
-                    <input type="text" name="Filtro2" id="Filtro2"  class="form-control" disabled [(ngModel)]="selected.peso">
+                    <input type="text" name="Filtro2" id="Filtro2"  class="form-control" disabled [(ngModel)]="selected.nombre">
                 </div>
               </div>
           </li>
@@ -826,7 +826,7 @@
 
 <!-- Etiquetas -->
 <div *ngIf="selectedData.categoria==5">
-    <div class="card ficha-tecnica">
+    <div class="card ficha-tecnica" *ngIf="selectedData.presentaciones > 1">
         <div class="card-header header-ingrup-table">
             Ficha Técnica 
         </div>

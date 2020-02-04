@@ -636,7 +636,7 @@ export class TablesComponent implements OnInit {
                             src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/hR687cuWZUZ0k9SizyzuyVyLMSGQ6xbjtBVWeHZN.jpeg"
                             break;
                         case 14:
-                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/fREHpab5FmqYc1dZanxoYNPikOzN8yeeOJO9L33O.jpeg"
+                            src = "../../../assets/images/logo-animado2.gif"
                             break;
                         case 15:
                             src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/aG1JQ65UrVA8ytXOzoXaYy52wY5HdmSmdVGCiaSP.jpeg"
@@ -648,7 +648,7 @@ export class TablesComponent implements OnInit {
                             src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/R46XgHZsdef7cl25i8usnT45kTMjefTFrbPuQVTZ.jpeg"
                             break;
                         case 18:
-                            src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/VxRO56reEMdELSgIniPxRGAA2zMaVqWDUD3R5ZTx.jpeg"
+                            src = "./../../assets/images/5.jpg"
                             break;
                         case 20:
                             src = "https://p2p-encuestas.s3.amazonaws.com/ProductosIngrup/Jksym11MENV2tST0CZxywNdZcedsMsdxnJCNQqVZ.jpeg"

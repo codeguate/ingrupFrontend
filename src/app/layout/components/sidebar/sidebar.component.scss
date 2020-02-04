@@ -220,6 +220,9 @@ $topnav-background-color: #ffffff;
     outline: 0;
     // box-shadow: 0 0 0 0.1rem rgba(68, 214, 64, 0.25)!important;
 }
+.add_roles_height{
+    max-height: 15vh !important;
+}
 .form-control {
     color: #fff !important; 
     background-color: #a2a2a2 !important;
@@ -305,7 +308,7 @@ $topnav-background-color: #ffffff;
 }
 .add_css{
     // box-shadow: 0px 0px 20px 2px #00e000;
-    background-color: white;
+    background-color: #fff;
     position: fixed;
     z-index: 99999;
 }
@@ -432,12 +435,29 @@ $topnav-background-color: #ffffff;
     width: 90% !important;
 }
 @media screen and (max-width: 992px) {
+    .show{
+        display: block;
+    }
+    .new_option{
+        display: none;
+        bottom: 0 !important;
+         width: 100% !important;
+    }
+    .description_text ,.separador{
+        display: none;
+    }
     .col-1-mb{
-        width: calc(100%/3) !important;
+        width: calc(100%/2) !important;
         padding: 0 !important;
         .w-50{
             width: 100% !important; 
         }
+    }
+    .toggle-button.w-100{
+        width: 100% !important;
+    }
+    .logo_1{
+        margin-left: 0 !important;
     }
     .content_logo_mb{
         display: contents !important;
@@ -583,6 +603,12 @@ $topnav-background-color: #ffffff;
     }
 }
 @media screen and (max-width: 992px) {
+    .logo_header{
+        visibility: hidden;
+    }
+    .add_css .logo_header{
+        visibility: visible;
+    }
     .input-group{
         width: 65% !important;
     }
