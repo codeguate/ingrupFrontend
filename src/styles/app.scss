@@ -392,6 +392,10 @@ div[id^="ngb-panel"] ul li.active {
     color: #ffffff;
     font-family: RobotoMedium;
 }
+.owl-carousel .owl-item {
+  align-items: flex-start; 
+}
+
 .owl-carousel .owl-item img {
     max-width: 100% !important;
     max-height: 100% !important;
