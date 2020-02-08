@@ -1,7 +1,6 @@
 <div [@routerTransition]>
     <section>
         <div class="row row1 inrow v100">
-
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-1-row1">
                 <div class="row h-100">
                     <div class="container_text">
@@ -9,28 +8,39 @@
                         con el planeta.
                     </div>
                 </div>
-
             </div>
 
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-2-row2 d-flex" style="background-image: url('../../../assets/images/Sostenibilidad/fondo2.png');">
+            <div
+                class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-2-row2 d-flex"
+                style="background-image: url('../../../assets/images/Sostenibilidad/fondo2.png');"
+            >
                 <div class="contain_img w-100">
-                <img class="img_2" src="../../../assets/images/Sostenibilidad/RSE.png" >
-                <img class="img_1" src="../../../assets/images/Sostenibilidad/4rs.png" >
+                    <img
+                        class="img_2"
+                        src="../../../assets/images/Sostenibilidad/RSE.png"
+                    />
+                    <img
+                        class="img_1"
+                        src="../../../assets/images/Sostenibilidad/4rs.png"
+                    />
                 </div>
             </div>
-
         </div>
     </section>
     <section>
         <div class="row row2">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <img class="mundo" src="../../../assets/images/Sostenibilidad/cuidado.png">
+                <img
+                    class="mundo"
+                    src="../../../assets/images/Sostenibilidad/cuidado.png"
+                />
             </div>
 
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                 <div class="row text_row">
                     <p class="text_apoyamos">
-                        Apoyamos el cuidado del medio ambiente con acciones positivas
+                        Apoyamos el cuidado del medio ambiente con acciones
+                        positivas
                     </p>
                     <p class="text_reciclamos">
                         Reciclamos 1.6 millones de botellas al día
@@ -42,38 +52,51 @@
     <section class="section_img">
         <div class="row container_all_img">
             <div class="container_img ml-auto">
-                <img class="w-100" src="../../../assets/images/Sostenibilidad/reduce.png">
+                <img
+                    class="w-100"
+                    src="../../../assets/images/Sostenibilidad/reduce.png"
+                />
             </div>
             <div class="container_img">
-                <img class="w-100" src="../../../assets/images/Sostenibilidad/recicla.png">
+                <img
+                    class="w-100"
+                    src="../../../assets/images/Sostenibilidad/recicla.png"
+                />
             </div>
             <div class="container_img mr-auto">
-                <img class="w-100" src="../../../assets/images/Sostenibilidad/reusa.png">
+                <img
+                    class="w-100"
+                    src="../../../assets/images/Sostenibilidad/reusa.png"
+                />
             </div>
         </div>
     </section>
     <section>
         <div class="row">
-
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-                <div style="background-color:#f3f3f3"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content_slides_full last_section">
+                <div
+                    style="background-color:#f3f3f3"
+                    class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content_slides_full last_section"
+                >
                     <owl-carousel-o [options]="customOptions3">
                         <ng-container *ngFor="let slide of alerts">
                             <ng-template carouselSlide>
                                 <div class="row w-100 ">
                                     <div class="w-100 no-padding">
-                                        <img [src]="slide.src"  class="slider_img_sos w-100">
+                                        <img
+                                            [src]="slide.src"
+                                            class="slider_img_sos w-100"
+                                        />
                                     </div>
-                                    
-                                <!-- <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 v100 no-padding description_data">
+
+                                    <!-- <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 v100 no-padding description_data">
                                         <div class="contain_data">
                                             <p class="title_slide">
                                                 {{slide.title}}
                                             </p>
                                             <p class="description_slide">
                                                 {{slide.description}}
-                                              
+
                                             </p>
                                         </div>
                                     </div> -->
@@ -91,9 +114,9 @@
                         </ng-container>
                     </owl-carousel-o>
                 </div> -->
-                    <!-- SLIDER -->
+                <!-- SLIDER -->
                 <!-- Slider anterior no funcional -->
-                    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -143,71 +166,97 @@
                               <span class="sr-only">Next</span>
                             </a>
                           </div> -->
-                          <!-- SLIDER -->
-                
+                <!-- SLIDER -->
             </div>
-
         </div>
     </section>
     <section class="last_section">
-            <div class="row last_row">
-
-                <div class="row m-auto d-flex">
-                    <img class="comprometidos_img" src="../../../assets/images/Sostenibilidad/comprometidos.png">
-                    <p class="last_title">
-                        Comprometido con el planeta
-                    </p>
-                </div>
+        <div class="row last_row">
+            <div class="row m-auto d-flex">
+                <img
+                    class="comprometidos_img"
+                    src="../../../assets/images/Sostenibilidad/comprometidos.png"
+                />
+                <p class="last_title">
+                    Comprometido con el planeta
+                </p>
             </div>
-            <div class="row container_all_img">
-                <div class="container_img ml-auto">
-                    <img class="w-100" src="../../../assets/images/Sostenibilidad/arboles.png">
-                </div>
-                <div class="container_img">
-                    <img class="w-100" src="../../../assets/images/Sostenibilidad/absorcion.png">
-                </div>
-                <div class="container_img mr-auto">
-                    <img class="w-100" src="../../../assets/images/Sostenibilidad/oxigeno.png">
-                </div>
-            </div>
-        </section>
-    <section class="last_section">
-        
-        <div class="row w-100">
-            <img class="w-100" src="../../../assets/images/Sostenibilidad/medio_ambiente/Grupo 1779.png">
-            <img class="w-100" src="../../../assets/images/Sostenibilidad/medio_ambiente/Grupo 1754.svg">
-            <img class="w-80 m-auto img_numbers" src="../../../assets/images/Sostenibilidad/medio_ambiente/Grupo 1759.svg">
-            
         </div>
-        
+        <div class="row container_all_img">
+            <div class="container_img ml-auto">
+                <img
+                    class="w-100"
+                    src="../../../assets/images/Sostenibilidad/arboles.png"
+                />
+            </div>
+            <div class="container_img">
+                <img
+                    class="w-100"
+                    src="../../../assets/images/Sostenibilidad/absorcion.png"
+                />
+            </div>
+            <div class="container_img mr-auto">
+                <img
+                    class="w-100"
+                    src="../../../assets/images/Sostenibilidad/oxigeno.png"
+                />
+            </div>
+        </div>
     </section>
-    
+    <section class="last_section">
+        <div class="row w-100 align-items-start m-0">
+            <img
+                class="w-100"
+                src="../../../assets/images/Sostenibilidad/medio_ambiente/Grupo 1779.png"
+            />
+            <img
+                class="w-100"
+                src="../../../assets/images/Sostenibilidad/medio_ambiente/Grupo 1754.svg"
+            />
+            <img
+                class="w-80 m-auto img_numbers"
+                src="../../../assets/images/Sostenibilidad/medio_ambiente/Grupo 1759.svg"
+            />
+        </div>
+    </section>
 </div>
 <div class="content_footer w-100">
-
     <div class="row w-100">
-        
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text-right">
-            <img class="logo_white" src="../../../assets/images/LogoIngrupBlanco.svg">
+            <img
+                class="logo_white"
+                src="../../../assets/images/LogoIngrupBlanco.svg"
+            />
         </div>
-        
-        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 d-flex text-left content_info_footer">
-            <div class="separador_footer" style="width: 3px;height: 80%;">
-            </div>
-            <p class="text_footer"> 
-                © 2020 Ingrup<br>
+
+        <div
+            class="col-xs-7 col-sm-7 col-md-7 col-lg-7 d-flex text-left content_info_footer"
+        >
+            <div class="separador_footer" style="width: 3px;height: 80%;"></div>
+            <p class="text_footer">
+                © 2020 Ingrup<br />
                 info@ingrup.com
             </p>
             <div>
-                <a href="https://www.facebook.com/pg/Ingrup-103428294520345/about/?ref=page_internal" target="_blank">
-                    <img class=" logo_1 logo_1_footer" src="./../../../../assets/images/facebookc.svg">
+                <a
+                    href="https://www.facebook.com/pg/Ingrup-103428294520345/about/?ref=page_internal"
+                    target="_blank"
+                >
+                    <img
+                        class=" logo_1 logo_1_footer"
+                        src="./../../../../assets/images/facebookc.svg"
+                    />
                 </a>
-                <a href="https://www.instagram.com/ingruplatam/" target="_blank">
-                    <img class=" logo_2_footer" src="./../../../../assets/images/instagramc.svg">
+                <a
+                    href="https://www.instagram.com/ingruplatam/"
+                    target="_blank"
+                >
+                    <img
+                        class=" logo_2_footer"
+                        src="./../../../../assets/images/instagramc.svg"
+                    />
                 </a>
             </div>
         </div>
-        
     </div>
-    
-    </div>
+</div>
